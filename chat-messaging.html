@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Chat and messaging risks for children — Discord, WhatsApp, DMs, how grooming progresses, sexting and the law, and what parents can do."/>
+  <title>Chat &amp; Messaging — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>"/>
+  <style>
+    .topic-hero{background:linear-gradient(135deg,#0F2027 0%,#1A3A2A 100%);padding:var(--space-12) 0;}
+    .topic-hero h1{color:#fff;font-size:var(--text-3xl);margin-bottom:var(--space-3);}
+    .topic-hero p{color:rgba(255,255,255,0.8);font-size:var(--text-md);max-width:560px;line-height:1.65;margin-bottom:var(--space-5);}
+    .risk-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4);}
+    .risk-card{background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);}
+    .risk-card h3{font-size:var(--text-base);font-weight:600;color:var(--color-text-title);margin:var(--space-3) 0 var(--space-2);}
+    .risk-card p{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.6;}
+    .grooming-stages{display:flex;flex-direction:column;gap:0;border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);overflow:hidden;}
+    .stage{display:flex;gap:var(--space-4);align-items:flex-start;padding:var(--space-5);border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);}
+    .stage:last-child{border-bottom:none;}
+    .stage-num{width:32px;height:32px;border-radius:50%;background:var(--color-alert);color:#fff;font-size:var(--text-sm);font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .stage h4{font-size:var(--text-base);font-weight:600;color:var(--color-text-title);margin-bottom:var(--space-1);}
+    .stage p{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.6;margin:0;}
+    .legal-box{background:#1A1A1A;border-radius:var(--radius-lg);padding:var(--space-6);}
+    .legal-box h3{color:#fff;font-size:var(--text-xl);margin-bottom:var(--space-4);}
+    .legal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-3);}
+    .legal-item{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-md);padding:var(--space-4);}
+    .legal-item h4{color:#fff;font-size:var(--text-sm);font-weight:600;margin-bottom:var(--space-2);}
+    .legal-item p{color:rgba(255,255,255,0.65);font-size:var(--text-sm);line-height:1.55;margin:0;}
+    .checklist{display:flex;flex-direction:column;gap:var(--space-3);}
+    .check-item{display:flex;gap:var(--space-3);align-items:flex-start;padding:var(--space-4);background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-md);}
+    .check-item i{font-size:20px;color:var(--color-brand);flex-shrink:0;margin-top:2px;}
+    .check-item p{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.6;margin:0;}
+    .check-item p strong{color:var(--color-text-title);font-weight:600;}
+    @media(max-width:767px){.risk-grid,.legal-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert"><p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p><a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a></div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list"><li><a href="parents.html" class="nav__link nav__link--active">Parents</a></li><li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li><li><a href="educators.html" class="nav__link">Educators</a></li><li><a href="resources.html" class="nav__link">Resources</a></li></ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile"><a href="parents.html" class="nav__link">Parents</a><a href="kids.html" class="nav__link">Kids &amp; teens</a><a href="educators.html" class="nav__link">Educators</a><a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a></div>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="topic-hero" aria-label="Chat and messaging overview">
+      <div class="container">
+        <a href="parents.html" style="color:rgba(255,255,255,0.6);font-size:var(--text-sm);text-decoration:none;display:inline-flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-4);">← Parents hub</a>
+        <div style="font-size:40px;margin-bottom:var(--space-3);" aria-hidden="true">💬</div>
+        <h1>Chat &amp; messaging</h1>
+        <p>Discord, WhatsApp, DMs — how grooming progresses online, what the law says about sexting, and how to talk to your child about it.</p>
+        <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;">
+          <span class="badge badge--amber">Medium-high risk</span>
+          <span class="badge badge--gray">9 min read</span>
+          <span class="badge badge--gray">Updated April 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="Key risks">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow eyebrow--alert">The risks</span><h2>What makes messaging dangerous</h2></div>
+        <div class="risk-grid" role="list">
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">🎮</div><h3>Moving off-game to private apps</h3><p>The most common grooming pattern starts in a game with unmoderated chat. After weeks of friendly contact, the suggestion comes to "move to Discord/WhatsApp so we can talk properly." This removes all platform moderation and parental visibility.</p></div>
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">🖥️</div><h3>Discord — significant risks</h3><p>Discord is primarily known as a gaming platform but functions as a social network. Servers can be public or private. Adults recruit children into servers that appear innocent before exposing them to inappropriate content or contact. No effective age verification.</p></div>
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">📱</div><h3>WhatsApp group dynamics</h3><p>School WhatsApp groups are common and largely unmoderated. Cyberbullying, screenshot sharing, and inappropriate content are frequently distributed through these groups. Once a message is in a group, it is impossible to retrieve.</p></div>
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">💌</div><h3>Sexting — peer pressure and misuse</h3><p>Pressure to send intimate images exists in peer relationships as well as from adults. Children as young as 11 report receiving requests for images. Once sent, images can be shared without consent, used for blackmail, or published on harmful sites.</p></div>
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true" id="sextortion">💰</div><h3>Sextortion — financial and further image demands</h3><p>Criminals pose as peers, build trust, obtain one intimate image, then demand money or more images under threat of sharing the original. This is now the fastest growing form of child sexual exploitation in the UK. It targets boys disproportionately.</p></div>
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">🔒</div><h3>End-to-end encryption — double-edged</h3><p>WhatsApp and Signal use end-to-end encryption, which protects legitimate privacy but also makes it impossible for platforms to detect harmful content or for parents to monitor conversations through technical means.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="How grooming progresses">
+      <div class="container container--narrow">
+        <div class="section-header"><span class="eyebrow eyebrow--alert">Understanding grooming</span><h2>How it typically progresses</h2><p class="text-secondary">Grooming is not sudden — it follows a pattern over weeks or months. Recognising the stages helps parents intervene before harm occurs.</p></div>
+        <div class="grooming-stages" role="list" aria-label="Stages of online grooming">
+          <div class="stage" role="listitem"><div class="stage-num" aria-label="Stage 1">1</div><div><h4>Targeting</h4><p>The perpetrator identifies a child who appears lonely, isolated, unhappy at home, or seeking attention online. Gaming platforms, social media comments sections, and Discord servers are common targeting environments.</p></div></div>
+          <div class="stage" role="listitem"><div class="stage-num" aria-label="Stage 2">2</div><div><h4>Gaining trust</h4><p>Weeks of friendly, supportive contact. The perpetrator is consistently kind, interested in the child's life, and often gifts in-game items or money. They make the child feel uniquely understood. This stage can last months.</p></div></div>
+          <div class="stage" role="listitem"><div class="stage-num" aria-label="Stage 3">3</div><div><h4>Filling needs</h4><p>The perpetrator positions themselves as the person who understands the child best — better than parents or friends. They may encourage the child to share problems at home, creating emotional dependency and distance from family.</p></div></div>
+          <div class="stage" role="listitem"><div class="stage-num" aria-label="Stage 4">4</div><div><h4>Isolation</h4><p>The child is encouraged to keep the relationship secret. They may be told parents wouldn't understand, or that friends would be jealous. The private communication channel — Discord, WhatsApp — is established at this stage.</p></div></div>
+          <div class="stage" role="listitem"><div class="stage-num" aria-label="Stage 5">5</div><div><h4>Desensitisation</h4><p>Conversations gradually shift toward sexual topics, introduced as normal or educational. The child is exposed to sexual content incrementally, making later requests feel less alarming than they would have initially.</p></div></div>
+          <div class="stage" role="listitem"><div class="stage-num" aria-label="Stage 6">6</div><div><h4>Maintaining control</h4><p>Once sexual contact or images are involved, threats, guilt, or emotional manipulation are used to maintain secrecy. The child may feel responsible or fear getting in trouble — which is why blame-free disclosure conversations are so important.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="The law on sexting">
+      <div class="container">
+        <div class="legal-box" role="region" aria-label="Legal information on sexting">
+          <h3>⚖️ The law — what parents and children need to know</h3>
+          <div class="legal-grid">
+            <div class="legal-item"><h4>Sexting between under-18s</h4><p>Creating, possessing or sharing intimate images of anyone under 18 is illegal in the UK — even if both parties are under 18 and both consented. Police can use discretion but the law is clear.</p></div>
+            <div class="legal-item"><h4>Sharing without consent</h4><p>Under the Online Safety Act 2023, sharing intimate images of any person without their consent is a criminal offence carrying up to 2 years in prison. AI-generated images are included.</p></div>
+            <div class="legal-item"><h4>Sextortion</h4><p>Using intimate images to threaten or blackmail someone is a serious criminal offence. The National Crime Agency and CEOP deal with these cases. Do not pay — report immediately.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="What parents can do">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow eyebrow--brand">Action</span><h2>What parents can do</h2></div>
+        <div class="checklist" role="list">
+          <div class="check-item" role="listitem"><i class="ti ti-eye" aria-hidden="true"></i><p><strong>Know which apps your child uses for messaging.</strong> Ask directly. Many children have secondary accounts or use lesser-known apps specifically because parents don't know about them. Discord, Telegram, and Kik are frequently used as "hidden" messaging platforms.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-message-off" aria-hidden="true"></i><p><strong>Restrict Discord to friends only.</strong> In Discord settings, disable the ability to receive DMs from people who share a server but aren't friends. This prevents strangers in gaming servers from contacting your child privately.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-shield" aria-hidden="true"></i><p><strong>Teach your child the "move to private chat" warning sign.</strong> If someone they met online suggests moving to a different, more private app to talk, that is a red flag. They should tell you immediately — no matter how friendly the person seems.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-messages" aria-hidden="true"></i><p><strong>Have the sexting conversation early — before it happens.</strong> Tell your child: "If anyone ever asks you to send a photo of yourself, the answer is always no — and you always tell me. You won't be in trouble. I just want to keep you safe." This conversation should happen by age 10.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-alert-triangle" aria-hidden="true"></i><p><strong>If sextortion is happening — do not pay.</strong> Contact <a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="font-weight:600;">CEOP</a> immediately, screenshot all messages before blocking, and call Childline on <a href="tel:08001111" style="font-weight:600;">0800 1111</a> for support. See our <a href="get-help-now.html#panel-sextortion" style="font-weight:600;">full sextortion protocol</a>.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="Related guides">
+      <div class="container"><div class="section-header--center"><span class="eyebrow">Keep reading</span><h2>Related guides</h2></div>
+        <div class="grid grid-3">
+          <a href="get-help-now.html" class="guide-card"><span style="font-size:24px;">🚨</span><h3 class="guide-card__title">Get help now</h3><p class="guide-card__desc">Step-by-step protocols for grooming, sextortion, and image sharing — if something is happening right now.</p></a>
+          <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+            <a href="gaming-safety.html" class="guide-card"><span style="font-size:24px;">🎮</span><h3 class="guide-card__title">Gaming safety</h3><p class="guide-card__desc">How contact begins in games and what to do about in-game chat.</p></a>
+            <a href="online-games-safety.html" style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);background:var(--color-text-title);border-radius:var(--radius-lg);padding:var(--space-3) var(--space-4);text-decoration:none;"><div style="display:flex;align-items:center;gap:var(--space-3);"><span style="font-size:18px;" aria-hidden="true">📊</span><p style="font-size:var(--text-sm);font-weight:600;color:#fff;margin:0;">Top 10 games — full guide</p></div><span style="font-size:var(--text-xs);color:rgba(255,255,255,0.6);white-space:nowrap;">Read →</span></a>
+          </div>
+          <a href="privacy.html" class="guide-card"><span style="font-size:24px;">🔒</span><h3 class="guide-card__title">Privacy &amp; data</h3><p class="guide-card__desc">How to reduce what strangers can find out about your child online.</p></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer" role="contentinfo"><div class="container"><div class="footer__safeguarding" role="region"><p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p><div class="footer__safeguarding-list"><div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div><div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span></div></div></div><div class="footer__bottom"><p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p><div class="footer__legal"><a href="privacy-policy.html">Privacy policy</a><a href="accessibility.html">Accessibility</a><a href="parents.html">Parents hub</a></div></div></div></footer>
+  <script>function toggleMobileMenu(btn){const m=document.getElementById('mobile-menu');const o=m.classList.contains('is-open');m.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(!o));}document.getElementById('footer-year').textContent=new Date().getFullYear();</script>
+</body>
+</html>

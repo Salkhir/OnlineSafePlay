@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Everything parents and carers need to protect their child online — safety check, conversation guides, platform settings, and topic guides on gaming, AI, social media and more." />
+  <title>Parents &amp; Carers — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>" />
+  <style>
+    .parents-hero {
+      background: var(--color-brand-light);
+      border-bottom: 1px solid #9FE1CB;
+      padding: var(--space-12) 0;
+    }
+    .mood-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: var(--space-3);
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .mood-card {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5) var(--space-4);
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+    .mood-card:hover {
+      background: var(--color-bg-secondary);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      color: inherit;
+    }
+    .mood-card__icon { font-size: 28px; margin-bottom: var(--space-3); display: block; }
+    .mood-card__title { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-1); }
+    .mood-card__desc { font-size: var(--text-xs); color: var(--color-text-secondary); line-height: 1.5; }
+    .mood-card--panic { border-color: var(--color-alert-border); }
+    .mood-card--panic:hover { background: var(--color-alert-light); }
+
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: var(--space-3);
+    }
+    .platform-card {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    .platform-card:hover {
+      background: var(--color-bg-secondary);
+      box-shadow: var(--shadow-sm);
+      color: inherit;
+    }
+    .platform-card__icon { font-size: 28px; margin-bottom: var(--space-2); display: block; }
+    .platform-card__name { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-1); }
+
+    @media (max-width: 767px) {
+      .mood-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .platform-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert">
+      <p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p>
+      <a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a>
+    </div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list">
+          <li><a href="parents.html" class="nav__link nav__link--active" aria-current="page">Parents</a></li>
+          <li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li>
+          <li><a href="educators.html" class="nav__link">Educators</a></li>
+          <li><a href="resources.html" class="nav__link">Resources</a></li>
+          <li><a href="about.html" class="nav__link">About</a></li>
+        </ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile">
+        <a href="parents.html" class="nav__link">Parents</a>
+        <a href="kids.html" class="nav__link">Kids &amp; teens</a>
+        <a href="educators.html" class="nav__link">Educators</a>
+        <a href="resources.html" class="nav__link">Resources</a>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+      </div>
+    </div>
+  </header>
+
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="parents-hero" aria-label="Parents section introduction">
+      <div class="container" style="text-align:center;">
+        <span class="eyebrow eyebrow--brand">Parents &amp; carers</span>
+        <h1 style="font-size:var(--text-3xl);margin-bottom:var(--space-3);">Everything you need to protect your child online</h1>
+        <p class="text-lead" style="max-width:520px;margin:0 auto var(--space-8);">Guides, tools and conversation scripts — wherever you are right now, start here.</p>
+
+        <!-- Mood entry -->
+        <div class="mood-grid" role="list" aria-label="Choose where you are right now">
+          <a href="get-help-now.html" class="mood-card mood-card--panic" role="listitem">
+            <span class="mood-card__icon" aria-hidden="true">🚨</span>
+            <p class="mood-card__title">Something happened</p>
+            <p class="mood-card__desc">I need help right now</p>
+          </a>
+          <a href="#red-flags" class="mood-card" role="listitem">
+            <span class="mood-card__icon" aria-hidden="true">😟</span>
+            <p class="mood-card__title">I'm worried</p>
+            <p class="mood-card__desc">I've noticed warning signs</p>
+          </a>
+          <a href="#tools" class="mood-card" role="listitem">
+            <span class="mood-card__icon" aria-hidden="true">🛡️</span>
+            <p class="mood-card__title">I want to prepare</p>
+            <p class="mood-card__desc">Before anything goes wrong</p>
+          </a>
+          <a href="#conversation" class="mood-card" role="listitem">
+            <span class="mood-card__icon" aria-hidden="true">💬</span>
+            <p class="mood-card__title">I want to talk to them</p>
+            <p class="mood-card__desc">Start the conversation</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CURRENT THREATS -->
+    <section class="alert-strip" aria-label="Current digital safety threats">
+      <div class="container">
+        <div class="alert-strip__header">
+          <i class="ti ti-flame" style="color:var(--color-alert);font-size:16px;" aria-hidden="true"></i>
+          <span class="alert-strip__label">Current threats parents should know about</span>
+        </div>
+        <div class="grid grid-3" role="list">
+          <article class="card card--alert" role="listitem">
+            <span class="badge badge--new" style="margin-bottom:var(--space-3);">New risk</span>
+            <h3 style="font-size:var(--text-base);margin-bottom:var(--space-2);">
+              <a href="ai-chatbots.html" style="color:var(--color-text-title);text-decoration:none;">Character.AI &amp; companion AI</a>
+            </h3>
+            <p class="text-sm text-secondary">Kids forming emotional bonds with AI personas — including romantic ones. No age verification in place.</p>
+          </article>
+          <article class="card card--alert" role="listitem">
+            <span class="badge badge--red" style="margin-bottom:var(--space-3);">Rising</span>
+            <h3 style="font-size:var(--text-base);margin-bottom:var(--space-2);">
+              <a href="ai-impersonation.html" style="color:var(--color-text-title);text-decoration:none;">AI-generated image abuse</a>
+            </h3>
+            <p class="text-sm text-secondary">Deepfake images of minors being created and shared in school group chats and Discord servers.</p>
+          </article>
+          <article class="card card--alert" role="listitem">
+            <span class="badge badge--amber" style="margin-bottom:var(--space-3);">Ongoing</span>
+            <h3 style="font-size:var(--text-base);margin-bottom:var(--space-2);">
+              <a href="chat-messaging.html#sextortion" style="color:var(--color-text-title);text-decoration:none;">Sextortion targeting teens</a>
+            </h3>
+            <p class="text-sm text-secondary">Organised criminal groups posing as peers to obtain images, then demanding money or more content.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- JOURNEY STEPS -->
+    <section class="section--sm band--white" aria-label="Your journey">
+      <div class="container">
+        <span class="eyebrow">Your journey</span>
+        <div class="journey" role="list">
+          <div class="journey__step journey__step--active" role="listitem">
+            <p class="journey__num">Step 1</p>
+            <p class="journey__title">Assess your situation</p>
+            <p class="journey__desc">Take our gentle 10-min family safety check</p>
+          </div>
+          <div class="journey__step" role="listitem">
+            <p class="journey__num">Step 2</p>
+            <p class="journey__title">Learn the risks</p>
+            <p class="journey__desc">Read guides for your child's platforms</p>
+          </div>
+          <div class="journey__step" role="listitem">
+            <p class="journey__num">Step 3</p>
+            <p class="journey__title">Set up controls</p>
+            <p class="journey__desc">Lock down apps and devices</p>
+          </div>
+          <div class="journey__step" role="listitem">
+            <p class="journey__num">Step 4</p>
+            <p class="journey__title">Have the talk</p>
+            <p class="journey__desc">Use age-specific conversation scripts</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- TOOLS -->
+    <section class="section band--gray" id="tools" aria-label="Tools for parents">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Free tools</span>
+          <h2>Start with these — each takes under 15 minutes</h2>
+        </div>
+        <div class="grid grid-2">
+
+          <a href="family-safety-check.html" class="tool-card">
+            <div class="tool-card__icon icon-bg--green"><i class="ti ti-clipboard-check" aria-hidden="true"></i></div>
+            <div>
+              <p class="tool-card__title">Family safety check</p>
+              <p class="tool-card__desc">A few simple questions about your family's setup — we'll suggest some gentle steps to help keep your child safer.</p>
+              <span class="btn btn--primary btn--sm">Get started</span>
+            </div>
+          </a>
+
+          <a href="conversation-guide.html" class="tool-card" id="conversation">
+            <div class="tool-card__icon icon-bg--purple"><i class="ti ti-messages" aria-hidden="true"></i></div>
+            <div>
+              <p class="tool-card__title">Conversation guide</p>
+              <p class="tool-card__desc">Age-matched scripts for talking to your child about online safety — including what not to say.</p>
+              <span class="btn btn--primary btn--sm">Get scripts</span>
+            </div>
+          </a>
+
+          <a href="platform-settings.html" class="tool-card">
+            <div class="tool-card__icon icon-bg--amber"><i class="ti ti-settings" aria-hidden="true"></i></div>
+            <div>
+              <p class="tool-card__title">Platform settings hub</p>
+              <p class="tool-card__desc">Step-by-step privacy settings for TikTok, Instagram, Snapchat, Discord, Xbox, PlayStation and more.</p>
+              <span class="btn btn--primary btn--sm">Lock down apps</span>
+            </div>
+          </a>
+
+          <a href="tech-contract.html" class="tool-card">
+            <div class="tool-card__icon icon-bg--blue"><i class="ti ti-file-text" aria-hidden="true"></i></div>
+            <div>
+              <p class="tool-card__title">Family tech contract</p>
+              <p class="tool-card__desc">Build a printable agreement — screen time limits, app rules, and what to do if something goes wrong.</p>
+              <span class="btn btn--primary btn--sm">Build contract</span>
+            </div>
+          </a>
+
+          <a href="red-flags.html" class="tool-card">
+            <div class="tool-card__icon icon-bg--red"><i class="ti ti-eye" aria-hidden="true"></i></div>
+            <div>
+              <p class="tool-card__title">Red flag checker</p>
+              <p class="tool-card__desc">A guided checklist of behavioural warning signs — online and offline — that something may be wrong.</p>
+              <span class="btn btn--primary btn--sm">Check now</span>
+            </div>
+          </a>
+
+          <a href="screen-time.html" class="tool-card">
+            <div class="tool-card__icon icon-bg--gray"><i class="ti ti-clock" aria-hidden="true"></i></div>
+            <div>
+              <p class="tool-card__title">Screen time guide</p>
+              <p class="tool-card__desc">NHS-backed time recommendations by age, plus how to set limits on iPhone, Android, Xbox and PlayStation.</p>
+              <span class="btn btn--secondary btn--sm">View guide</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- TOPIC GUIDES -->
+    <section class="section band--white" aria-label="Topic guides for parents">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Topic guides</span>
+          <h2>Understand the risks your child faces</h2>
+        </div>
+        <div class="grid grid-3">
+
+          <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+            <a href="gaming-safety.html" class="guide-card" style="flex:1;">
+              <span class="badge badge--red">High risk</span>
+              <h3 class="guide-card__title">Gaming safety</h3>
+              <p class="guide-card__desc">In-game chat, who your child is really talking to, loot boxes, spending, and live streaming dangers.</p>
+              <div class="guide-card__meta">
+                <span><i class="ti ti-clock" style="font-size:11px;" aria-hidden="true"></i> 8 min</span>
+                <span>Updated June 2026</span>
+              </div>
+            </a>
+            <a href="online-games-safety.html" style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);background:var(--color-text-title);border-radius:var(--radius-lg);padding:var(--space-3) var(--space-4);text-decoration:none;">
+              <div style="display:flex;align-items:center;gap:var(--space-3);">
+                <span style="font-size:20px;" aria-hidden="true">📊</span>
+                <div>
+                  <p style="font-size:var(--text-xs);font-weight:700;color:#5DCAA5;margin-bottom:1px;">Cited research</p>
+                  <p style="font-size:var(--text-sm);font-weight:600;color:#fff;line-height:1.3;">Top 10 games — full guide</p>
+                </div>
+              </div>
+              <span style="font-size:var(--text-xs);color:rgba(255,255,255,0.6);white-space:nowrap;">Read →</span>
+            </a>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+            <a href="social-media.html" class="guide-card" style="flex:1;">
+              <span class="badge badge--red">High risk</span>
+              <h3 class="guide-card__title">Social media</h3>
+              <p class="guide-card__desc">Platform-by-platform privacy settings, algorithm risks, age verification reality, and image sharing pressure.</p>
+              <div class="guide-card__meta">
+                <span><i class="ti ti-clock" style="font-size:11px;" aria-hidden="true"></i> 10 min</span>
+                <span>Updated June 2026</span>
+              </div>
+            </a>
+            <a href="social-platforms-top10.html" style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);background:var(--color-text-title);border-radius:var(--radius-lg);padding:var(--space-3) var(--space-4);text-decoration:none;">
+              <div style="display:flex;align-items:center;gap:var(--space-3);">
+                <span style="font-size:20px;" aria-hidden="true">📱</span>
+                <div>
+                  <p style="font-size:var(--text-xs);font-weight:700;color:#AFA9EC;margin-bottom:1px;">Cited research</p>
+                  <p style="font-size:var(--text-sm);font-weight:600;color:#fff;line-height:1.3;">Top 10 platforms — full guide</p>
+                </div>
+              </div>
+              <span style="font-size:var(--text-xs);color:rgba(255,255,255,0.6);white-space:nowrap;">Read →</span>
+            </a>
+          </div>
+
+          <a href="ai-chatbots.html" class="guide-card">
+            <span class="badge badge--new">New risk</span>
+            <h3 class="guide-card__title">AI chatbots &amp; companions</h3>
+            <p class="guide-card__desc">Character.AI, Replika, emotional dependency, grooming via AI personas, and what kids believe about AI feelings.</p>
+            <div class="guide-card__meta">
+              <span><i class="ti ti-clock" style="font-size:11px;" aria-hidden="true"></i> 7 min</span>
+              <span>Updated May 2026</span>
+            </div>
+          </a>
+
+          <a href="chat-messaging.html" class="guide-card">
+            <span class="badge badge--amber">Medium risk</span>
+            <h3 class="guide-card__title">Chat &amp; messaging</h3>
+            <p class="guide-card__desc">Discord servers, WhatsApp groups, DMs, how grooming progresses, and the legal realities of sexting.</p>
+            <div class="guide-card__meta">
+              <span><i class="ti ti-clock" style="font-size:11px;" aria-hidden="true"></i> 9 min</span>
+              <span>Updated April 2026</span>
+            </div>
+          </a>
+
+          <a href="screen-time.html" class="guide-card">
+            <span class="badge badge--blue">Controls</span>
+            <h3 class="guide-card__title">Screen time &amp; devices</h3>
+            <p class="guide-card__desc">Parental controls by device, NHS-backed time limits, sleep hygiene, and setting up phone-free zones.</p>
+            <div class="guide-card__meta">
+              <span><i class="ti ti-clock" style="font-size:11px;" aria-hidden="true"></i> 6 min</span>
+              <span>Updated June 2026</span>
+            </div>
+          </a>
+
+          <a href="privacy.html" class="guide-card">
+            <span class="badge badge--green">Privacy</span>
+            <h3 class="guide-card__title">Privacy &amp; data</h3>
+            <p class="guide-card__desc">What personal information means online, location tags in photos, account security, and the permanence of posts.</p>
+            <div class="guide-card__meta">
+              <span><i class="ti ti-clock" style="font-size:11px;" aria-hidden="true"></i> 5 min</span>
+              <span>Updated March 2026</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- RED FLAGS -->
+    <section class="section band--gray" id="red-flags" aria-label="Warning signs to watch for">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow eyebrow--alert">Warning signs</span>
+          <h2>What to watch for</h2>
+          <p class="text-secondary">These behavioural changes can indicate something is wrong online. None of them alone is proof — but any of them warrants a calm conversation.</p>
+        </div>
+        <div class="grid grid-2" role="list">
+
+          <div class="flag-item" role="listitem">
+            <div class="flag-dot flag-dot--red" aria-label="High concern"></div>
+            <div>
+              <p class="flag-item__title">Hiding the screen or switching apps when you come near</p>
+              <p class="flag-item__desc">A sudden change in device behaviour — especially secretive — is one of the strongest indicators that something needs a conversation.</p>
+            </div>
+          </div>
+
+          <div class="flag-item" role="listitem">
+            <div class="flag-dot flag-dot--red" aria-label="High concern"></div>
+            <div>
+              <p class="flag-item__title">New gifts, money, or items you can't explain</p>
+              <p class="flag-item__desc">Could indicate an online relationship being developed through grooming — gifts are a common early stage tactic.</p>
+            </div>
+          </div>
+
+          <div class="flag-item" role="listitem">
+            <div class="flag-dot flag-dot--red" aria-label="High concern"></div>
+            <div>
+              <p class="flag-item__title">Withdrawal, anxiety, or mood changes after being online</p>
+              <p class="flag-item__desc">Cyberbullying, harmful content, or distressing online relationships commonly cause this pattern — online, then offline distress.</p>
+            </div>
+          </div>
+
+          <div class="flag-item" role="listitem">
+            <div class="flag-dot flag-dot--red" aria-label="High concern"></div>
+            <div>
+              <p class="flag-item__title">Avoiding school or social situations they previously enjoyed</p>
+              <p class="flag-item__desc">Cyberbullying often bleeds into real life — the person being bullied online may dread seeing those people in person.</p>
+            </div>
+          </div>
+
+          <div class="flag-item" role="listitem">
+            <div class="flag-dot flag-dot--amber" aria-label="Monitor closely"></div>
+            <div>
+              <p class="flag-item__title">Talking about a new "friend" you've never heard of</p>
+              <p class="flag-item__desc">Online friendships aren't inherently dangerous, but unknown contacts — particularly adults — warrant a gentle, curious conversation.</p>
+            </div>
+          </div>
+
+          <div class="flag-item" role="listitem">
+            <div class="flag-dot flag-dot--amber" aria-label="Monitor closely"></div>
+            <div>
+              <p class="flag-item__title">Being online very late at night or losing sleep</p>
+              <p class="flag-item__desc">Often linked to gaming addiction, social comparison anxiety, or being in contact with someone they're hiding from you.</p>
+            </div>
+          </div>
+
+          <div class="flag-item" role="listitem">
+            <div class="flag-dot flag-dot--amber" aria-label="Monitor closely"></div>
+            <div>
+              <p class="flag-item__title">Disproportionate distress when devices are taken away</p>
+              <p class="flag-item__desc">Beyond typical frustration — extreme distress can indicate dependency or an active conversation they feel they can't interrupt.</p>
+            </div>
+          </div>
+
+          <div class="flag-item" role="listitem">
+            <div class="flag-dot flag-dot--amber" aria-label="Monitor closely"></div>
+            <div>
+              <p class="flag-item__title">Becoming very secretive about who they're talking to</p>
+              <p class="flag-item__desc">Some privacy is healthy and normal. Intense secrecy about specific contacts — particularly new ones — is worth exploring.</p>
+            </div>
+          </div>
+
+        </div>
+        <div style="margin-top:var(--space-6);text-align:center;">
+          <a href="red-flags.html" class="btn btn--secondary">See the full red flag guide →</a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CONVERSATION BY AGE -->
+    <section class="section band--white" aria-label="Conversation guides by age">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">How to talk to them</span>
+          <h2>Age-matched conversation scripts</h2>
+          <p class="text-secondary">The single biggest mistake parents make is not having the conversation at all. These scripts give you the exact words to start it — by age.</p>
+        </div>
+        <div class="grid grid-3">
+
+          <div class="card">
+            <div style="margin-bottom:var(--space-4);">
+              <p style="font-size:var(--text-xl);font-weight:700;color:var(--color-purple-text);">Under 7</p>
+              <p class="text-sm text-muted">Little ones</p>
+            </div>
+            <ul style="display:flex;flex-direction:column;gap:var(--space-2);margin-bottom:var(--space-4);">
+              <li class="flex gap-2 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand-mid);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>Simple yes/no rules they can memorise</li>
+              <li class="flex gap-2 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand-mid);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>Identifying their trusted adults</li>
+              <li class="flex gap-2 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand-mid);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>What to do if something feels wrong</li>
+              <li class="flex gap-2 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand-mid);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>Linked to the PANTS rule</li>
+            </ul>
+            <a href="conversation-guide.html#under7" class="btn btn--secondary btn--full">Get scripts for under 7s</a>
+          </div>
+
+          <div class="card">
+            <div style="margin-bottom:var(--space-4);">
+              <p style="font-size:var(--text-xl);font-weight:700;color:var(--color-brand);">Ages 8–12</p>
+              <p class="text-sm text-muted">Explorers</p>
+            </div>
+            <ul style="display:flex;flex-direction:column;gap:var(--space-2);margin-bottom:var(--space-4);">
+              <li class="flex gap-2 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand-mid);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>Screenshots are permanent</li>
+              <li class="flex gap-2 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand-mid);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>Gaming chat risks</li>
+              <li class="flex gap-2 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand-mid);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>What to do if uncomfortable</li>
+              <li class="flex gap-2 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand-mid);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>Blocking and reporting</li>
+            </ul>
+            <a href="conversation-guide.html#8to12" class="btn btn--secondary btn--full">Get scripts for 8–12s</a>
+          </div>
+
+          <div class="card">
+            <div style="margin-bottom:var(--space-4);">
+              <p style="font-size:var(--text-xl);font-weight:700;color:var(--color-warning);">Ages 13–17</p>
+              <p class="text-sm text-muted">Teens</p>
+            </div>
+            <ul style="display:flex;flex-direction:column;gap:var(--space-2);margin-bottom:var(--space-4);">
+              <li class="flex gap-2 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand-mid);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>Image consent and legal risks</li>
+              <li class="flex gap-2 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand-mid);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>AI relationships and dependency</li>
+              <li class="flex gap-2 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand-mid);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>Sextortion — how it starts</li>
+              <li class="flex gap-2 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand-mid);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>Digital footprint and future</li>
+            </ul>
+            <a href="conversation-guide.html#teens" class="btn btn--secondary btn--full">Get scripts for teens</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PLATFORM HUB PREVIEW -->
+    <section class="section band--gray" aria-label="Platform safety settings">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Lock down by platform</span>
+          <h2>Safety settings for every app they use</h2>
+          <p class="text-secondary">Step-by-step guides to the privacy and safety settings that actually matter — with screenshots.</p>
+        </div>
+        <div class="platform-grid" role="list">
+          <a href="platform-settings.html#tiktok" class="platform-card" role="listitem">
+            <span class="platform-card__icon" aria-hidden="true">🎵</span>
+            <p class="platform-card__name">TikTok</p>
+            <span class="badge badge--red">High risk</span>
+          </a>
+          <a href="platform-settings.html#instagram" class="platform-card" role="listitem">
+            <span class="platform-card__icon" aria-hidden="true">📸</span>
+            <p class="platform-card__name">Instagram</p>
+            <span class="badge badge--red">High risk</span>
+          </a>
+          <a href="platform-settings.html#discord" class="platform-card" role="listitem">
+            <span class="platform-card__icon" aria-hidden="true">🎮</span>
+            <p class="platform-card__name">Discord</p>
+            <span class="badge badge--red">High risk</span>
+          </a>
+          <a href="platform-settings.html#snapchat" class="platform-card" role="listitem">
+            <span class="platform-card__icon" aria-hidden="true">👻</span>
+            <p class="platform-card__name">Snapchat</p>
+            <span class="badge badge--red">High risk</span>
+          </a>
+          <a href="platform-settings.html#roblox" class="platform-card" role="listitem">
+            <span class="platform-card__icon" aria-hidden="true">🧱</span>
+            <p class="platform-card__name">Roblox</p>
+            <span class="badge badge--red">High risk</span>
+          </a>
+          <a href="platform-settings.html#youtube" class="platform-card" role="listitem">
+            <span class="platform-card__icon" aria-hidden="true">▶️</span>
+            <p class="platform-card__name">YouTube</p>
+            <span class="badge badge--amber">Medium</span>
+          </a>
+          <a href="platform-settings.html#xbox" class="platform-card" role="listitem">
+            <span class="platform-card__icon" aria-hidden="true">🎮</span>
+            <p class="platform-card__name">Xbox</p>
+            <span class="badge badge--amber">Medium</span>
+          </a>
+          <a href="platform-settings.html#iphone" class="platform-card" role="listitem">
+            <span class="platform-card__icon" aria-hidden="true">📱</span>
+            <p class="platform-card__name">iPhone / iPad</p>
+            <span class="badge badge--amber">Medium</span>
+          </a>
+        </div>
+        <div style="text-align:center;margin-top:var(--space-6);">
+          <a href="platform-settings.html" class="btn btn--primary">View all platform guides →</a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- BOTTOM CTA -->
+    <section class="section band--brand" aria-label="Monthly online safety guidance">
+      <div class="container" style="text-align:center;max-width:520px;">
+        <span class="eyebrow" style="color:rgba(255,255,255,0.6);">Stay informed</span>
+        <h2 style="color:#fff;margin-bottom:var(--space-3);">Stay informed — monthly online safety guidance</h2>
+        <p style="color:rgba(255,255,255,0.75);margin-bottom:var(--space-6);">Each month we share practical updates on keeping children safe online — new risks, platform changes and what's worth knowing. No marketing.</p>
+        <form name="parents-alerts" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:flex;gap:var(--space-2);max-width:380px;margin:0 auto;" aria-label="Sign up for monthly online safety guidance">
+          <input type="hidden" name="form-name" value="parents-alerts" />
+          <input type="hidden" name="bot-field" />
+          <input type="email" name="email" placeholder="your@email.com" required aria-label="Your email address" style="flex:1;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:var(--radius-md);padding:10px var(--space-4);color:#fff;font-size:var(--text-sm);" />
+          <button type="submit" class="btn btn--ghost">Subscribe</button>
+        </form>
+        <p style="color:rgba(255,255,255,0.45);font-size:var(--text-xs);margin-top:var(--space-3);">No marketing. Unsubscribe any time.</p>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__safeguarding" role="region" aria-label="Emergency contacts">
+        <p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p>
+        <div class="footer__safeguarding-list">
+          <div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div>
+          <div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div>
+          <div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span></div>
+          <div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span></div>
+        </div>
+      </div>
+      <div class="footer__grid">
+        <div>
+          <a href="index.html" class="footer__brand"><div class="footer__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+          <p class="footer__tagline">Free digital safety guidance for families, young people and educators across the UK.</p>
+        </div>
+        <div>
+          <p class="footer__heading">Parents &amp; carers</p>
+          <ul class="footer__links">
+            <li><a href="family-safety-check.html" class="footer__link">Family safety check</a></li>
+            <li><a href="conversation-guide.html" class="footer__link">Conversation guide</a></li>
+            <li><a href="platform-settings.html" class="footer__link">Platform settings hub</a></li>
+            <li><a href="tech-contract.html" class="footer__link">Family tech contract</a></li>
+            <li><a href="red-flags.html" class="footer__link">Red flag checker</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__heading">Topics</p>
+          <ul class="footer__links">
+            <li><a href="gaming-safety.html" class="footer__link">Gaming safety</a></li>
+            <li><a href="social-media.html" class="footer__link">Social platforms</a></li>
+            <li><a href="ai-chatbots.html" class="footer__link">AI &amp; chatbots</a></li>
+            <li><a href="chat-messaging.html" class="footer__link">Chat &amp; messaging</a></li>
+            <li><a href="screen-time.html" class="footer__link">Screen time</a></li>
+            <li><a href="privacy.html" class="footer__link">Privacy &amp; data</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__heading">Site</p>
+          <ul class="footer__links">
+            <li><a href="educators.html" class="footer__link">Educators</a></li>
+            <li><a href="kids.html" class="footer__link">Kids &amp; teens</a></li>
+            <li><a href="about.html" class="footer__link">About us</a></li>
+            <li><a href="contact.html" class="footer__link">Contact</a></li>
+            <li><a href="privacy-policy.html" class="footer__link">Privacy policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p>
+        <div class="footer__legal">
+          <a href="privacy-policy.html">Privacy policy</a>
+          <a href="accessibility.html">Accessibility</a>
+          <a href="terms.html">Terms of use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu(btn) {
+      const menu = document.getElementById('mobile-menu');
+      const isOpen = menu.classList.contains('is-open');
+      menu.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      btn.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+    }
+
+    document.querySelectorAll('form[data-netlify]').forEach(function(form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        fetch('/', { method: 'POST', body: new FormData(form) })
+          .then(function() {
+            form.innerHTML = '<p style="color:rgba(255,255,255,0.9);font-size:var(--text-sm);padding:var(--space-2) 0;">✓ Subscribed. We\'ll be in touch when something important comes up.</p>';
+          })
+          .catch(function() { alert('Something went wrong. Please try again.'); });
+      });
+    });
+
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

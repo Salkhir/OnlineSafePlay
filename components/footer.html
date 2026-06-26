@@ -1,0 +1,142 @@
+<!-- ============================================================
+     SafeOnline UK — Shared Footer
+     Include this at the bottom of every page, before </body>
+     ============================================================ -->
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+
+    <!-- Safeguarding contacts — always first, always prominent -->
+    <div class="footer__safeguarding" role="region" aria-label="Emergency safeguarding contacts">
+      <p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p>
+      <div class="footer__safeguarding-list">
+        <div class="footer__contact">
+          <span class="footer__contact-name">Childline</span>
+          <span class="footer__contact-detail">
+            <a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a>
+            — free, 24/7, confidential
+          </span>
+        </div>
+        <div class="footer__contact">
+          <span class="footer__contact-name">CEOP</span>
+          <span class="footer__contact-detail">
+            <a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a>
+            — report online exploitation
+          </span>
+        </div>
+        <div class="footer__contact">
+          <span class="footer__contact-name">Internet Watch Foundation</span>
+          <span class="footer__contact-detail">
+            <a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a>
+            — report illegal content
+          </span>
+        </div>
+        <div class="footer__contact">
+          <span class="footer__contact-name">Revenge Porn Helpline</span>
+          <span class="footer__contact-detail">
+            <a href="https://revengepornhelpline.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">revengepornhelpline.org.uk</a>
+            — image removal
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer columns -->
+    <div class="footer__grid">
+
+      <!-- Brand column -->
+      <div>
+        <a href="index.html" class="footer__brand" aria-label="SafeOnline UK home">
+          <div class="footer__brand-icon" aria-hidden="true">🛡</div>
+          SafeOnline UK
+        </a>
+        <p class="footer__tagline">
+          Free digital safety guidance for families, young people, and educators across the UK.
+        </p>
+        <!-- Email signup -->
+        <p style="font-size:var(--text-xs);color:rgba(255,255,255,0.5);margin-bottom:var(--space-2);font-weight:600;text-transform:uppercase;letter-spacing:.05em;">Get new threat alerts</p>
+        <form
+          class="subscribe-form"
+          name="threat-alerts"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          aria-label="Subscribe to threat alerts"
+          style="max-width:100%;"
+        >
+          <input type="hidden" name="form-name" value="threat-alerts" />
+          <input type="hidden" name="bot-field" />
+          <input
+            type="email"
+            name="email"
+            placeholder="your@email.com"
+            required
+            aria-label="Your email address"
+            style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:#fff;"
+          />
+          <button type="submit" class="btn btn--ghost btn--sm">
+            Subscribe
+          </button>
+        </form>
+        <p style="font-size:var(--text-xs);color:rgba(255,255,255,0.35);margin-top:var(--space-2);">No marketing. Unsubscribe any time.</p>
+      </div>
+
+      <!-- Parents column -->
+      <div>
+        <p class="footer__heading">Parents &amp; carers</p>
+        <ul class="footer__links" role="list">
+          <li><a href="parents.html" class="footer__link">Parents hub</a></li>
+          <li><a href="family-safety-check.html" class="footer__link">Family safety check</a></li>
+          <li><a href="conversation-guide.html" class="footer__link">Conversation guide</a></li>
+          <li><a href="platform-settings.html" class="footer__link">Platform settings hub</a></li>
+          <li><a href="tech-contract.html" class="footer__link">Family tech contract</a></li>
+          <li><a href="red-flags.html" class="footer__link">Red flag checker</a></li>
+        </ul>
+      </div>
+
+      <!-- Topics column -->
+      <div>
+        <p class="footer__heading">Topics</p>
+        <ul class="footer__links" role="list">
+          <li><a href="gaming-safety.html" class="footer__link">Gaming safety</a></li>
+          <li><a href="social-media.html" class="footer__link">Social platforms</a></li>
+          <li><a href="ai-chatbots.html" class="footer__link">AI &amp; chatbots</a></li>
+          <li><a href="chat-messaging.html" class="footer__link">Chat &amp; messaging</a></li>
+          <li><a href="screen-time.html" class="footer__link">Screen time</a></li>
+          <li><a href="privacy.html" class="footer__link">Privacy &amp; data</a></li>
+        </ul>
+      </div>
+
+      <!-- Site column -->
+      <div>
+        <p class="footer__heading">Site</p>
+        <ul class="footer__links" role="list">
+          <li><a href="educators.html" class="footer__link">Educators</a></li>
+          <li><a href="kids.html" class="footer__link">Kids &amp; teens</a></li>
+          <li><a href="resources.html" class="footer__link">Resources &amp; downloads</a></li>
+          <li><a href="news.html" class="footer__link">Threat news</a></li>
+          <li><a href="about.html" class="footer__link">About us</a></li>
+          <li><a href="contact.html" class="footer__link">Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Footer bottom bar -->
+    <div class="footer__bottom">
+      <p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p>
+      <div class="footer__legal" role="list">
+        <a href="privacy-policy.html" role="listitem">Privacy policy</a>
+        <a href="accessibility.html" role="listitem">Accessibility</a>
+        <a href="terms.html" role="listitem">Terms of use</a>
+        <a href="cookies.html" role="listitem">Cookie policy</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+  // Auto-update copyright year
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+</script>

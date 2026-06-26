@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Screen time guidance for parents — NHS-backed age limits, parental controls for iPhone, Android, Xbox and PlayStation, sleep hygiene, and phone-free zones."/>
+  <title>Screen Time &amp; Devices — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>"/>
+  <style>
+    .topic-hero{background:linear-gradient(135deg,#0C1B33 0%,#1A3A5C 100%);padding:var(--space-12) 0;}
+    .topic-hero h1{color:#fff;font-size:var(--text-3xl);margin-bottom:var(--space-3);}
+    .topic-hero p{color:rgba(255,255,255,0.8);font-size:var(--text-md);max-width:560px;line-height:1.65;margin-bottom:var(--space-5);}
+    .age-limits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-3);}
+    .age-limit-card{background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);text-align:center;}
+    .al-age{font-family:var(--font-display);font-size:var(--text-2xl);color:var(--color-brand);margin-bottom:var(--space-1);}
+    .al-limit{font-size:var(--text-xl);font-weight:700;color:var(--color-text-title);margin-bottom:var(--space-2);}
+    .al-note{font-size:var(--text-xs);color:var(--color-text-secondary);line-height:1.5;}
+    .device-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4);}
+    .device-card{background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);}
+    .device-card h3{font-size:var(--text-base);font-weight:600;margin-bottom:var(--space-3);display:flex;align-items:center;gap:var(--space-2);}
+    .device-steps{display:flex;flex-direction:column;gap:var(--space-2);}
+    .d-step{display:flex;gap:var(--space-2);align-items:flex-start;font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.5;}
+    .d-num{width:20px;height:20px;border-radius:50%;background:var(--color-info);color:var(--color-info-text);font-size:var(--text-xs);font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+    .sleep-box{background:linear-gradient(135deg,#0C1B33,#1A3A5C);border-radius:var(--radius-xl);padding:var(--space-8);color:#fff;}
+    .sleep-box h3{color:#fff;font-size:var(--text-2xl);margin-bottom:var(--space-4);}
+    .sleep-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4);}
+    .sleep-stat{text-align:center;}
+    .sleep-stat .ss-num{font-family:var(--font-display);font-size:var(--text-3xl);color:#5DCAA5;display:block;margin-bottom:var(--space-1);}
+    .sleep-stat .ss-lbl{font-size:var(--text-sm);color:rgba(255,255,255,0.75);line-height:1.4;}
+    .zones-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4);}
+    .zone-card{background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);text-align:center;}
+    .zone-card .zi{font-size:36px;margin-bottom:var(--space-3);}
+    .zone-card h4{font-size:var(--text-base);font-weight:600;margin-bottom:var(--space-2);}
+    .zone-card p{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.55;}
+    .checklist{display:flex;flex-direction:column;gap:var(--space-3);}
+    .check-item{display:flex;gap:var(--space-3);align-items:flex-start;padding:var(--space-4);background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-md);}
+    .check-item i{font-size:20px;color:var(--color-brand);flex-shrink:0;margin-top:2px;}
+    .check-item p{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.6;margin:0;}
+    .check-item p strong{color:var(--color-text-title);font-weight:600;}
+    @media(max-width:767px){.age-limits{grid-template-columns:repeat(2,minmax(0,1fr));}.device-grid,.sleep-grid,.zones-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert"><p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p><a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a></div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list"><li><a href="parents.html" class="nav__link nav__link--active">Parents</a></li><li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li><li><a href="educators.html" class="nav__link">Educators</a></li><li><a href="resources.html" class="nav__link">Resources</a></li></ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile"><a href="parents.html" class="nav__link">Parents</a><a href="kids.html" class="nav__link">Kids &amp; teens</a><a href="educators.html" class="nav__link">Educators</a><a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a></div>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="topic-hero" aria-label="Screen time overview">
+      <div class="container">
+        <a href="parents.html" style="color:rgba(255,255,255,0.6);font-size:var(--text-sm);text-decoration:none;display:inline-flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-4);">← Parents hub</a>
+        <div style="font-size:40px;margin-bottom:var(--space-3);" aria-hidden="true">⏱️</div>
+        <h1>Screen time &amp; devices</h1>
+        <p>NHS-backed time limits by age, parental controls for every device, sleep science, and how to set up phone-free zones without constant conflict.</p>
+        <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;">
+          <span class="badge badge--blue">Controls</span>
+          <span class="badge badge--gray">6 min read</span>
+          <span class="badge badge--gray">Updated June 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="Recommended time limits by age">
+      <div class="container">
+        <div class="section-header--center"><span class="eyebrow">Evidence-based</span><h2>Recommended daily limits by age</h2><p class="text-secondary" style="max-width:560px;margin:0 auto;">Based on NHS, WHO and American Academy of Pediatrics guidance. "Screen time" means recreational use — video calls with family and educational use are not included.</p></div>
+        <div class="age-limits" role="list" style="margin-top:var(--space-8);">
+          <div class="age-limit-card" role="listitem"><p class="al-age">Under 2</p><p class="al-limit">None</p><p class="al-note">No recreational screen time. Video calls with family are the only exception.</p></div>
+          <div class="age-limit-card" role="listitem"><p class="al-age">2–5</p><p class="al-limit">1 hour</p><p class="al-note">High-quality content only, with a parent present. No screens in the hour before bed.</p></div>
+          <div class="age-limit-card" role="listitem"><p class="al-age">6–12</p><p class="al-limit">2 hours</p><p class="al-note">Consistent limits. Physical activity, sleep and homework should not be displaced by screens.</p></div>
+          <div class="age-limit-card" role="listitem"><p class="al-age">13–17</p><p class="al-limit">2–3 hours</p><p class="al-note">Quality matters as much as quantity. Social connection and sleep should not be sacrificed.</p></div>
+        </div>
+        <p style="font-size:var(--text-xs);color:var(--color-text-muted);text-align:center;margin-top:var(--space-4);">Source: NHS, WHO and American Academy of Pediatrics guidance. These are recommendations, not hard rules — context and content type matter significantly.</p>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="Parental controls by device">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow">Step by step</span><h2>Parental controls — every device</h2></div>
+        <div class="device-grid" role="list">
+          <div class="device-card" role="listitem">
+            <h3><span aria-hidden="true">📱</span> iPhone &amp; iPad — Screen Time</h3>
+            <div class="device-steps">
+              <div class="d-step"><span class="d-num">1</span>Settings → Screen Time → Turn On Screen Time</div>
+              <div class="d-step"><span class="d-num">2</span>Set a Screen Time passcode (different from device PIN)</div>
+              <div class="d-step"><span class="d-num">3</span>Downtime: set hours when only allowed apps work (e.g. 9pm–7am)</div>
+              <div class="d-step"><span class="d-num">4</span>App Limits: set daily limits per category (Social Networking, Games)</div>
+              <div class="d-step"><span class="d-num">5</span>Communication Limits: restrict calls and messages to contacts only</div>
+              <div class="d-step"><span class="d-num">6</span>Content &amp; Privacy: block explicit content, restrict app downloads</div>
+            </div>
+          </div>
+          <div class="device-card" role="listitem">
+            <h3><span aria-hidden="true">🤖</span> Android — Digital Wellbeing &amp; Family Link</h3>
+            <div class="device-steps">
+              <div class="d-step"><span class="d-num">1</span>Install Google Family Link on your phone and your child's device</div>
+              <div class="d-step"><span class="d-num">2</span>Link accounts — you manage from your phone remotely</div>
+              <div class="d-step"><span class="d-num">3</span>Set daily screen time limits and bedtime lock schedules</div>
+              <div class="d-step"><span class="d-num">4</span>Approve or block app downloads from Google Play</div>
+              <div class="d-step"><span class="d-num">5</span>View location and activity reports</div>
+              <div class="d-step"><span class="d-num">6</span>Set content filters on Google Search and YouTube</div>
+            </div>
+          </div>
+          <div class="device-card" role="listitem">
+            <h3><span aria-hidden="true">🎮</span> Xbox — Family Safety app</h3>
+            <div class="device-steps">
+              <div class="d-step"><span class="d-num">1</span>Download Xbox Family Safety app on your phone</div>
+              <div class="d-step"><span class="d-num">2</span>Create a child Microsoft account and link it to your family</div>
+              <div class="d-step"><span class="d-num">3</span>Set daily play time limits and schedules</div>
+              <div class="d-step"><span class="d-num">4</span>Require approval for all purchases — set a spending limit</div>
+              <div class="d-step"><span class="d-num">5</span>Communication: set to "Friends" only — blocks stranger contact</div>
+              <div class="d-step"><span class="d-num">6</span>Content filters: set PEGI age rating limit</div>
+            </div>
+          </div>
+          <div class="device-card" role="listitem">
+            <h3><span aria-hidden="true">🎮</span> PlayStation — Family Management</h3>
+            <div class="device-steps">
+              <div class="d-step"><span class="d-num">1</span>Create a Family on PlayStation Network via account.sonyentertainmentnetwork.com</div>
+              <div class="d-step"><span class="d-num">2</span>Add child account — set their date of birth accurately</div>
+              <div class="d-step"><span class="d-num">3</span>Set monthly spending limit (including zero)</div>
+              <div class="d-step"><span class="d-num">4</span>Set content restriction level by age rating</div>
+              <div class="d-step"><span class="d-num">5</span>Restrict communication with non-friends</div>
+              <div class="d-step"><span class="d-num">6</span>Set monthly play time reports to be sent to your email</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="Sleep and screens">
+      <div class="container">
+        <div class="sleep-box" role="region" aria-label="Screen time and sleep research">
+          <h3>📱 Screens and sleep — the science</h3>
+          <div class="sleep-grid">
+            <div class="sleep-stat"><span class="ss-num">71%</span><span class="ss-lbl">of teenagers sleep with their phone in their bedroom, according to Ofcom research</span></div>
+            <div class="sleep-stat"><span class="ss-num">1–2hrs</span><span class="ss-lbl">average sleep lost per night by children who use screens in the hour before bed</span></div>
+            <div class="sleep-stat"><span class="ss-num">3 days</span><span class="ss-lbl">how quickly sleep quality improves after removing devices from the bedroom, in most studies</span></div>
+          </div>
+          <p style="color:rgba(255,255,255,0.8);font-size:var(--text-sm);margin-top:var(--space-5);line-height:1.65;">Blue light from screens suppresses melatonin production — the hormone that triggers sleep. But the bigger factor is cognitive stimulation: social media notifications, game tension, and messaging all keep the brain alert when it needs to wind down. The recommendation from NHS and sleep specialists is no screens of any kind in the 60 minutes before sleep, and devices charged outside the bedroom.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="Phone-free zones">
+      <div class="container">
+        <div class="section-header--center"><span class="eyebrow">Family habits</span><h2>Phone-free zones — the three highest impact</h2></div>
+        <div class="zones-grid" role="list">
+          <div class="zone-card" role="listitem"><div class="zi" aria-hidden="true">🛏️</div><h4>Bedrooms</h4><p>The most impactful change. Devices charged in a common area overnight. Removes temptation entirely and improves sleep quality within days.</p></div>
+          <div class="zone-card" role="listitem"><div class="zi" aria-hidden="true">🍽️</div><h4>Mealtimes</h4><p>All screens off during meals — including parents'. Research links family mealtimes without phones to better mental health outcomes and stronger parent-child relationships.</p></div>
+          <div class="zone-card" role="listitem"><div class="zi" aria-hidden="true">🌅</div><h4>First 30 minutes of the day</h4><p>No screens before breakfast. Starting the day without the stimulation of notifications and social media reduces anxiety and improves focus throughout the day.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="Tips for implementation">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow eyebrow--brand">Making it stick</span><h2>How to implement limits without constant conflict</h2></div>
+        <div class="checklist" role="list">
+          <div class="check-item" role="listitem"><i class="ti ti-users" aria-hidden="true"></i><p><strong>Make it a family rule, not a child rule.</strong> "No phones at the dinner table" applies to everyone — including parents. Children are far more likely to accept rules they see adults following.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-file-text" aria-hidden="true"></i><p><strong>Put limits in writing before they're needed.</strong> Use our <a href="tech-contract.html" style="font-weight:600;">family tech contract builder</a> to create a written agreement while things are calm — not as a reaction to a problem. Rules agreed in advance feel less like punishment.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-settings" aria-hidden="true"></i><p><strong>Use technology to enforce technology limits.</strong> Parental controls on devices remove the daily negotiation. "The phone turns off at 9pm" is more sustainable than "you need to put it down now" every night.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-clock" aria-hidden="true"></i><p><strong>Give a 10-minute warning.</strong> Abruptly removing a device mid-game or mid-conversation causes disproportionate distress. A timer or verbal warning gives children a chance to reach a natural stopping point.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-refresh" aria-hidden="true"></i><p><strong>Review limits every 6 months.</strong> A rule that works for a 10-year-old may not work for a 13-year-old. Regular, calm reviews where your child's input is genuinely considered maintain trust and cooperation.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="Related guides">
+      <div class="container"><div class="section-header--center"><span class="eyebrow">Keep reading</span><h2>Related guides</h2></div>
+        <div class="grid grid-3">
+          <a href="tech-contract.html" class="guide-card"><span style="font-size:24px;">📄</span><h3 class="guide-card__title">Family tech contract</h3><p class="guide-card__desc">Build a printable agreement with rules your whole family agrees to.</p></a>
+          <a href="platform-settings.html" class="guide-card"><span style="font-size:24px;">⚙️</span><h3 class="guide-card__title">Platform settings hub</h3><p class="guide-card__desc">Parental controls for every app and social platform.</p></a>
+          <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+            <a href="gaming-safety.html" class="guide-card"><span style="font-size:24px;">🎮</span><h3 class="guide-card__title">Gaming safety</h3><p class="guide-card__desc">Console-specific controls and gaming time management.</p></a>
+            <a href="online-games-safety.html" style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);background:var(--color-text-title);border-radius:var(--radius-lg);padding:var(--space-3) var(--space-4);text-decoration:none;"><div style="display:flex;align-items:center;gap:var(--space-3);"><span style="font-size:18px;" aria-hidden="true">📊</span><p style="font-size:var(--text-sm);font-weight:600;color:#fff;margin:0;">Top 10 games — full guide</p></div><span style="font-size:var(--text-xs);color:rgba(255,255,255,0.6);white-space:nowrap;">Read →</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer" role="contentinfo"><div class="container"><div class="footer__safeguarding" role="region"><p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p><div class="footer__safeguarding-list"><div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div><div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span></div></div></div><div class="footer__bottom"><p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p><div class="footer__legal"><a href="privacy-policy.html">Privacy policy</a><a href="accessibility.html">Accessibility</a><a href="parents.html">Parents hub</a></div></div></div></footer>
+  <script>function toggleMobileMenu(btn){const m=document.getElementById('mobile-menu');const o=m.classList.contains('is-open');m.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(!o));}document.getElementById('footer-year').textContent=new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Online safety for teens aged 13–17 — AI relationships, image sharing and the law, sextortion, digital footprint, and how to help a friend." />
+  <title>Ages 13–17 — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>" />
+  <style>
+    :root {
+      --age-primary: #854F0B;
+      --age-dark:    #633806;
+      --age-light:   #FAEEDA;
+      --age-border:  #FAC775;
+      --age-text-dark:#412402;
+    }
+    .age-hero {
+      background: var(--age-light);
+      border-bottom: 3px solid var(--age-border);
+      padding: var(--space-12) 0;
+      text-align: center;
+    }
+    .age-hero h1 { color: var(--age-text-dark); font-size: var(--text-3xl); margin-bottom: var(--space-3); }
+    .age-hero p  { color: var(--age-primary); font-size: var(--text-md); max-width: 520px; margin: 0 auto; line-height: 1.6; }
+    .age-back {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      font-size: var(--text-sm); color: var(--age-primary); text-decoration: none;
+      margin-bottom: var(--space-4); font-weight: 500;
+    }
+    .age-back:hover { color: var(--age-dark); }
+
+    /* Topics */
+    .teen-topic-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--space-4); }
+    .teen-topic {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      display: flex; gap: var(--space-4); align-items: flex-start;
+      text-decoration: none; color: inherit;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    .teen-topic:hover { background: var(--color-bg-secondary); box-shadow: var(--shadow-sm); color: inherit; }
+    .tt-icon { width: 44px; height: 44px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 20px; }
+    .teen-topic h3 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .teen-topic p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.55; margin-bottom: var(--space-2); }
+
+    /* Real talk alert */
+    .real-talk {
+      background: var(--age-light);
+      border: 2px solid var(--age-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6) var(--space-7);
+    }
+    .real-talk h3 { font-size: var(--text-xl); color: var(--age-text-dark); margin-bottom: var(--space-4); line-height: 1.3; }
+    .real-talk p  { font-size: var(--text-base); color: var(--age-dark); line-height: 1.7; margin-bottom: var(--space-3); }
+    .real-talk p:last-child { margin-bottom: 0; }
+    .rt-note {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--age-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-5);
+      margin-top: var(--space-4);
+      font-size: var(--text-sm);
+      color: var(--age-dark);
+      line-height: 1.6;
+    }
+    .rt-note strong { color: var(--age-text-dark); font-weight: 700; }
+
+    /* Myth vs fact */
+    .myth-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--space-4); }
+    .myth-card {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+    }
+    .myth-label { font-size: var(--text-xs); font-weight: 700; padding: 3px 9px; border-radius: var(--radius-sm); margin-bottom: var(--space-3); display: inline-block; text-transform: uppercase; letter-spacing: .05em; }
+    .myth-label.myth { background: var(--color-alert-light); color: var(--color-alert-dark); }
+    .myth-label.fact { background: #EAF3DE; color: #27500A; }
+    .myth-card h4 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .myth-card p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.65; }
+
+    /* Legal cards */
+    .legal-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--space-4); }
+    .legal-card {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .legal-card:hover { background: var(--color-bg-secondary); }
+    .legal-card i { font-size: 22px; margin-bottom: var(--space-3); display: block; }
+    .legal-card h4 { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .legal-card p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.55; }
+
+    /* Helping a friend */
+    .friend-steps { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); overflow: hidden; }
+    .friend-step { display: flex; gap: var(--space-4); align-items: flex-start; padding: var(--space-5); border-bottom: 1px solid var(--color-border-subtle); background: var(--color-bg-primary); }
+    .friend-step:last-child { border-bottom: none; }
+    .friend-step i { font-size: 22px; flex-shrink: 0; margin-top: 3px; }
+    .friend-step h4 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .friend-step p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.65; margin: 0; }
+
+    /* Help contacts */
+    .help-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--space-3); }
+    .help-contact {
+      background: var(--age-light);
+      border: 1px solid var(--age-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      text-align: center;
+    }
+    .help-contact i { font-size: 24px; color: var(--age-primary); margin-bottom: var(--space-2); display: block; }
+    .help-contact h4 { font-size: var(--text-base); font-weight: 600; color: var(--age-text-dark); margin-bottom: var(--space-1); }
+    .help-contact p  { font-size: var(--text-sm); color: var(--age-dark); line-height: 1.5; }
+
+    @media (max-width: 767px) {
+      .teen-topic-grid { grid-template-columns: 1fr; }
+      .myth-grid        { grid-template-columns: 1fr; }
+      .legal-grid       { grid-template-columns: 1fr; }
+      .help-grid        { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert">
+      <p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p>
+      <a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a>
+    </div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list">
+          <li><a href="parents.html" class="nav__link">Parents</a></li>
+          <li><a href="kids.html" class="nav__link nav__link--active" aria-current="page">Kids &amp; teens</a></li>
+          <li><a href="educators.html" class="nav__link">Educators</a></li>
+          <li><a href="resources.html" class="nav__link">Resources</a></li>
+        </ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile">
+        <a href="parents.html" class="nav__link">Parents</a>
+        <a href="kids.html" class="nav__link">Kids &amp; teens</a>
+        <a href="educators.html" class="nav__link">Educators</a>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section class="age-hero" aria-label="Welcome teens 13 to 17">
+      <div class="container">
+        <a href="kids.html" class="age-back"><i class="ti ti-arrow-left" aria-hidden="true"></i> All ages</a>
+        <h1>Online safety — for teens</h1>
+        <p>No lectures. Just honest information about the stuff that actually matters when you're growing up online in 2026.</p>
+      </div>
+    </section>
+
+
+    <!-- TOPICS -->
+    <section class="section band--white" aria-label="Topics for teens">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow" style="color:var(--age-primary);">Topics</span>
+          <h2>What matters most right now</h2>
+        </div>
+        <div class="teen-topic-grid" role="list">
+
+          <div class="teen-topic" role="listitem" tabindex="0">
+            <div class="tt-icon icon-bg--blue"><i class="ti ti-robot" aria-hidden="true"></i></div>
+            <div>
+              <h3>AI relationships &amp; emotional dependency</h3>
+              <p>Character.AI, Replika — why it's easy to feel more understood by a chatbot than a real person, and what that can actually lead to.</p>
+              <span class="badge badge--new">New risk</span>
+            </div>
+          </div>
+
+          <div class="teen-topic" role="listitem" tabindex="0">
+            <div class="tt-icon icon-bg--purple"><i class="ti ti-camera" aria-hidden="true"></i></div>
+            <div>
+              <h3>Image sharing, consent &amp; the law</h3>
+              <p>What consent means for photos and videos. Why "they asked for it" doesn't matter legally. What happens when images are shared without permission.</p>
+              <span class="badge badge--red">Legal consequences</span>
+            </div>
+          </div>
+
+          <div class="teen-topic" role="listitem" tabindex="0">
+            <div class="tt-icon icon-bg--red"><i class="ti ti-alert-triangle" aria-hidden="true"></i></div>
+            <div>
+              <h3>Sextortion — what it is and what to do</h3>
+              <p>How organised criminals pose as peers to get images, then threaten to share them. It's more common than you think — and there are clear steps to take.</p>
+              <span class="badge badge--red">Urgent</span>
+            </div>
+          </div>
+
+          <div class="teen-topic" role="listitem" tabindex="0">
+            <div class="tt-icon icon-bg--amber"><i class="ti ti-world" aria-hidden="true"></i></div>
+            <div>
+              <h3>Your digital footprint</h3>
+              <p>University admissions, employers, and people you haven't met yet will search your name. What you post now doesn't disappear when you turn 18.</p>
+              <span class="badge badge--amber">Long-term</span>
+            </div>
+          </div>
+
+          <div class="teen-topic" role="listitem" tabindex="0">
+            <div class="tt-icon" style="background:#FBEAF0;color:#993556;"><i class="ti ti-social" aria-hidden="true"></i></div>
+            <div>
+              <h3>Social pressure &amp; comparison culture</h3>
+              <p>Why algorithms are designed to make you feel inadequate. How the people with the most followers feel the same way you do. What the research says.</p>
+              <span class="badge badge--outline">Mental health</span>
+            </div>
+          </div>
+
+          <div class="teen-topic" role="listitem" tabindex="0">
+            <div class="tt-icon icon-bg--green"><i class="ti ti-lock" aria-hidden="true"></i></div>
+            <div>
+              <h3>Privacy, data &amp; how platforms use you</h3>
+              <p>Every app is collecting data on you. What they collect, how they use it, and simple settings that significantly reduce what they know.</p>
+              <span class="badge badge--green">Take control</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- REAL TALK: SEXTORTION -->
+    <section class="section band--gray" aria-label="Real talk on sextortion">
+      <div class="container container--narrow">
+        <div class="section-header">
+          <span class="eyebrow eyebrow--alert">Real talk</span>
+          <h2>If someone has images of you and is threatening to share them</h2>
+        </div>
+        <div class="real-talk">
+          <h3>This is a crime. Not your fault. And there are people who can stop it.</h3>
+          <p>It doesn't matter how the images were taken, or what you were doing, or how well you thought you knew the person. The person threatening you has committed a criminal offence under the Online Safety Act 2023.</p>
+          <p>The shame is not yours to carry. The police, CEOP, and Childline will not judge you. They have seen this before — many times. They exist to stop the person doing this to you.</p>
+          <div class="rt-note">
+            <strong>Do not pay them.</strong> It never ends with one payment — it escalates immediately. Every single time. Report to CEOP at <a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:var(--age-primary);font-weight:600;">ceop.police.uk</a> or call Childline on <a href="tel:08001111" style="color:var(--age-primary);font-weight:600;">0800 1111</a>. Both are confidential.
+          </div>
+          <div style="margin-top:var(--space-5);display:flex;gap:var(--space-3);flex-wrap:wrap;">
+            <a href="https://www.ceop.police.uk/safety-centre/" target="_blank" rel="noopener noreferrer" class="btn btn--alert">Report to CEOP now</a>
+            <a href="https://revengepornhelpline.org.uk" target="_blank" rel="noopener noreferrer" class="btn btn--secondary">Revenge Porn Helpline</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- MYTH VS FACT -->
+    <section class="section band--white" aria-label="Myth versus fact">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow" style="color:var(--age-primary);">Set the record straight</span>
+          <h2>Myth vs fact</h2>
+        </div>
+        <div class="myth-grid" role="list">
+          <div class="myth-card" role="listitem">
+            <span class="myth-label myth">Myth</span>
+            <h4>"If I sent the image, it's my fault"</h4>
+            <p>Sending something to one trusted person is not consent for them to share it with anyone else. Sharing an intimate image without permission is a criminal offence in the UK.</p>
+          </div>
+          <div class="myth-card" role="listitem">
+            <span class="myth-label fact">Fact</span>
+            <h4>Sharing without consent is illegal — full stop</h4>
+            <p>Under the Online Safety Act 2023, sharing intimate images without consent carries up to 2 years in prison. AI-generated deepfake images of real people are also now included.</p>
+          </div>
+          <div class="myth-card" role="listitem">
+            <span class="myth-label myth">Myth</span>
+            <h4>"An AI friend is safer than a real person"</h4>
+            <p>AI companions are designed to keep you engaged — not to act in your best interest. The company profits from your continued use. That's not friendship.</p>
+          </div>
+          <div class="myth-card" role="listitem">
+            <span class="myth-label fact">Fact</span>
+            <h4>AI chatbots do not have feelings or loyalty</h4>
+            <p>They generate responses based on patterns. They don't miss you when you're gone. Relying on AI for emotional support can make real relationships harder, not easier.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- LEGAL REALITY -->
+    <section class="section band--gray" aria-label="Legal reality for teens">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow" style="color:var(--age-primary);">Things worth knowing</span>
+          <h2>The legal reality</h2>
+        </div>
+        <div class="legal-grid" role="list">
+          <div class="legal-card" role="listitem">
+            <i class="ti ti-gavel" style="color:#854F0B;" aria-hidden="true"></i>
+            <h4>Sexting between under-18s</h4>
+            <p>Technically illegal in the UK even between consenting teens. Police can use discretion, but images can end up on harmful sharing sites regardless of the original intent.</p>
+          </div>
+          <div class="legal-card" role="listitem">
+            <i class="ti ti-photo-off" style="color:#A32D2D;" aria-hidden="true"></i>
+            <h4>AI deepfake images</h4>
+            <p>Creating or sharing AI-generated intimate images of real people without consent is a criminal offence in England and Wales as of 2024 — regardless of age.</p>
+          </div>
+          <div class="legal-card" role="listitem">
+            <i class="ti ti-shield" style="color:#185FA5;" aria-hidden="true"></i>
+            <h4>Grooming &amp; exploitation</h4>
+            <p>Adults who manipulate young people online for sexual purposes face serious prison sentences. No adult can legally claim they "didn't know" you were under 18.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- HELPING A FRIEND -->
+    <section class="section band--white" aria-label="How to help a friend">
+      <div class="container container--narrow">
+        <div class="section-header">
+          <span class="eyebrow" style="color:var(--age-primary);">For when it's not you</span>
+          <h2>Helping a friend — when you're worried about someone else</h2>
+        </div>
+        <div class="friend-steps" role="list">
+          <div class="friend-step" role="listitem">
+            <i class="ti ti-ear" style="color:var(--color-brand);" aria-hidden="true"></i>
+            <div>
+              <h4>Listen without judging</h4>
+              <p>Let them talk. Don't minimise it ("it's probably fine") or catastrophise. Just be there. "I'm really glad you told me" goes a long way — further than you might think.</p>
+            </div>
+          </div>
+          <div class="friend-step" role="listitem">
+            <i class="ti ti-user-heart" style="color:#534AB7;" aria-hidden="true"></i>
+            <div>
+              <h4>Encourage them to tell a trusted adult</h4>
+              <p>You don't have to carry this alone, and neither do they. Help them think of who they trust — a parent, a teacher, a school counsellor. Offer to go with them if that would help.</p>
+            </div>
+          </div>
+          <div class="friend-step" role="listitem">
+            <i class="ti ti-alert-triangle" style="color:var(--color-alert);" aria-hidden="true"></i>
+            <div>
+              <h4>If they're in danger, tell an adult yourself</h4>
+              <p>A real friend sometimes has to break a secret to keep someone safe. That's not a betrayal — it's the most loyal thing you can do. Their safety matters more than the secret.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- HELP CONTACTS -->
+    <section class="section band--gray" aria-label="Support contacts for teens">
+      <div class="container">
+        <div class="section-header--center">
+          <span class="eyebrow" style="color:var(--age-primary);">Need support?</span>
+          <h2>For you, or someone you know</h2>
+        </div>
+        <div class="help-grid" role="list">
+          <div class="help-contact" role="listitem">
+            <i class="ti ti-phone" aria-hidden="true"></i>
+            <h4>Childline</h4>
+            <p><a href="tel:08001111" style="color:var(--age-primary);font-weight:700;">0800 1111</a> — free, 24/7, confidential. You don't have to give your name.</p>
+          </div>
+          <div class="help-contact" role="listitem">
+            <i class="ti ti-shield" aria-hidden="true"></i>
+            <h4>CEOP</h4>
+            <p><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:var(--age-primary);font-weight:700;">ceop.police.uk</a> — report online sexual exploitation right now.</p>
+          </div>
+          <div class="help-contact" role="listitem">
+            <i class="ti ti-camera-off" aria-hidden="true"></i>
+            <h4>Revenge Porn Helpline</h4>
+            <p><a href="https://revengepornhelpline.org.uk" target="_blank" rel="noopener noreferrer" style="color:var(--age-primary);font-weight:700;">revengepornhelpline.org.uk</a> — free image removal support.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__safeguarding" role="region">
+        <p class="footer__safeguarding-title">🚨 Need help right now?</p>
+        <div class="footer__safeguarding-list">
+          <div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div>
+          <div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div>
+          <div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span></div>
+          <div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span></div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p>
+        <div class="footer__legal">
+          <a href="kids.html">← All ages</a>
+          <a href="parents.html">For parents</a>
+          <a href="privacy-policy.html">Privacy policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu(btn) {
+      const menu = document.getElementById('mobile-menu');
+      const isOpen = menu.classList.contains('is-open');
+      menu.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    }
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI impersonation, deepfakes and voice cloning — what parents need to know. How the technology works, why children are specifically at risk, and what UK law now says." />
+  <title>AI Impersonation, Deepfakes &amp; Voice Cloning — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>" />
+  <style>
+    /* ── Page styles ──────────────────────────────────────── */
+    .topic-hero {
+      background: linear-gradient(135deg, #0A0A0A 0%, #1A0A2E 60%, #0D1B2A 100%);
+      padding: var(--space-16) 0 var(--space-12);
+      position: relative;
+      overflow: hidden;
+    }
+    .topic-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 70% at 80% 40%, rgba(83,74,183,.2) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 10% 80%, rgba(163,45,45,.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; }
+    .topic-hero h1 { color: #fff; font-size: var(--text-3xl); margin-bottom: var(--space-3); }
+    .topic-hero h1 em { font-style: normal; color: #AFA9EC; }
+    .topic-hero p  { color: rgba(255,255,255,0.8); font-size: var(--text-md); max-width: 620px; line-height: 1.65; margin-bottom: var(--space-6); }
+    .stat-pills { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+    .stat-pill  { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-full); padding: 6px var(--space-4); font-size: var(--text-sm); color: #e2e8f0; }
+    .stat-pill strong { color: #fff; font-weight: 700; }
+    .breadcrumb { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: rgba(255,255,255,0.5); margin-bottom: var(--space-5); }
+    .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .breadcrumb a:hover { color: #fff; }
+    .breadcrumb span { color: rgba(255,255,255,0.35); }
+
+    /* Callouts */
+    .callout { border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); margin-bottom: var(--space-5); border-left: 4px solid; font-size: var(--text-sm); line-height: 1.65; }
+    .callout strong { display: block; font-weight: 600; margin-bottom: var(--space-1); }
+    .callout--info   { background: var(--color-info);          border-color: var(--color-info-text);  color: #0C447C; }
+    .callout--warn   { background: var(--color-warning-light); border-color: var(--color-warning);    color: #5A3207; }
+    .callout--danger { background: var(--color-alert-light);   border-color: var(--color-alert);      color: #501313; }
+    .callout--safe   { background: var(--color-brand-light);   border-color: var(--color-brand);      color: #04342C; }
+    .callout--dark   { background: rgba(0,0,0,0.05); border-color: var(--color-text-title); color: var(--color-text-body); }
+
+    /* Type cards */
+    .type-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: var(--space-4); }
+    .type-card { background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-xl); overflow: hidden; }
+    .type-card-head { padding: var(--space-5); border-bottom: 1px solid var(--color-border-subtle); }
+    .type-card-head .tc-icon { font-size: 32px; margin-bottom: var(--space-3); display: block; }
+    .type-card-head h3 { font-size: var(--text-base); font-weight: 700; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .type-card-head p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.6; margin: 0; }
+    .type-card-body { padding: var(--space-5); background: var(--color-bg-secondary); }
+    .type-card-body p { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.65; margin: 0; }
+    .tech-spec { font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--color-text-muted); margin-bottom: var(--space-2); display: block; }
+
+    /* Kuba / viral explainer */
+    .viral-box {
+      background: linear-gradient(135deg, #1A0A2E, #0D1B2A);
+      border-radius: var(--radius-xl);
+      padding: var(--space-7) var(--space-8);
+      margin-bottom: var(--space-5);
+      border: 1px solid rgba(175,169,236,.3);
+    }
+    .viral-box .vb-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #AFA9EC; margin-bottom: var(--space-4); display: block; }
+    .viral-box h3 { color: #fff; font-size: var(--text-xl); margin-bottom: var(--space-4); line-height: 1.3; }
+    .viral-box p  { color: rgba(255,255,255,0.75); font-size: var(--text-base); line-height: 1.75; margin-bottom: var(--space-4); }
+    .viral-box p:last-child { margin-bottom: 0; }
+    .viral-box strong { color: #fff; }
+    .viral-box a { color: #AFA9EC; }
+
+    /* Risk items for children */
+    .child-risks { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-xl); overflow: hidden; }
+    .risk-item { display: flex; gap: var(--space-5); align-items: flex-start; padding: var(--space-5) var(--space-6); border-bottom: 1px solid var(--color-border-subtle); background: var(--color-bg-primary); }
+    .risk-item:last-child { border-bottom: none; }
+    .risk-num { width: 36px; height: 36px; border-radius: 50%; background: var(--color-alert-light); color: var(--color-alert); font-size: var(--text-sm); font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: monospace; }
+    .risk-item h4 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .risk-item p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.65; margin: 0; }
+    .risk-item sup { font-size: 9px; }
+
+    /* Scenario cards */
+    .scenario-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--space-5); }
+    .scenario-card { background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-xl); padding: var(--space-6); }
+    .scenario-card.danger { border-color: var(--color-alert-border); background: var(--color-alert-light); }
+    .scenario-card .sc-label { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--color-alert); margin-bottom: var(--space-3); display: block; }
+    .scenario-card.safe .sc-label { color: var(--color-brand); }
+    .scenario-card h3 { font-size: var(--text-base); font-weight: 700; color: var(--color-text-title); margin-bottom: var(--space-3); line-height: 1.3; }
+    .scenario-card.danger h3 { color: #501313; }
+    .scenario-card p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.65; margin-bottom: var(--space-3); }
+    .scenario-card.danger p { color: #791F1F; }
+    .scenario-card p:last-child { margin-bottom: 0; }
+    .scenario-card sup { font-size: 9px; }
+
+    /* What parents can do */
+    .action-steps { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--space-4); counter-reset: steps; }
+    .action-step { counter-increment: steps; background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: var(--space-5) var(--space-5) var(--space-5) 64px; position: relative; }
+    .action-step::before { content: counter(steps); position: absolute; left: var(--space-4); top: var(--space-5); width: 32px; height: 32px; background: rgba(83,74,183,.1); color: var(--color-purple-text); border-radius: 50%; font-weight: 800; font-size: var(--text-sm); display: flex; align-items: center; justify-content: center; font-family: monospace; }
+    .action-step h4 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .action-step p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.65; margin: 0; }
+    .action-step a  { color: var(--color-brand); }
+
+    /* Law table */
+    .law-table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); overflow: hidden; }
+    .law-table thead { background: var(--color-text-title); color: #fff; }
+    .law-table thead th { padding: 12px var(--space-4); text-align: left; font-size: var(--text-xs); font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+    .law-table tbody tr { border-bottom: 1px solid var(--color-border-subtle); background: var(--color-bg-primary); }
+    .law-table tbody tr:last-child { border-bottom: none; }
+    .law-table tbody tr:hover { background: var(--color-bg-secondary); }
+    .law-table td { padding: 12px var(--space-4); vertical-align: top; color: var(--color-text-secondary); line-height: 1.55; }
+    .law-table td:first-child { font-weight: 600; color: var(--color-text-title); width: 220px; }
+
+    /* Citations */
+    .citations-box { background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-xl); padding: var(--space-8); margin-top: var(--space-12); }
+    .citations-box h2 { font-size: var(--text-lg); margin-bottom: var(--space-5); }
+    .citations-box ol { padding-left: var(--space-5); font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.75; }
+    .citations-box ol li { margin-bottom: var(--space-2); }
+    .citations-box a { color: var(--color-brand); word-break: break-all; }
+
+    .table-wrap { overflow-x: auto; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); }
+
+    @media (max-width: 1023px) { .type-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 767px) {
+      .scenario-grid { grid-template-columns: 1fr; }
+      .action-steps  { grid-template-columns: 1fr; }
+      .viral-box     { padding: var(--space-5); }
+      .citations-box { padding: var(--space-5); }
+      .action-step   { padding-left: 56px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert">
+      <p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p>
+      <a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a>
+    </div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list">
+          <li><a href="parents.html" class="nav__link nav__link--active">Parents</a></li>
+          <li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li>
+          <li><a href="educators.html" class="nav__link">Educators</a></li>
+          <li><a href="resources.html" class="nav__link">Resources</a></li>
+          <li><a href="about.html" class="nav__link">About</a></li>
+        </ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile">
+        <a href="parents.html" class="nav__link">Parents</a>
+        <a href="kids.html" class="nav__link">Kids &amp; teens</a>
+        <a href="educators.html" class="nav__link">Educators</a>
+        <a href="resources.html" class="nav__link">Resources</a>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+      </div>
+    </div>
+  </header>
+
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="topic-hero" aria-label="AI impersonation guide introduction">
+      <div class="container hero-inner">
+        <div class="breadcrumb" aria-label="Breadcrumb">
+          <a href="parents.html">Parents</a>
+          <span aria-hidden="true">›</span>
+          <a href="ai-chatbots.html">AI &amp; chatbots</a>
+          <span aria-hidden="true">›</span>
+          <span style="color:rgba(255,255,255,0.75);">AI impersonation &amp; deepfakes</span>
+        </div>
+        <div style="font-size:40px;margin-bottom:var(--space-3);" aria-hidden="true">🎭</div>
+        <h1>AI Impersonation, Deepfakes &amp; <em>Voice Cloning</em></h1>
+        <p>The technology that viral creators use to swap faces effortlessly on TikTok is the same technology being used by criminals to impersonate family members, groom children, and create abuse imagery. A parent's guide to what's happening — and what it means for your child.</p>
+        <div class="stat-pills" role="list" aria-label="Key statistics">
+          <span class="stat-pill" role="listitem"><strong>8 million</strong> deepfakes shared online in 2025 — up from 500,000 in 2023 <sup>[1]</sup></span>
+          <span class="stat-pill" role="listitem">Voice cloned from as little as <strong>3 seconds</strong> of audio <sup>[2]</sup></span>
+          <span class="stat-pill" role="listitem">IWF recorded a <strong>26,385%</strong> rise in AI-generated child abuse video in 2025 <sup>[3]</sup></span>
+        </div>
+        <div style="margin-top:var(--space-6);display:flex;gap:var(--space-3);flex-wrap:wrap;">
+          <span class="badge badge--new">Rapidly evolving risk</span>
+          <span class="badge badge--gray">Cited sources</span>
+          <span class="badge badge--gray">Updated June 2026</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- INTRO -->
+    <section class="section band--white" aria-labelledby="intro-heading">
+      <div class="container">
+        <span class="eyebrow">First — understand what this is</span>
+        <h2 id="intro-heading" style="margin-bottom:var(--space-4);">The same technology. Very different uses.</h2>
+        <div class="grid grid-2" style="gap:var(--space-8);align-items:start;">
+          <div>
+            <p class="text-lead" style="margin-bottom:var(--space-5);">If your child uses TikTok, there's a very good chance they've seen creators swapping faces, changing their voice in real time, or transforming into different people entirely — all using free AI tools in a matter of seconds. It looks playful and creative. It is.</p>
+            <p style="font-size:var(--text-base);color:var(--color-text-secondary);line-height:1.75;margin-bottom:var(--space-4);">But the same underlying technology — video face-swapping, AI voice cloning, real-time identity manipulation — is also being used by criminals to impersonate family members in emergency scam calls, by predators to deceive children about who they're speaking to, and by offenders to create sexual abuse imagery of children using nothing more than photographs from a school social media account.</p>
+            <p style="font-size:var(--text-base);color:var(--color-text-secondary);line-height:1.75;">The tools have become so accessible, so fast, and so convincing that a Fortune expert writing in late 2025 said deepfakes had crossed what he called the "indistinguishable threshold" — meaning synthetic media is now good enough to reliably fool ordinary people in the situations where it's most likely to be used. <sup>[4]</sup> This is not a future threat. It is happening right now.</p>
+          </div>
+          <div>
+            <div class="callout callout--warn" role="note">
+              <strong>Why this matters more for children than adults</strong>
+              Adults are more likely to apply scepticism before trusting a voice call or video. Children are developmentally less equipped to question whether someone is who they say they are — particularly when the voice sounds exactly right, or the video appears completely genuine. This makes children specifically vulnerable to AI impersonation as a grooming tool and a manipulation tool.
+            </div>
+            <div class="callout callout--danger" role="note">
+              <strong>The IWF's findings — 2026</strong>
+              The Internet Watch Foundation's 2026 report found that AI-generated child sexual abuse videos increased by 26,385% in 2025 alone, rising from 13 videos in 2024 to 3,443 in 2025. These include videos using cloned voices of children. 65% were classified as the most extreme category. <sup>[3]</sup>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- WHAT IS IT — THREE TYPES -->
+    <section class="section band--gray" aria-labelledby="types-heading">
+      <div class="container">
+        <span class="eyebrow">Three technologies, one threat</span>
+        <h2 id="types-heading" style="margin-bottom:var(--space-3);">What AI impersonation actually means</h2>
+        <p class="text-lead" style="margin-bottom:var(--space-8);">The term "deepfake" covers a family of related AI technologies. Understanding the difference helps parents know which scenarios are most relevant to their child.</p>
+
+        <div class="type-grid" role="list">
+
+          <div class="type-card" role="listitem">
+            <div class="type-card-head">
+              <span class="tc-icon" aria-hidden="true">🎥</span>
+              <h3>Video face-swapping</h3>
+              <p>AI replaces one person's face in a video with another's — in real time or on pre-recorded footage. The expression, lighting, and movement match so convincingly that the result is indistinguishable from genuine footage.</p>
+            </div>
+            <div class="type-card-body">
+              <span class="tech-spec">How accessible is it?</span>
+              <p>Very. Apps like CapCut, Reface, and dozens of free web tools require nothing more than uploading a single photo. Creators like <strong>kuba.creates.ai</strong> on TikTok use these tools to transform into other people effortlessly — and their tutorials have millions of views, making the technique available to anyone curious enough to search. <sup>[5]</sup></p>
+            </div>
+          </div>
+
+          <div class="type-card" role="listitem">
+            <div class="type-card-head">
+              <span class="tc-icon" aria-hidden="true">🎙️</span>
+              <h3>AI voice cloning</h3>
+              <p>AI replicates a person's voice from a short audio sample — just 3 seconds is now sufficient — and can then speak any words in that cloned voice. The result is a voice that sounds completely genuine, even to family members. <sup>[2]</sup></p>
+            </div>
+            <div class="type-card-body">
+              <span class="tech-spec">How accessible is it?</span>
+              <p>Extremely. ElevenLabs, OpenAI's voice tools, and several free platforms allow voice cloning with minimal effort. A 2026 internal test found that <strong>family members could not reliably distinguish cloned voicemails from real ones</strong> at the audio quality of a typical mobile phone call. <sup>[6]</sup> A child's voice — captured from a school video, a TikTok, or a WhatsApp voice note — is enough source material.</p>
+            </div>
+          </div>
+
+          <div class="type-card" role="listitem">
+            <div class="type-card-head">
+              <span class="tc-icon" aria-hidden="true">🖼️</span>
+              <h3>AI image generation &amp; "nudification"</h3>
+              <p>AI generates realistic images of real people in situations that never happened — including sexually explicit scenarios. "Nudification" tools strip clothing from photographs. Both have been used to create abuse imagery of children.</p>
+            </div>
+            <div class="type-card-body">
+              <span class="tech-spec">How accessible is it?</span>
+              <p>Worryingly easy. Tools capable of generating realistic deepfakes of specific children from as few as <strong>20 existing photos</strong> — taken from a school social media account, for example — in under 15 minutes now exist. <sup>[3]</sup> The Children's Commissioner called for an immediate ban on these apps in November 2025. <sup>[7]</sup></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- THE KUBA MOMENT -->
+    <section class="section band--white" aria-labelledby="accessible-heading">
+      <div class="container container--narrow">
+        <span class="eyebrow">The moment that shows how accessible this has become</span>
+        <h2 id="accessible-heading" style="margin-bottom:var(--space-6);">From viral entertainment to serious risk</h2>
+
+        <div class="viral-box" role="region" aria-label="Viral AI face-swapping content context">
+          <span class="vb-label">The TikTok context — what your child may have seen</span>
+          <h3>Creators like kuba.creates.ai have made AI impersonation look effortless — because it now is</h3>
+          <p>Accounts like @kuba.creates.ai have gone viral on TikTok by seamlessly transforming into celebrities, followers, and other people using AI face-swap tools. The videos are impressive and creative. They attract millions of views and thousands of tutorial requests — "how does Kuba do his AI?" is one of TikTok's most searched creator technique questions. <sup>[5]</sup></p>
+          <p>What these videos demonstrate — unintentionally, and without any malicious intent — is that <strong>the barrier to convincingly impersonating anyone has collapsed</strong>. A 14-year-old can download the same tools and put any face, any voice, on any video. There is no technical skill required. There is no meaningful age gate. And most children watching these videos have no reason to connect "fun TikTok content" with the serious harms the same technology enables.</p>
+          <p>This is not a criticism of creators using these tools for entertainment. It is a recognition that the normalisation of AI impersonation as creative content makes it much harder to explain to children why the same tools are dangerous in other hands — and why their own image, face, and voice carry risks they may not have considered.</p>
+        </div>
+
+        <div class="callout callout--info">
+          <strong>The "viral face-swap" to "criminal tool" pipeline</strong>
+          NPR's 2025 investigation found accounts on TikTok using AI-generated voices and faces to impersonate real creators — stealing their words, their style, and their credibility — without ever being the person they appeared to be. The same tools used for entertainment are being used for impersonation fraud, disinformation, and child exploitation. The only difference is intent. <sup>[8]</sup>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- WHY CHILDREN ARE SPECIFICALLY AT RISK -->
+    <section class="section band--gray" aria-labelledby="child-risks-heading">
+      <div class="container">
+        <span class="eyebrow eyebrow--alert">The specific threat to children</span>
+        <h2 id="child-risks-heading" style="margin-bottom:var(--space-3);">Why children face unique risks from AI impersonation</h2>
+        <p class="text-lead" style="margin-bottom:var(--space-8);">Adults and children face different risks from the same technology. These are the specific ways AI impersonation is being used to harm children — identified by the IWF, NSPCC, CEOP, the World Economic Forum, and the UK Children's Commissioner. <sup>[3][7][9][10]</sup></p>
+
+        <div class="child-risks" role="list">
+
+          <div class="risk-item" role="listitem">
+            <div class="risk-num" aria-label="Risk 1">1</div>
+            <div>
+              <h4>Grooming via a cloned "child" voice — adults pretending to be peers</h4>
+              <p>The World Economic Forum's April 2026 analysis of AI voice deepfakes and child safety documents a specific and growing threat: adults using real-time voice cloning to impersonate a child's voice in gaming and messaging platforms. An adult can pass a visual identity check and then use a synthetic child's voice for every interaction that follows — including voice chat in Roblox, Discord, or Fortnite. The platform's age verification system verifies a photo; it cannot verify a voice. <sup>[9]</sup> Children who believe they are talking to a peer are in fact talking to an adult who sounds exactly like one.</p>
+            </div>
+          </div>
+
+          <div class="risk-item" role="listitem">
+            <div class="risk-num" aria-label="Risk 2">2</div>
+            <div>
+              <h4>Deepfake abuse images created from a child's social media photos</h4>
+              <p>The IWF confirmed in its 2026 report that AI tools can generate realistic deepfake child sexual abuse material using as few as 20 photographs of a specific child — photographs that may be entirely innocent and available on a school social media page, a parent's Facebook, or a child's own TikTok. The AI is then fine-tuned to produce images or videos of that specific child. In 2025, the IWF found 8,029 AI-generated images and videos showing realistic child sexual abuse — a number that is growing exponentially. Girls make up 97% of victims in identified AI-generated material. <sup>[3]</sup></p>
+            </div>
+          </div>
+
+          <div class="risk-item" role="listitem">
+            <div class="risk-num" aria-label="Risk 3">3</div>
+            <div>
+              <h4>School deepfake incidents — targeting by peers</h4>
+              <p>UK schools have seen a significant rise in incidents where students use AI nudification tools or face-swapping tools to create explicit images of classmates. These images are then shared in school group chats, on Discord servers, or via private messaging. The Children's Commissioner noted in November 2025 that children told her directly: "I'm so worried this could happen to me." This is not a theoretical risk — it is happening in UK schools. <sup>[7]</sup> Creating such images of anyone under 18 is already a criminal offence under existing UK law.</p>
+            </div>
+          </div>
+
+          <div class="risk-item" role="listitem">
+            <div class="risk-num" aria-label="Risk 4">4</div>
+            <div>
+              <h4>"Virtual kidnapping" — cloning a child's voice to scam parents</h4>
+              <p>By 2026 this scam has become well-documented: criminals clone a child's voice from a TikTok, YouTube video, or voice note — requiring as little as 3 seconds of audio — and then call a parent with the child's voice, crying or screaming, claiming to have been in an accident or kidnapped, and demanding immediate money transfer. The FBI's 2025 Internet Crime Report specifically flagged voice cloning as a growing vector in these "virtual kidnapping" schemes, with ransoms typically demanded between £2,000 and £12,000. <sup>[11]</sup> Your child does not need to do anything wrong for their voice to be available online.</p>
+            </div>
+          </div>
+
+          <div class="risk-item" role="listitem">
+            <div class="risk-num" aria-label="Risk 5">5</div>
+            <div>
+              <h4>Sextortion using deepfaked images of the child</h4>
+              <p>CEOP's 2024 threat assessment documented cases in which offenders create deepfake sexual images of a child and then use those images — which the child has never posed for — as the basis of blackmail. "Send me a real photo or I'll share this one." The child, who has done nothing wrong, is trapped in a blackmail scenario using fabricated evidence. This represents a significant evolution in sextortion tactics that existing awareness material does not yet adequately address. <sup>[10]</sup></p>
+            </div>
+          </div>
+
+          <div class="risk-item" role="listitem">
+            <div class="risk-num" aria-label="Risk 6">6</div>
+            <div>
+              <h4>Trust in familiar voices — children are easier to deceive</h4>
+              <p>A cloned voice of a parent, a teacher, or a family member is disproportionately effective against children. When a child receives what appears to be a phone call from their mother's voice asking them to share their location, open a link, or confirm personal details — the natural trust they have in that voice is a vulnerability. Children are developmentally less likely to pause and verify. The WEF analysis calls this "trust exploitation" and notes it is the least-regulated gap in current AI impersonation law. <sup>[9]</sup></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- REAL SCENARIOS -->
+    <section class="section band--white" aria-labelledby="scenarios-heading">
+      <div class="container">
+        <span class="eyebrow eyebrow--alert">What this looks like in practice</span>
+        <h2 id="scenarios-heading" style="margin-bottom:var(--space-8);">Scenarios parents should be aware of</h2>
+        <div class="scenario-grid" role="list">
+
+          <div class="scenario-card danger" role="listitem">
+            <span class="sc-label">Scenario — grooming</span>
+            <h3>The "friend" in the game who sounds like a child</h3>
+            <p>Your 11-year-old has been talking to someone in Roblox for weeks. They have voice chatted many times. The person sounds their age, uses similar language, seems to know what it's like to be at school. Your child trusts them completely.</p>
+            <p>With a real-time voice cloning tool that runs on a laptop, an adult can enter that game sounding exactly like a child — same pitch, same cadence, same vocal warmth. The platform cannot tell the difference. Your child cannot tell the difference. <sup>[9]</sup></p>
+          </div>
+
+          <div class="scenario-card danger" role="listitem">
+            <span class="sc-label">Scenario — family impersonation</span>
+            <h3>The call that sounds exactly like you</h3>
+            <p>Your teenager is home alone. They receive a phone call that sounds exactly like your voice. The caller says there has been an emergency and they need to immediately share their location, open a specific link, or confirm their name and school.</p>
+            <p>Your voice can be cloned from a birthday video on Facebook, a TikTok you appeared in, or even a voicemail your child has saved. Three seconds of audio is enough. <sup>[2][11]</sup></p>
+          </div>
+
+          <div class="scenario-card danger" role="listitem">
+            <span class="sc-label">Scenario — school targeting</span>
+            <h3>Images of your child that were never taken</h3>
+            <p>A classmate — or an unknown offender — takes publicly available photos of your child from Instagram or a school website and uses an AI nudification tool to generate explicit images. These are shared in a school WhatsApp group or posted online.</p>
+            <p>Your child has done nothing wrong. The images are not real. But the harm — to their reputation, their mental health, and their sense of safety — is entirely real. This is already happening in UK schools. <sup>[7][3]</sup></p>
+          </div>
+
+          <div class="scenario-card danger" role="listitem">
+            <span class="sc-label">Scenario — virtual kidnapping</span>
+            <h3>Your child's voice, crying, asking for help</h3>
+            <p>You receive a call. You hear your child's voice — unmistakably theirs — sounding panicked, saying they've been hurt and need money sent immediately. Another voice then comes on, claiming to be holding them.</p>
+            <p>This is a voice clone. Criminals harvest audio from your child's TikTok, YouTube channel, or a video you shared. The FBI has documented dozens of these cases across 2025–26. The emotional impact — even when the family realises the deception — can be severe. <sup>[11]</sup></p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- UK LAW -->
+    <section class="section band--gray" aria-labelledby="law-heading">
+      <div class="container">
+        <span class="eyebrow eyebrow--brand">The legal picture</span>
+        <h2 id="law-heading" style="margin-bottom:var(--space-3);">What UK law currently says</h2>
+        <p class="text-lead" style="margin-bottom:var(--space-6);">UK law on deepfakes has moved rapidly since 2023, though significant gaps remain — particularly around real-time voice cloning. Here is the current picture as of June 2026.</p>
+
+        <div class="table-wrap" role="region" aria-label="UK deepfake law overview">
+          <table class="law-table">
+            <thead><tr><th>Area</th><th>Current UK law</th><th>Source</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Sharing intimate deepfakes without consent</td>
+                <td>Criminal offence. Sharing or threatening to share intimate images — including deepfakes — without consent is illegal under the Sexual Offences Act 2003 (as amended by the Online Safety Act 2023). Platforms must proactively prevent this content.</td>
+                <td style="white-space:nowrap;"><sup>[12]</sup></td>
+              </tr>
+              <tr>
+                <td>Creating explicit deepfakes of adults without consent</td>
+                <td>Criminal offence since 6 February 2026. Section 138 of the Data (Use and Access) Act 2025 (Section 66D of the Sexual Offences Act 2003) makes creating or requesting sexually explicit deepfakes without consent a criminal offence. Penalty includes fines and up to 2 years' imprisonment. <sup>[13]</sup></td>
+                <td style="white-space:nowrap;"><sup>[13]</sup></td>
+              </tr>
+              <tr>
+                <td>Deepfake sexual images of children</td>
+                <td>Already illegal under existing law. Creating, possessing, or sharing computer-generated indecent images of anyone under 18 — including deepfakes — is a criminal offence under the Protection of Children Act 1978, Coroners and Justice Act 2009, and Criminal Justice Act 1988.</td>
+                <td style="white-space:nowrap;"><sup>[14]</sup></td>
+              </tr>
+              <tr>
+                <td>"Nudification" tools</td>
+                <td>The Crime and Policing Bill 2025 (currently before Parliament) will criminalise those who design and supply AI nudification tools — targeting the providers, not only the users.</td>
+                <td style="white-space:nowrap;"><sup>[15]</sup></td>
+              </tr>
+              <tr>
+                <td>Real-time voice cloning for impersonation</td>
+                <td>Not yet specifically addressed in UK law. Fraud committed using voice cloning falls under existing fraud legislation. The WEF notes this is the least-regulated and fastest-growing gap. The EU AI Act's Article 50 (from August 2026) requires disclosure when AI voices are used, but this does not apply in criminal contexts.</td>
+                <td style="white-space:nowrap;"><sup>[9][16]</sup></td>
+              </tr>
+              <tr>
+                <td>Ofcom enforcement</td>
+                <td>Ofcom has the power to fine platforms up to 10% of global revenue for failing to prevent intimate image abuse content. In early 2026, Ofcom opened a formal investigation into X (formerly Twitter) and Grok AI for facilitating the generation and distribution of deepfake sexual imagery.</td>
+                <td style="white-space:nowrap;"><sup>[12]</sup></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout--safe" style="margin-top:var(--space-5);">
+          <strong>If a deepfake of your child exists and has been shared</strong>
+          Report to the IWF at <a href="https://www.iwf.org.uk/report/" target="_blank" rel="noopener noreferrer" style="color:var(--color-brand);">iwf.org.uk/report</a> — they can get it removed. Children and young people can also use the <a href="https://www.childline.org.uk/info-advice/bullying-abuse-safety/online-mobile-safety/report-remove/" target="_blank" rel="noopener noreferrer" style="color:var(--color-brand);">Report Remove tool</a> from IWF and Childline. Contact CEOP if you believe exploitation is involved. See our <a href="get-help-now.html" style="color:var(--color-brand);">get help now page</a> for step-by-step guidance.
+        </div>
+      </div>
+    </section>
+
+
+    <!-- WHAT PARENTS CAN DO -->
+    <section class="section band--white" aria-labelledby="actions-heading">
+      <div class="container">
+        <span class="eyebrow eyebrow--brand">What parents can do</span>
+        <h2 id="actions-heading" style="margin-bottom:var(--space-3);">Practical steps to reduce the risks</h2>
+        <p class="text-lead" style="margin-bottom:var(--space-8);">You cannot prevent AI technology from existing. But you can reduce the surface area your child presents — and make sure they know exactly what to do if something happens.</p>
+
+        <ol class="action-steps" aria-label="Steps for parents">
+          <li class="action-step">
+            <h4>Have the conversation using what they already know</h4>
+            <p>Your child has almost certainly seen creators like Kuba doing face-swaps on TikTok. Start there: "You've seen those videos where someone transforms into a different person with AI — what do you think about that?" Then explain: "The same tool could be used to put your face on someone else's video without you knowing. How would that feel?" This is a conversation children can engage with because they already understand the technology.</p>
+          </li>
+          <li class="action-step">
+            <h4>Minimise the audio and video they share publicly</h4>
+            <p>Voices can be cloned from 3 seconds of audio. Deepfake images can be built from 20 photos. Check that your child's social media accounts are private, that videos featuring them are not publicly visible, and that the school's social media policy covers image use. Our <a href="platform-settings.html">platform settings hub</a> has step-by-step guides for every platform.</p>
+          </li>
+          <li class="action-step">
+            <h4>Create a family safe word for emergencies</h4>
+            <p>Agree on a word or phrase that only your family knows — not a name, a word — that can be used to verify identity in an unexpected phone call. "If I ever call you and you're not sure it's really me, ask me for the safe word." This simple step defeats the virtual kidnapping scam entirely. Change it occasionally and keep it genuinely secret.</p>
+          </li>
+          <li class="action-step">
+            <h4>Teach your child how to verify identity before trusting</h4>
+            <p>Explain that voices and faces online can now be faked — even familiar ones. Agree on a rule: if anyone contacts them claiming to be a family member and asking them to do something unusual, they should hang up and call the real person directly on a number they already have. Not the number that called them — a known number.</p>
+          </li>
+          <li class="action-step">
+            <h4>Explain that images can be fabricated — and it's not their fault</h4>
+            <p>This is one of the most important conversations. If a deepfake image of your child ever appears, they need to know immediately: it is not real, they have done nothing wrong, and there are organisations (IWF, Childline, CEOP) who can get it removed. Fear of shame keeps children silent. Remove the shame in advance by having this conversation now, not after.</p>
+          </li>
+          <li class="action-step">
+            <h4>Be sceptical of voice in gaming — talk to your child about this specifically</h4>
+            <p>Remind your child that anyone they meet online — even if they sound like a child their age — may not be who they appear to be. The technology to fake a voice convincingly on a gaming headset now exists and is accessible. "If someone you meet in a game asks to move to private voice chat, that's a warning sign regardless of how they sound." See our <a href="gaming-safety.html">gaming safety guide</a> for more.</p>
+          </li>
+          <li class="action-step">
+            <h4>Watch for distress related to something they've seen of themselves</h4>
+            <p>Children who discover a deepfake image of themselves — or who are told one exists — may not tell a parent immediately due to shame or fear. Watch for sudden withdrawal, distress around devices, or reluctance to use social media. Our <a href="red-flags.html">warning signs guide</a> covers the behavioural changes worth noticing.</p>
+          </li>
+          <li class="action-step">
+            <h4>Know where to get help immediately if something has happened</h4>
+            <p>IWF Report Remove: <a href="https://www.iwf.org.uk/report/" target="_blank" rel="noopener noreferrer">iwf.org.uk/report</a>. CEOP: <a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer">ceop.police.uk</a>. Childline: <a href="tel:08001111">0800 1111</a>. See our full <a href="get-help-now.html">get help now page</a> for step-by-step guidance for six different scenarios.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- RESOURCES -->
+    <section class="section band--gray" aria-labelledby="resources-heading">
+      <div class="container">
+        <span class="eyebrow">Trusted sources &amp; further reading</span>
+        <h2 id="resources-heading" style="margin-bottom:var(--space-8);">Trusted resources on AI impersonation</h2>
+        <div class="grid grid-3" role="list">
+          <div class="resource-card" role="listitem" style="background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-2);">
+            <span style="font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-muted);">IWF</span>
+            <p style="font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.55;flex:1;">Harm Without Limits: AI CSAM through the eyes of IWF analysts — the definitive report on AI-generated abuse imagery.</p>
+            <a href="https://www.iwf.org.uk/about-us/why-we-exist/our-research/how-ai-is-being-abused-to-create-child-sexual-abuse-imagery/" target="_blank" rel="noopener noreferrer" style="font-size:var(--text-sm);color:var(--color-brand);word-break:break-all;font-weight:500;">iwf.org.uk — AI CSAM report 2026</a>
+          </div>
+          <div class="resource-card" role="listitem" style="background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-2);">
+            <span style="font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-muted);">Children's Commissioner</span>
+            <p style="font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.55;flex:1;">Press notice calling for an immediate ban on AI apps that enable deepfake sexual abuse of children, November 2025.</p>
+            <a href="https://www.childrenscommissioner.gov.uk/news-and-blogs/press-notice-childrens-commissioner-calls-for-immediate-ban-of-ai-apps-that-enable-deepfake-sexual-abuse-of-children/" target="_blank" rel="noopener noreferrer" style="font-size:var(--text-sm);color:var(--color-brand);word-break:break-all;font-weight:500;">childrenscommissioner.gov.uk</a>
+          </div>
+          <div class="resource-card" role="listitem" style="background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-2);">
+            <span style="font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-muted);">World Economic Forum</span>
+            <p style="font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.55;flex:1;">Real-time deepfakes are rewriting the rules of child safety — April 2026 analysis on voice cloning in gaming platforms used by children.</p>
+            <a href="https://www.weforum.org/stories/2026/04/ai-voice-deepfakes-child-safety/" target="_blank" rel="noopener noreferrer" style="font-size:var(--text-sm);color:var(--color-brand);word-break:break-all;font-weight:500;">weforum.org — deepfakes and child safety</a>
+          </div>
+          <div class="resource-card" role="listitem" style="background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-2);">
+            <span style="font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-muted);">NSPCC</span>
+            <p style="font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.55;flex:1;">Generative AI and children's safety research — seven key risks including sexual grooming and image-based abuse via AI.</p>
+            <a href="https://www.nspcc.org.uk/about-us/news-opinion/2025/2025-01-28-over-three-quarters-of-the-uk-public-want-child-safety-checks-on-new-generative-ai-products/" target="_blank" rel="noopener noreferrer" style="font-size:var(--text-sm);color:var(--color-brand);word-break:break-all;font-weight:500;">nspcc.org.uk — AI and children's safety</a>
+          </div>
+          <div class="resource-card" role="listitem" style="background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-2);">
+            <span style="font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-muted);">IWF &amp; Childline</span>
+            <p style="font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.55;flex:1;">Report Remove — free tool for children and young people to report and remove AI-generated abuse images of themselves.</p>
+            <a href="https://www.childline.org.uk/info-advice/bullying-abuse-safety/online-mobile-safety/report-remove/" target="_blank" rel="noopener noreferrer" style="font-size:var(--text-sm);color:var(--color-brand);word-break:break-all;font-weight:500;">childline.org.uk — Report Remove</a>
+          </div>
+          <div class="resource-card" role="listitem" style="background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-2);">
+            <span style="font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-muted);">GOV.UK</span>
+            <p style="font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.55;flex:1;">UK government's deepfake crackdown announcement — February 2026 action on creating and sharing explicit deepfakes.</p>
+            <a href="https://www.gov.uk/government/news/government-leads-global-fight-against-deepfake-threats" target="_blank" rel="noopener noreferrer" style="font-size:var(--text-sm);color:var(--color-brand);word-break:break-all;font-weight:500;">gov.uk — deepfake crackdown 2026</a>
+          </div>
+        </div>
+
+        <!-- Citations -->
+        <div class="citations-box" role="complementary" aria-label="Source citations">
+          <h2>Sources &amp; citations</h2>
+          <ol>
+            <li>UK Government / GOV.UK. (February 2026). <em>Government leads global fight against deepfake threats.</em> "In 2025 alone, 8,000,000 deepfakes are estimated to have been shared, up from 500,000 in 2023." <a href="https://www.gov.uk/government/news/government-leads-global-fight-against-deepfake-threats" target="_blank" rel="noopener noreferrer">gov.uk</a></li>
+            <li>sqmagazine.co.uk. (April 2026). <em>AI Voice Cloning Fraud Statistics 2026.</em> "Voice cloning can be created from as little as 3 seconds of audio." <a href="https://sqmagazine.co.uk/ai-voice-cloning-fraud-statistics/" target="_blank" rel="noopener noreferrer">sqmagazine.co.uk</a></li>
+            <li>Internet Watch Foundation. (May 2026). <em>Harm Without Limits: AI child sexual abuse material through the eyes of our Analysts.</em> 3,443 AI-generated child sexual abuse videos in 2025 — a 26,385% increase vs 2024. 20 images sufficient to generate a deepfake of a specific child. <a href="https://www.iwf.org.uk/about-us/why-we-exist/our-research/how-ai-is-being-abused-to-create-child-sexual-abuse-imagery/" target="_blank" rel="noopener noreferrer">iwf.org.uk</a></li>
+            <li>Fortune. (December 2025). <em>2026 will be the year you get fooled by a deepfake, researcher says. Voice cloning has crossed the 'indistinguishable threshold'.</em> <a href="https://fortune.com/2025/12/27/2026-deepfakes-outlook-forecast/" target="_blank" rel="noopener noreferrer">fortune.com</a></li>
+            <li>TikTok search discovery pages — kuba.creates.ai search context. (June 2026). <a href="https://www.tiktok.com/discover/kuba-creates-ai" target="_blank" rel="noopener noreferrer">tiktok.com</a></li>
+            <li>DILR.ai. (June 2026). <em>Voice cloning and deepfake risk: enterprise controls 2026.</em> "Family members could not reliably distinguish cloned voicemails from real ones at audio bitrates typical of mobile networks." <a href="https://www.dilr.ai/blog/voice-ai-voice-cloning-consent-deepfake-enterprise" target="_blank" rel="noopener noreferrer">dilr.ai</a></li>
+            <li>Children's Commissioner for England. (November 2025). <em>Press notice: Children's Commissioner calls for immediate ban of AI apps that enable 'deepfake' sexual abuse of children.</em> <a href="https://www.childrenscommissioner.gov.uk/news-and-blogs/press-notice-childrens-commissioner-calls-for-immediate-ban-of-ai-apps-that-enable-deepfake-sexual-abuse-of-children/" target="_blank" rel="noopener noreferrer">childrenscommissioner.gov.uk</a></li>
+            <li>NPR. (July 2025). <em>This TikTok video is fake, but every word was taken from a real creator.</em> AI-generated accounts stealing creator content using synthetic voices and faces. <a href="https://www.npr.org/2025/07/10/nx-s1-5461427/tiktok-creators-copy-ai-fakes" target="_blank" rel="noopener noreferrer">npr.org</a></li>
+            <li>World Economic Forum. (April 2026). <em>Real-time deepfakes are rewriting the rules of child safety.</em> Adults using AI child voices in gaming platforms; platform age verification bypassed by real-time voice cloning. <a href="https://www.weforum.org/stories/2026/04/ai-voice-deepfakes-child-safety/" target="_blank" rel="noopener noreferrer">weforum.org</a></li>
+            <li>CEOP. (2024). <em>Child Sexual Exploitation and Abuse: Threat Assessment 2024.</em> Sextortion using fabricated deepfake images as blackmail material. <a href="https://www.ceop.police.uk/Media-Centre/Publications/" target="_blank" rel="noopener noreferrer">ceop.police.uk</a></li>
+            <li>unboxfuture.com / FBI Internet Crime Report 2025 summary. (March 2026). <em>The AI Voice Scam Epidemic.</em> "Virtual kidnapping" voice clone scams; FBI 2025 warnings on AI voice scams targeting families. <a href="https://www.unboxfuture.com/2026/03/the-ai-voice-scam-epidemic-Fooled-by-Deepfakes.html?m=1" target="_blank" rel="noopener noreferrer">unboxfuture.com</a></li>
+            <li>UK Parliament / Hansard. (January 2026). <em>Social Media: Non-consensual Sexual Deepfakes debate.</em> Online Safety Act 2023, priority offence designation. <a href="https://hansard.parliament.uk/lords/2026-01-14/debates/2AF08B6C-1AFC-4395-B356-E383ABF28161/SocialMediaNon-ConsensualSexualDeepfakes" target="_blank" rel="noopener noreferrer">hansard.parliament.uk</a></li>
+            <li>Lawtons Solicitors / lawtonslaw.co.uk. (February 2026). <em>What is the Law on Explicit Deepfakes in the UK?</em> Data (Use and Access) Act 2025, Section 138, in force 6 February 2026. <a href="https://www.lawtonslaw.co.uk/resources/law-on-explicit-deepfakes-uk/" target="_blank" rel="noopener noreferrer">lawtonslaw.co.uk</a></li>
+            <li>Queen Mary University of London Law Blog. (March 2026). <em>Deepfakes and Consent: The Law Finally Catches Up.</em> Coroners and Justice Act 2009, Protection of Children Act 1978 — AI deepfakes of children already illegal. <a href="https://www.qmul.ac.uk/lac/our-legal-blog/2026-blogs/items/deepfakes-and-consent-the-law-finally-catches-up-.html" target="_blank" rel="noopener noreferrer">qmul.ac.uk</a></li>
+            <li>GOV.UK. (January 2025). <em>Government crackdown on explicit deepfakes.</em> Crime and Policing Bill — nudification tool ban. <a href="https://www.gov.uk/government/news/government-crackdown-on-explicit-deepfakes" target="_blank" rel="noopener noreferrer">gov.uk</a></li>
+            <li>Harris Sliwoski LLP. (April 2026). <em>Deepfakes, Voice Cloning, and AI Impersonation: The Global Rules Are Already Here.</em> EU AI Act Article 50, disclosure obligations from August 2026. <a href="https://harris-sliwoski.com/blog/deepfakes-voice-cloning-and-ai-impersonation-the-global-rules-are-already-here-and-they-dont-agree/" target="_blank" rel="noopener noreferrer">harris-sliwoski.com</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- RELATED -->
+    <section class="section band--white" aria-label="Related guides">
+      <div class="container">
+        <div class="section-header--center"><span class="eyebrow">Keep reading</span><h2>Related guides</h2></div>
+        <div class="grid grid-3">
+          <a href="ai-chatbots.html" class="guide-card"><span style="font-size:24px;" aria-hidden="true">🤖</span><h3 class="guide-card__title">AI chatbots &amp; companions</h3><p class="guide-card__desc">Character.AI, Replika, emotional dependency — the companion AI risks alongside impersonation risks.</p></a>
+          <a href="get-help-now.html" class="guide-card" style="border-color:var(--color-alert-border);background:var(--color-alert-light);"><span style="font-size:24px;" aria-hidden="true">🚨</span><h3 class="guide-card__title" style="color:#501313;">Get help now</h3><p class="guide-card__desc" style="color:#791F1F;">If a deepfake image of your child has appeared, or something else has happened — step-by-step guidance.</p></a>
+          <a href="conversation-guide.html" class="guide-card"><span style="font-size:24px;" aria-hidden="true">💬</span><h3 class="guide-card__title">Conversation guide</h3><p class="guide-card__desc">Age-matched scripts for talking to your child about deepfakes using what they already know from TikTok.</p></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__safeguarding" role="region" aria-label="Emergency safeguarding contacts">
+        <p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p>
+        <div class="footer__safeguarding-list">
+          <div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div>
+          <div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a> — report exploitation</span></div>
+          <div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk/report/" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk/report</a> — remove illegal content</span></div>
+          <div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a> — image removal</span></div>
+        </div>
+      </div>
+      <div class="footer__grid">
+        <div>
+          <a href="index.html" class="footer__brand"><div class="footer__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+          <p class="footer__tagline">Free digital safety guidance for families, young people and educators across the UK.</p>
+          <p style="font-size:var(--text-xs);color:rgba(255,255,255,0.4);margin-top:var(--space-3);">Sources: IWF, NSPCC, Children's Commissioner, WEF, GOV.UK, UK Parliament, CEOP, FBI, Fortune. All citations link to primary sources. Page last updated June 2026.</p>
+        </div>
+        <div>
+          <p class="footer__heading">AI &amp; emerging risks</p>
+          <ul class="footer__links">
+            <li><a href="ai-chatbots.html" class="footer__link">AI chatbots &amp; companions</a></li>
+            <li><a href="ai-impersonation.html" class="footer__link">AI impersonation &amp; deepfakes</a></li>
+            <li><a href="social-platforms-top10.html" class="footer__link">Top 10 social platforms</a></li>
+            <li><a href="chat-messaging.html" class="footer__link">Chat &amp; messaging</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__heading">Tools for parents</p>
+          <ul class="footer__links">
+            <li><a href="get-help-now.html" class="footer__link">Get help now</a></li>
+            <li><a href="conversation-guide.html" class="footer__link">Conversation guide</a></li>
+            <li><a href="platform-settings.html" class="footer__link">Platform settings hub</a></li>
+            <li><a href="red-flags.html" class="footer__link">Warning signs</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__heading">Site</p>
+          <ul class="footer__links">
+            <li><a href="parents.html" class="footer__link">Parents hub</a></li>
+            <li><a href="educators.html" class="footer__link">Educators</a></li>
+            <li><a href="about.html" class="footer__link">About</a></li>
+            <li><a href="privacy-policy.html" class="footer__link">Privacy policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span id="footer-year"></span> SafeOnline UK. Free for all families. Page last updated June 2026.</p>
+        <div class="footer__legal">
+          <a href="privacy-policy.html">Privacy policy</a>
+          <a href="accessibility.html">Accessibility</a>
+          <a href="terms.html">Terms of use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu(btn) {
+      const m = document.getElementById('mobile-menu');
+      const o = m.classList.contains('is-open');
+      m.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(!o));
+    }
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

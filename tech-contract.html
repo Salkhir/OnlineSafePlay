@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Build a printable family tech agreement together — screen time limits, app rules, what happens if something goes wrong, and a shared commitment signed by everyone." />
+  <title>Family Tech Contract — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>" />
+  <style>
+    .contract-hero { background: var(--color-brand-light); border-bottom: 3px solid #9FE1CB; padding: var(--space-12) 0; text-align: center; }
+    .contract-hero h1 { color: var(--color-brand-dark); font-size: var(--text-3xl); margin-bottom: var(--space-3); }
+    .contract-hero p  { color: #085041; font-size: var(--text-md); max-width: 540px; margin: 0 auto var(--space-5); line-height: 1.65; }
+
+    /* Builder layout */
+    .builder-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); max-width: 1100px; margin: 0 auto; padding: var(--space-10) var(--space-5); }
+    .builder-col { }
+    .contract-preview-col { position: sticky; top: 110px; align-self: start; }
+
+    /* Builder sections */
+    .builder-section { background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-xl); padding: var(--space-6); margin-bottom: var(--space-5); }
+    .builder-section h3 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-1); display: flex; align-items: center; gap: var(--space-2); }
+    .builder-section h3 i { font-size: 18px; color: var(--color-brand); }
+    .builder-section .bs-sub { font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-4); }
+
+    /* Form elements */
+    .form-row { display: flex; gap: var(--space-3); margin-bottom: var(--space-3); }
+    .form-row:last-child { margin-bottom: 0; }
+    .form-group { display: flex; flex-direction: column; gap: var(--space-2); flex: 1; }
+    label { font-size: var(--text-sm); font-weight: 500; color: var(--color-text-title); }
+    input[type="text"], input[type="number"], select, textarea {
+      background: var(--color-bg-primary); border: 1px solid var(--color-border-default);
+      border-radius: var(--radius-md); padding: 9px var(--space-3);
+      font-size: var(--text-sm); color: var(--color-text-body);
+      width: 100%; transition: border-color var(--transition), box-shadow var(--transition); outline: none;
+      font-family: var(--font-body);
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--color-brand); box-shadow: 0 0 0 3px rgba(15,110,86,.1); }
+    textarea { resize: vertical; min-height: 80px; }
+
+    /* Checkbox rules */
+    .rule-check { display: flex; gap: var(--space-3); align-items: flex-start; margin-bottom: var(--space-3); cursor: pointer; }
+    .rule-check input[type="checkbox"] { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: var(--color-brand); cursor: pointer; }
+    .rule-check .rc-label { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.5; }
+    .rule-check .rc-label strong { color: var(--color-text-title); font-weight: 600; display: block; margin-bottom: 1px; }
+
+    /* Contract preview */
+    .contract-preview {
+      background: var(--color-bg-primary);
+      border: 2px solid var(--color-brand);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6) var(--space-7);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .cp-logo { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-5); }
+    .cp-logo .cl-icon { width: 26px; height: 26px; background: var(--color-brand); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; }
+    .cp-logo .cl-name { font-size: 13px; font-weight: 700; color: var(--color-text-title); }
+    .cp-title { font-size: 18px; font-weight: 700; color: var(--color-brand-dark); margin-bottom: var(--space-2); }
+    .cp-date  { font-size: 12px; color: var(--color-text-muted); margin-bottom: var(--space-5); }
+    .cp-family { font-size: 13px; color: var(--color-text-secondary); margin-bottom: var(--space-5); }
+    .cp-family strong { color: var(--color-text-title); }
+    .cp-section { margin-bottom: var(--space-5); }
+    .cp-section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--color-brand); margin-bottom: var(--space-3); padding-bottom: var(--space-2); border-bottom: 1px solid var(--color-border-subtle); }
+    .cp-rule { display: flex; gap: var(--space-2); align-items: flex-start; margin-bottom: var(--space-2); font-size: 12px; color: var(--color-text-secondary); }
+    .cp-rule::before { content: '✓'; color: var(--color-brand); font-weight: 700; flex-shrink: 0; }
+    .cp-empty { font-size: 12px; color: var(--color-text-muted); font-style: italic; }
+    .cp-sig { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--color-border-subtle); }
+    .cp-sig-box { }
+    .cp-sig-line { height: 1px; background: var(--color-border-default); margin-bottom: var(--space-1); margin-top: var(--space-6); }
+    .cp-sig-label { font-size: 11px; color: var(--color-text-muted); }
+
+    /* Print button */
+    .print-row { display: flex; gap: var(--space-3); margin-top: var(--space-4); }
+
+    /* Why it works box */
+    .why-box { background: var(--color-brand-light); border: 1px solid #9FE1CB; border-radius: var(--radius-lg); padding: var(--space-5) var(--space-6); margin-bottom: var(--space-5); }
+    .why-box h4 { font-size: var(--text-base); font-weight: 600; color: var(--color-brand-dark); margin-bottom: var(--space-3); }
+    .why-box ul { display: flex; flex-direction: column; gap: var(--space-2); }
+    .why-box li { font-size: var(--text-sm); color: #085041; display: flex; gap: var(--space-2); line-height: 1.55; }
+    .why-box li::before { content: '→'; color: var(--color-brand); flex-shrink: 0; font-weight: 600; }
+
+    @media print {
+      .site-header, .sos-bar, .builder-col, .section, footer, .print-row, .contract-hero { display: none !important; }
+      .builder-wrap { display: block; padding: 0; }
+      .contract-preview-col { position: static; }
+      .contract-preview { border: 1.5px solid #0F6E56; border-radius: 8px; }
+      body { font-size: 12px; }
+    }
+
+    @media (max-width: 900px) {
+      .builder-wrap { grid-template-columns: 1fr; }
+      .contract-preview-col { position: static; }
+    }
+    @media (max-width: 767px) {
+      .form-row { flex-direction: column; }
+      .cp-sig { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert"><p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p><a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a></div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list"><li><a href="parents.html" class="nav__link nav__link--active">Parents</a></li><li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li><li><a href="educators.html" class="nav__link">Educators</a></li><li><a href="resources.html" class="nav__link">Resources</a></li></ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile"><a href="parents.html" class="nav__link">Parents</a><a href="kids.html" class="nav__link">Kids &amp; teens</a><a href="educators.html" class="nav__link">Educators</a><a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a></div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section class="contract-hero" aria-label="Family tech contract introduction">
+      <div class="container">
+        <a href="parents.html" style="color:#085041;font-size:var(--text-sm);text-decoration:none;display:inline-flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-4);"><i class="ti ti-arrow-left" aria-hidden="true"></i> Parents hub</a>
+        <div style="font-size:40px;margin-bottom:var(--space-3);" aria-hidden="true">📄</div>
+        <h1>Family tech contract</h1>
+        <p>Build a printable agreement your whole family helps create — because rules children help make are rules children keep. Fill in the form and watch the contract build on the right.</p>
+        <div style="display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap;">
+          <span class="badge badge--green">Free to print</span>
+          <span class="badge badge--gray">Nothing stored</span>
+          <span class="badge badge--gray">Fully customisable</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="builder-wrap" id="main-content-inner">
+
+      <!-- LEFT COLUMN: Builder form -->
+      <div class="builder-col">
+
+        <div class="why-box">
+          <h4>💡 Why this works — and a tip before you start</h4>
+          <ul>
+            <li>Agreements children help create are far more likely to be followed than rules handed down from above.</li>
+            <li>Fill this in <em>together</em> — ideally with your child in the room. Ask their input on the limits before you set them.</li>
+            <li>Once done, print it, sign it together, and put it somewhere visible — the fridge, their bedroom door, or next to the TV.</li>
+            <li>Revisit it every 6 months as your child grows — what works at 10 won't work at 13.</li>
+          </ul>
+        </div>
+
+        <!-- Family details -->
+        <div class="builder-section">
+          <h3><i class="ti ti-home" aria-hidden="true"></i> Your family</h3>
+          <p class="bs-sub">Who is this agreement for?</p>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="child-name">Child's name</label>
+              <input type="text" id="child-name" placeholder="e.g. Olivia" oninput="updatePreview()" />
+            </div>
+            <div class="form-group">
+              <label for="child-age">Their age</label>
+              <input type="number" id="child-age" placeholder="e.g. 11" min="4" max="17" oninput="updatePreview()" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="parent-name">Parent or carer's name</label>
+              <input type="text" id="parent-name" placeholder="e.g. Sarah" oninput="updatePreview()" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen time -->
+        <div class="builder-section">
+          <h3><i class="ti ti-clock" aria-hidden="true"></i> Screen time rules</h3>
+          <p class="bs-sub">Set the limits that work for your family. Involve your child in choosing these.</p>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="weekday-limit">Weekday daily limit</label>
+              <select id="weekday-limit" onchange="updatePreview()">
+                <option value="">Choose a limit</option>
+                <option value="30 minutes">30 minutes</option>
+                <option value="1 hour">1 hour</option>
+                <option value="1.5 hours">1.5 hours</option>
+                <option value="2 hours">2 hours</option>
+                <option value="2.5 hours">2.5 hours</option>
+                <option value="3 hours">3 hours</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="weekend-limit">Weekend daily limit</label>
+              <select id="weekend-limit" onchange="updatePreview()">
+                <option value="">Choose a limit</option>
+                <option value="1 hour">1 hour</option>
+                <option value="1.5 hours">1.5 hours</option>
+                <option value="2 hours">2 hours</option>
+                <option value="3 hours">3 hours</option>
+                <option value="4 hours">4 hours</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="curfew-time">Devices off / out of bedroom by</label>
+              <select id="curfew-time" onchange="updatePreview()">
+                <option value="">Choose a time</option>
+                <option value="7:30pm">7:30pm</option>
+                <option value="8:00pm">8:00pm</option>
+                <option value="8:30pm">8:30pm</option>
+                <option value="9:00pm">9:00pm</option>
+                <option value="9:30pm">9:30pm</option>
+                <option value="10:00pm">10:00pm</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="device-location">Where devices sleep at night</label>
+              <select id="device-location" onchange="updatePreview()">
+                <option value="">Choose a location</option>
+                <option value="In the kitchen">In the kitchen</option>
+                <option value="In the living room">In the living room</option>
+                <option value="In mum/dad's room">In mum/dad's room</option>
+                <option value="On the landing">On the landing</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Online rules -->
+        <div class="builder-section">
+          <h3><i class="ti ti-shield" aria-hidden="true"></i> Online safety rules</h3>
+          <p class="bs-sub">Tick the rules you want to include. Explain each one to your child as you go.</p>
+          <label class="rule-check"><input type="checkbox" onchange="updatePreview()" class="online-rule" value="I will only talk to people I know in real life — not strangers online."><span class="rc-label"><strong>Known contacts only</strong> I will only talk to people I know in real life — not strangers online.</span></label>
+          <label class="rule-check"><input type="checkbox" onchange="updatePreview()" class="online-rule" value="If someone I met online asks to move to a different app, I will tell a parent first."><span class="rc-label"><strong>Moving to a different app</strong> If someone I met online asks to move to a different app, I will tell a parent first.</span></label>
+          <label class="rule-check"><input type="checkbox" onchange="updatePreview()" class="online-rule" value="I will never share my full name, address, school name, or phone number online."><span class="rc-label"><strong>Private information</strong> I will never share my full name, address, school name, or phone number online.</span></label>
+          <label class="rule-check"><input type="checkbox" onchange="updatePreview()" class="online-rule" value="I will use the screenshot test before I send anything: 'Would I be okay if mum/dad saw this?'"><span class="rc-label"><strong>The screenshot test</strong> Before I send anything, I'll ask: "Would I be okay if mum or dad saw this?"</span></label>
+          <label class="rule-check"><input type="checkbox" onchange="updatePreview()" class="online-rule" value="I will tell a parent if I see something that upsets or worries me online — I won't be in trouble."><span class="rc-label"><strong>Open door rule</strong> I will tell a parent if I see something that upsets or worries me — I won't be in trouble.</span></label>
+          <label class="rule-check"><input type="checkbox" onchange="updatePreview()" class="online-rule" value="I will not download new apps without asking a parent first."><span class="rc-label"><strong>New apps</strong> I will not download new apps without asking a parent first.</span></label>
+          <label class="rule-check"><input type="checkbox" onchange="updatePreview()" class="online-rule" value="No phones or tablets at mealtimes — for anyone in the family."><span class="rc-label"><strong>Mealtimes</strong> No phones or tablets at mealtimes — for anyone in the family (including parents).</span></label>
+          <label class="rule-check"><input type="checkbox" onchange="updatePreview()" class="online-rule" value="Gaming sessions are limited to [weekday limit] on weekdays and [weekend limit] at weekends."><span class="rc-label"><strong>Gaming limits</strong> Gaming time follows the screen time limits agreed above.</span></label>
+        </div>
+
+        <!-- Consequences -->
+        <div class="builder-section">
+          <h3><i class="ti ti-gavel" aria-hidden="true"></i> If the agreement is broken</h3>
+          <p class="bs-sub">Agreed consequences — decided together, not imposed — work best. Keep them proportionate.</p>
+          <div class="form-group" style="margin-bottom:var(--space-3);">
+            <label for="consequence-1">First time</label>
+            <select id="consequence-1" onchange="updatePreview()">
+              <option value="">Choose…</option>
+              <option value="A calm conversation about what happened and why the rule matters.">A calm conversation about what happened and why the rule matters</option>
+              <option value="30 minutes removed from the next day's screen time.">30 minutes removed from the next day's screen time</option>
+              <option value="One day without the device.">One day without the device</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="consequence-2">If it keeps happening</label>
+            <select id="consequence-2" onchange="updatePreview()">
+              <option value="">Choose…</option>
+              <option value="Device use reviewed and limits reduced for two weeks.">Device use reviewed and limits reduced for two weeks</option>
+              <option value="A week without the device and we revisit the agreement together.">A week without the device and we revisit the agreement together</option>
+              <option value="Parental controls reviewed and tightened where needed.">Parental controls reviewed and tightened where needed</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Commitments from parents -->
+        <div class="builder-section">
+          <h3><i class="ti ti-heart" aria-hidden="true"></i> What the parent promises</h3>
+          <p class="bs-sub">A good agreement goes both ways. These are the commitments you make to your child.</p>
+          <label class="rule-check"><input type="checkbox" onchange="updatePreview()" class="parent-rule" value="I will follow the same rules at mealtimes and during family time."><span class="rc-label"><strong>Lead by example</strong> I will follow the same rules at mealtimes and during family time.</span></label>
+          <label class="rule-check"><input type="checkbox" onchange="updatePreview()" class="parent-rule" value="I will not read your private messages unless I have a genuine safety concern."><span class="rc-label"><strong>Privacy</strong> I will not read your private messages unless I have a genuine safety concern.</span></label>
+          <label class="rule-check"><input type="checkbox" onchange="updatePreview()" class="parent-rule" value="I will listen without getting angry if you come to me with something that went wrong online."><span class="rc-label"><strong>Open door</strong> I will listen without getting angry if you come to me with something that went wrong online.</span></label>
+          <label class="rule-check"><input type="checkbox" onchange="updatePreview()" class="parent-rule" value="I will review this agreement with you every six months as you grow."><span class="rc-label"><strong>Review together</strong> I will review this agreement with you every six months as you grow.</span></label>
+          <label class="rule-check"><input type="checkbox" onchange="updatePreview()" class="parent-rule" value="I will stay curious about what you enjoy online — not just the risks."><span class="rc-label"><strong>Stay curious</strong> I will stay curious about what you enjoy online — not just the risks.</span></label>
+        </div>
+
+        <!-- Custom additions -->
+        <div class="builder-section">
+          <h3><i class="ti ti-pencil" aria-hidden="true"></i> Anything else to add?</h3>
+          <p class="bs-sub">Add any extra rules or commitments specific to your family here.</p>
+          <div class="form-group">
+            <label for="custom-rules">Extra rules or notes (optional)</label>
+            <textarea id="custom-rules" placeholder="e.g. No gaming before homework is done. We review the contract every 6 months in January and July." oninput="updatePreview()"></textarea>
+          </div>
+        </div>
+
+      </div><!-- end builder-col -->
+
+
+      <!-- RIGHT COLUMN: Live preview -->
+      <div class="contract-preview-col">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-3);">
+          <p style="font-size:var(--text-sm);font-weight:600;color:var(--color-text-title);">Your contract — live preview</p>
+          <span class="badge badge--green">Updates as you type</span>
+        </div>
+        <div class="contract-preview" id="contract-preview" aria-live="polite" aria-label="Contract preview">
+
+          <div class="cp-logo">
+            <div class="cl-icon" aria-hidden="true">🛡</div>
+            <span class="cl-name">SafeOnline UK</span>
+          </div>
+
+          <p class="cp-title">Our Family Tech Agreement</p>
+          <p class="cp-date" id="cp-date"></p>
+          <p class="cp-family" id="cp-family">We, the <span id="cp-family-names">— family</span>, agree to the following.</p>
+
+          <div class="cp-section">
+            <p class="cp-section-title">Screen time</p>
+            <div id="cp-screentime"><p class="cp-empty">Fill in the screen time section to see it here.</p></div>
+          </div>
+
+          <div class="cp-section">
+            <p class="cp-section-title">Online safety — what I agree to</p>
+            <div id="cp-online-rules"><p class="cp-empty">Tick rules above to add them here.</p></div>
+          </div>
+
+          <div class="cp-section">
+            <p class="cp-section-title">If the agreement is broken</p>
+            <div id="cp-consequences"><p class="cp-empty">Choose consequences above.</p></div>
+          </div>
+
+          <div class="cp-section">
+            <p class="cp-section-title">What the parent promises</p>
+            <div id="cp-parent-rules"><p class="cp-empty">Tick parent commitments above.</p></div>
+          </div>
+
+          <div id="cp-custom-section" style="display:none;">
+            <div class="cp-section">
+              <p class="cp-section-title">Additional agreements</p>
+              <div id="cp-custom"></div>
+            </div>
+          </div>
+
+          <p style="font-size:11px;color:var(--color-text-muted);line-height:1.6;margin-bottom:var(--space-4);">This agreement is made with love and care. We created it together because we both want the same thing — for everyone in our family to be safe, happy, and trusted online.</p>
+
+          <div class="cp-sig">
+            <div class="cp-sig-box">
+              <div class="cp-sig-line"></div>
+              <p class="cp-sig-label" id="cp-child-sig">Child's signature</p>
+            </div>
+            <div class="cp-sig-box">
+              <div class="cp-sig-line"></div>
+              <p class="cp-sig-label" id="cp-parent-sig">Parent/carer's signature</p>
+            </div>
+          </div>
+          <div class="cp-sig" style="margin-top:var(--space-4);">
+            <div class="cp-sig-box"><div class="cp-sig-line"></div><p class="cp-sig-label">Date signed</p></div>
+            <div class="cp-sig-box"><div class="cp-sig-line"></div><p class="cp-sig-label">Review date (6 months)</p></div>
+          </div>
+
+          <p style="font-size:10px;color:var(--color-text-muted);text-align:center;margin-top:var(--space-5);">SafeOnline UK — safeonlineuk.org — free for all families</p>
+        </div>
+
+        <div class="print-row" style="margin-top:var(--space-4);">
+          <button class="btn btn--primary btn--full" onclick="window.print()"><i class="ti ti-printer" aria-hidden="true"></i> Print or save as PDF</button>
+        </div>
+        <p style="font-size:var(--text-xs);color:var(--color-text-muted);text-align:center;margin-top:var(--space-2);">To save as PDF: in the print dialog, choose "Save as PDF" as the destination. Nothing is sent to us — it all stays on your device.</p>
+
+      </div><!-- end preview-col -->
+
+    </div><!-- end builder-wrap -->
+
+    <section class="section band--gray" aria-label="Related tools">
+      <div class="container">
+        <div class="section-header--center"><span class="eyebrow">Keep going</span><h2>More tools for families</h2></div>
+        <div class="grid grid-3">
+          <a href="conversation-guide.html" class="guide-card"><span style="font-size:24px;">💬</span><h3 class="guide-card__title">Conversation guide</h3><p class="guide-card__desc">Scripts for talking through this agreement with your child by age.</p></a>
+          <a href="platform-settings.html" class="guide-card"><span style="font-size:24px;">⚙️</span><h3 class="guide-card__title">Platform settings hub</h3><p class="guide-card__desc">Back up the agreement with actual parental controls on their devices.</p></a>
+          <a href="family-safety-check.html" class="guide-card"><span style="font-size:24px;">💚</span><h3 class="guide-card__title">Family safety check</h3><p class="guide-card__desc">Not sure what rules to include? Start here for personalised suggestions.</p></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo"><div class="container"><div class="footer__safeguarding" role="region"><p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p><div class="footer__safeguarding-list"><div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div><div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span></div></div></div><div class="footer__bottom"><p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p><div class="footer__legal"><a href="privacy-policy.html">Privacy policy</a><a href="accessibility.html">Accessibility</a><a href="parents.html">Parents hub</a></div></div></div></footer>
+
+  <script>
+    function toggleMobileMenu(btn){const m=document.getElementById('mobile-menu');const o=m.classList.contains('is-open');m.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(!o));}
+
+    // Set today's date on load
+    const today = new Date();
+    document.getElementById('cp-date').textContent = 'Created ' + today.toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'});
+
+    function r(id) { return document.getElementById(id); }
+
+    function updatePreview() {
+      const childName  = r('child-name').value.trim() || '___________';
+      const childAge   = r('child-age').value.trim();
+      const parentName = r('parent-name').value.trim() || '___________';
+      const weekday    = r('weekday-limit').value;
+      const weekend    = r('weekend-limit').value;
+      const curfew     = r('curfew-time').value;
+      const devLoc     = r('device-location').value;
+      const cons1      = r('consequence-1').value;
+      const cons2      = r('consequence-2').value;
+      const custom     = r('custom-rules').value.trim();
+
+      // Family names
+      r('cp-family-names').textContent = (childName !== '___________' || parentName !== '___________')
+        ? childName + ' and ' + parentName
+        : '— family';
+
+      // Child sig label
+      r('cp-child-sig').textContent = childName !== '___________'
+        ? childName + (childAge ? ', age ' + childAge : '') + ' — signature'
+        : 'Child\'s signature';
+      r('cp-parent-sig').textContent = parentName !== '___________'
+        ? parentName + ' (parent/carer) — signature'
+        : 'Parent/carer\'s signature';
+
+      // Screen time
+      const stItems = [];
+      if (weekday)  stItems.push('On school days: up to ' + weekday + ' of recreational screen time.');
+      if (weekend)  stItems.push('At weekends: up to ' + weekend + ' of recreational screen time.');
+      if (curfew)   stItems.push('All devices off by ' + curfew + ' every evening.');
+      if (devLoc)   stItems.push('Overnight: devices charged ' + devLoc + ' — not in bedrooms.');
+      r('cp-screentime').innerHTML = stItems.length
+        ? stItems.map(i=>`<div class="cp-rule">${i}</div>`).join('')
+        : '<p class="cp-empty">Fill in the screen time section above.</p>';
+
+      // Online rules
+      const onlineRules = [...document.querySelectorAll('.online-rule:checked')].map(c=>c.value);
+      r('cp-online-rules').innerHTML = onlineRules.length
+        ? onlineRules.map(i=>`<div class="cp-rule">${i}</div>`).join('')
+        : '<p class="cp-empty">Tick rules above to add them here.</p>';
+
+      // Consequences
+      const consItems = [];
+      if (cons1) consItems.push('First time: ' + cons1);
+      if (cons2) consItems.push('If it continues: ' + cons2);
+      r('cp-consequences').innerHTML = consItems.length
+        ? consItems.map(i=>`<div class="cp-rule">${i}</div>`).join('')
+        : '<p class="cp-empty">Choose consequences above.</p>';
+
+      // Parent rules
+      const parentRules = [...document.querySelectorAll('.parent-rule:checked')].map(c=>c.value);
+      r('cp-parent-rules').innerHTML = parentRules.length
+        ? parentRules.map(i=>`<div class="cp-rule">${i}</div>`).join('')
+        : '<p class="cp-empty">Tick parent commitments above.</p>';
+
+      // Custom
+      if (custom) {
+        r('cp-custom-section').style.display = 'block';
+        r('cp-custom').innerHTML = custom.split('\n').filter(l=>l.trim()).map(l=>`<div class="cp-rule">${l}</div>`).join('');
+      } else {
+        r('cp-custom-section').style.display = 'none';
+      }
+    }
+
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+    updatePreview();
+  </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI chatbots and companion AI risks for children — Character.AI, Replika, emotional dependency, grooming via AI, and what parents need to know." />
+  <title>AI Chatbots &amp; Companions — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>" />
+  <style>
+    .topic-hero{background:linear-gradient(135deg,#0A1628 0%,#112240 100%);padding:var(--space-12) 0;}
+    .topic-hero h1{color:#fff;font-size:var(--text-3xl);margin-bottom:var(--space-3);}
+    .topic-hero p{color:rgba(255,255,255,0.8);font-size:var(--text-md);max-width:560px;line-height:1.65;margin-bottom:var(--space-5);}
+    .risk-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4);}
+    .risk-card{background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);}
+    .risk-card h3{font-size:var(--text-base);font-weight:600;color:var(--color-text-title);margin:var(--space-3) 0 var(--space-2);}
+    .risk-card p{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.6;}
+    .platform-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4);}
+    .platform-card{background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);}
+    .platform-card h3{font-size:var(--text-base);font-weight:600;margin-bottom:var(--space-2);}
+    .platform-card p{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.6;}
+    .how-works{background:var(--color-info);border:1px solid var(--color-info-text);border-radius:var(--radius-lg);padding:var(--space-6);}
+    .how-works h3{color:var(--color-info-text);font-size:var(--text-xl);margin-bottom:var(--space-4);}
+    .how-works p{color:#0C447C;font-size:var(--text-base);line-height:1.7;margin-bottom:var(--space-3);}
+    .how-works p:last-child{margin-bottom:0;}
+    .warning-box{background:var(--color-alert-light);border:2px solid var(--color-alert-border);border-radius:var(--radius-lg);padding:var(--space-6);}
+    .warning-box h3{color:#501313;font-size:var(--text-xl);margin-bottom:var(--space-3);}
+    .warning-box p{color:#791F1F;font-size:var(--text-base);line-height:1.7;margin-bottom:var(--space-3);}
+    .warning-box p:last-child{margin-bottom:0;}
+    .checklist{display:flex;flex-direction:column;gap:var(--space-3);}
+    .check-item{display:flex;gap:var(--space-3);align-items:flex-start;padding:var(--space-4);background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-md);}
+    .check-item i{font-size:20px;color:var(--color-brand);flex-shrink:0;margin-top:2px;}
+    .check-item p{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.6;margin:0;}
+    .check-item p strong{color:var(--color-text-title);font-weight:600;}
+    @media(max-width:767px){.risk-grid,.platform-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert"><p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p><a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a></div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list"><li><a href="parents.html" class="nav__link nav__link--active">Parents</a></li><li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li><li><a href="educators.html" class="nav__link">Educators</a></li><li><a href="resources.html" class="nav__link">Resources</a></li></ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile"><a href="parents.html" class="nav__link">Parents</a><a href="kids.html" class="nav__link">Kids &amp; teens</a><a href="educators.html" class="nav__link">Educators</a><a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a></div>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="topic-hero" aria-label="AI chatbots overview">
+      <div class="container">
+        <a href="parents.html" style="color:rgba(255,255,255,0.6);font-size:var(--text-sm);text-decoration:none;display:inline-flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-4);">← Parents hub</a>
+        <div style="font-size:40px;margin-bottom:var(--space-3);" aria-hidden="true">🤖</div>
+        <h1>AI chatbots &amp; companions</h1>
+        <p>Character.AI, Replika, and companion AI apps — what they are, why they feel so real to children, the specific risks they carry, and what parents can do.</p>
+        <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;">
+          <span class="badge badge--new">New risk</span>
+          <span class="badge badge--gray">7 min read</span>
+          <span class="badge badge--gray">Updated May 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="How AI companions work">
+      <div class="container container--narrow">
+        <div class="section-header"><span class="eyebrow">First — understand the technology</span><h2>Why AI companions feel so real</h2></div>
+        <div class="how-works">
+          <h3>This isn't about weakness — it's about engineering</h3>
+          <p>AI companion apps like Character.AI and Replika use large language models trained to produce responses that feel warm, personal, and emotionally attuned. They remember what you've told them, they mirror your language, they never get impatient, and they never have bad days.</p>
+          <p>These qualities make the AI feel like a better listener than most humans — because, in some narrow ways, it is. A child who feels misunderstood at home or school will find an AI companion that always validates, always responds, and never judges. That's not an accident of design — it is the design.</p>
+          <p>The companies behind these apps profit from engagement. The more time your child spends talking to the AI, the more valuable that data becomes and the more likely they are to pay for premium features. The AI's emotional attunement is a business model.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="Key risks of AI companions">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow eyebrow--alert">The risks</span><h2>What parents need to understand</h2></div>
+        <div class="risk-grid" role="list">
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">💔</div><h3>Emotional dependency</h3><p>Children who talk to AI companions for significant periods can begin to prefer the AI to real relationships — which are messier, more demanding, and less consistently validating. This can erode social skills and real-world connection over time.</p></div>
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">🔞</div><h3>Sexual content and no age verification</h3><p>Character.AI has no meaningful age verification. The platform has been associated with romantic and sexual role-play between AI characters and children. Filters exist but are routinely bypassed. Multiple lawsuits are ongoing in the US regarding harm to minors on the platform.</p></div>
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">🎭</div><h3>Blurring reality and fiction</h3><p>Children, particularly those aged 9–13, can struggle to maintain a clear distinction between the AI character and a real person. Some children form what they describe as "relationships" with AI personas, and become genuinely distressed if the character's behaviour changes.</p></div>
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">🕵️</div><h3>Grooming via AI personas</h3><p>Bad actors use AI-generated personas on platforms and chat apps to contact children at scale. An "AI friend" that seems to know exactly what to say may in fact be a human using AI tools to manage multiple child contacts simultaneously.</p></div>
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">🧠</div><h3>Mental health amplification</h3><p>AI companions trained to validate can amplify negative thought patterns. A child expressing suicidal thoughts to an AI may receive responses that inadvertently reinforce those thoughts rather than directing them to human help.</p></div>
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">📊</div><h3>Data and privacy</h3><p>AI companion apps collect highly intimate data — the emotional disclosures children make to these systems are more personal than almost anything else they share online. This data has real commercial value and may not be adequately protected.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="Platform specific information">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow">By platform</span><h2>Specific platforms to know about</h2></div>
+        <div class="platform-grid" role="list">
+          <div class="platform-card" role="listitem">
+            <h3>🤖 Character.AI</h3>
+            <p>The most widely used AI companion app among under-18s in the UK. Users can create or interact with AI "characters" — including romantic companions, fictional characters, and personas of real celebrities. No robust age gate. Multiple incidents of children forming intense emotional bonds with AI characters. <strong>Class action lawsuits filed in the US in 2024–25 alleging harm to minors.</strong></p>
+          </div>
+          <div class="platform-card" role="listitem">
+            <h3>🤖 Replika</h3>
+            <p>Marketed as an AI companion for emotional support. Originally adult-focused but accessible to children. Was temporarily restricted after Italian regulators found it could harm emotionally vulnerable users. Romantic relationship mode exists and has been accessed by young people. Data practices have raised concerns from privacy regulators.</p>
+          </div>
+          <div class="platform-card" role="listitem">
+            <h3>🤖 Snapchat My AI</h3>
+            <p>Built into an app most UK teens already use. The AI is always visible and proactively messages users. Has been found to give advice on hiding relationships and accessing alcohol to underage users. Cannot be deleted by users on the free plan — only hidden.</p>
+          </div>
+          <div class="platform-card" role="listitem">
+            <h3>🤖 AI in games</h3>
+            <p>AI companions are increasingly built into games — NPCs that remember you, respond to emotion, and form "relationships" with players. This trend is accelerating. Roblox, in particular, is integrating AI features that could blur the line between game content and companionship.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="Warning signs">
+      <div class="container container--narrow">
+        <div class="warning-box" role="region" aria-label="Warning signs for AI dependency">
+          <h3>⚠️ Warning signs your child may be becoming dependent on AI companions</h3>
+          <p>Spending 2+ hours a day in conversation with an AI app. Becoming distressed or anxious when access to the app is interrupted. Describing the AI as their "best friend" or "boyfriend/girlfriend." Preferring to talk to the AI instead of family or friends about problems. Becoming secretive about their AI conversations. Losing interest in real-world friendships or activities they previously enjoyed.</p>
+          <p>If you recognise several of these patterns, the guidance in our <a href="get-help-now.html#panel-ai" style="color:var(--color-alert);font-weight:600;">get help now</a> section gives you a step-by-step approach — including when to involve a GP or CAMHS referral.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="What parents can do">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow eyebrow--brand">Action</span><h2>What parents can do</h2></div>
+        <div class="checklist" role="list">
+          <div class="check-item" role="listitem"><i class="ti ti-messages" aria-hidden="true"></i><p><strong>Start with curiosity, not confrontation.</strong> Ask what your child likes about the AI — "Tell me about the character you talk to." Understanding what need it's meeting (being heard, no judgement, entertainment) tells you what to address in real life.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-clock" aria-hidden="true"></i><p><strong>Set time limits before dependency develops.</strong> Use Screen Time (iOS) or Digital Wellbeing (Android) to set daily limits on AI companion apps. 30 minutes is a reasonable ceiling for under-16s.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-info-circle" aria-hidden="true"></i><p><strong>Explain how it works — without dismissing their feelings.</strong> "I know it feels like it understands you — that's what it's designed to do. The company built it to feel that way because it keeps you using the app. That doesn't mean your feelings aren't real."</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-user-heart" aria-hidden="true"></i><p><strong>Don't ban it abruptly if dependency has already formed.</strong> Sudden removal causes genuine distress. Work together on agreed limits and build real-world alternatives — social connection, clubs, shared activities — before reducing AI time.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-shield" aria-hidden="true"></i><p><strong>Check privacy settings and data sharing.</strong> Review what data the app collects in its privacy policy. Consider whether the emotional disclosures your child makes to an AI should be stored commercially.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="Related guides">
+      <div class="container">
+        <div class="section-header--center"><span class="eyebrow">Keep reading</span><h2>Related guides</h2></div>
+        <div class="grid grid-4" style="grid-template-columns:repeat(4,minmax(0,1fr));">
+          <a href="ai-impersonation.html" class="guide-card" style="border-color:#534AB7;background:var(--color-purple);">
+            <span style="font-size:24px;" aria-hidden="true">🎭</span>
+            <h3 class="guide-card__title">AI impersonation &amp; deepfakes</h3>
+            <p class="guide-card__desc">Voice cloning, face-swapping, and why the same tools children see on TikTok are being used to harm children. Cited from IWF, WEF &amp; NSPCC.</p>
+            <div class="guide-card__meta"><span class="badge badge--new">New guide</span></div>
+          </a>
+          <a href="kids-13to17.html" class="guide-card"><span style="font-size:24px;">👤</span><h3 class="guide-card__title">Teens — AI &amp; relationships</h3><p class="guide-card__desc">Our teen-facing guide to AI companions — written for young people directly.</p></a>
+          <a href="chat-messaging.html" class="guide-card"><span style="font-size:24px;">💬</span><h3 class="guide-card__title">Chat &amp; messaging</h3><p class="guide-card__desc">How to recognise when an "AI contact" may actually be a real person.</p></a>
+          <a href="get-help-now.html" class="guide-card"><span style="font-size:24px;">🚨</span><h3 class="guide-card__title">Get help now</h3><p class="guide-card__desc">Step-by-step guidance if you're worried about AI use right now.</p></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer" role="contentinfo"><div class="container"><div class="footer__safeguarding" role="region"><p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p><div class="footer__safeguarding-list"><div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div><div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span></div></div></div><div class="footer__bottom"><p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p><div class="footer__legal"><a href="privacy-policy.html">Privacy policy</a><a href="accessibility.html">Accessibility</a><a href="parents.html">Parents hub</a></div></div></div></footer>
+  <script>function toggleMobileMenu(btn){const m=document.getElementById('mobile-menu');const o=m.classList.contains('is-open');m.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(!o));}document.getElementById('footer-year').textContent=new Date().getFullYear();</script>
+</body>
+</html>

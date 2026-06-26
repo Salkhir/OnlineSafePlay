@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Age-matched conversation scripts for parents — how to talk to your child about online safety at every age, what to say, what to avoid, and how to keep the conversation going." />
+  <title>Conversation Guide — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>" />
+  <style>
+    .guide-hero { background: var(--color-brand-light); border-bottom: 3px solid #9FE1CB; padding: var(--space-12) 0; text-align: center; }
+    .guide-hero h1 { color: var(--color-brand-dark); font-size: var(--text-3xl); margin-bottom: var(--space-3); }
+    .guide-hero p  { color: #085041; font-size: var(--text-md); max-width: 540px; margin: 0 auto var(--space-5); line-height: 1.65; }
+
+    /* Age tab switcher */
+    .age-tabs { display: flex; gap: 0; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); overflow: hidden; max-width: 520px; margin: 0 auto; }
+    .age-tab { flex: 1; padding: var(--space-3) var(--space-4); border: none; background: var(--color-bg-primary); font-size: var(--text-sm); font-weight: 500; cursor: pointer; font-family: var(--font-body); color: var(--color-text-secondary); border-right: 1px solid var(--color-border-subtle); transition: all var(--transition); }
+    .age-tab:last-child { border-right: none; }
+    .age-tab.active { background: var(--color-brand); color: #fff; font-weight: 600; }
+    .age-tab:hover:not(.active) { background: var(--color-bg-secondary); color: var(--color-text-title); }
+
+    /* Age panels */
+    .age-panel { display: none; }
+    .age-panel.active { display: block; }
+
+    /* Age panel hero accent */
+    .panel-accent-u7  { --accent: #534AB7; --accent-light: #EEEDFE; --accent-dark: #3C3489; }
+    .panel-accent-812 { --accent: #0F6E56; --accent-light: #E1F5EE; --accent-dark: #085041; }
+    .panel-accent-teen{ --accent: #854F0B; --accent-light: #FAEEDA; --accent-dark: #633806; }
+
+    .panel-header { border-radius: var(--radius-xl); padding: var(--space-6) var(--space-7); margin-bottom: var(--space-8); background: var(--accent-light); border: 1px solid var(--accent); }
+    .panel-header h2 { color: var(--accent-dark); font-size: var(--text-2xl); margin-bottom: var(--space-2); }
+    .panel-header p  { color: var(--accent); font-size: var(--text-base); line-height: 1.65; margin: 0; }
+
+    /* Script cards */
+    .script-grid { display: flex; flex-direction: column; gap: var(--space-5); }
+    .script-card { background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-xl); overflow: hidden; }
+    .script-card-header { padding: var(--space-5) var(--space-6); border-bottom: 1px solid var(--color-border-subtle); display: flex; align-items: center; gap: var(--space-4); }
+    .sc-icon { width: 44px; height: 44px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .script-card h3 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: 3px; }
+    .script-card .sc-sub { font-size: var(--text-sm); color: var(--color-text-secondary); }
+    .script-card-body { padding: var(--space-5) var(--space-6); }
+
+    /* The actual script */
+    .script-opener { background: var(--color-bg-secondary); border-left: 3px solid var(--color-brand); border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }
+    .script-label  { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--color-brand); margin-bottom: var(--space-2); }
+    .script-text   { font-size: var(--text-base); color: var(--color-text-title); line-height: 1.7; font-style: italic; }
+    .script-note   { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.65; margin-bottom: var(--space-3); }
+    .script-note:last-child { margin-bottom: 0; }
+    .script-note strong { color: var(--color-text-title); font-weight: 600; }
+
+    /* What NOT to say */
+    .avoid-box { background: var(--color-alert-light); border: 1px solid var(--color-alert-border); border-radius: var(--radius-lg); padding: var(--space-5) var(--space-6); margin-bottom: var(--space-8); }
+    .avoid-box h3 { color: #501313; font-size: var(--text-lg); margin-bottom: var(--space-4); display: flex; align-items: center; gap: var(--space-2); }
+    .avoid-box h3 i { font-size: 20px; color: var(--color-alert); }
+    .avoid-list { display: flex; flex-direction: column; gap: var(--space-3); }
+    .avoid-item { display: flex; gap: var(--space-3); align-items: flex-start; }
+    .avoid-item i { font-size: 16px; color: var(--color-alert); flex-shrink: 0; margin-top: 3px; }
+    .avoid-item div { flex: 1; }
+    .avoid-item .ai-wrong { font-size: var(--text-sm); font-weight: 600; color: #501313; margin-bottom: 2px; }
+    .avoid-item .ai-why   { font-size: var(--text-sm); color: #791F1F; line-height: 1.55; }
+
+    /* TALK framework */
+    .talk-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: var(--space-4); margin-bottom: var(--space-8); }
+    .talk-card { background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: var(--space-5); text-align: center; }
+    .talk-letter { font-family: var(--font-display); font-size: 40px; font-weight: 400; display: block; margin-bottom: var(--space-2); line-height: 1; }
+    .talk-word  { font-size: var(--text-base); font-weight: 700; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .talk-desc  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.5; }
+
+    /* Timing tips */
+    .timing-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--space-4); }
+    .timing-card { background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: var(--space-5); display: flex; gap: var(--space-3); align-items: flex-start; }
+    .timing-card.best  { border-color: #9FE1CB; background: var(--color-brand-light); }
+    .timing-card.avoid { border-color: var(--color-alert-border); background: var(--color-alert-light); }
+    .timing-card i { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .timing-card.best  i { color: var(--color-brand); }
+    .timing-card.avoid i { color: var(--color-alert); }
+    .timing-card h4 { font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-1); }
+    .timing-card.best  h4 { color: var(--color-brand-dark); }
+    .timing-card.avoid h4 { color: #501313; }
+    .timing-card p  { font-size: var(--text-sm); line-height: 1.55; margin: 0; }
+    .timing-card.best  p { color: #085041; }
+    .timing-card.avoid p { color: #791F1F; }
+
+    @media (max-width: 767px) {
+      .talk-grid   { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .timing-grid { grid-template-columns: 1fr; }
+      .panel-header { padding: var(--space-5); }
+      .script-card-body, .script-card-header { padding: var(--space-4) var(--space-5); }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert"><p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p><a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a></div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list">
+          <li><a href="parents.html" class="nav__link nav__link--active">Parents</a></li>
+          <li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li>
+          <li><a href="educators.html" class="nav__link">Educators</a></li>
+          <li><a href="resources.html" class="nav__link">Resources</a></li>
+        </ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile"><a href="parents.html" class="nav__link">Parents</a><a href="kids.html" class="nav__link">Kids &amp; teens</a><a href="educators.html" class="nav__link">Educators</a><a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a></div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section class="guide-hero" aria-label="Conversation guide introduction">
+      <div class="container">
+        <a href="parents.html" style="color:#085041;font-size:var(--text-sm);text-decoration:none;display:inline-flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-4);"><i class="ti ti-arrow-left" aria-hidden="true"></i> Parents hub</a>
+        <div style="font-size:40px;margin-bottom:var(--space-3);" aria-hidden="true">💬</div>
+        <h1>Conversation guide</h1>
+        <p>The most important thing you can do to keep your child safe online is to keep the conversation open. Here are the words to start — matched to your child's age.</p>
+        <div class="age-tabs" role="tablist" aria-label="Select your child's age group">
+          <button class="age-tab active" role="tab" aria-selected="true" aria-controls="panel-u7"   onclick="switchAge('u7',this)">Under 7</button>
+          <button class="age-tab"        role="tab" aria-selected="false" aria-controls="panel-812"  onclick="switchAge('812',this)">Ages 8–12</button>
+          <button class="age-tab"        role="tab" aria-selected="false" aria-controls="panel-teen" onclick="switchAge('teen',this)">Ages 13–17</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TALK FRAMEWORK -->
+    <section class="section band--white" aria-label="The TALK framework">
+      <div class="container">
+        <div class="section-header--center">
+          <span class="eyebrow eyebrow--brand">Before you start</span>
+          <h2>The TALK framework</h2>
+          <p class="text-secondary" style="max-width:540px;margin:0 auto;">Four principles that make every online safety conversation more likely to go well — and keep going well long term.</p>
+        </div>
+        <div class="talk-grid" style="margin-top:var(--space-8);" role="list">
+          <div class="talk-card" role="listitem"><span class="talk-letter" style="color:#0F6E56;">T</span><p class="talk-word">Time it right</p><p class="talk-desc">In the car, on a walk, during an activity — not face-to-face across the kitchen table. Side-by-side conversations feel less like interrogations.</p></div>
+          <div class="talk-card" role="listitem"><span class="talk-letter" style="color:#534AB7;">A</span><p class="talk-word">Ask openly</p><p class="talk-desc">Questions that can't be answered with yes or no. "Who do you talk to in games?" not "Are you talking to strangers?"</p></div>
+          <div class="talk-card" role="listitem"><span class="talk-letter" style="color:#854F0B;">L</span><p class="talk-word">Listen first</p><p class="talk-desc">Resist the urge to react, fix, or lecture immediately. A child who feels heard is more likely to keep talking — and to come back when something goes wrong.</p></div>
+          <div class="talk-card" role="listitem"><span class="talk-letter" style="color:#A32D2D;">K</span><p class="talk-word">Keep going</p><p class="talk-desc">One conversation is not enough. Online safety needs to be an ongoing, low-key topic — not a single scary talk that's never revisited.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AGE SCRIPTS -->
+    <section class="section band--gray" aria-label="Age-matched conversation scripts">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow eyebrow--brand">Scripts by age</span>
+          <h2>What to say — and how to say it</h2>
+        </div>
+
+        <!-- UNDER 7 PANEL -->
+        <div class="age-panel panel-accent-u7 active" id="panel-u7" role="tabpanel" aria-label="Under 7 conversation guide">
+          <div class="panel-header">
+            <h2>Under 7 — Little ones</h2>
+            <p>At this age, keep everything simple, positive, and repeated often. You're building habits and instincts, not having a single big conversation. Short, warm and consistent is the goal.</p>
+          </div>
+          <div class="script-grid">
+
+            <div class="script-card">
+              <div class="script-card-header">
+                <div class="sc-icon icon-bg--purple"><i class="ti ti-user-question" aria-hidden="true"></i></div>
+                <div><h3>Talking about strangers online</h3><p class="sc-sub">Best said during a game or while watching something together</p></div>
+              </div>
+              <div class="script-card-body">
+                <div class="script-opener">
+                  <p class="script-label">Say this</p>
+                  <p class="script-text">"You know how we don't talk to strangers we don't know when we're out? It's the same online. If someone messages you in a game and you don't know them from real life — like school or our family — you come and tell me straight away. Deal?"</p>
+                </div>
+                <p class="script-note">Keep your tone matter-of-fact and positive — not scary. You want them to feel equipped, not frightened. End with something playful if you can.</p>
+                <p class="script-note"><strong>If they ask why:</strong> "Because we can't always tell who people really are on the internet, and I want to make sure you're always safe."</p>
+              </div>
+            </div>
+
+            <div class="script-card">
+              <div class="script-card-header">
+                <div class="sc-icon icon-bg--purple"><i class="ti ti-lock" aria-hidden="true"></i></div>
+                <div><h3>Teaching what's private</h3><p class="sc-sub">Can be made into a little game</p></div>
+              </div>
+              <div class="script-card-body">
+                <div class="script-opener">
+                  <p class="script-label">Say this</p>
+                  <p class="script-text">"Let's play a game. I'll say something and you tell me — private or okay to share? Your name? [Wait for answer.] Your school? Your address? Our phone number?" [Turn it into a quiz and praise every answer warmly.]</p>
+                </div>
+                <p class="script-note">Making it playful and interactive means they remember it far better than a lecture. You can revisit this game any time — in the car, at bedtime, whenever.</p>
+              </div>
+            </div>
+
+            <div class="script-card">
+              <div class="script-card-header">
+                <div class="sc-icon icon-bg--red"><i class="ti ti-heart" aria-hidden="true"></i></div>
+                <div><h3>Opening the door to disclosure</h3><p class="sc-sub">The most important thing you'll say</p></div>
+              </div>
+              <div class="script-card-body">
+                <div class="script-opener">
+                  <p class="script-label">Say this — regularly</p>
+                  <p class="script-text">"If you ever see something on the tablet or phone that makes you feel confused, scared or a bit funny in your tummy — you always tell me. You won't be in trouble. I'll always be glad you told me."</p>
+                </div>
+                <p class="script-note">This single message — said warmly and regularly — is probably the most protective thing you can give a young child. They need to hear it many times before they believe it completely.</p>
+                <p class="script-note"><strong>Say it proactively, not reactively.</strong> If you only say it when something's happened, it feels like an accusation. Said casually and regularly, it becomes a family value.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 8–12 PANEL -->
+        <div class="age-panel panel-accent-812" id="panel-812" role="tabpanel" aria-label="Ages 8 to 12 conversation guide">
+          <div class="panel-header">
+            <h2>Ages 8–12 — Explorers</h2>
+            <p>This age group responds to concrete scenarios and being treated as capable. Avoid lectures — ask questions, share real examples, and make it a two-way conversation. Their peer group is increasingly influential, so framing things in social terms helps.</p>
+          </div>
+          <div class="script-grid">
+
+            <div class="script-card">
+              <div class="script-card-header">
+                <div class="sc-icon icon-bg--green"><i class="ti ti-device-gamepad-2" aria-hidden="true"></i></div>
+                <div><h3>About gaming and who they're talking to</h3><p class="sc-sub">Best in the car or while they're playing — not face to face</p></div>
+              </div>
+              <div class="script-card-body">
+                <div class="script-opener">
+                  <p class="script-label">Open with this</p>
+                  <p class="script-text">"I've been reading about some stuff that happens in games and I wanted to make sure you knew about it too — not to worry you, just so you're prepared. Can I tell you about something?"</p>
+                </div>
+                <p class="script-note">Asking permission to share makes them more receptive than launching straight in. Then follow up with: <em>"Did you know that people in games sometimes pretend to be a different age? It's not your fault — you can't tell — but it's worth knowing. Has anyone ever felt a bit weird to you in a game?"</em></p>
+                <p class="script-note"><strong>If they say yes to that last question:</strong> don't panic. Say "Tell me more" and listen completely before responding. Your reaction in this moment determines whether they tell you next time.</p>
+              </div>
+            </div>
+
+            <div class="script-card">
+              <div class="script-card-header">
+                <div class="sc-icon icon-bg--green"><i class="ti ti-camera" aria-hidden="true"></i></div>
+                <div><h3>Screenshots and permanence</h3><p class="sc-sub">Comes up naturally after anything involving phones or photos</p></div>
+              </div>
+              <div class="script-card-body">
+                <div class="script-opener">
+                  <p class="script-label">Say this</p>
+                  <p class="script-text">"Here's a good rule I use before I send anything — I think 'would I be okay if [name someone they respect] saw this?' If the answer is no, I don't send it. Screenshots travel, even in private chats. Have you ever thought about that?"</p>
+                </div>
+                <p class="script-note">The "screenshot test" is a useful lifelong mental check. Framing it as something you use yourself (rather than a rule for them) makes it feel less like a lecture.</p>
+              </div>
+            </div>
+
+            <div class="script-card">
+              <div class="script-card-header">
+                <div class="sc-icon icon-bg--green"><i class="ti ti-message-circle" aria-hidden="true"></i></div>
+                <div><h3>If someone asks to move to a different chat app</h3><p class="sc-sub">One of the most important specific scenarios to cover</p></div>
+              </div>
+              <div class="script-card-body">
+                <div class="script-opener">
+                  <p class="script-label">Say this clearly</p>
+                  <p class="script-text">"If anyone you've met in a game ever asks to move to a different app — WhatsApp, Discord, Snapchat, anything — that's a sign something might be off, even if they seem really nice. You come and tell me before you do anything else. I promise I won't be cross."</p>
+                </div>
+                <p class="script-note">This is the most common first step in online grooming. Children who know this specific pattern in advance are far less likely to be drawn in by it.</p>
+                <p class="script-note"><strong>The "I promise I won't be cross" part matters.</strong> Fear of parental reaction is the biggest reason children don't disclose. Say it explicitly and mean it.</p>
+              </div>
+            </div>
+
+            <div class="script-card">
+              <div class="script-card-header">
+                <div class="sc-icon icon-bg--amber"><i class="ti ti-mood-sad" aria-hidden="true"></i></div>
+                <div><h3>If something has already happened</h3><p class="sc-sub">The most important conversation of all</p></div>
+              </div>
+              <div class="script-card-body">
+                <div class="script-opener">
+                  <p class="script-label">If they come to you</p>
+                  <p class="script-text">"Thank you so much for telling me. I know that wasn't easy. You have done absolutely nothing wrong — whatever happened, that's not on you. Can you show me? We're going to sort this together."</p>
+                </div>
+                <p class="script-note"><strong>Do not react with anger or panic in the moment</strong>, even if you feel both. A child who sees you distressed will feel responsible for your feelings — and less likely to come back next time.</p>
+                <p class="script-note">After the immediate conversation, see our <a href="get-help-now.html" style="color:var(--color-brand);font-weight:600;">get help now page</a> for the specific next steps depending on what happened.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TEENS PANEL -->
+        <div class="age-panel panel-accent-teen" id="panel-teen" role="tabpanel" aria-label="Ages 13 to 17 conversation guide">
+          <div class="panel-header">
+            <h2>Ages 13–17 — Teens</h2>
+            <p>Teens respond to being treated as capable adults who can handle real information. Avoid moralising, don't catastrophise, and lead with curiosity rather than rules. The goal is to be the person they come to when something goes wrong — not just the person who warns them.</p>
+          </div>
+          <div class="script-grid">
+
+            <div class="script-card">
+              <div class="script-card-header">
+                <div class="sc-icon icon-bg--amber"><i class="ti ti-robot" aria-hidden="true"></i></div>
+                <div><h3>About AI companions and chatbots</h3><p class="sc-sub">A new conversation most parents haven't had yet</p></div>
+              </div>
+              <div class="script-card-body">
+                <div class="script-opener">
+                  <p class="script-label">Open with genuine curiosity</p>
+                  <p class="script-text">"I've been reading about these AI companion apps — Character.AI and stuff like that. I didn't really know much about them. Do you know anyone who uses them? What do you think about them?"</p>
+                </div>
+                <p class="script-note">Lead with curiosity, not concern. If they use one, follow up with: <em>"What do you like about it?"</em> Understanding what need it's meeting tells you far more than asking whether they think it's good or bad.</p>
+                <p class="script-note">If the conversation develops, you can add: <em>"I read that the companies behind them make money the more time people spend on them — so they're designed to feel really engaging. I thought that was interesting."</em> Teens respond well to systemic critiques rather than moral warnings.</p>
+              </div>
+            </div>
+
+            <div class="script-card">
+              <div class="script-card-header">
+                <div class="sc-icon icon-bg--amber"><i class="ti ti-camera" aria-hidden="true"></i></div>
+                <div><h3>Image sharing, consent and the law</h3><p class="sc-sub">Should happen well before age 13 — definitely by 14</p></div>
+              </div>
+              <div class="script-card-body">
+                <div class="script-opener">
+                  <p class="script-label">Say this directly but calmly</p>
+                  <p class="script-text">"I want to talk about something that I know can feel awkward, but it's important. Sharing intimate photos — of yourself or anyone else — carries real legal risk now. Sharing someone's image without their permission is a criminal offence. That's not to scare you — it's just something I want you to know, so if someone ever pressures you, you know where you stand."</p>
+                </div>
+                <p class="script-note"><strong>Make it about protection, not surveillance.</strong> "I'm telling you this so you have the information, not so I can check your phone." The distinction matters enormously to a teenager.</p>
+                <p class="script-note">Then add: <em>"And if anyone ever tries to pressure you into sending something, or threatens you with anything — I want you to come to me. There is nothing you could tell me that would make me love you less, and nothing so bad that we can't sort it out together."</em></p>
+              </div>
+            </div>
+
+            <div class="script-card">
+              <div class="script-card-header">
+                <div class="sc-icon icon-bg--red"><i class="ti ti-alert-triangle" aria-hidden="true"></i></div>
+                <div><h3>Sextortion — an honest conversation</h3><p class="sc-sub">Boys in particular need to hear this explicitly</p></div>
+              </div>
+              <div class="script-card-body">
+                <div class="script-opener">
+                  <p class="script-label">Be direct</p>
+                  <p class="script-text">"There's something called sextortion that I want you to know about because it's happening to a lot of teenagers right now. Someone poses as a peer, gets an intimate image, and then threatens to share it unless you pay or send more. It targets boys more than people realise. If that ever happened to you — don't pay, don't panic, come to me. The people doing this are criminals, and there are specialist police who deal with exactly this."</p>
+                </div>
+                <p class="script-note">Research shows that knowing the pattern exists significantly reduces the chance of falling for it. Most teenagers who are targeted feel too ashamed to tell anyone — your job is to make coming to you feel possible.</p>
+              </div>
+            </div>
+
+            <div class="script-card">
+              <div class="script-card-header">
+                <div class="sc-icon icon-bg--amber"><i class="ti ti-world" aria-hidden="true"></i></div>
+                <div><h3>Digital footprint and future</h3><p class="sc-sub">Works well before exams, applications, or big life moments</p></div>
+              </div>
+              <div class="script-card-body">
+                <div class="script-opener">
+                  <p class="script-label">Keep it grounded, not preachy</p>
+                  <p class="script-text">"Not a lecture — just something worth knowing. Employers and universities do search names. Not always, but often enough that it's worth being aware. Anything you put out there now will still be there when you're 25. That's not to stop you posting — just worth thinking about what you'd be comfortable with future-you seeing."</p>
+                </div>
+                <p class="script-note">The "future-you" framing works better than "employers will see this" for most teenagers — it's personal rather than abstract authority.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- WHAT NOT TO SAY -->
+    <section class="section band--white" aria-label="What not to say">
+      <div class="container container--narrow">
+        <div class="avoid-box">
+          <h3><i class="ti ti-x" aria-hidden="true"></i> What not to say — phrases that close conversations down</h3>
+          <div class="avoid-list" role="list">
+            <div class="avoid-item" role="listitem"><i class="ti ti-x" aria-hidden="true"></i><div><p class="ai-wrong">"I told you not to talk to strangers online"</p><p class="ai-why">Blame shuts disclosure down immediately. A child who feels at fault will never come back and tell you next time.</p></div></div>
+            <div class="avoid-item" role="listitem"><i class="ti ti-x" aria-hidden="true"></i><div><p class="ai-wrong">"I'm taking your phone away"</p><p class="ai-why">Said as an immediate reaction to a disclosure, this teaches your child that telling you = losing their device. The opposite of what you want.</p></div></div>
+            <div class="avoid-item" role="listitem"><i class="ti ti-x" aria-hidden="true"></i><div><p class="ai-wrong">"Why did you do that? What were you thinking?"</p><p class="ai-why">Rhetorical questions in a moment of crisis feel accusatory. They prompt defensiveness, not reflection.</p></div></div>
+            <div class="avoid-item" role="listitem"><i class="ti ti-x" aria-hidden="true"></i><div><p class="ai-wrong">"You should have known better"</p><p class="ai-why">Children often don't know better — that's why these conversations need to happen before something goes wrong, not after.</p></div></div>
+            <div class="avoid-item" role="listitem"><i class="ti ti-x" aria-hidden="true"></i><div><p class="ai-wrong">"I knew this would happen"</p><p class="ai-why">Makes the child feel stupid, and makes you feel vindicated — but at the cost of the relationship and their willingness to come to you.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- TIMING TIPS -->
+    <section class="section band--gray" aria-label="When to have these conversations">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow">Getting the moment right</span><h2>When these conversations work best</h2></div>
+        <div class="timing-grid" role="list">
+          <div class="timing-card best" role="listitem"><i class="ti ti-car" aria-hidden="true"></i><div><h4>In the car ✓</h4><p>No eye contact, a natural endpoint, and you're both looking forward. One of the most consistently effective settings for difficult conversations with children of all ages.</p></div></div>
+          <div class="timing-card best" role="listitem"><i class="ti ti-walk" aria-hidden="true"></i><div><h4>On a walk or during an activity ✓</h4><p>Side-by-side movement removes confrontational face-to-face dynamics. Something to do with your hands helps everyone feel less self-conscious.</p></div></div>
+          <div class="timing-card best" role="listitem"><i class="ti ti-news" aria-hidden="true"></i><div><h4>When something's in the news ✓</h4><p>"I read something today that made me think of you" is a natural, non-accusatory way to open a conversation about a topic without it feeling directed at them personally.</p></div></div>
+          <div class="timing-card best" role="listitem"><i class="ti ti-device-gamepad-2" aria-hidden="true"></i><div><h4>While they're playing ✓</h4><p>Sitting next to them while they play, asking about the game, naturally opens into "who do you play with?" without feeling like an interrogation.</p></div></div>
+          <div class="timing-card avoid" role="listitem"><i class="ti ti-armchair" aria-hidden="true"></i><div><h4>Sitting opposite them at the table ✗</h4><p>Face-to-face across a table is the least effective setting for emotional conversations with children. It feels like a job interview or a telling off.</p></div></div>
+          <div class="timing-card avoid" role="listitem"><i class="ti ti-clock" aria-hidden="true"></i><div><h4>Just before bed or when they're stressed ✗</h4><p>Tired or stressed children and teens are in a poorer emotional state to receive and process new information. A conversation started badly can set the tone for future ones.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section band--white" aria-label="Related tools">
+      <div class="container">
+        <div class="section-header--center"><span class="eyebrow">Next steps</span><h2>More tools to help</h2></div>
+        <div class="grid grid-3">
+          <a href="family-safety-check.html" class="guide-card"><span style="font-size:24px;">💚</span><h3 class="guide-card__title">Family safety check</h3><p class="guide-card__desc">Not sure where to focus? A few gentle questions and we'll point you to the right places.</p></a>
+          <a href="tech-contract.html" class="guide-card"><span style="font-size:24px;">📄</span><h3 class="guide-card__title">Family tech contract</h3><p class="guide-card__desc">Turn your conversations into a written agreement the whole family helps create.</p></a>
+          <a href="get-help-now.html" class="guide-card"><span style="font-size:24px;">🚨</span><h3 class="guide-card__title">Get help now</h3><p class="guide-card__desc">If something has already happened, here's what to do step by step.</p></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo"><div class="container"><div class="footer__safeguarding" role="region"><p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p><div class="footer__safeguarding-list"><div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div><div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span></div></div></div><div class="footer__bottom"><p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p><div class="footer__legal"><a href="privacy-policy.html">Privacy policy</a><a href="accessibility.html">Accessibility</a><a href="parents.html">Parents hub</a></div></div></div></footer>
+
+  <script>
+    function toggleMobileMenu(btn){const m=document.getElementById('mobile-menu');const o=m.classList.contains('is-open');m.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(!o));}
+    function switchAge(id, btn) {
+      document.querySelectorAll('.age-panel').forEach(p=>{p.classList.remove('active');});
+      document.querySelectorAll('.age-tab').forEach(t=>{t.classList.remove('active');t.setAttribute('aria-selected','false');});
+      document.getElementById('panel-'+id).classList.add('active');
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
+    }
+    document.getElementById('footer-year').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>

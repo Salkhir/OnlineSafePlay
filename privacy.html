@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Privacy and data safety for families — what personal information means online, location sharing risks, photo metadata, account security, and data collected by apps."/>
+  <title>Privacy &amp; Data — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>"/>
+  <style>
+    .topic-hero{background:linear-gradient(135deg,#0A1F0A 0%,#1A3A1A 100%);padding:var(--space-12) 0;}
+    .topic-hero h1{color:#fff;font-size:var(--text-3xl);margin-bottom:var(--space-3);}
+    .topic-hero p{color:rgba(255,255,255,0.8);font-size:var(--text-md);max-width:560px;line-height:1.65;margin-bottom:var(--space-5);}
+    .what-is-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4);}
+    .wi-card{background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);}
+    .wi-card h3{font-size:var(--text-base);font-weight:600;color:var(--color-text-title);margin-bottom:var(--space-3);display:flex;align-items:center;gap:var(--space-2);}
+    .wi-card h3 i{font-size:20px;color:var(--color-brand);}
+    .wi-list{display:flex;flex-direction:column;gap:var(--space-2);}
+    .wi-item{display:flex;gap:var(--space-2);align-items:center;font-size:var(--text-sm);color:var(--color-text-secondary);}
+    .wi-item i{font-size:14px;color:var(--color-alert);flex-shrink:0;}
+    .wi-item.safe i{color:var(--color-brand);}
+    .location-box{background:var(--color-alert-light);border:2px solid var(--color-alert-border);border-radius:var(--radius-lg);padding:var(--space-6);}
+    .location-box h3{color:#501313;font-size:var(--text-xl);margin-bottom:var(--space-3);}
+    .location-box p{color:#791F1F;font-size:var(--text-base);line-height:1.7;margin-bottom:var(--space-3);}
+    .location-box p:last-child{margin-bottom:0;}
+    .data-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4);}
+    .data-card{background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);}
+    .data-card h4{font-size:var(--text-sm);font-weight:600;color:var(--color-text-title);margin-bottom:var(--space-2);}
+    .data-card p{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.55;}
+    .password-box{background:var(--color-brand-light);border:1px solid var(--color-brand-mid);border-radius:var(--radius-lg);padding:var(--space-6);}
+    .password-box h3{color:var(--color-brand-dark);font-size:var(--text-xl);margin-bottom:var(--space-4);}
+    .pw-rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-3);}
+    .pw-rule{background:var(--color-bg-primary);border-radius:var(--radius-md);padding:var(--space-4);display:flex;gap:var(--space-3);align-items:flex-start;}
+    .pw-rule i{font-size:18px;color:var(--color-brand);flex-shrink:0;margin-top:2px;}
+    .pw-rule p{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.55;margin:0;}
+    .pw-rule p strong{color:var(--color-text-title);font-weight:600;}
+    .checklist{display:flex;flex-direction:column;gap:var(--space-3);}
+    .check-item{display:flex;gap:var(--space-3);align-items:flex-start;padding:var(--space-4);background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-md);}
+    .check-item i{font-size:20px;color:var(--color-brand);flex-shrink:0;margin-top:2px;}
+    .check-item p{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.6;margin:0;}
+    .check-item p strong{color:var(--color-text-title);font-weight:600;}
+    @media(max-width:767px){.what-is-grid,.pw-rules,.data-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert"><p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p><a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a></div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list"><li><a href="parents.html" class="nav__link nav__link--active">Parents</a></li><li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li><li><a href="educators.html" class="nav__link">Educators</a></li><li><a href="resources.html" class="nav__link">Resources</a></li></ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile"><a href="parents.html" class="nav__link">Parents</a><a href="kids.html" class="nav__link">Kids &amp; teens</a><a href="educators.html" class="nav__link">Educators</a><a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a></div>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="topic-hero" aria-label="Privacy and data overview">
+      <div class="container">
+        <a href="parents.html" style="color:rgba(255,255,255,0.6);font-size:var(--text-sm);text-decoration:none;display:inline-flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-4);">← Parents hub</a>
+        <div style="font-size:40px;margin-bottom:var(--space-3);" aria-hidden="true">🔒</div>
+        <h1>Privacy &amp; data</h1>
+        <p>What personal information means online, the hidden risks of location data in photos, account security, and what apps actually collect about your child.</p>
+        <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;">
+          <span class="badge badge--green">Privacy</span>
+          <span class="badge badge--gray">5 min read</span>
+          <span class="badge badge--gray">Updated March 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="What counts as personal information">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow">The basics</span><h2>What counts as personal information?</h2><p class="text-secondary">Children often don't realise how much information they give away incidentally. These are the most commonly shared pieces of information — and why each one matters.</p></div>
+        <div class="what-is-grid" role="list">
+          <div class="wi-card" role="listitem">
+            <h3><i class="ti ti-alert-triangle" aria-hidden="true"></i> Never share publicly</h3>
+            <div class="wi-list">
+              <div class="wi-item"><i class="ti ti-x" aria-hidden="true"></i>Full name + school name together</div>
+              <div class="wi-item"><i class="ti ti-x" aria-hidden="true"></i>Home address or postcode</div>
+              <div class="wi-item"><i class="ti ti-x" aria-hidden="true"></i>Phone number</div>
+              <div class="wi-item"><i class="ti ti-x" aria-hidden="true"></i>Daily routine (what time they leave for school)</div>
+              <div class="wi-item"><i class="ti ti-x" aria-hidden="true"></i>Current location or live location sharing</div>
+              <div class="wi-item"><i class="ti ti-x" aria-hidden="true"></i>School uniform that identifies the school</div>
+              <div class="wi-item"><i class="ti ti-x" aria-hidden="true"></i>Passwords or security questions</div>
+            </div>
+          </div>
+          <div class="wi-card" role="listitem">
+            <h3><i class="ti ti-circle-check" aria-hidden="true"></i> Safe to share publicly</h3>
+            <div class="wi-list">
+              <div class="wi-item safe"><i class="ti ti-check" aria-hidden="true"></i>First name only (without surname)</div>
+              <div class="wi-item safe"><i class="ti ti-check" aria-hidden="true"></i>General region (e.g. "I live in Manchester")</div>
+              <div class="wi-item safe"><i class="ti ti-check" aria-hidden="true"></i>Age or year group (without school name)</div>
+              <div class="wi-item safe"><i class="ti ti-check" aria-hidden="true"></i>Hobbies and interests (without location detail)</div>
+              <div class="wi-item safe"><i class="ti ti-check" aria-hidden="true"></i>Photos without identifiable location in background</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="Location data in photos">
+      <div class="container container--narrow">
+        <div class="location-box">
+          <h3>📍 The hidden risk in photos — location metadata</h3>
+          <p>Every photo taken on a smartphone contains invisible metadata — including the precise GPS coordinates of where the photo was taken. When your child posts a photo online, anyone who downloads it may be able to extract their exact location — often accurate to within a few metres of your home.</p>
+          <p>Most social platforms strip this metadata before displaying photos — but not all, and not always. The safe habit is to turn off location data in photos at the camera level. On iPhone: Settings → Privacy → Location Services → Camera → Never. On Android: Camera app → Settings → Location tags → Off.</p>
+          <p><strong>This also applies to photos taken in or near your home, or at your child's school.</strong> A photo posted from the school field on the last day of term, combined with a school name mentioned elsewhere, gives enough information to locate where your child is every day.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="What apps collect about your child">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow">Data collection</span><h2>What apps actually collect about your child</h2></div>
+        <div class="data-grid" role="list">
+          <div class="data-card" role="listitem"><h4>📍 Location data</h4><p>Many apps request location permission even when it's not needed for core function. This data is commercially valuable and may be sold to data brokers who build profiles on individuals including children.</p></div>
+          <div class="data-card" role="listitem"><h4>🎭 Behaviour and interests</h4><p>Every tap, swipe, pause, and search on a platform is recorded. This data is used to build a behavioural profile used for targeted advertising — and increasingly, to train AI models.</p></div>
+          <div class="data-card" role="listitem"><h4>💬 Message content</h4><p>Most messaging apps state they read messages for safety and advertising purposes unless end-to-end encryption is enabled. Even encrypted platforms may retain metadata about who your child communicates with and when.</p></div>
+          <div class="data-card" role="listitem"><h4>🎙️ Voice and camera</h4><p>Apps can request microphone and camera access. Many activate these beyond their stated purpose. Review app permissions regularly in your device settings — remove access for any app that doesn't genuinely need it.</p></div>
+          <div class="data-card" role="listitem"><h4>📊 Device information</h4><p>Apps routinely collect device identifiers, network information, battery level, and other device data — enough to identify a specific device across different apps and platforms even without an account.</p></div>
+          <div class="data-card" role="listitem"><h4>🤝 Third-party sharing</h4><p>Most app privacy policies allow data to be shared with "trusted partners." This frequently means advertising networks, analytics companies, and data brokers. Children's data has specific legal protections under UK GDPR but enforcement is inconsistent.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="Account security">
+      <div class="container">
+        <div class="password-box">
+          <h3>🔐 Account security — the basics every family needs</h3>
+          <div class="pw-rules" role="list">
+            <div class="pw-rule" role="listitem"><i class="ti ti-lock" aria-hidden="true"></i><p><strong>Use a unique password for every account.</strong> A breach of one account should not compromise all others. A password manager (Bitwarden is free and excellent) makes this manageable.</p></div>
+            <div class="pw-rule" role="listitem"><i class="ti ti-device-mobile" aria-hidden="true"></i><p><strong>Enable two-factor authentication on all important accounts.</strong> Email, social media, and gaming accounts should all require a second confirmation when logging in from a new device.</p></div>
+            <div class="pw-rule" role="listitem"><i class="ti ti-eye-off" aria-hidden="true"></i><p><strong>Never use the same password as school accounts.</strong> School systems are frequently targeted. A breach of a school system that exposes your child's password could compromise their personal accounts if the same password is used.</p></div>
+            <div class="pw-rule" role="listitem"><i class="ti ti-refresh" aria-hidden="true"></i><p><strong>Change passwords immediately after any breach notification.</strong> Use haveibeenpwned.com to check if an email address has appeared in a known data breach.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="Privacy action checklist">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow eyebrow--brand">Action checklist</span><h2>What to do right now</h2></div>
+        <div class="checklist" role="list">
+          <div class="check-item" role="listitem"><i class="ti ti-camera-off" aria-hidden="true"></i><p><strong>Turn off location data in your child's camera app.</strong> iPhone: Settings → Privacy → Location Services → Camera → Never. Android: Camera → Settings → Location tags → Off.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-apps" aria-hidden="true"></i><p><strong>Check app permissions on their device.</strong> Settings → Privacy → review each permission category (location, microphone, camera). Remove any permissions that aren't genuinely needed for the app's function.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-lock" aria-hidden="true"></i><p><strong>Set all social media accounts to private.</strong> Any account on TikTok, Instagram, Snapchat or YouTube should be private — not public. See our <a href="platform-settings.html" style="font-weight:600;">platform settings hub</a> for step-by-step instructions.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-map-pin-off" aria-hidden="true"></i><p><strong>Disable live location sharing.</strong> Snapchat's Snap Map and Find My Friends features share real-time location. These should be set to Ghost Mode or disabled entirely for children.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-key" aria-hidden="true"></i><p><strong>Set up two-factor authentication on their email account first.</strong> Email is the recovery method for all other accounts — it's the most important account to secure. Enable 2FA and make sure the recovery phone number is yours.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="Related guides">
+      <div class="container"><div class="section-header--center"><span class="eyebrow">Keep reading</span><h2>Related guides</h2></div>
+        <div class="grid grid-3">
+          <a href="social-media.html" class="guide-card"><span style="font-size:24px;">📸</span><h3 class="guide-card__title">Social platforms</h3><p class="guide-card__desc">Platform-by-platform privacy settings for TikTok, Instagram and Snapchat.</p></a>
+          <a href="platform-settings.html" class="guide-card"><span style="font-size:24px;">⚙️</span><h3 class="guide-card__title">Platform settings hub</h3><p class="guide-card__desc">Step-by-step guides to locking down every app your child uses.</p></a>
+          <a href="screen-time.html" class="guide-card"><span style="font-size:24px;">⏱️</span><h3 class="guide-card__title">Screen time</h3><p class="guide-card__desc">Device-level parental controls for iPhone, Android, Xbox and PlayStation.</p></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer" role="contentinfo"><div class="container"><div class="footer__safeguarding" role="region"><p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p><div class="footer__safeguarding-list"><div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div><div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span></div></div></div><div class="footer__bottom"><p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p><div class="footer__legal"><a href="privacy-policy.html">Privacy policy</a><a href="accessibility.html">Accessibility</a><a href="parents.html">Parents hub</a></div></div></div></footer>
+  <script>function toggleMobileMenu(btn){const m=document.getElementById('mobile-menu');const o=m.classList.contains('is-open');m.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(!o));}document.getElementById('footer-year').textContent=new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Popular online games and child safety — a data-backed guide to the top 10 games UK children play, the risks each carries, and practical steps parents can take." />
+  <title>Online Games &amp; Child Safety — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>" />
+  <style>
+    /* ── Page-specific styles ───────────────────────────────────────── */
+
+    /* Hero */
+    .topic-hero {
+      background: linear-gradient(135deg, #2A0F00 0%, #4A1A00 100%);
+      padding: var(--space-16) 0 var(--space-12);
+      position: relative;
+      overflow: hidden;
+    }
+    .topic-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(163,45,45,.2) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(15,110,86,.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .topic-hero .hero-inner { position: relative; }
+    .topic-hero h1 { color: #fff; font-size: var(--text-3xl); margin-bottom: var(--space-3); }
+    .topic-hero h1 em { font-style: normal; color: #FAC775; }
+    .topic-hero p { color: rgba(255,255,255,0.8); font-size: var(--text-md); max-width: 600px; line-height: 1.65; margin-bottom: var(--space-6); }
+    .stat-pills { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+    .stat-pill {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-full);
+      padding: 6px var(--space-4);
+      font-size: var(--text-sm);
+      color: #e2e8f0;
+    }
+    .stat-pill strong { color: #fff; font-weight: 700; }
+
+    /* Callouts */
+    .callout {
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-5);
+      margin-bottom: var(--space-5);
+      border-left: 4px solid;
+      font-size: var(--text-sm);
+      line-height: 1.65;
+    }
+    .callout strong { display: block; font-weight: 600; margin-bottom: var(--space-1); }
+    .callout--info   { background: var(--color-info);         border-color: var(--color-info-text);  color: #0C447C; }
+    .callout--warn   { background: var(--color-warning-light); border-color: var(--color-warning);    color: #5A3207; }
+    .callout--danger { background: var(--color-alert-light);  border-color: var(--color-alert);      color: #501313; }
+    .callout--safe   { background: var(--color-brand-light);  border-color: var(--color-brand);      color: #04342C; }
+
+    /* PEGI badges */
+    .pegi-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      font-family: monospace;
+      letter-spacing: .02em;
+    }
+    .pegi-3  { background: #dcfce7; color: #14532d; }
+    .pegi-7  { background: #fef9c3; color: #713f12; }
+    .pegi-12 { background: #ffedd5; color: #7c2d12; }
+    .pegi-16 { background: #fee2e2; color: #7f1d1d; }
+    .pegi-18 { background: #1c1917; color: #fca5a5; }
+    .pegi-pg { background: #e0e7ff; color: #3730a3; }
+
+    /* Table */
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-3);
+    }
+    .games-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--text-sm);
+    }
+    .games-table thead {
+      background: var(--color-text-title);
+      color: #fff;
+    }
+    .games-table thead th {
+      padding: 13px var(--space-4);
+      text-align: left;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .games-table tbody tr {
+      border-bottom: 1px solid var(--color-border-subtle);
+      background: var(--color-bg-primary);
+    }
+    .games-table tbody tr:last-child { border-bottom: none; }
+    .games-table tbody tr:hover { background: var(--color-bg-secondary); }
+    .games-table td { padding: 13px var(--space-4); vertical-align: middle; }
+    .td-rank { font-weight: 700; color: var(--color-text-muted); width: 40px; }
+    .td-name { font-weight: 600; color: var(--color-text-title); }
+    .risk-dot-high    { color: var(--color-alert);   font-weight: 600; }
+    .risk-dot-medium  { color: var(--color-warning);  font-weight: 600; }
+    .risk-dot-low     { color: var(--color-brand);    font-weight: 600; }
+
+    /* Risk overview tiles */
+    .risk-tiles { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: var(--space-4); }
+    .risk-tile {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+    }
+    .risk-tile .rt-icon { font-size: 28px; margin-bottom: var(--space-3); display: block; }
+    .risk-tile h3 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .risk-tile p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.6; }
+    .risk-tile sup { font-size: 9px; }
+
+    /* Game cards */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: var(--space-5);
+    }
+    .game-card {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: box-shadow var(--transition);
+    }
+    .game-card:hover { box-shadow: var(--shadow-md); }
+    .game-card--danger { border-color: var(--color-alert-border); }
+    .game-card--safe   { border-color: #9FE1CB; }
+
+    .card-head {
+      padding: var(--space-5) var(--space-5) var(--space-4);
+      border-bottom: 1px solid var(--color-border-subtle);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-4);
+    }
+    .card-icon {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .card-head-text { flex: 1; min-width: 0; }
+    .card-title { font-size: var(--text-base); font-weight: 700; color: var(--color-text-title); margin-bottom: 3px; }
+    .card-subtitle { font-size: var(--text-xs); color: var(--color-text-muted); display: flex; gap: var(--space-2); align-items: center; flex-wrap: wrap; }
+
+    .card-body { padding: var(--space-5); }
+
+    /* Risk list inside card */
+    .risk-list { list-style: none; margin: 0 0 var(--space-4); }
+    .risk-list li {
+      padding: var(--space-2) 0 var(--space-2) var(--space-6);
+      position: relative;
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      border-bottom: 1px solid var(--color-border-subtle);
+      line-height: 1.55;
+    }
+    .risk-list li:last-child { border-bottom: none; }
+    .risk-list li::before { content: '⚠'; position: absolute; left: 0; color: var(--color-warning); font-size: 13px; top: var(--space-2); }
+    .risk-list.danger li::before { content: '🔴'; font-size: 11px; }
+    .risk-list sup { font-size: 9px; }
+
+    /* Tips inside card */
+    .tips-label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--color-brand);
+      margin-bottom: var(--space-3);
+      margin-top: var(--space-4);
+    }
+    .tips-list { list-style: none; margin: 0; }
+    .tips-list li {
+      padding: var(--space-2) 0 var(--space-2) var(--space-5);
+      position: relative;
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+    .tips-list li::before { content: '✓'; position: absolute; left: 0; color: var(--color-brand); font-weight: 700; top: var(--space-2); }
+    .tips-list a { color: var(--color-brand); }
+    .tips-list sup { font-size: 9px; }
+
+    /* 10 actions grid */
+    .actions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: var(--space-4);
+      counter-reset: actions;
+    }
+    .action-item {
+      counter-increment: actions;
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5) var(--space-5) var(--space-5) 64px;
+      position: relative;
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+    .action-item::before {
+      content: counter(actions);
+      position: absolute;
+      left: var(--space-4);
+      top: var(--space-5);
+      width: 32px; height: 32px;
+      background: var(--color-brand-light);
+      color: var(--color-brand);
+      border-radius: 50%;
+      font-weight: 800;
+      font-size: var(--text-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-family: monospace;
+    }
+    .action-item h4 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .action-item a { color: var(--color-brand); }
+    .action-item sup { font-size: 9px; }
+
+    /* Resources */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: var(--space-4);
+    }
+    .resource-card {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .resource-card .rc-org {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--color-text-muted);
+    }
+    .resource-card .rc-desc { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.55; flex: 1; }
+    .resource-card .rc-link { font-size: var(--text-sm); color: var(--color-brand); word-break: break-all; font-weight: 500; }
+
+    /* Citations */
+    .citations-box {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8) var(--space-8);
+      margin-top: var(--space-12);
+    }
+    .citations-box h2 { font-size: var(--text-lg); margin-bottom: var(--space-5); }
+    .citations-box ol {
+      padding-left: var(--space-5);
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+    }
+    .citations-box ol li { margin-bottom: var(--space-2); }
+    .citations-box a { color: var(--color-brand); word-break: break-all; }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.5);
+      margin-bottom: var(--space-5);
+    }
+    .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .breadcrumb a:hover { color: #fff; }
+    .breadcrumb span { color: rgba(255,255,255,0.35); }
+
+    /* Table note */
+    .table-note { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: var(--space-2); line-height: 1.6; }
+
+    @media (max-width: 1023px) {
+      .risk-tiles { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .resources-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 767px) {
+      .games-grid { grid-template-columns: 1fr; }
+      .actions-grid { grid-template-columns: 1fr; }
+      .risk-tiles { grid-template-columns: 1fr; }
+      .resources-grid { grid-template-columns: 1fr; }
+      .action-item { padding-left: 56px; }
+      .citations-box { padding: var(--space-5); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ──────────────────────────────────────────────────────── -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert">
+      <p class="sos-bar__message">
+        <span class="sos-icon" aria-hidden="true">🚨</span>
+        <span class="sos-full">Something happened right now?</span>
+        <span class="sos-short" style="display:none;">Need help?</span>
+      </p>
+      <a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a>
+    </div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand">
+          <div class="nav__brand-icon" aria-hidden="true">🛡</div>
+          SafeOnline UK
+        </a>
+        <ul class="nav__links" role="list">
+          <li><a href="parents.html" class="nav__link nav__link--active">Parents</a></li>
+          <li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li>
+          <li><a href="educators.html" class="nav__link">Educators</a></li>
+          <li><a href="resources.html" class="nav__link">Resources</a></li>
+          <li><a href="about.html" class="nav__link">About</a></li>
+        </ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile">
+        <a href="parents.html" class="nav__link">Parents</a>
+        <a href="kids.html" class="nav__link">Kids &amp; teens</a>
+        <a href="educators.html" class="nav__link">Educators</a>
+        <a href="resources.html" class="nav__link">Resources</a>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ── MAIN ───────────────────────────────────────────────────────── -->
+  <main id="main-content">
+
+
+    <!-- HERO -->
+    <section class="topic-hero" aria-label="Online games safety guide introduction">
+      <div class="container hero-inner">
+        <div class="breadcrumb" aria-label="Breadcrumb">
+          <a href="parents.html">Parents</a>
+          <span aria-hidden="true">›</span>
+          <a href="gaming-safety.html">Gaming safety</a>
+          <span aria-hidden="true">›</span>
+          <span style="color:rgba(255,255,255,0.75);">Online games guide</span>
+        </div>
+
+        <div style="font-size:40px;margin-bottom:var(--space-3);" aria-hidden="true">🎮</div>
+        <h1>Popular Online Games &amp; <em>Child Safety</em></h1>
+        <p>A data-backed guide to the top 10 games UK children play, the specific risks each one carries, and practical steps parents can take — sourced from Ofcom, NSPCC, CEOP and the Children's Commissioner.</p>
+
+        <div class="stat-pills" role="list" aria-label="Key statistics">
+          <span class="stat-pill" role="listitem"><strong>97%</strong> of 8–17-year-olds play online games <sup>[1]</sup></span>
+          <span class="stat-pill" role="listitem"><strong>53%</strong> spend money in-game <sup>[1]</sup></span>
+          <span class="stat-pill" role="listitem">Roblox reaches <strong>61%</strong> of UK 8–14-year-olds monthly <sup>[2]</sup></span>
+        </div>
+
+        <div style="margin-top:var(--space-6);display:flex;gap:var(--space-3);flex-wrap:wrap;">
+          <span class="badge badge--red">High risk topic</span>
+          <span class="badge badge--gray">Cited sources</span>
+          <span class="badge badge--gray">Updated June 2026</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- INTRO / CONTEXT -->
+    <section class="section band--white" aria-labelledby="intro-heading">
+      <div class="container">
+        <span class="eyebrow">Why this matters</span>
+        <h2 id="intro-heading">Gaming is the primary way UK children socialise online</h2>
+        <p class="text-lead" style="margin-bottom:var(--space-6);">According to Ofcom's research, <strong>89% of UK children aged 3–17</strong> played video games in the past year. Among those aged 8–17, gaming has become as important a social space as social media — often more so for boys. These are not simply entertainment products; they are persistent online environments where children communicate with strangers, spend money, and encounter a range of potential harms.</p>
+
+        <div class="callout callout--info" role="note">
+          <strong>Important context</strong>
+          Gaming itself is not inherently harmful. The Children's Commissioner's 2024 report <em>Digital Playgrounds</em> notes that for many children, gaming is a fun, social, and sometimes educational activity. The aim of this page is to help parents understand specific risks so they can have informed conversations — not to discourage gaming. <sup>[3]</sup>
+        </div>
+
+        <div class="callout callout--warn" role="note">
+          <strong>UK law is changing in 2026</strong>
+          The UK government's national consultation "Growing Up in the Online World" (closed May 2026) includes proposals to restrict children from communicating with strangers inside games like Roblox, Fortnite, and Minecraft. Ofcom can fine non-compliant platforms up to 10% of global revenue under the Online Safety Act 2023. <sup>[4]</sup>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- GAMES TABLE -->
+    <section class="section band--gray" aria-labelledby="table-heading">
+      <div class="container">
+        <span class="eyebrow">Rankings based on Ofcom &amp; Qustodio UK data</span>
+        <h2 id="table-heading">Top 10 Online Games Played by UK Children</h2>
+        <p class="text-lead" style="margin-bottom:var(--space-6);">Ranked by reach and daily engagement among UK children aged 4–18, drawing on Ofcom's 2024 Children &amp; Parents: Media Use and Attitudes Report and Qustodio's 2024 UK family data. <sup>[2][5]</sup> PEGI ratings sourced from the Pan European Game Information system.</p>
+
+        <div class="table-wrap" role="region" aria-label="Top 10 games played by UK children">
+          <table class="games-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Game</th>
+                <th>PEGI</th>
+                <th>Developer</th>
+                <th>Why children play it</th>
+                <th>Risk level</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-rank">1</td>
+                <td class="td-name">Roblox</td>
+                <td><span class="pegi-badge pegi-pg">PEGI !</span></td>
+                <td style="color:var(--color-text-secondary);">Roblox Corp.</td>
+                <td style="color:var(--color-text-secondary);">User-created worlds, social roleplay, creative tools</td>
+                <td class="risk-dot-high">⬤ High</td>
+              </tr>
+              <tr>
+                <td class="td-rank">2</td>
+                <td class="td-name">Fortnite</td>
+                <td><span class="pegi-badge pegi-12">PEGI 12</span></td>
+                <td style="color:var(--color-text-secondary);">Epic Games</td>
+                <td style="color:var(--color-text-secondary);">Battle Royale, Creative mode, seasonal events</td>
+                <td class="risk-dot-medium">⬤ Medium</td>
+              </tr>
+              <tr>
+                <td class="td-rank">3</td>
+                <td class="td-name">Minecraft</td>
+                <td><span class="pegi-badge pegi-7">PEGI 7</span></td>
+                <td style="color:var(--color-text-secondary);">Mojang / Microsoft</td>
+                <td style="color:var(--color-text-secondary);">Building, exploration, survival, education</td>
+                <td class="risk-dot-medium">⬤ Medium</td>
+              </tr>
+              <tr>
+                <td class="td-rank">4</td>
+                <td class="td-name">EA Sports FC</td>
+                <td><span class="pegi-badge pegi-3">PEGI 3</span></td>
+                <td style="color:var(--color-text-secondary);">EA Sports</td>
+                <td style="color:var(--color-text-secondary);">Football culture, multiplayer, Ultimate Team</td>
+                <td class="risk-dot-medium">⬤ Medium</td>
+              </tr>
+              <tr>
+                <td class="td-rank">5</td>
+                <td class="td-name">GTA V / GTA Online</td>
+                <td><span class="pegi-badge pegi-18">PEGI 18</span></td>
+                <td style="color:var(--color-text-secondary);">Rockstar Games</td>
+                <td style="color:var(--color-text-secondary);">Open world, roleplay servers — despite 18 rating</td>
+                <td class="risk-dot-high">⬤ Very High</td>
+              </tr>
+              <tr>
+                <td class="td-rank">6</td>
+                <td class="td-name">Call of Duty (Warzone / Mobile)</td>
+                <td><span class="pegi-badge pegi-18">PEGI 18</span></td>
+                <td style="color:var(--color-text-secondary);">Activision</td>
+                <td style="color:var(--color-text-secondary);">Free-to-play, competitive squads, eSports culture</td>
+                <td class="risk-dot-high">⬤ Very High</td>
+              </tr>
+              <tr>
+                <td class="td-rank">7</td>
+                <td class="td-name">Overwatch 2</td>
+                <td><span class="pegi-badge pegi-12">PEGI 12</span></td>
+                <td style="color:var(--color-text-secondary);">Blizzard</td>
+                <td style="color:var(--color-text-secondary);">Hero shooter, colourful characters, team play</td>
+                <td class="risk-dot-medium">⬤ Medium</td>
+              </tr>
+              <tr>
+                <td class="td-rank">8</td>
+                <td class="td-name">Rocket League</td>
+                <td><span class="pegi-badge pegi-3">PEGI 3</span></td>
+                <td style="color:var(--color-text-secondary);">Psyonix / Epic</td>
+                <td style="color:var(--color-text-secondary);">Accessible, competitive, car football</td>
+                <td class="risk-dot-low">⬤ Lower</td>
+              </tr>
+              <tr>
+                <td class="td-rank">9</td>
+                <td class="td-name">Brawl Stars</td>
+                <td><span class="pegi-badge pegi-7">PEGI 7</span></td>
+                <td style="color:var(--color-text-secondary);">Supercell</td>
+                <td style="color:var(--color-text-secondary);">Fast mobile multiplayer, free-to-play</td>
+                <td class="risk-dot-medium">⬤ Medium</td>
+              </tr>
+              <tr>
+                <td class="td-rank">10</td>
+                <td class="td-name">Among Us</td>
+                <td><span class="pegi-badge pegi-7">PEGI 7</span></td>
+                <td style="color:var(--color-text-secondary);">Innersloth</td>
+                <td style="color:var(--color-text-secondary);">Social deduction, party game, easy to access</td>
+                <td class="risk-dot-medium">⬤ Medium</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="table-note">
+          <strong>Note on Roblox PEGI rating:</strong> PEGI changed Roblox from PEGI 7 to a "Parental Guidance recommended" label (PEGI !) because the platform hosts millions of user-generated experiences with variable content. This is not a standard age rating but a flag that parental involvement is especially important. <sup>[6]</sup>
+        </p>
+      </div>
+    </section>
+
+
+    <!-- KEY RISKS OVERVIEW -->
+    <section class="section band--white" aria-labelledby="risks-heading">
+      <div class="container">
+        <span class="eyebrow eyebrow--alert">Cross-game risks — sourced from NSPCC, Ofcom &amp; CEOP</span>
+        <h2 id="risks-heading" style="margin-bottom:var(--space-3);">Key risks across online games</h2>
+        <p class="text-lead" style="margin-bottom:var(--space-8);">The NSPCC, Ofcom, and CEOP all identify the following risk categories as applying across the most popular games. <sup>[7][8]</sup></p>
+
+        <div class="risk-tiles" role="list">
+
+          <div class="risk-tile" role="listitem">
+            <span class="rt-icon" aria-hidden="true">💬</span>
+            <h3>Stranger contact &amp; grooming</h3>
+            <p>In-game voice and text chat exposes children to adults. The NSPCC warns that popular games have official channels with thousands of members, creating "risk of grooming or online forms of abuse, along with the risk of moving the conversation to other platforms." <sup>[7]</sup> In 2025, a man was jailed in the UK after grooming a 14-year-old first contacted through Roblox. <sup>[4]</sup></p>
+          </div>
+
+          <div class="risk-tile" role="listitem">
+            <span class="rt-icon" aria-hidden="true">💸</span>
+            <h3>In-game spending &amp; loot boxes</h3>
+            <p>Ofcom found that 53% of child gamers spend money in-game, and 32% regret those purchases. 42% report it's unclear what they're buying. Loot boxes — where children pay for a random reward — are flagged as a "risk-based feature" potentially harmful to children's financial wellbeing. <sup>[1]</sup></p>
+          </div>
+
+          <div class="risk-tile" role="listitem">
+            <span class="rt-icon" aria-hidden="true">🎭</span>
+            <h3>Inappropriate user-generated content</h3>
+            <p>On platforms like Roblox, players build and publish their own games. The NSPCC notes this means "other users could build games that contain adult or inappropriate themes" that children encounter. <sup>[7]</sup> No platform moderates 100% of user-created content in real time.</p>
+          </div>
+
+          <div class="risk-tile" role="listitem">
+            <span class="rt-icon" aria-hidden="true">😤</span>
+            <h3>Cyberbullying &amp; griefing</h3>
+            <p>Online multiplayer enables harassment through chat, in-game sabotage ("griefing"), and verbal abuse via voice chat. CEOP advises parents to watch for signs of distress after gaming sessions and ensure children know how to block and report. <sup>[8]</sup></p>
+          </div>
+
+          <div class="risk-tile" role="listitem">
+            <span class="rt-icon" aria-hidden="true">🎰</span>
+            <h3>Gambling-like mechanics</h3>
+            <p>Loot boxes, battle pass exclusives, and time-limited offers are identified by Ofcom as "impulse-activating features" that can lead to child financial harm. V-Bucks (Fortnite) and Robux (Roblox) obscure the real-money cost of purchases. <sup>[1]</sup></p>
+          </div>
+
+          <div class="risk-tile" role="listitem">
+            <span class="rt-icon" aria-hidden="true">🎣</span>
+            <h3>Scams &amp; phishing</h3>
+            <p>The NSPCC warns that children are targeted by scams promising free in-game currency (V-Bucks, Robux). These lead children to reveal their username and password on fake websites. <sup>[7]</sup> This is a persistent threat across all major titles.</p>
+          </div>
+
+          <div class="risk-tile" role="listitem">
+            <span class="rt-icon" aria-hidden="true">⏰</span>
+            <h3>Excessive screen time &amp; addiction</h3>
+            <p>Ofcom's research found 8–12 year olds spend an average of 3 hours 5 minutes per day online. Games are specifically designed with engagement-maximising mechanics. The NHS-funded National Centre for Gaming Disorders provides therapy for gaming addiction. <sup>[5]</sup></p>
+          </div>
+
+          <div class="risk-tile" role="listitem">
+            <span class="rt-icon" aria-hidden="true">🔞</span>
+            <h3>Age-inappropriate content</h3>
+            <p>GTA V (PEGI 18) and Call of Duty: Warzone (PEGI 18) are regularly played by under-18s. GTA V includes sequences of strong violence, torture, sexual content, graphic nudity, and drug use. Despite this, these games appear frequently in children's gaming activity. <sup>[9]</sup></p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- GAME-BY-GAME BREAKDOWN -->
+    <section class="section band--gray" aria-labelledby="breakdown-heading">
+      <div class="container">
+        <span class="eyebrow">Per-game detail — NSPCC, Internet Matters, Hwb Wales</span>
+        <h2 id="breakdown-heading" style="margin-bottom:var(--space-3);">Game-by-game risk &amp; safety breakdown</h2>
+        <p class="text-lead" style="margin-bottom:var(--space-8);">Each card covers the specific concerns identified by UK child safety organisations for that title, along with practical steps parents can take right now.</p>
+
+        <div class="games-grid">
+
+          <!-- ROBLOX -->
+          <article class="game-card game-card--danger" aria-labelledby="card-roblox">
+            <div class="card-head">
+              <div class="card-icon" style="background:#e8f4fd;" aria-hidden="true">🟦</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-roblox">Roblox</p>
+                <div class="card-subtitle">
+                  <span class="pegi-badge pegi-pg">PEGI !</span>
+                  <span>All platforms · Free</span>
+                  <span class="badge badge--red">Highest risk</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="callout callout--danger">
+                <strong>Highest-risk game for younger children in the UK</strong>
+                Reaches 61% of UK 8–14-year-olds monthly. Combines user-generated content, voice chat, in-app purchases, and direct messaging with variable moderation. <sup>[2]</sup>
+              </div>
+              <ul class="risk-list danger" aria-label="Risks">
+                <li>Voice chat in experiences allows real-time contact with strangers — harder to recognise risk than text <sup>[6]</sup></li>
+                <li>User-generated games may contain adult themes not caught by moderation</li>
+                <li>Loot boxes present gambling-adjacent mechanics; additional restrictions apply for UK under-18s <sup>[6]</sup></li>
+                <li>Grooming via Roblox has resulted in criminal convictions in UK courts <sup>[4]</sup></li>
+                <li>Robux currency makes the real cost of purchases difficult to track</li>
+                <li>Phishing scams targeting Robux credentials are widespread <sup>[7]</sup></li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Register with your child's correct age — safety settings are tied to account age <sup>[7]</sup></li>
+                <li>Disable or restrict chat to "Friends only" for under-13s via Parental Controls</li>
+                <li>Turn off in-app purchases or set monthly Robux limits in account settings</li>
+                <li>Review and use Roblox's Content Maturity Labels to filter experience types <sup>[6]</sup></li>
+                <li>Set up your own Roblox account to manage your child's settings remotely</li>
+                <li>Visit: <a href="https://corp.roblox.com/families" target="_blank" rel="noopener noreferrer">corp.roblox.com/families</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- FORTNITE -->
+          <article class="game-card" aria-labelledby="card-fortnite">
+            <div class="card-head">
+              <div class="card-icon" style="background:#fff4e0;" aria-hidden="true">⚡</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-fortnite">Fortnite</p>
+                <div class="card-subtitle">
+                  <span class="pegi-badge pegi-12">PEGI 12</span>
+                  <span>All platforms · Free</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="callout callout--warn">
+                <strong>Widely played by under-12s despite PEGI 12 rating</strong>
+                Cartoon-style violence makes it less alarming to parents, but voice chat with random players carries real risk.
+              </div>
+              <ul class="risk-list" aria-label="Risks">
+                <li>Voice and text chat with random players on by default; UK government has named Fortnite as a target for stranger-chat restrictions <sup>[4]</sup></li>
+                <li>V-Bucks obscure actual spend; battle passes encourage regular purchase cycles</li>
+                <li>Fortnite Creative mode is user-generated — content quality varies</li>
+                <li>Seasonal FOMO mechanics drive impulsive spending</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Enable a Cabined Account for under-13s — restricts contact to friends only</li>
+                <li>Set up parental controls in Epic Games account settings to limit voice chat</li>
+                <li>Disable or manage V-Bucks purchases via device-level parental controls</li>
+                <li>Play alongside your child to understand the social dynamics</li>
+                <li>Visit: <a href="https://www.epicgames.com/help/en-US/fortnite-c75/battle-royale-c93/what-are-parental-controls-and-how-do-i-set-them-up-a3316" target="_blank" rel="noopener noreferrer">Epic Games Parental Controls</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- MINECRAFT -->
+          <article class="game-card" aria-labelledby="card-minecraft">
+            <div class="card-head">
+              <div class="card-icon" style="background:#e8f5e9;" aria-hidden="true">🟩</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-minecraft">Minecraft</p>
+                <div class="card-subtitle">
+                  <span class="pegi-badge pegi-7">PEGI 7</span>
+                  <span>All platforms · Paid</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="risk-list" aria-label="Risks">
+                <li>Public servers accessible by anyone with an account — all include a chat function <sup>[7]</sup></li>
+                <li>Third-party servers are largely unmoderated; children can access servers with adult player bases</li>
+                <li>Marketplace add-ons involve real-money purchases using Minecoins</li>
+                <li>Microsoft account requires age 13+ independently; parental accounts required for younger children</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Use Minecraft Realms (paid private server) to limit who your child plays with</li>
+                <li>Link your child's account to a Microsoft Family Safety account to manage chat and purchases</li>
+                <li>For under-13s, use Xbox privacy settings to restrict public server access</li>
+                <li>Visit: <a href="https://www.minecraft.net/en-us/about-minecraft/for-families" target="_blank" rel="noopener noreferrer">Minecraft for Families</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- EA SPORTS FC -->
+          <article class="game-card" aria-labelledby="card-easfc">
+            <div class="card-head">
+              <div class="card-icon" style="background:#e8f4fd;" aria-hidden="true">⚽</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-easfc">EA Sports FC</p>
+                <div class="card-subtitle">
+                  <span class="pegi-badge pegi-3">PEGI 3</span>
+                  <span>Console &amp; PC · Paid + FUT microtransactions</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="callout callout--warn">
+                <strong>Ultimate Team is the primary concern</strong>
+                The PEGI 3 rating applies to the base game — not the FIFA Ultimate Team mode, which involves purchasing player packs, a loot-box mechanic that has faced regulatory scrutiny across Europe.
+              </div>
+              <ul class="risk-list" aria-label="Risks">
+                <li>FUT packs are a loot-box mechanic — children spend real money on randomised player cards</li>
+                <li>Social pressure to build a competitive team drives repeated spending among peer groups</li>
+                <li>Voice chat in online matches can expose children to abusive language</li>
+                <li>EA has faced government inquiries in multiple countries over FUT pack mechanics</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Disable in-app purchases at the console level (PlayStation / Xbox family settings)</li>
+                <li>Discuss FUT packs explicitly — explain the random nature of the mechanic</li>
+                <li>Set a monthly budget if you allow any spending, and review purchase history regularly</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- GTA V -->
+          <article class="game-card game-card--danger" aria-labelledby="card-gta">
+            <div class="card-head">
+              <div class="card-icon" style="background:#fff0f0;" aria-hidden="true">🔴</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-gta">GTA V / GTA Online</p>
+                <div class="card-subtitle">
+                  <span class="pegi-badge pegi-18">PEGI 18</span>
+                  <span>Console &amp; PC · Partially free</span>
+                  <span class="badge badge--red">Not for under-18s</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="callout callout--danger">
+                <strong>Not appropriate for anyone under 18</strong>
+                PEGI 18 reflects graphic violence including a torture scene, pervasive strong language, sexual content, graphic nudity, and drug use. Despite this, it is regularly played by children drawn to roleplay communities. <sup>[9]</sup>
+              </div>
+              <ul class="risk-list danger" aria-label="Risks">
+                <li>Extreme violence, sexual content, and drug use are core to the game narrative</li>
+                <li>GTA Online exposes players to random adults via voice and text chat <sup>[9]</sup></li>
+                <li>Shark Cards (real money for in-game currency) encourage spending to keep up socially</li>
+                <li>Weekly updates and events are designed to keep players engaged indefinitely</li>
+                <li>Roleplay (RP) communities — common entry points for under-age players — are largely unmoderated</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>If your child is under 18, the recommendation from child safety organisations is not to allow this game</li>
+                <li>If access is permitted for older teens, restrict to Single Player story mode — this eliminates stranger contact <sup>[9]</sup></li>
+                <li>Disable voice and text chat: Interaction Menu → Preferences → Voice Chat: No One</li>
+                <li>Disable Shark Card purchases at the device / console level</li>
+                <li>Hwb Wales parent guide: <a href="https://hwb.gov.wales/keeping-safe-online/in-the-know/grand-theft-auto/" target="_blank" rel="noopener noreferrer">hwb.gov.wales — GTA guide</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- CALL OF DUTY -->
+          <article class="game-card game-card--danger" aria-labelledby="card-cod">
+            <div class="card-head">
+              <div class="card-icon" style="background:#1c1917;" aria-hidden="true">🎮</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-cod">Call of Duty: Warzone / Mobile</p>
+                <div class="card-subtitle">
+                  <span class="pegi-badge pegi-18">PEGI 18</span>
+                  <span>All platforms · Free-to-play</span>
+                  <span class="badge badge--red">Not for under-18s</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="callout callout--danger">
+                <strong>Not appropriate for anyone under 18 — free access lowers the barrier</strong>
+                Being free-to-play means children can download and access PEGI 18 content without parental involvement in a purchase decision.
+              </div>
+              <ul class="risk-list danger" aria-label="Risks">
+                <li>Realistic military violence with blood, strong language, and gore</li>
+                <li>Voice chat in squad play exposes children to adults without moderation</li>
+                <li>COD Points currency and battle pass encourage regular spending</li>
+                <li>Highly competitive environment can drive anxiety and compulsive play</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Use console or device parental controls to block PEGI 18 game downloads at account level</li>
+                <li>Review downloads regularly — Warzone is free and may be installed without asking</li>
+                <li>If permitted for older teens, mute all players except friends in audio settings</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- OVERWATCH 2 -->
+          <article class="game-card" aria-labelledby="card-ow2">
+            <div class="card-head">
+              <div class="card-icon" style="background:#f0f4ff;" aria-hidden="true">🦸</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-ow2">Overwatch 2</p>
+                <div class="card-subtitle">
+                  <span class="pegi-badge pegi-12">PEGI 12</span>
+                  <span>All platforms · Free</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="risk-list" aria-label="Risks">
+                <li>Voice chat in team-based play can be abusive — particularly toward younger or less skilled players</li>
+                <li>Seasonal cosmetic items and battle passes create spending pressure</li>
+                <li>Competitive ranking system can cause frustration and emotional distress</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Enable Blizzard Parental Controls to set play-time limits and restrict purchases</li>
+                <li>Mute voice chat in settings if your child is sensitive to abuse</li>
+                <li>Use the endorsement and report system to manage bad actors</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- BRAWL STARS -->
+          <article class="game-card" aria-labelledby="card-brawl">
+            <div class="card-head">
+              <div class="card-icon" style="background:#fdf4ff;" aria-hidden="true">⭐</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-brawl">Brawl Stars</p>
+                <div class="card-subtitle">
+                  <span class="pegi-badge pegi-7">PEGI 7</span>
+                  <span>Mobile · Free</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="risk-list" aria-label="Risks">
+                <li>Mobile-first design and cartoon style attract very young players well below PEGI 7</li>
+                <li>Brawl Pass and gem packs are in-app purchases that can accumulate</li>
+                <li>Loot-box "brawl boxes" provide random character unlocks</li>
+                <li>Limited chat (emoji-only in most modes) reduces contact risk, but clubs include text chat</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Disable in-app purchases on iOS (Screen Time) or Android (Family Link) at the device level</li>
+                <li>Avoid linking a payment method directly to your child's device or account</li>
+                <li>Check Club membership — Club chat is text-based and unmoderated</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- AMONG US -->
+          <article class="game-card" aria-labelledby="card-among">
+            <div class="card-head">
+              <div class="card-icon" style="background:#f0fff4;" aria-hidden="true">🔪</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-among">Among Us</p>
+                <div class="card-subtitle">
+                  <span class="pegi-badge pegi-7">PEGI 7</span>
+                  <span>All platforms · Free / Paid</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="risk-list" aria-label="Risks">
+                <li>Public lobbies are accessible to all ages — text and voice chat is unmoderated</li>
+                <li>NSPCC notes that any game with chat has the potential for grooming contact <sup>[7]</sup></li>
+                <li>The deception mechanic can introduce lying and manipulation as normalised gameplay</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Set up private lobbies with known friends only — never play in public lobbies</li>
+                <li>Use the "Local" play mode (same Wi-Fi) for younger children to eliminate stranger contact</li>
+                <li>Disable chat in settings if playing with friends via external voice apps instead</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- ROCKET LEAGUE -->
+          <article class="game-card game-card--safe" aria-labelledby="card-rl">
+            <div class="card-head">
+              <div class="card-icon" style="background:#f0f9ff;" aria-hidden="true">🚗</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-rl">Rocket League</p>
+                <div class="card-subtitle">
+                  <span class="pegi-badge pegi-3">PEGI 3</span>
+                  <span>All platforms · Free</span>
+                  <span class="badge badge--green">Lowest risk</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="callout callout--safe">
+                <strong>Lowest risk of the top 10 — but not risk-free</strong>
+                No narrative violence, simple gameplay concept, and limited chat. Generally considered a safer option for younger children with appropriate oversight.
+              </div>
+              <ul class="risk-list" aria-label="Risks">
+                <li>Quick chat system (pre-set phrases only) reduces direct stranger contact but can still be used for taunting</li>
+                <li>Rocket Pass and in-game items involve real-money purchases</li>
+                <li>Ranked competitive mode can lead to frustration and excessive play</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Restrict in-app purchases via Epic Games account settings or console controls</li>
+                <li>Encourage unranked/casual modes to reduce competitive pressure</li>
+                <li>One of the better titles to introduce children to online multiplayer with supervision</li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 10 ACTIONS -->
+    <section class="section band--white" aria-labelledby="actions-heading">
+      <div class="container">
+        <span class="eyebrow eyebrow--brand">Universal guidance — NSPCC, CEOP, Internet Matters</span>
+        <h2 id="actions-heading" style="margin-bottom:var(--space-3);">10 actions every parent should take</h2>
+        <p class="text-lead" style="margin-bottom:var(--space-8);">These steps are recommended across multiple UK child safety organisations and apply regardless of which games your child plays. <sup>[7][8][10]</sup></p>
+
+        <ol class="actions-grid" aria-label="Ten actions for parents">
+          <li class="action-item">
+            <h4>Check PEGI ratings before any game is downloaded</h4>
+            Visit <a href="https://pegi.info" target="_blank" rel="noopener noreferrer">pegi.info</a> to understand what content a rating reflects — violence, language, gambling mechanics — not just the age number.
+          </li>
+          <li class="action-item">
+            <h4>Enable parental controls on every device and platform</h4>
+            Internet Matters provides step-by-step guides for PlayStation, Xbox, Nintendo Switch, iOS, and Android at <a href="https://www.internetmatters.org/parental-controls/" target="_blank" rel="noopener noreferrer">internetmatters.org/parental-controls</a>. See also our <a href="platform-settings.html">platform settings hub</a>.
+          </li>
+          <li class="action-item">
+            <h4>Review and restrict in-app purchase access</h4>
+            Remove saved payment methods from children's devices. Use Family Sharing (iOS) or Google Family Link (Android) to require approval for every purchase.
+          </li>
+          <li class="action-item">
+            <h4>Discuss chat features explicitly</h4>
+            CEOP advises agreeing with children on who they can talk to, making clear they should never share personal information, photos, or arrange to meet someone from a game in person. <sup>[8]</sup>
+          </li>
+          <li class="action-item">
+            <h4>Know how to block and report — and teach your child too</h4>
+            Every major platform has reporting tools. The NSPCC advises watching for words like "whisper" or "private" in game chat as warning signs. <sup>[7]</sup>
+          </li>
+          <li class="action-item">
+            <h4>Place consoles and gaming devices in shared spaces</h4>
+            CEOP specifically recommends primary-age children play in the same room as a parent or carer, not in bedrooms. <sup>[8]</sup>
+          </li>
+          <li class="action-item">
+            <h4>Set time limits with the child's input</h4>
+            Agreements children help create are more likely to be followed. Use built-in screen time tools as a reinforcement mechanism, not a replacement for conversation. See our <a href="screen-time.html">screen time guide</a>.
+          </li>
+          <li class="action-item">
+            <h4>Play games together, even briefly</h4>
+            Understanding what your child is doing online builds trust and makes them more likely to tell you if something goes wrong. Ask them to show you their games.
+          </li>
+          <li class="action-item">
+            <h4>Have regular, non-judgmental check-in conversations</h4>
+            Ask open questions: "Who were you playing with tonight?" or "Has anything weird happened in a game recently?" The NSPCC's <em>Talking PANTS</em> framework extends well to online safety conversations. <sup>[7]</sup>
+          </li>
+          <li class="action-item">
+            <h4>Know where to get help if something goes wrong</h4>
+            NSPCC Helpline: <strong>0808 800 5000</strong>. Childline (for children): <a href="tel:08001111"><strong>0800 1111</strong></a>. CEOP: <a href="https://www.ceop.police.uk/Safety-Centre/" target="_blank" rel="noopener noreferrer">ceop.police.uk/Safety-Centre</a>. Or visit our <a href="get-help-now.html">get help now page</a>.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- RESOURCES -->
+    <section class="section band--gray" aria-labelledby="resources-heading">
+      <div class="container">
+        <span class="eyebrow">Further reading</span>
+        <h2 id="resources-heading" style="margin-bottom:var(--space-3);">Trusted UK resources for parents</h2>
+        <p class="text-lead" style="margin-bottom:var(--space-8);">All resources below are from UK government bodies, established charities, or officially commissioned research.</p>
+
+        <div class="resources-grid" role="list">
+          <div class="resource-card" role="listitem">
+            <span class="rc-org">NSPCC</span>
+            <p class="rc-desc">Per-game safety advice, parental control tips, and the NSPCC Helpline.</p>
+            <a class="rc-link" href="https://www.nspcc.org.uk/keeping-children-safe/online-safety/online-games/" target="_blank" rel="noopener noreferrer">nspcc.org.uk — Online Games</a>
+          </div>
+          <div class="resource-card" role="listitem">
+            <span class="rc-org">Internet Matters</span>
+            <p class="rc-desc">Step-by-step parental control guides for every device and platform; game-specific advice.</p>
+            <a class="rc-link" href="https://www.internetmatters.org/advice/apps-and-platforms/online-gaming/" target="_blank" rel="noopener noreferrer">internetmatters.org — Gaming</a>
+          </div>
+          <div class="resource-card" role="listitem">
+            <span class="rc-org">CEOP / Thinkuknow</span>
+            <p class="rc-desc">Police-led resource on online grooming, gaming-specific parent guidance, and how to report.</p>
+            <a class="rc-link" href="https://www.ceopeducation.co.uk/parents/articles/gaming/" target="_blank" rel="noopener noreferrer">ceopeducation.co.uk — Gaming</a>
+          </div>
+          <div class="resource-card" role="listitem">
+            <span class="rc-org">Ofcom</span>
+            <p class="rc-desc">Annual Children &amp; Parents: Media Use and Attitudes Report — the definitive UK data source.</p>
+            <a class="rc-link" href="https://www.ofcom.org.uk/media-use-and-attitudes/media-habits-children" target="_blank" rel="noopener noreferrer">ofcom.org.uk — Children's media</a>
+          </div>
+          <div class="resource-card" role="listitem">
+            <span class="rc-org">UK Kids Online Safety (GOV.UK)</span>
+            <p class="rc-desc">Official government resource on keeping children safe while gaming online.</p>
+            <a class="rc-link" href="https://kidsonlinesafety.campaign.gov.uk/learn/online-gaming/" target="_blank" rel="noopener noreferrer">kidsonlinesafety.campaign.gov.uk</a>
+          </div>
+          <div class="resource-card" role="listitem">
+            <span class="rc-org">Children's Commissioner</span>
+            <p class="rc-desc"><em>Digital Playgrounds</em> — 2024 report on children's own views on gaming risks and benefits.</p>
+            <a class="rc-link" href="https://assets.childrenscommissioner.gov.uk/wpuploads/2024/01/Report-Digital-playgrounds-Childrens-views-on-gaming.pdf" target="_blank" rel="noopener noreferrer">childrenscommissioner.gov.uk — PDF</a>
+          </div>
+          <div class="resource-card" role="listitem">
+            <span class="rc-org">PEGI</span>
+            <p class="rc-desc">Look up the age rating and content descriptors for any game before downloading.</p>
+            <a class="rc-link" href="https://pegi.info" target="_blank" rel="noopener noreferrer">pegi.info</a>
+          </div>
+          <div class="resource-card" role="listitem">
+            <span class="rc-org">National Centre for Gaming Disorders (NHS)</span>
+            <p class="rc-desc">NHS-funded therapy and support for children and adults with gaming addiction.</p>
+            <a class="rc-link" href="https://www.cnwl.nhs.uk/national-centre-gaming-disorders" target="_blank" rel="noopener noreferrer">cnwl.nhs.uk — Gaming Disorders</a>
+          </div>
+        </div>
+
+        <!-- Citations -->
+        <div class="citations-box" role="complementary" aria-label="Source citations">
+          <h2>Sources &amp; citations</h2>
+          <ol>
+            <li>Ofcom. (2025). <em>Top trends from our latest look at UK children's online lives</em> [Research summary including Ofcom/Behavioural Insights Team spending research]. <a href="https://www.ofcom.org.uk/media-use-and-attitudes/media-habits-children/top-trends-from-our-latest-look-at-uk-childrens-online-lives" target="_blank" rel="noopener noreferrer">ofcom.org.uk</a></li>
+            <li>Ofcom. (2025). <em>Top trends — Roblox reaches 61% of UK 8–14-year-olds</em> [Same source as above, specific Roblox reach figure]. <a href="https://www.ofcom.org.uk/media-use-and-attitudes/media-habits-children/top-trends-from-our-latest-look-at-uk-childrens-online-lives" target="_blank" rel="noopener noreferrer">ofcom.org.uk</a></li>
+            <li>Children's Commissioner for England. (January 2024). <em>Digital Playgrounds: Children's views on video gaming</em>. <a href="https://assets.childrenscommissioner.gov.uk/wpuploads/2024/01/Report-Digital-playgrounds-Childrens-views-on-gaming.pdf" target="_blank" rel="noopener noreferrer">childrenscommissioner.gov.uk (PDF)</a></li>
+            <li>UK Government / Ofcom. (2026). <em>Growing up in the online world: a national consultation</em>. <a href="https://www.gov.uk/government/consultations/growing-up-in-the-online-world-a-national-consultation" target="_blank" rel="noopener noreferrer">gov.uk</a></li>
+            <li>Qustodio / Statista. (January 2024). <em>Most popular gaming apps used by children in the United Kingdom (UK) in 2023</em>. <a href="https://www.statista.com/statistics/1124968/leading-game-apps-children-uk/" target="_blank" rel="noopener noreferrer">statista.com</a></li>
+            <li>Internet Matters. (2026). <em>Is Roblox safe for children?</em> <a href="https://www.internetmatters.org/advice/apps-and-platforms/online-gaming/roblox/" target="_blank" rel="noopener noreferrer">internetmatters.org</a></li>
+            <li>NSPCC. (2026). <em>Online games: Understand the risks and get advice to help children play safely</em>. <a href="https://www.nspcc.org.uk/keeping-children-safe/online-safety/online-games/" target="_blank" rel="noopener noreferrer">nspcc.org.uk</a></li>
+            <li>Child Exploitation and Online Protection (CEOP) / Thinkuknow. <em>Gaming: what parents and carers need to know</em>. <a href="https://www.ceopeducation.co.uk/parents/articles/gaming/" target="_blank" rel="noopener noreferrer">ceopeducation.co.uk</a></li>
+            <li>Hwb — Welsh Government Education. <em>Grand Theft Auto — keeping safe online parent guide</em>. <a href="https://hwb.gov.wales/keeping-safe-online/in-the-know/grand-theft-auto/" target="_blank" rel="noopener noreferrer">hwb.gov.wales</a></li>
+            <li>UK Government. <em>Kids Online Safety — Online Gaming</em>. <a href="https://kidsonlinesafety.campaign.gov.uk/learn/online-gaming/" target="_blank" rel="noopener noreferrer">kidsonlinesafety.campaign.gov.uk</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- RELATED -->
+    <section class="section band--gray" aria-label="Related guides">
+      <div class="container">
+        <div class="section-header--center">
+          <span class="eyebrow">Keep reading</span>
+          <h2>Related guides</h2>
+        </div>
+        <div class="grid grid-3">
+          <a href="gaming-safety.html" class="guide-card">
+            <span style="font-size:24px;" aria-hidden="true">🎮</span>
+            <h3 class="guide-card__title">Gaming safety overview</h3>
+            <p class="guide-card__desc">The broader gaming safety guide — in-game chat risks, grooming patterns and conversation scripts for parents.</p>
+          </a>
+          <a href="platform-settings.html" class="guide-card">
+            <span style="font-size:24px;" aria-hidden="true">⚙️</span>
+            <h3 class="guide-card__title">Platform settings hub</h3>
+            <p class="guide-card__desc">Step-by-step parental controls for Xbox, PlayStation, Roblox, and every app your child uses.</p>
+          </a>
+          <a href="screen-time.html" class="guide-card">
+            <span style="font-size:24px;" aria-hidden="true">⏱️</span>
+            <h3 class="guide-card__title">Screen time &amp; devices</h3>
+            <p class="guide-card__desc">NHS-backed time limits by age and how to enforce them without constant conflict.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+
+  <!-- ── FOOTER ──────────────────────────────────────────────────────── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__safeguarding" role="region" aria-label="Emergency safeguarding contacts">
+        <p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p>
+        <div class="footer__safeguarding-list">
+          <div class="footer__contact">
+            <span class="footer__contact-name">Childline</span>
+            <span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7, confidential</span>
+          </div>
+          <div class="footer__contact">
+            <span class="footer__contact-name">CEOP</span>
+            <span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a> — report exploitation</span>
+          </div>
+          <div class="footer__contact">
+            <span class="footer__contact-name">NSPCC Helpline</span>
+            <span class="footer__contact-detail"><a href="tel:08088005000" style="color:rgba(255,255,255,0.6);">0808 800 5000</a> — for adults worried about a child</span>
+          </div>
+          <div class="footer__contact">
+            <span class="footer__contact-name">Internet Watch Foundation</span>
+            <span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a> — report illegal content</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__grid">
+        <div>
+          <a href="index.html" class="footer__brand">
+            <div class="footer__brand-icon" aria-hidden="true">🛡</div>
+            SafeOnline UK
+          </a>
+          <p class="footer__tagline">Free digital safety guidance for families, young people and educators across the UK.</p>
+          <p style="font-size:var(--text-xs);color:rgba(255,255,255,0.4);margin-top:var(--space-3);">Information on this page sourced from Ofcom, NSPCC, Internet Matters, CEOP, the Children's Commissioner, and HM Government. Sources reflect data published 2024–2026.</p>
+        </div>
+        <div>
+          <p class="footer__heading">Parents &amp; carers</p>
+          <ul class="footer__links">
+            <li><a href="parents.html" class="footer__link">Parents hub</a></li>
+            <li><a href="gaming-safety.html" class="footer__link">Gaming safety</a></li>
+            <li><a href="platform-settings.html" class="footer__link">Platform settings</a></li>
+            <li><a href="screen-time.html" class="footer__link">Screen time</a></li>
+            <li><a href="conversation-guide.html" class="footer__link">Conversation guide</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__heading">Topics</p>
+          <ul class="footer__links">
+            <li><a href="social-media.html" class="footer__link">Social platforms</a></li>
+            <li><a href="ai-chatbots.html" class="footer__link">AI &amp; chatbots</a></li>
+            <li><a href="chat-messaging.html" class="footer__link">Chat &amp; messaging</a></li>
+            <li><a href="privacy.html" class="footer__link">Privacy &amp; data</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__heading">Site</p>
+          <ul class="footer__links">
+            <li><a href="kids.html" class="footer__link">Kids &amp; teens</a></li>
+            <li><a href="educators.html" class="footer__link">Educators</a></li>
+            <li><a href="get-help-now.html" class="footer__link">Get help now</a></li>
+            <li><a href="about.html" class="footer__link">About</a></li>
+            <li><a href="privacy-policy.html" class="footer__link">Privacy policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© <span id="footer-year"></span> SafeOnline UK. Free for all families. Page last updated June 2026.</p>
+        <div class="footer__legal">
+          <a href="privacy-policy.html">Privacy policy</a>
+          <a href="accessibility.html">Accessibility</a>
+          <a href="terms.html">Terms of use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    function toggleMobileMenu(btn) {
+      const menu = document.getElementById('mobile-menu');
+      const isOpen = menu.classList.contains('is-open');
+      menu.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      btn.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+    }
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

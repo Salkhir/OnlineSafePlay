@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free online safety resources — downloadable guides, checklists, lesson plans, policy templates and printable posters for parents, children and educators." />
+  <title>Resources &amp; Downloads — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>" />
+  <style>
+    .res-hero { background: linear-gradient(135deg,#0F2027 0%,#1a3a2a 100%); padding: var(--space-12) 0; }
+    .res-hero h1 { color:#fff; font-size:var(--text-3xl); margin-bottom:var(--space-3); }
+    .res-hero p  { color:rgba(255,255,255,0.8); font-size:var(--text-md); max-width:540px; line-height:1.65; }
+    .res-tabs { display:flex; gap:var(--space-2); flex-wrap:wrap; margin-bottom:var(--space-7); }
+    .res-tab { padding:9px var(--space-5); border-radius:var(--radius-md); border:1px solid var(--color-border-default); background:var(--color-bg-primary); font-size:var(--text-sm); font-weight:500; color:var(--color-text-secondary); cursor:pointer; transition:all var(--transition); font-family:var(--font-body); }
+    .res-tab.active { background:var(--color-brand); border-color:var(--color-brand); color:#fff; }
+    .res-tab:hover:not(.active) { background:var(--color-bg-secondary); color:var(--color-text-title); }
+    .res-panel { display:none; }
+    .res-panel.active { display:block; }
+    .res-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--space-4); }
+    .res-card { background:var(--color-bg-primary); border:1px solid var(--color-border-subtle); border-radius:var(--radius-xl); padding:var(--space-5); display:flex; flex-direction:column; }
+    .res-card--tool { border-color:var(--color-brand); background:var(--color-brand-light); }
+    .res-card .rc-icon { font-size:28px; margin-bottom:var(--space-3); display:block; }
+    .res-card h3 { font-size:var(--text-base); font-weight:600; color:var(--color-text-title); margin-bottom:var(--space-2); }
+    .res-card p  { font-size:var(--text-sm); color:var(--color-text-secondary); line-height:1.6; flex:1; margin-bottom:var(--space-4); }
+    .res-card--tool p { color:#085041; }
+    .res-card .rc-meta { display:flex; gap:var(--space-2); flex-wrap:wrap; margin-bottom:var(--space-3); }
+    .res-card .rc-actions { display:flex; gap:var(--space-2); margin-top:auto; flex-wrap:wrap; }
+    .rc-btn { font-size:var(--text-xs); font-weight:600; padding:6px var(--space-3); border-radius:var(--radius-md); text-decoration:none; display:inline-flex; align-items:center; gap:var(--space-1); transition:all var(--transition); }
+    .rc-btn--primary { background:var(--color-brand); color:#fff; border:1px solid var(--color-brand); }
+    .rc-btn--primary:hover { background:var(--color-brand-dark); color:#fff; }
+    .rc-btn--secondary { background:transparent; color:var(--color-brand); border:1px solid var(--color-brand); }
+    .rc-btn--secondary:hover { background:var(--color-brand-light); color:var(--color-brand); }
+
+    /* External org resources */
+    .ext-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--space-4); }
+    .ext-card { background:var(--color-bg-primary); border:1px solid var(--color-border-subtle); border-radius:var(--radius-lg); padding:var(--space-5); }
+    .ext-card h3 { font-size:var(--text-base); font-weight:600; color:var(--color-text-title); margin-bottom:var(--space-2); display:flex; align-items:center; gap:var(--space-2); }
+    .ext-card h3 i { font-size:18px; color:var(--color-brand); }
+    .ext-card p  { font-size:var(--text-sm); color:var(--color-text-secondary); line-height:1.6; margin-bottom:var(--space-3); }
+    .ext-links { display:flex; flex-direction:column; gap:var(--space-2); }
+    .ext-link { font-size:var(--text-sm); color:var(--color-brand); text-decoration:none; display:flex; align-items:center; gap:var(--space-2); }
+    .ext-link:hover { text-decoration:underline; }
+    .ext-link i { font-size:12px; }
+
+    /* App ratings section */
+    .ratings-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:var(--space-3); }
+    .rating-card { background:var(--color-bg-primary); border:1px solid var(--color-border-subtle); border-radius:var(--radius-lg); padding:var(--space-4); text-align:center; text-decoration:none; color:inherit; display:block; transition:background var(--transition); }
+    .rating-card:hover { background:var(--color-bg-secondary); color:inherit; }
+    .rating-card .icon { font-size:28px; margin-bottom:var(--space-2); display:block; }
+    .rating-card h4 { font-size:var(--text-sm); font-weight:600; margin-bottom:var(--space-1); }
+    .rating-card p  { font-size:var(--text-xs); color:var(--color-text-secondary); }
+
+    @media(max-width:1023px){ .res-grid{grid-template-columns:repeat(2,minmax(0,1fr));} }
+    @media(max-width:767px){ .res-grid,.ext-grid,.ratings-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert"><p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p><a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a></div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list"><li><a href="parents.html" class="nav__link">Parents</a></li><li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li><li><a href="educators.html" class="nav__link">Educators</a></li><li><a href="resources.html" class="nav__link nav__link--active" aria-current="page">Resources</a></li><li><a href="about.html" class="nav__link">About</a></li></ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile"><a href="parents.html" class="nav__link">Parents</a><a href="kids.html" class="nav__link">Kids &amp; teens</a><a href="educators.html" class="nav__link">Educators</a><a href="resources.html" class="nav__link">Resources</a><a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a></div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section class="res-hero" aria-label="Resources introduction">
+      <div class="container">
+        <span class="eyebrow" style="color:#5DCAA5;">Free for everyone</span>
+        <h1>Resources &amp; downloads</h1>
+        <p>Everything on this page is free. Browse by audience, or search for what you need. Interactive tools run in your browser — nothing is stored or sent anywhere.</p>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="Resources by audience">
+      <div class="container">
+
+        <div class="res-tabs" role="tablist" aria-label="Browse by audience">
+          <button class="res-tab active" role="tab" aria-selected="true" aria-controls="res-all"       onclick="switchRes('all',this)">All resources</button>
+          <button class="res-tab"        role="tab" aria-selected="false" aria-controls="res-parents"   onclick="switchRes('parents',this)">For parents</button>
+          <button class="res-tab"        role="tab" aria-selected="false" aria-controls="res-educators" onclick="switchRes('educators',this)">For educators</button>
+          <button class="res-tab"        role="tab" aria-selected="false" aria-controls="res-kids"      onclick="switchRes('kids',this)">For young people</button>
+          <button class="res-tab"        role="tab" aria-selected="false" aria-controls="res-tools"     onclick="switchRes('tools',this)">Interactive tools</button>
+        </div>
+
+        <!-- ALL / PARENTS panel -->
+        <div id="res-all" class="res-panel active" role="tabpanel">
+
+          <p class="eyebrow" style="margin-bottom:var(--space-5);">Interactive tools — run in your browser, nothing stored</p>
+          <div class="res-grid" style="margin-bottom:var(--space-8);">
+            <div class="res-card res-card--tool">
+              <span class="rc-icon" aria-hidden="true">💚</span>
+              <h3>Family safety check</h3>
+              <p>10 gentle questions about your family's online setup. Get personalised suggestions in about 5 minutes.</p>
+              <div class="rc-meta"><span class="badge badge--green">Interactive</span><span class="badge badge--gray">5 min</span></div>
+              <div class="rc-actions"><a href="family-safety-check.html" class="rc-btn rc-btn--primary"><i class="ti ti-arrow-right" aria-hidden="true"></i> Start the check</a></div>
+            </div>
+            <div class="res-card res-card--tool">
+              <span class="rc-icon" aria-hidden="true">💬</span>
+              <h3>Conversation guide</h3>
+              <p>Age-matched scripts for talking to your child — Under 7, 8–12, and 13–17. What to say, what not to say, and when to say it.</p>
+              <div class="rc-meta"><span class="badge badge--green">Interactive</span><span class="badge badge--gray">3 age groups</span></div>
+              <div class="rc-actions"><a href="conversation-guide.html" class="rc-btn rc-btn--primary"><i class="ti ti-arrow-right" aria-hidden="true"></i> Get scripts</a></div>
+            </div>
+            <div class="res-card res-card--tool">
+              <span class="rc-icon" aria-hidden="true">📄</span>
+              <h3>Family tech contract builder</h3>
+              <p>Build and print a personalised family agreement — screen time limits, online rules, consequences, and parent commitments. Live preview as you type.</p>
+              <div class="rc-meta"><span class="badge badge--green">Interactive · Printable</span></div>
+              <div class="rc-actions"><a href="tech-contract.html" class="rc-btn rc-btn--primary"><i class="ti ti-arrow-right" aria-hidden="true"></i> Build contract</a></div>
+            </div>
+            <div class="res-card res-card--tool">
+              <span class="rc-icon" aria-hidden="true">⚙️</span>
+              <h3>Platform settings hub</h3>
+              <p>Step-by-step guides for TikTok, Instagram, Snapchat, Discord, Roblox, YouTube, Xbox, PlayStation, iPhone and Android.</p>
+              <div class="rc-meta"><span class="badge badge--green">Interactive</span><span class="badge badge--gray">10 platforms</span></div>
+              <div class="rc-actions"><a href="platform-settings.html" class="rc-btn rc-btn--primary"><i class="ti ti-arrow-right" aria-hidden="true"></i> Set up controls</a></div>
+            </div>
+            <div class="res-card res-card--tool">
+              <span class="rc-icon" aria-hidden="true">👁️</span>
+              <h3>Warning signs checker</h3>
+              <p>16 behavioural warning signs organised by concern level — filterable, with guidance on what to do next for each one.</p>
+              <div class="rc-meta"><span class="badge badge--green">Interactive</span><span class="badge badge--gray">16 signs</span></div>
+              <div class="rc-actions"><a href="red-flags.html" class="rc-btn rc-btn--primary"><i class="ti ti-arrow-right" aria-hidden="true"></i> View signs</a></div>
+            </div>
+            <div class="res-card res-card--tool">
+              <span class="rc-icon" aria-hidden="true">🚨</span>
+              <h3>Get help now — emergency protocols</h3>
+              <p>Step-by-step guidance for six scenarios: grooming, image sharing, sextortion, cyberbullying, upsetting content, and AI concerns. Immediate contacts included.</p>
+              <div class="rc-meta"><span class="badge badge--red">Urgent help</span><span class="badge badge--gray">6 scenarios</span></div>
+              <div class="rc-actions"><a href="get-help-now.html" class="rc-btn rc-btn--primary" style="background:var(--color-alert);border-color:var(--color-alert);"><i class="ti ti-arrow-right" aria-hidden="true"></i> Open now</a></div>
+            </div>
+          </div>
+
+          <p class="eyebrow" style="margin-bottom:var(--space-5);">Guides &amp; deep dives — cited research</p>
+          <div class="res-grid" style="margin-bottom:var(--space-8);">
+            <div class="res-card">
+              <span class="rc-icon" aria-hidden="true">🎮</span>
+              <h3>Gaming safety — overview</h3>
+              <p>In-game chat risks, loot boxes, spending, live streaming dangers, and conversation scripts for parents.</p>
+              <div class="rc-meta"><span class="badge badge--red">High risk</span><span class="badge badge--gray">8 min read</span></div>
+              <div class="rc-actions"><a href="gaming-safety.html" class="rc-btn rc-btn--primary">Read guide</a></div>
+            </div>
+            <div class="res-card">
+              <span class="rc-icon" aria-hidden="true">📊</span>
+              <h3>Top 10 online games — deep dive</h3>
+              <p>Roblox, Fortnite, GTA V, Call of Duty and 6 more. Per-game risk breakdowns, PEGI ratings, and action steps. Sourced from Ofcom, NSPCC and CEOP.</p>
+              <div class="rc-meta"><span class="badge badge--green">Cited research</span><span class="badge badge--gray">10 games</span></div>
+              <div class="rc-actions"><a href="online-games-safety.html" class="rc-btn rc-btn--primary">Read guide</a></div>
+            </div>
+            <div class="res-card">
+              <span class="rc-icon" aria-hidden="true">📱</span>
+              <h3>Top 10 social platforms — deep dive</h3>
+              <p>TikTok, Instagram, Snapchat, YouTube, Discord and 5 more. Per-platform risks and action steps. Sourced from Ofcom, NSPCC and ICO.</p>
+              <div class="rc-meta"><span class="badge badge--green">Cited research</span><span class="badge badge--gray">10 platforms</span></div>
+              <div class="rc-actions"><a href="social-platforms-top10.html" class="rc-btn rc-btn--primary">Read guide</a></div>
+            </div>
+            <div class="res-card">
+              <span class="rc-icon" aria-hidden="true">🤖</span>
+              <h3>AI chatbots &amp; companion apps</h3>
+              <p>Character.AI, Replika, Snapchat My AI — why they feel real, the specific risks, and what parents can do right now.</p>
+              <div class="rc-meta"><span class="badge badge--new">New risk</span><span class="badge badge--gray">7 min read</span></div>
+              <div class="rc-actions"><a href="ai-chatbots.html" class="rc-btn rc-btn--primary">Read guide</a></div>
+            </div>
+            <div class="res-card">
+              <span class="rc-icon" aria-hidden="true">💬</span>
+              <h3>Chat &amp; messaging risks</h3>
+              <p>Discord, WhatsApp, DMs — how grooming progresses, what the law says about sexting, and what parents can do.</p>
+              <div class="rc-meta"><span class="badge badge--amber">Medium risk</span><span class="badge badge--gray">9 min read</span></div>
+              <div class="rc-actions"><a href="chat-messaging.html" class="rc-btn rc-btn--primary">Read guide</a></div>
+            </div>
+            <div class="res-card">
+              <span class="rc-icon" aria-hidden="true">🔒</span>
+              <h3>Privacy &amp; data</h3>
+              <p>Photo location data, what apps collect, account security, and five things to do right now.</p>
+              <div class="rc-meta"><span class="badge badge--green">Privacy</span><span class="badge badge--gray">5 min read</span></div>
+              <div class="rc-actions"><a href="privacy.html" class="rc-btn rc-btn--primary">Read guide</a></div>
+            </div>
+          </div>
+
+          <p class="eyebrow" style="margin-bottom:var(--space-5);">For educators — lesson plans &amp; policies</p>
+          <div class="res-grid">
+            <div class="res-card">
+              <span class="rc-icon" aria-hidden="true">📚</span>
+              <h3>Lesson plan library</h3>
+              <p>8 lesson plans across KS1–4 covering gaming, cyberbullying, AI companions, image sharing, privacy, and social media. Each includes plan, slides, and activities.</p>
+              <div class="rc-meta"><span class="badge badge--blue">KS1–4</span><span class="badge badge--gray">8 plans</span></div>
+              <div class="rc-actions"><a href="educators.html#lessons" class="rc-btn rc-btn--primary">Browse lessons</a></div>
+            </div>
+            <div class="res-card">
+              <span class="rc-icon" aria-hidden="true">📋</span>
+              <h3>Policy templates</h3>
+              <p>Editable Word templates: online safety policy, student AUP, staff social media policy, governor briefing, and parent engagement plan. All aligned to KCSIE 2024.</p>
+              <div class="rc-meta"><span class="badge badge--blue">KCSIE 2024</span><span class="badge badge--gray">.docx &amp; .pdf</span></div>
+              <div class="rc-actions"><a href="educators.html#policies" class="rc-btn rc-btn--primary">View templates</a></div>
+            </div>
+            <div class="res-card">
+              <span class="rc-icon" aria-hidden="true">🛡️</span>
+              <h3>Incident response protocols</h3>
+              <p>DSL-ready protocols for cyberbullying, image sharing, grooming disclosure, sextortion, AI dependency, and mental health crisis. Aligned to CEOP referral pathways.</p>
+              <div class="rc-meta"><span class="badge badge--red">DSL</span><span class="badge badge--gray">6 protocols</span></div>
+              <div class="rc-actions"><a href="educators.html#incidents" class="rc-btn rc-btn--primary">View protocols</a></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- PARENTS panel -->
+        <div id="res-parents" class="res-panel" role="tabpanel">
+          <div class="res-grid">
+            <div class="res-card res-card--tool"><span class="rc-icon" aria-hidden="true">💚</span><h3>Family safety check</h3><p>5-minute check on your family's setup with personalised suggestions.</p><div class="rc-actions"><a href="family-safety-check.html" class="rc-btn rc-btn--primary">Start the check</a></div></div>
+            <div class="res-card res-card--tool"><span class="rc-icon" aria-hidden="true">💬</span><h3>Conversation guide</h3><p>Age-matched scripts — Under 7, 8–12, 13–17 — with what to say and what to avoid.</p><div class="rc-actions"><a href="conversation-guide.html" class="rc-btn rc-btn--primary">Get scripts</a></div></div>
+            <div class="res-card res-card--tool"><span class="rc-icon" aria-hidden="true">📄</span><h3>Family tech contract builder</h3><p>Build and print your family agreement. Live preview, nothing stored.</p><div class="rc-actions"><a href="tech-contract.html" class="rc-btn rc-btn--primary">Build contract</a></div></div>
+            <div class="res-card res-card--tool"><span class="rc-icon" aria-hidden="true">⚙️</span><h3>Platform settings hub</h3><p>Step-by-step guides for 10 platforms and devices your child uses.</p><div class="rc-actions"><a href="platform-settings.html" class="rc-btn rc-btn--primary">Set up controls</a></div></div>
+            <div class="res-card res-card--tool"><span class="rc-icon" aria-hidden="true">👁️</span><h3>Warning signs checker</h3><p>16 behavioural warning signs with filter by concern level and guidance.</p><div class="rc-actions"><a href="red-flags.html" class="rc-btn rc-btn--primary">View signs</a></div></div>
+            <div class="res-card"><span class="rc-icon" aria-hidden="true">🎮</span><h3>Top 10 games guide</h3><p>Roblox, Fortnite, GTA V, Call of Duty and more — cited risks and action steps.</p><div class="rc-actions"><a href="online-games-safety.html" class="rc-btn rc-btn--primary">Read guide</a></div></div>
+            <div class="res-card"><span class="rc-icon" aria-hidden="true">📱</span><h3>Top 10 social platforms guide</h3><p>TikTok, Instagram, Snapchat, Discord and more — cited risks and action steps.</p><div class="rc-actions"><a href="social-platforms-top10.html" class="rc-btn rc-btn--primary">Read guide</a></div></div>
+            <div class="res-card"><span class="rc-icon" aria-hidden="true">🤖</span><h3>AI chatbots guide</h3><p>Character.AI, Replika and companion apps — what parents need to know.</p><div class="rc-actions"><a href="ai-chatbots.html" class="rc-btn rc-btn--primary">Read guide</a></div></div>
+            <div class="res-card"><span class="rc-icon" aria-hidden="true">⏱️</span><h3>Screen time guide</h3><p>NHS-backed limits, device controls, sleep hygiene, phone-free zones.</p><div class="rc-actions"><a href="screen-time.html" class="rc-btn rc-btn--primary">Read guide</a></div></div>
+          </div>
+        </div>
+
+        <!-- EDUCATORS panel -->
+        <div id="res-educators" class="res-panel" role="tabpanel">
+          <div class="res-grid">
+            <div class="res-card"><span class="rc-icon" aria-hidden="true">📚</span><h3>Full educators hub</h3><p>Lesson plans, incident protocols, CPD modules, assembly packs and policy templates — all in one place.</p><div class="rc-actions"><a href="educators.html" class="rc-btn rc-btn--primary">Go to educators hub</a></div></div>
+            <div class="res-card"><span class="rc-icon" aria-hidden="true">📋</span><h3>Policy templates</h3><p>Online safety policy, student AUP, staff social media policy, governor briefing. Editable .docx, aligned to KCSIE 2024.</p><div class="rc-actions"><a href="educators.html#policies" class="rc-btn rc-btn--primary">View templates</a></div></div>
+            <div class="res-card"><span class="rc-icon" aria-hidden="true">🛡️</span><h3>Incident protocols for DSLs</h3><p>CEOP-aligned protocols for 6 incident types: cyberbullying, image sharing, grooming, sextortion, AI dependency, mental health crisis.</p><div class="rc-actions"><a href="educators.html#incidents" class="rc-btn rc-btn--primary">View protocols</a></div></div>
+            <div class="res-card"><span class="rc-icon" aria-hidden="true">📊</span><h3>Top 10 games — cited guide</h3><p>Sourceable data for school communications. Ofcom, NSPCC and CEOP citations throughout.</p><div class="rc-actions"><a href="online-games-safety.html" class="rc-btn rc-btn--primary">Read guide</a></div></div>
+            <div class="res-card"><span class="rc-icon" aria-hidden="true">📱</span><h3>Top 10 social platforms — cited guide</h3><p>ICO, Ofcom and Children's Commissioner sources. Suitable for governor briefings and parent communications.</p><div class="rc-actions"><a href="social-platforms-top10.html" class="rc-btn rc-btn--primary">Read guide</a></div></div>
+            <div class="res-card"><span class="rc-icon" aria-hidden="true">🎓</span><h3>CPD modules for staff</h3><p>4 modules: foundations, DSL update 2026, recognising online harm, teaching AI literacy. INSET-ready.</p><div class="rc-actions"><a href="educators.html" class="rc-btn rc-btn--primary">View CPD modules</a></div></div>
+          </div>
+        </div>
+
+        <!-- KIDS panel -->
+        <div id="res-kids" class="res-panel" role="tabpanel">
+          <div class="res-grid">
+            <div class="res-card res-card--tool"><span class="rc-icon" aria-hidden="true">🌟</span><h3>Under 7 — Little ones</h3><p>Simple rules, the PANTS rule, a fun quiz, and who to tell if something feels wrong.</p><div class="rc-actions"><a href="kids-under7.html" class="rc-btn rc-btn--primary">Go to Under 7 section</a></div></div>
+            <div class="res-card res-card--tool"><span class="rc-icon" aria-hidden="true">🎮</span><h3>Ages 8–12 — Explorers</h3><p>Gaming safely, screenshots, chatting online, what to do when something goes wrong. Scenario quizzes included.</p><div class="rc-actions"><a href="kids-8to12.html" class="rc-btn rc-btn--primary">Go to 8–12 section</a></div></div>
+            <div class="res-card res-card--tool"><span class="rc-icon" aria-hidden="true">📱</span><h3>Ages 13–17 — Teens</h3><p>AI relationships, image sharing and the law, sextortion, digital footprint, helping a friend. Myth vs fact.</p><div class="rc-actions"><a href="kids-13to17.html" class="rc-btn rc-btn--primary">Go to 13–17 section</a></div></div>
+          </div>
+          <div style="background:var(--color-alert-light);border:1px solid var(--color-alert-border);border-radius:var(--radius-lg);padding:var(--space-5) var(--space-6);margin-top:var(--space-5);display:flex;gap:var(--space-4);align-items:center;">
+            <i class="ti ti-phone" style="font-size:24px;color:var(--color-alert);flex-shrink:0;" aria-hidden="true"></i>
+            <p style="font-size:var(--text-sm);color:#501313;margin:0;line-height:1.6;">For young people who need to talk to someone: <strong>Childline</strong> is free, confidential, and available 24/7. Call <a href="tel:08001111" style="color:var(--color-alert);font-weight:700;">0800 1111</a> or chat at <a href="https://www.childline.org.uk" target="_blank" rel="noopener noreferrer" style="color:var(--color-alert);font-weight:700;">childline.org.uk</a>. You don't have to give your name.</p>
+          </div>
+        </div>
+
+        <!-- TOOLS panel -->
+        <div id="res-tools" class="res-panel" role="tabpanel">
+          <div class="res-grid">
+            <div class="res-card res-card--tool"><span class="rc-icon" aria-hidden="true">💚</span><h3>Family safety check</h3><p>10 gentle questions, personalised suggestions. Nothing stored. 5 minutes.</p><div class="rc-actions"><a href="family-safety-check.html" class="rc-btn rc-btn--primary">Start the check</a></div></div>
+            <div class="res-card res-card--tool"><span class="rc-icon" aria-hidden="true">💬</span><h3>Conversation guide</h3><p>Interactive age-switcher with scripts for Under 7, 8–12, and 13–17.</p><div class="rc-actions"><a href="conversation-guide.html" class="rc-btn rc-btn--primary">Open guide</a></div></div>
+            <div class="res-card res-card--tool"><span class="rc-icon" aria-hidden="true">📄</span><h3>Family tech contract builder</h3><p>Live-preview contract builder — fill in, preview, print as PDF. Nothing sent anywhere.</p><div class="rc-actions"><a href="tech-contract.html" class="rc-btn rc-btn--primary">Build contract</a></div></div>
+            <div class="res-card res-card--tool"><span class="rc-icon" aria-hidden="true">⚙️</span><h3>Platform settings hub</h3><p>10-platform interactive guide — click a platform, get step-by-step controls.</p><div class="rc-actions"><a href="platform-settings.html" class="rc-btn rc-btn--primary">Set up controls</a></div></div>
+            <div class="res-card res-card--tool"><span class="rc-icon" aria-hidden="true">👁️</span><h3>Warning signs checker</h3><p>Filterable list of 16 warning signs with contextual guidance for each one.</p><div class="rc-actions"><a href="red-flags.html" class="rc-btn rc-btn--primary">View signs</a></div></div>
+            <div class="res-card res-card--tool"><span class="rc-icon" aria-hidden="true">🚨</span><h3>Get help now</h3><p>Tab-switched emergency protocols for 6 scenarios. Direct links to CEOP, Childline, IWF and Revenge Porn Helpline.</p><div class="rc-actions"><a href="get-help-now.html" class="rc-btn rc-btn--primary" style="background:var(--color-alert);border-color:var(--color-alert);">Open now</a></div></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- PEGI / APP RATINGS -->
+    <section class="section band--gray" aria-label="App and game ratings">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow">Age ratings</span><h2>How to check if an app or game is age-appropriate</h2><p class="text-secondary">These are the official rating systems used in the UK. Check before downloading.</p></div>
+        <div class="ratings-grid" role="list">
+          <a href="https://pegi.info" target="_blank" rel="noopener noreferrer" class="rating-card" role="listitem"><span class="icon" aria-hidden="true">🎮</span><h4>PEGI</h4><p>Pan European Game Information — age ratings for all video games sold in the UK</p></a>
+          <a href="https://www.bbfc.co.uk" target="_blank" rel="noopener noreferrer" class="rating-card" role="listitem"><span class="icon" aria-hidden="true">🎬</span><h4>BBFC</h4><p>British Board of Film Classification — ratings for streaming and video content</p></a>
+          <a href="https://www.commonsensemedia.org" target="_blank" rel="noopener noreferrer" class="rating-card" role="listitem"><span class="icon" aria-hidden="true">⭐</span><h4>Common Sense Media</h4><p>Independent ratings and reviews for apps, games, films and TV. Parent and child reviews.</p></a>
+          <a href="https://www.internetmatters.org/advice/apps-and-platforms/" target="_blank" rel="noopener noreferrer" class="rating-card" role="listitem"><span class="icon" aria-hidden="true">🌐</span><h4>Internet Matters — app guides</h4><p>Platform-by-platform parent guides for every major app and social network</p></a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- TRUSTED EXTERNAL RESOURCES -->
+    <section class="section band--white" aria-label="Trusted external organisations">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow">Trusted organisations</span><h2>Further resources from UK safety bodies</h2></div>
+        <div class="ext-grid" role="list">
+          <div class="ext-card" role="listitem">
+            <h3><i class="ti ti-shield" aria-hidden="true"></i> CEOP &amp; Thinkuknow</h3>
+            <p>Police-led educational resources on online safety, grooming, and how to report exploitation.</p>
+            <div class="ext-links">
+              <a href="https://www.ceopeducation.co.uk" target="_blank" rel="noopener noreferrer" class="ext-link"><i class="ti ti-external-link" aria-hidden="true"></i> ceopeducation.co.uk — resources for educators and parents</a>
+              <a href="https://www.ceop.police.uk/Safety-Centre/" target="_blank" rel="noopener noreferrer" class="ext-link"><i class="ti ti-flag" aria-hidden="true"></i> ceop.police.uk — report online exploitation now</a>
+            </div>
+          </div>
+          <div class="ext-card" role="listitem">
+            <h3><i class="ti ti-heart" aria-hidden="true"></i> NSPCC</h3>
+            <p>The UK's leading child protection charity — online safety guides, research, and a professional helpline.</p>
+            <div class="ext-links">
+              <a href="https://www.nspcc.org.uk/keeping-children-safe/online-safety/" target="_blank" rel="noopener noreferrer" class="ext-link"><i class="ti ti-external-link" aria-hidden="true"></i> nspcc.org.uk — online safety hub</a>
+              <a href="tel:08088005000" class="ext-link"><i class="ti ti-phone" aria-hidden="true"></i> 0808 800 5000 — helpline for adults worried about a child</a>
+            </div>
+          </div>
+          <div class="ext-card" role="listitem">
+            <h3><i class="ti ti-phone" aria-hidden="true"></i> Childline</h3>
+            <p>Free, confidential support for children and young people — 24 hours a day, 7 days a week.</p>
+            <div class="ext-links">
+              <a href="https://www.childline.org.uk" target="_blank" rel="noopener noreferrer" class="ext-link"><i class="ti ti-external-link" aria-hidden="true"></i> childline.org.uk — chat online anytime</a>
+              <a href="tel:08001111" class="ext-link"><i class="ti ti-phone" aria-hidden="true"></i> 0800 1111 — free, 24/7, no need to give your name</a>
+            </div>
+          </div>
+          <div class="ext-card" role="listitem">
+            <h3><i class="ti ti-world" aria-hidden="true"></i> Internet Matters</h3>
+            <p>Platform-specific guides, parental control walkthroughs, and age-appropriate advice for families.</p>
+            <div class="ext-links">
+              <a href="https://www.internetmatters.org" target="_blank" rel="noopener noreferrer" class="ext-link"><i class="ti ti-external-link" aria-hidden="true"></i> internetmatters.org — guides by age and platform</a>
+              <a href="https://www.internetmatters.org/parental-controls/" target="_blank" rel="noopener noreferrer" class="ext-link"><i class="ti ti-settings" aria-hidden="true"></i> Parental controls guide — every device</a>
+            </div>
+          </div>
+          <div class="ext-card" role="listitem">
+            <h3><i class="ti ti-camera-off" aria-hidden="true"></i> Revenge Porn Helpline</h3>
+            <p>Free specialist support for anyone whose intimate images have been shared without consent. Image removal service.</p>
+            <div class="ext-links">
+              <a href="https://revengepornhelpline.org.uk" target="_blank" rel="noopener noreferrer" class="ext-link"><i class="ti ti-external-link" aria-hidden="true"></i> revengepornhelpline.org.uk</a>
+              <a href="tel:03456000459" class="ext-link"><i class="ti ti-phone" aria-hidden="true"></i> 0345 600 0459 — Mon–Fri 10am–4pm</a>
+            </div>
+          </div>
+          <div class="ext-card" role="listitem">
+            <h3><i class="ti ti-eye" aria-hidden="true"></i> Internet Watch Foundation</h3>
+            <p>Report illegal content online — including sexual images of children. Works to remove content from the internet.</p>
+            <div class="ext-links">
+              <a href="https://www.iwf.org.uk/report/" target="_blank" rel="noopener noreferrer" class="ext-link"><i class="ti ti-flag" aria-hidden="true"></i> iwf.org.uk/report — report illegal content</a>
+              <a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" class="ext-link"><i class="ti ti-external-link" aria-hidden="true"></i> iwf.org.uk — about the IWF</a>
+            </div>
+          </div>
+          <div class="ext-card" role="listitem">
+            <h3><i class="ti ti-building-hospital" aria-hidden="true"></i> Young Minds</h3>
+            <p>Mental health support for children and young people — including resources for online-related anxiety and distress.</p>
+            <div class="ext-links">
+              <a href="https://www.youngminds.org.uk" target="_blank" rel="noopener noreferrer" class="ext-link"><i class="ti ti-external-link" aria-hidden="true"></i> youngminds.org.uk</a>
+              <a href="https://www.youngminds.org.uk/young-person/coping-with-life/social-media-and-mental-health/" target="_blank" rel="noopener noreferrer" class="ext-link"><i class="ti ti-arrow-right" aria-hidden="true"></i> Social media and mental health guide</a>
+            </div>
+          </div>
+          <div class="ext-card" role="listitem">
+            <h3><i class="ti ti-device-gamepad-2" aria-hidden="true"></i> National Centre for Gaming Disorders</h3>
+            <p>NHS-funded therapy for children and adults experiencing gaming addiction or related mental health issues.</p>
+            <div class="ext-links">
+              <a href="https://www.cnwl.nhs.uk/national-centre-gaming-disorders" target="_blank" rel="noopener noreferrer" class="ext-link"><i class="ti ti-external-link" aria-hidden="true"></i> cnwl.nhs.uk — gaming disorders</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo"><div class="container"><div class="footer__safeguarding" role="region"><p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p><div class="footer__safeguarding-list"><div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div><div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span></div></div></div><div class="footer__grid"><div><a href="index.html" class="footer__brand"><div class="footer__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a><p class="footer__tagline">Free digital safety guidance for families, young people and educators across the UK.</p></div><div><p class="footer__heading">Parents &amp; carers</p><ul class="footer__links"><li><a href="family-safety-check.html" class="footer__link">Family safety check</a></li><li><a href="conversation-guide.html" class="footer__link">Conversation guide</a></li><li><a href="platform-settings.html" class="footer__link">Platform settings hub</a></li><li><a href="tech-contract.html" class="footer__link">Family tech contract</a></li><li><a href="red-flags.html" class="footer__link">Warning signs checker</a></li></ul></div><div><p class="footer__heading">Topics</p><ul class="footer__links"><li><a href="gaming-safety.html" class="footer__link">Gaming safety</a></li><li><a href="social-media.html" class="footer__link">Social platforms</a></li><li><a href="ai-chatbots.html" class="footer__link">AI &amp; chatbots</a></li><li><a href="chat-messaging.html" class="footer__link">Chat &amp; messaging</a></li><li><a href="screen-time.html" class="footer__link">Screen time</a></li></ul></div><div><p class="footer__heading">Site</p><ul class="footer__links"><li><a href="educators.html" class="footer__link">Educators</a></li><li><a href="kids.html" class="footer__link">Kids &amp; teens</a></li><li><a href="about.html" class="footer__link">About us</a></li><li><a href="contact.html" class="footer__link">Contact</a></li><li><a href="privacy-policy.html" class="footer__link">Privacy policy</a></li></ul></div></div><div class="footer__bottom"><p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p><div class="footer__legal"><a href="privacy-policy.html">Privacy policy</a><a href="accessibility.html">Accessibility</a><a href="contact.html">Contact</a></div></div></div></footer>
+
+  <script>
+    function toggleMobileMenu(btn){const m=document.getElementById('mobile-menu');const o=m.classList.contains('is-open');m.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(!o));}
+    function switchRes(id, btn) {
+      document.querySelectorAll('.res-panel').forEach(p=>{p.classList.remove('active');});
+      document.querySelectorAll('.res-tab').forEach(t=>{t.classList.remove('active');t.setAttribute('aria-selected','false');});
+      document.getElementById('res-'+id).classList.add('active');
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
+    }
+    document.getElementById('footer-year').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Warning signs that something may be wrong online — behavioural red flags parents should watch for, organised by concern level, with guidance on what to do next." />
+  <title>Warning Signs Checker — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>" />
+  <style>
+    .flags-hero { background: var(--color-alert-light); border-bottom: 3px solid var(--color-alert-border); padding: var(--space-12) 0; }
+    .flags-hero h1 { color: #501313; font-size: var(--text-3xl); margin-bottom: var(--space-3); }
+    .flags-hero p  { color: #791F1F; font-size: var(--text-md); max-width: 560px; line-height: 1.65; }
+
+    /* Filter tabs */
+    .filter-tabs { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-6); }
+    .filter-tab { padding: 8px var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--color-border-default); background: var(--color-bg-primary); font-size: var(--text-sm); font-weight: 500; color: var(--color-text-secondary); cursor: pointer; transition: all var(--transition); font-family: var(--font-body); }
+    .filter-tab:hover { background: var(--color-bg-secondary); color: var(--color-text-title); }
+    .filter-tab.active-red    { background: var(--color-alert); border-color: var(--color-alert); color: #fff; }
+    .filter-tab.active-amber  { background: #854F0B; border-color: #854F0B; color: #fff; }
+    .filter-tab.active-all    { background: var(--color-text-title); border-color: var(--color-text-title); color: #fff; }
+
+    /* Flag cards */
+    .flags-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--space-4); }
+    .flag-card { background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-xl); padding: var(--space-5); display: flex; gap: var(--space-4); align-items: flex-start; transition: background var(--transition), border-color var(--transition); }
+    .flag-card.hidden { display: none; }
+    .flag-card--red   { border-left: 4px solid var(--color-alert); }
+    .flag-card--amber { border-left: 4px solid var(--color-warning); }
+    .flag-indicator { flex-shrink: 0; margin-top: 4px; }
+    .fi-red   { width: 12px; height: 12px; border-radius: 50%; background: var(--color-alert); }
+    .fi-amber { width: 12px; height: 12px; border-radius: 50%; background: #EF9F27; }
+    .flag-card h3 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .flag-card p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.65; margin: 0; }
+    .flag-card .fc-tag { font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; margin-bottom: var(--space-2); display: block; }
+    .fc-tag-red   { color: var(--color-alert); }
+    .fc-tag-amber { color: #854F0B; }
+
+    /* Count bar */
+    .count-bar { display: flex; gap: var(--space-3); align-items: center; padding: var(--space-3) var(--space-4); background: var(--color-bg-secondary); border-radius: var(--radius-md); margin-bottom: var(--space-5); font-size: var(--text-sm); color: var(--color-text-secondary); }
+    .count-bar .dot-r { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--color-alert); margin-right: 4px; }
+    .count-bar .dot-a { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #EF9F27; margin-right: 4px; }
+
+    /* What to do next */
+    .next-steps { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: var(--space-4); }
+    .next-card { background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: var(--space-5); display: flex; gap: var(--space-3); align-items: flex-start; }
+    .next-card i { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .next-card h4 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .next-card p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.6; margin: 0; }
+    .next-card a  { color: var(--color-brand); font-weight: 500; }
+
+    /* Not signs */
+    .not-box { background: var(--color-brand-light); border: 1px solid #9FE1CB; border-radius: var(--radius-lg); padding: var(--space-5) var(--space-6); }
+    .not-box h3 { color: var(--color-brand-dark); font-size: var(--text-lg); margin-bottom: var(--space-4); }
+    .not-box p  { color: #085041; font-size: var(--text-sm); line-height: 1.65; margin-bottom: var(--space-3); }
+    .not-box p:last-child { margin-bottom: 0; }
+
+    @media(max-width:767px){ .flags-grid{grid-template-columns:1fr;} .next-steps{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert"><p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p><a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a></div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list"><li><a href="parents.html" class="nav__link nav__link--active">Parents</a></li><li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li><li><a href="educators.html" class="nav__link">Educators</a></li><li><a href="resources.html" class="nav__link">Resources</a></li><li><a href="about.html" class="nav__link">About</a></li></ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile"><a href="parents.html" class="nav__link">Parents</a><a href="kids.html" class="nav__link">Kids &amp; teens</a><a href="educators.html" class="nav__link">Educators</a><a href="resources.html" class="nav__link">Resources</a><a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a></div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section class="flags-hero" aria-label="Warning signs checker introduction">
+      <div class="container">
+        <a href="parents.html" style="color:#791F1F;font-size:var(--text-sm);text-decoration:none;display:inline-flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-4);"><i class="ti ti-arrow-left" aria-hidden="true"></i> Parents hub</a>
+        <div style="font-size:40px;margin-bottom:var(--space-3);" aria-hidden="true">👁️</div>
+        <h1>Warning signs to watch for</h1>
+        <p>You know your child better than anyone. These behavioural changes can indicate something is wrong online. None alone is proof — but any pattern worth a warm, open conversation.</p>
+        <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-4);">
+          <span class="badge badge--red">● Act immediately — could indicate active harm</span>
+          <span class="badge badge--amber">● Monitor — warrants a calm conversation</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- KEY CONTEXT -->
+    <section class="section band--white" aria-label="How to use this guide">
+      <div class="container container--narrow">
+        <div class="not-box">
+          <h3>💛 Before you read — important context</h3>
+          <p>These warning signs are drawn from guidance by the NSPCC, CEOP, Childline, and Internet Matters. They are indicators — not proof. Children go through behavioural changes for many reasons, most of which have nothing to do with online harm.</p>
+          <p>The most important thing is not surveillance — it's keeping the conversation open. If you notice several of these signs together, or a sudden change from your child's usual behaviour, trust your instincts and start a gentle, non-accusatory conversation. See our <a href="conversation-guide.html">conversation guide</a> for the right words to use.</p>
+          <p><strong>If you believe something harmful has already happened</strong>, go to our <a href="get-help-now.html">get help now page</a> for step-by-step guidance and emergency contacts.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FLAGS -->
+    <section class="section band--gray" aria-label="Warning signs by concern level">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow eyebrow--alert">Warning signs</span>
+          <h2>Behavioural changes to watch for</h2>
+          <p class="text-secondary">Filter by concern level or view all. Remember — context and pattern matter more than any single sign.</p>
+        </div>
+
+        <!-- Filter -->
+        <div class="filter-tabs" role="group" aria-label="Filter warning signs">
+          <button class="filter-tab active-all" onclick="filterFlags('all',this)">All signs (16)</button>
+          <button class="filter-tab" onclick="filterFlags('red',this)">⬤ Act immediately (7)</button>
+          <button class="filter-tab" onclick="filterFlags('amber',this)">⬤ Monitor closely (9)</button>
+        </div>
+
+        <div class="count-bar" aria-live="polite" id="count-bar">
+          <span><span class="dot-r"></span>7 high-concern signs</span>
+          <span style="color:var(--color-border-default);">|</span>
+          <span><span class="dot-a"></span>9 monitor-closely signs</span>
+          <span style="color:var(--color-border-default);">|</span>
+          <span>16 total</span>
+        </div>
+
+        <div class="flags-grid" id="flags-grid" role="list">
+
+          <!-- RED flags -->
+          <div class="flag-card flag-card--red" data-level="red" role="listitem">
+            <div class="flag-indicator"><div class="fi-red" aria-label="High concern"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-red">Act immediately if combined with other signs</span>
+              <h3>Hiding the screen or switching apps when you come near</h3>
+              <p>A sudden, consistent change in device behaviour — especially if your child was open before — is one of the strongest indicators. Ask yourself whether this is new behaviour, and whether it started recently.</p>
+            </div>
+          </div>
+
+          <div class="flag-card flag-card--red" data-level="red" role="listitem">
+            <div class="flag-indicator"><div class="fi-red" aria-label="High concern"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-red">Act immediately</span>
+              <h3>Receiving unexplained gifts, money, or items</h3>
+              <p>New items — game credits, real money, physical gifts — that your child cannot explain are a very significant warning sign. Gifting is a well-documented early stage of grooming. Ask calmly where things came from.</p>
+            </div>
+          </div>
+
+          <div class="flag-card flag-card--red" data-level="red" role="listitem">
+            <div class="flag-indicator"><div class="fi-red" aria-label="High concern"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-red">Act immediately</span>
+              <h3>Becoming very upset, distressed or angry when access is removed</h3>
+              <p>Beyond typical frustration — extreme distress that seems disproportionate can indicate either a dependency or an active conversation they cannot interrupt. Note how long it lasts and what their mood is like afterwards.</p>
+            </div>
+          </div>
+
+          <div class="flag-card flag-card--red" data-level="red" role="listitem">
+            <div class="flag-indicator"><div class="fi-red" aria-label="High concern"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-red">Act immediately — seek professional support</span>
+              <h3>Signs of self-harm or significant deterioration in mental health</h3>
+              <p>Social media and gaming content — particularly algorithmic recommendation of self-harm or eating disorder material — can be a contributing factor. If you observe signs of self-harm, contact your GP urgently. Childline counsellors are available at <a href="tel:08001111" style="color:var(--color-alert);">0800 1111</a>.</p>
+            </div>
+          </div>
+
+          <div class="flag-card flag-card--red" data-level="red" role="listitem">
+            <div class="flag-indicator"><div class="fi-red" aria-label="High concern"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-red">Act immediately</span>
+              <h3>Evidence of contact with someone much older</h3>
+              <p>Messages, usernames, or references to someone who seems significantly older than your child — particularly if your child is defensive about or secretive about this person. Cross-age online friendships are not always harmful, but require a gentle, open conversation.</p>
+            </div>
+          </div>
+
+          <div class="flag-card flag-card--red" data-level="red" role="listitem">
+            <div class="flag-indicator"><div class="fi-red" aria-label="High concern"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-red">Act immediately</span>
+              <h3>Your child mentions wanting to meet someone they know only online</h3>
+              <p>Any suggestion of meeting an online contact in person — however innocent it sounds — requires an immediate, calm conversation. This is the step at which online harm most frequently becomes real-world harm.</p>
+            </div>
+          </div>
+
+          <div class="flag-card flag-card--red" data-level="red" role="listitem">
+            <div class="flag-indicator"><div class="fi-red" aria-label="High concern"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-red">Act immediately — see get help now</span>
+              <h3>Your child tells you — or hints — that someone online has asked for photos</h3>
+              <p>Even oblique references to this — "someone online is being weird" — should be taken seriously and followed up immediately. If this has already happened, do not react with anger. Go to our <a href="get-help-now.html" style="color:var(--color-alert);">get help now page</a> for the exact steps to take.</p>
+            </div>
+          </div>
+
+          <!-- AMBER flags -->
+          <div class="flag-card flag-card--amber" data-level="amber" role="listitem">
+            <div class="flag-indicator"><div class="fi-amber" aria-label="Monitor closely"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-amber">Monitor closely</span>
+              <h3>Withdrawal or mood changes after being online</h3>
+              <p>A consistent pattern of going online in a good mood and coming off anxious, irritable, or low is a meaningful signal. This can indicate cyberbullying, harmful content exposure, or social comparison. Note whether it's linked to a specific app or time of day.</p>
+            </div>
+          </div>
+
+          <div class="flag-card flag-card--amber" data-level="amber" role="listitem">
+            <div class="flag-indicator"><div class="fi-amber" aria-label="Monitor closely"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-amber">Monitor closely</span>
+              <h3>Talking about a new online "friend" you've never heard of</h3>
+              <p>Online friendships are normal and not inherently dangerous. The concern arises when the friendship is with someone unknown to any real-world connection, is being kept secret, or when your child becomes defensive or protective of the relationship.</p>
+            </div>
+          </div>
+
+          <div class="flag-card flag-card--amber" data-level="amber" role="listitem">
+            <div class="flag-indicator"><div class="fi-amber" aria-label="Monitor closely"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-amber">Monitor closely</span>
+              <h3>Being online very late at night or waking early to go online</h3>
+              <p>Disrupted sleep from online activity is both a warning sign and a risk factor in itself — sleep deprivation compounds mental health issues and makes children more vulnerable to manipulation. Address device curfews before this becomes entrenched.</p>
+            </div>
+          </div>
+
+          <div class="flag-card flag-card--amber" data-level="amber" role="listitem">
+            <div class="flag-indicator"><div class="fi-amber" aria-label="Monitor closely"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-amber">Monitor closely</span>
+              <h3>Avoiding school or activities they previously enjoyed</h3>
+              <p>Cyberbullying often bleeds into real life — the child being bullied online dreads seeing those people at school. A sudden drop in enthusiasm for school, clubs, or social events warrants a gentle conversation about whether anything online is contributing.</p>
+            </div>
+          </div>
+
+          <div class="flag-card flag-card--amber" data-level="amber" role="listitem">
+            <div class="flag-indicator"><div class="fi-amber" aria-label="Monitor closely"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-amber">Monitor closely</span>
+              <h3>Increased secrecy about what they're doing online</h3>
+              <p>Some privacy is healthy and appropriate, particularly for teenagers. The concern is a sudden shift — a child who was previously open about their online activity becoming secretive. This is different from normal growing independence.</p>
+            </div>
+          </div>
+
+          <div class="flag-card flag-card--amber" data-level="amber" role="listitem">
+            <div class="flag-indicator"><div class="fi-amber" aria-label="Monitor closely"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-amber">Monitor closely</span>
+              <h3>Significant changes in body confidence or frequent negative self-talk after social media</h3>
+              <p>Social media comparison culture has measurable negative effects on body image, particularly in girls aged 11–17. Increased self-criticism about appearance, particularly linked to social media use, is worth gentle exploration.</p>
+            </div>
+          </div>
+
+          <div class="flag-card flag-card--amber" data-level="amber" role="listitem">
+            <div class="flag-indicator"><div class="fi-amber" aria-label="Monitor closely"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-amber">Monitor closely</span>
+              <h3>Unexplained spending or requests for money or gift cards</h3>
+              <p>In-game spending, loot boxes, and sextortion demands can all lead to children asking for money or gift cards unexpectedly. If they're vague about what it's for, that's worth following up on calmly.</p>
+            </div>
+          </div>
+
+          <div class="flag-card flag-card--amber" data-level="amber" role="listitem">
+            <div class="flag-indicator"><div class="fi-amber" aria-label="Monitor closely"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-amber">Monitor closely</span>
+              <h3>Using devices in very private or unusual locations</h3>
+              <p>Consistently taking devices to the bathroom, bedroom late at night, or other private spaces specifically to use them can indicate content or conversations they don't want observed. Create family norms around where devices are used that apply to everyone.</p>
+            </div>
+          </div>
+
+          <div class="flag-card flag-card--amber" data-level="amber" role="listitem">
+            <div class="flag-indicator"><div class="fi-amber" aria-label="Monitor closely"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-amber">Monitor closely — especially for AI app use</span>
+              <h3>Seeming more emotionally connected to an app or online persona than to real people</h3>
+              <p>Particularly relevant with AI companion apps. If your child seems more interested in talking to an AI character than to family or friends, or becomes distressed when separated from a specific app, this warrants a gentle conversation and review of our <a href="ai-chatbots.html">AI chatbots guide</a>.</p>
+            </div>
+          </div>
+
+          <div class="flag-card flag-card--amber" data-level="amber" role="listitem">
+            <div class="flag-indicator"><div class="fi-amber" aria-label="Monitor closely"></div></div>
+            <div>
+              <span class="fc-tag fc-tag-amber">Monitor closely</span>
+              <h3>Becoming defensive or upset when you ask about what they do online</h3>
+              <p>Some defensiveness is normal — teenagers value privacy. Disproportionate anxiety, anger, or upset when the topic is raised gently is different. It can indicate shame, fear of getting in trouble, or an active situation they're trying to manage alone.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- WHAT TO DO NEXT -->
+    <section class="section band--white" aria-label="What to do next">
+      <div class="container">
+        <div class="section-header--center">
+          <span class="eyebrow eyebrow--brand">Now what?</span>
+          <h2>What to do if you've spotted warning signs</h2>
+        </div>
+        <div class="next-steps" role="list">
+          <div class="next-card" role="listitem">
+            <i class="ti ti-messages" style="color:var(--color-brand);" aria-hidden="true"></i>
+            <div>
+              <h4>Start a gentle conversation</h4>
+              <p>Don't confront — get curious. "I've noticed you seem a bit different lately — is everything okay?" Our <a href="conversation-guide.html">conversation guide</a> has age-matched scripts for exactly this situation.</p>
+            </div>
+          </div>
+          <div class="next-card" role="listitem">
+            <i class="ti ti-clipboard-check" style="color:var(--color-brand);" aria-hidden="true"></i>
+            <div>
+              <h4>Take the family safety check</h4>
+              <p>Not sure where the risks are in your family's setup? Our <a href="family-safety-check.html">family safety check</a> takes 5 minutes and suggests personalised next steps based on your situation.</p>
+            </div>
+          </div>
+          <div class="next-card" role="listitem">
+            <i class="ti ti-alert-triangle" style="color:var(--color-alert);" aria-hidden="true"></i>
+            <div>
+              <h4>If something has already happened</h4>
+              <p>Our <a href="get-help-now.html">get help now page</a> has step-by-step guidance for six specific scenarios — grooming, sextortion, image sharing, cyberbullying, upsetting content, and AI concerns.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--color-alert-light);border:1px solid var(--color-alert-border);border-radius:var(--radius-lg);padding:var(--space-5) var(--space-6);margin-top:var(--space-6);display:flex;gap:var(--space-4);align-items:center;">
+          <i class="ti ti-phone" style="font-size:24px;color:var(--color-alert);flex-shrink:0;" aria-hidden="true"></i>
+          <div>
+            <p style="font-size:var(--text-base);font-weight:600;color:#501313;margin:0 0 var(--space-1);">Need to talk to someone right now?</p>
+            <p style="font-size:var(--text-sm);color:#791F1F;margin:0;line-height:1.6;">NSPCC Helpline for adults worried about a child: <a href="tel:08088005000" style="color:var(--color-alert);font-weight:600;">0808 800 5000</a> — free, Mon–Fri 8am–10pm, weekends 9am–6pm. Or for the child directly: Childline <a href="tel:08001111" style="color:var(--color-alert);font-weight:600;">0800 1111</a> — free, 24/7.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section band--gray" aria-label="Related tools">
+      <div class="container">
+        <div class="section-header--center"><span class="eyebrow">More tools for parents</span><h2>Related guides</h2></div>
+        <div class="grid grid-3">
+          <a href="conversation-guide.html" class="guide-card"><span style="font-size:24px;">💬</span><h3 class="guide-card__title">Conversation guide</h3><p class="guide-card__desc">Age-matched scripts for starting the conversation when something feels off.</p></a>
+          <a href="get-help-now.html" class="guide-card" style="border-color:var(--color-alert-border);background:var(--color-alert-light);"><span style="font-size:24px;">🚨</span><h3 class="guide-card__title" style="color:#501313;">Get help now</h3><p class="guide-card__desc" style="color:#791F1F;">If something has already happened — step-by-step guidance for six scenarios.</p></a>
+          <a href="family-safety-check.html" class="guide-card"><span style="font-size:24px;">💚</span><h3 class="guide-card__title">Family safety check</h3><p class="guide-card__desc">5-minute check on your family's overall online setup — personalised suggestions.</p></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo"><div class="container"><div class="footer__safeguarding" role="region"><p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p><div class="footer__safeguarding-list"><div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div><div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">NSPCC Helpline</span><span class="footer__contact-detail"><a href="tel:08088005000" style="color:rgba(255,255,255,0.6);">0808 800 5000</a> — for adults</span></div><div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span></div></div></div><div class="footer__bottom"><p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p><div class="footer__legal"><a href="privacy-policy.html">Privacy policy</a><a href="accessibility.html">Accessibility</a><a href="parents.html">Parents hub</a></div></div></div></footer>
+
+  <script>
+    function toggleMobileMenu(btn){const m=document.getElementById('mobile-menu');const o=m.classList.contains('is-open');m.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(!o));}
+    function filterFlags(level, btn) {
+      document.querySelectorAll('.filter-tab').forEach(t=>{t.className='filter-tab';});
+      btn.classList.add('active-'+level);
+      const cards = document.querySelectorAll('.flag-card');
+      let red=0, amber=0, shown=0;
+      cards.forEach(c=>{
+        const cl = c.getAttribute('data-level');
+        if(level==='all' || cl===level){c.classList.remove('hidden');shown++;}
+        else{c.classList.add('hidden');}
+        if(!c.classList.contains('hidden')){cl==='red'?red++:amber++;}
+      });
+      const bar = document.getElementById('count-bar');
+      if(level==='all') bar.innerHTML='<span><span class="dot-r"></span>7 high-concern signs</span><span style="color:var(--color-border-default);">|</span><span><span class="dot-a"></span>9 monitor-closely signs</span><span style="color:var(--color-border-default);">|</span><span>16 total</span>';
+      else if(level==='red') bar.innerHTML='<span><span class="dot-r"></span>Showing 7 high-concern signs</span>';
+      else bar.innerHTML='<span><span class="dot-a"></span>Showing 9 monitor-closely signs</span>';
+    }
+    document.getElementById('footer-year').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>

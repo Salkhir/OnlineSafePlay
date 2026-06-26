@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Social media safety for parents — TikTok, Instagram, Snapchat risks, privacy settings, age verification, algorithm dangers, and image sharing pressure."/>
+  <title>Social Media Safety — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>"/>
+  <style>
+    .topic-hero{background:linear-gradient(135deg,#1A0533 0%,#2D0A52 100%);padding:var(--space-12) 0;}
+    .topic-hero h1{color:#fff;font-size:var(--text-3xl);margin-bottom:var(--space-3);}
+    .topic-hero p{color:rgba(255,255,255,0.8);font-size:var(--text-md);max-width:560px;line-height:1.65;margin-bottom:var(--space-5);}
+    .risk-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4);}
+    .risk-card{background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);}
+    .risk-card h3{font-size:var(--text-base);font-weight:600;color:var(--color-text-title);margin:var(--space-3) 0 var(--space-2);}
+    .risk-card p{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.6;}
+    .platform-settings-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4);}
+    .ps-card{background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);}
+    .ps-card h3{font-size:var(--text-base);font-weight:600;margin-bottom:var(--space-3);display:flex;align-items:center;gap:var(--space-2);}
+    .ps-steps{display:flex;flex-direction:column;gap:var(--space-2);}
+    .ps-step{display:flex;gap:var(--space-2);align-items:flex-start;font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.5;}
+    .ps-step-num{width:20px;height:20px;border-radius:50%;background:var(--color-brand-light);color:var(--color-brand);font-size:var(--text-xs);font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+    .age-box{background:var(--color-warning-light);border:1px solid var(--color-warning-border);border-radius:var(--radius-lg);padding:var(--space-6);}
+    .age-box h3{color:var(--color-warning);font-size:var(--text-xl);margin-bottom:var(--space-3);}
+    .age-box p{color:#5A3207;font-size:var(--text-base);line-height:1.7;margin-bottom:var(--space-3);}
+    .checklist{display:flex;flex-direction:column;gap:var(--space-3);}
+    .check-item{display:flex;gap:var(--space-3);align-items:flex-start;padding:var(--space-4);background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-md);}
+    .check-item i{font-size:20px;color:var(--color-brand);flex-shrink:0;margin-top:2px;}
+    .check-item p{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.6;margin:0;}
+    .check-item p strong{color:var(--color-text-title);font-weight:600;}
+    @media(max-width:767px){.risk-grid,.platform-settings-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert"><p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p><a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a></div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list"><li><a href="parents.html" class="nav__link nav__link--active">Parents</a></li><li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li><li><a href="educators.html" class="nav__link">Educators</a></li><li><a href="resources.html" class="nav__link">Resources</a></li></ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile"><a href="parents.html" class="nav__link">Parents</a><a href="kids.html" class="nav__link">Kids &amp; teens</a><a href="educators.html" class="nav__link">Educators</a><a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a></div>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="topic-hero" aria-label="Social media safety overview">
+      <div class="container">
+        <a href="parents.html" style="color:rgba(255,255,255,0.6);font-size:var(--text-sm);text-decoration:none;display:inline-flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-4);">← Parents hub</a>
+        <div style="font-size:40px;margin-bottom:var(--space-3);" aria-hidden="true">📸</div>
+        <h1>Social platforms</h1>
+        <p>TikTok, Instagram, Snapchat — platform-by-platform privacy settings, how algorithms target young users, age verification reality, and image sharing pressure.</p>
+        <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;">
+          <span class="badge badge--red">High risk</span>
+          <span class="badge badge--gray">10 min read</span>
+          <span class="badge badge--gray">Updated June 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="Key risks">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow eyebrow--alert">The risks</span><h2>What actually puts children at risk</h2></div>
+        <div class="risk-grid" role="list">
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">🎯</div><h3>Algorithms designed to maximise engagement</h3><p>TikTok's For You Page and Instagram's Explore feed are optimised for time-on-app, not child wellbeing. Research shows they actively serve increasingly extreme content to keep users engaged — including self-harm content, eating disorder material, and radicalising content.</p></div>
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">🔞</div><h3>Age verification is largely ineffective</h3><p>Most platforms require users to enter a date of birth. That is the entire age check. Children routinely lie about their age. The Online Safety Act 2023 requires platforms to implement age assurance — but enforcement is ongoing and loopholes remain widespread.</p></div>
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">📷</div><h3>Image pressure and self-image</h3><p>Instagram and TikTok are built around physical appearance. Research consistently links heavy use in girls aged 11–17 to body dissatisfaction, lowered self-esteem, and increased rates of anxiety and depression. The platforms are aware of this from their own internal research.</p></div>
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">📩</div><h3>Direct messaging from strangers</h3><p>Instagram, Snapchat and TikTok all allow unsolicited DMs in various forms. Adults posing as peers use these to make initial contact. Snapchat's disappearing messages feature is specifically exploited because children believe no record remains.</p></div>
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">🌍</div><h3>Public profiles visible to anyone</h3><p>Most children set their accounts to public either deliberately (to get followers) or without understanding the default settings. A public profile means photos, location tags, school uniform in photos, and daily routines are visible to everyone on earth.</p></div>
+          <div class="risk-card" role="listitem"><div style="font-size:28px;" aria-hidden="true">⏰</div><h3>Permanence — what goes online stays online</h3><p>Content shared on social media — even in Stories that "disappear" — can be screenshot, saved and shared by anyone who sees it. Children consistently underestimate this. Snapchat in particular creates a false sense of security around permanence.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="Age verification reality">
+      <div class="container container--narrow">
+
+        <!-- Deep dive call-out — prominent placement -->
+        <a href="social-platforms-top10.html" style="display:block;text-decoration:none;margin-bottom:var(--space-6);" aria-label="Read the full Top 10 social platforms deep dive guide">
+          <div style="background:var(--color-text-title);border-radius:var(--radius-xl);padding:var(--space-6) var(--space-7);display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);transition:opacity 0.15s;" onmouseover="this.style.opacity='0.92'" onmouseout="this.style.opacity='1'">
+            <div style="display:flex;align-items:center;gap:var(--space-5);">
+              <div style="font-size:44px;flex-shrink:0;" aria-hidden="true">📱</div>
+              <div>
+                <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#AFA9EC;margin-bottom:var(--space-2);">Cited research · Ofcom · NSPCC · ICO · Children's Commissioner</p>
+                <p style="font-size:var(--text-xl);font-weight:700;color:#fff;margin-bottom:var(--space-2);line-height:1.25;">Top 10 social platforms — complete safety guide</p>
+                <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.7);line-height:1.6;max-width:540px;">A data-backed deep dive into every platform UK children use most — TikTok, Instagram, Snapchat, YouTube, Discord and 5 more. Per-platform risk breakdowns and exact steps for parents. Sourced from Ofcom, NSPCC, ICO and the Children's Commissioner.</p>
+              </div>
+            </div>
+            <div style="flex-shrink:0;background:#534AB7;color:#fff;border-radius:var(--radius-lg);padding:var(--space-3) var(--space-5);font-size:var(--text-sm);font-weight:600;white-space:nowrap;">
+              Read the guide →
+            </div>
+          </div>
+        </a>
+
+        <div class="age-box">
+          <h3>⚠️ The age verification problem</h3>
+          <p>Every major platform says it's for 13+. None of them effectively verify this. A study by Ofcom found that 45% of 8–12 year olds in the UK have a social media account, with most having lied about their age to create it.</p>
+          <p>The Online Safety Act 2023 places a legal duty on platforms to implement age assurance for content harmful to children — but "age assurance" does not mean verified identity. It can mean self-declaration. Enforcement by Ofcom is ongoing but many platforms are still non-compliant as of 2026.</p>
+          <p><strong>The practical reality for parents:</strong> you cannot rely on platforms to stop your under-13 child from accessing social media. Parental controls, device-level restrictions, and conversations are the only effective barriers right now.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="Privacy settings by platform">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow eyebrow--brand">Settings that matter</span><h2>Key privacy settings by platform</h2><p class="text-secondary">These are the highest-impact settings for each platform. Full step-by-step guides with screenshots are in our <a href="platform-settings.html">platform settings hub</a>.</p></div>
+        <div class="platform-settings-grid" role="list">
+          <div class="ps-card" role="listitem">
+            <h3><span aria-hidden="true">🎵</span> TikTok — critical settings</h3>
+            <div class="ps-steps">
+              <div class="ps-step"><span class="ps-step-num">1</span>Set account to Private (Profile → Privacy → Private account)</div>
+              <div class="ps-step"><span class="ps-step-num">2</span>Turn off Suggest account to others</div>
+              <div class="ps-step"><span class="ps-step-num">3</span>Restrict DMs to Friends only or off entirely</div>
+              <div class="ps-step"><span class="ps-step-num">4</span>Enable Family Pairing — links your account to your child's</div>
+              <div class="ps-step"><span class="ps-step-num">5</span>Set a daily screen time limit via Family Pairing (60–90 min recommended)</div>
+              <div class="ps-step"><span class="ps-step-num">6</span>Turn off Personalised ads based on activity</div>
+            </div>
+          </div>
+          <div class="ps-card" role="listitem">
+            <h3><span aria-hidden="true">📸</span> Instagram — critical settings</h3>
+            <div class="ps-steps">
+              <div class="ps-step"><span class="ps-step-num">1</span>Set to Private account (Settings → Account Privacy)</div>
+              <div class="ps-step"><span class="ps-step-num">2</span>Turn off Show activity status</div>
+              <div class="ps-step"><span class="ps-step-num">3</span>Restrict DMs: Message controls → Only people you follow</div>
+              <div class="ps-step"><span class="ps-step-num">4</span>Set up Family Centre — parental supervision tools</div>
+              <div class="ps-step"><span class="ps-step-num">5</span>Enable Sensitive content control → Limit</div>
+              <div class="ps-step"><span class="ps-step-num">6</span>Turn off location in photos (device camera settings)</div>
+            </div>
+          </div>
+          <div class="ps-card" role="listitem">
+            <h3><span aria-hidden="true">👻</span> Snapchat — critical settings</h3>
+            <div class="ps-steps">
+              <div class="ps-step"><span class="ps-step-num">1</span>Set Who can contact me to My Friends only</div>
+              <div class="ps-step"><span class="ps-step-num">2</span>Set Who can view my Story to My Friends</div>
+              <div class="ps-step"><span class="ps-step-num">3</span>Disable Snap Map or set to Ghost Mode — location invisible</div>
+              <div class="ps-step"><span class="ps-step-num">4</span>Turn off Quick Add (prevents strangers finding the account)</div>
+              <div class="ps-step"><span class="ps-step-num">5</span>Remind your child: screenshots still happen. Disappearing ≠ gone.</div>
+            </div>
+          </div>
+          <div class="ps-card" role="listitem">
+            <h3><span aria-hidden="true">▶️</span> YouTube — critical settings</h3>
+            <div class="ps-steps">
+              <div class="ps-step"><span class="ps-step-num">1</span>Use YouTube Kids app for under-12s — not standard YouTube</div>
+              <div class="ps-step"><span class="ps-step-num">2</span>Enable Restricted Mode (filters adult content)</div>
+              <div class="ps-step"><span class="ps-step-num">3</span>Disable comments visibility on child's channel if they have one</div>
+              <div class="ps-step"><span class="ps-step-num">4</span>Set up Google Family Link — parental controls for Google accounts</div>
+              <div class="ps-step"><span class="ps-step-num">5</span>Regularly check Watch History — more revealing than you might expect</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="What parents can do">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow eyebrow--brand">Action</span><h2>Beyond the settings</h2></div>
+        <div class="checklist" role="list">
+          <div class="check-item" role="listitem"><i class="ti ti-eye" aria-hidden="true"></i><p><strong>Follow your child's accounts.</strong> Not to spy — to be visible. Children behave differently when they know a parent can see their content. Ask them to show you their feed rather than checking secretly.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-clock" aria-hidden="true"></i><p><strong>Set phone-free times that include social media.</strong> Mealtimes, one hour before bed, and the first 30 minutes of the morning are the highest-impact times to restrict. Sleep quality improves measurably within days.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-mood-sad" aria-hidden="true"></i><p><strong>Watch for post-social-media mood shifts.</strong> A child who is consistently more anxious, withdrawn, or low in self-esteem after using social media is showing a pattern worth addressing directly — with the platform, with screen time, and with conversation.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-camera" aria-hidden="true"></i><p><strong>Talk about what they share — not just what they see.</strong> Most parent focus is on what children consume online. Equally important is what they post: photos, location tags, and personal information shared publicly can be accessed by anyone.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="Related guides">
+      <div class="container"><div class="section-header--center"><span class="eyebrow">Keep reading</span><h2>Related guides</h2></div>
+        <div class="grid grid-4" style="grid-template-columns:repeat(4,minmax(0,1fr));">
+          <a href="social-platforms-top10.html" class="guide-card" style="border-color:#534AB7;background:var(--color-purple);">
+            <span style="font-size:24px;">📱</span>
+            <h3 class="guide-card__title">Top 10 platforms — deep dive</h3>
+            <p class="guide-card__desc">Cited, data-backed breakdown of TikTok, Instagram, Snapchat, Discord and 6 more — with per-platform action steps.</p>
+            <div class="guide-card__meta"><span class="badge badge--purple">Cited research</span></div>
+          </a>
+          <a href="platform-settings.html" class="guide-card"><span style="font-size:24px;">⚙️</span><h3 class="guide-card__title">Full platform settings hub</h3><p class="guide-card__desc">Step-by-step screenshot guides for every major platform.</p></a>
+          <a href="privacy.html" class="guide-card"><span style="font-size:24px;">🔒</span><h3 class="guide-card__title">Privacy &amp; data</h3><p class="guide-card__desc">What data platforms collect and how to minimise it.</p></a>
+          <a href="chat-messaging.html" class="guide-card"><span style="font-size:24px;">💬</span><h3 class="guide-card__title">Chat &amp; messaging</h3><p class="guide-card__desc">DM risks, grooming patterns and what to watch for.</p></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer" role="contentinfo"><div class="container"><div class="footer__safeguarding" role="region"><p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p><div class="footer__safeguarding-list"><div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div><div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span></div></div></div><div class="footer__bottom"><p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p><div class="footer__legal"><a href="privacy-policy.html">Privacy policy</a><a href="accessibility.html">Accessibility</a><a href="parents.html">Parents hub</a></div></div></div></footer>
+  <script>function toggleMobileMenu(btn){const m=document.getElementById('mobile-menu');const o=m.classList.contains('is-open');m.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(!o));}document.getElementById('footer-year').textContent=new Date().getFullYear();</script>
+</body>
+</html>

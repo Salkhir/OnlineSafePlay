@@ -1,0 +1,106 @@
+<!-- ============================================================
+     SafeOnline UK — Shared Header
+     Include this at the top of every page.
+     Update nav__link--active class to match current page.
+     ============================================================ -->
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="site-header" role="banner">
+
+  <!-- SOS Bar — always visible, always red, always first -->
+  <div class="sos-bar" role="alert" aria-label="Emergency help">
+    <p class="sos-bar__message">
+      <span class="sos-icon" aria-hidden="true">🚨</span>
+      <span class="sos-full">Something happened right now?</span>
+      <span class="sos-short" style="display:none;">Need help right now?</span>
+    </p>
+    <a href="get-help-now.html" class="sos-bar__link">
+      Get help immediately
+      <span aria-hidden="true"> →</span>
+    </a>
+  </div>
+
+  <!-- Main navigation -->
+  <div style="border-bottom: 1px solid var(--color-border-subtle); background: var(--color-bg-primary);">
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+
+      <!-- Brand / Logo -->
+      <a href="index.html" class="nav__brand" aria-label="SafeOnline UK — home">
+        <div class="nav__brand-icon" aria-hidden="true">🛡</div>
+        SafeOnline UK
+      </a>
+
+      <!-- Desktop navigation links -->
+      <ul class="nav__links" role="list" aria-label="Site sections">
+        <li>
+          <a href="parents.html" class="nav__link">Parents</a>
+        </li>
+        <li>
+          <a href="kids.html" class="nav__link">Kids &amp; teens</a>
+        </li>
+        <li>
+          <a href="educators.html" class="nav__link">Educators</a>
+        </li>
+        <li>
+          <a href="resources.html" class="nav__link">Resources</a>
+        </li>
+        <li>
+          <a href="about.html" class="nav__link">About</a>
+        </li>
+      </ul>
+
+      <!-- Desktop CTA -->
+      <a href="get-help-now.html" class="nav__cta" aria-label="Get urgent help now">
+        Get help now
+      </a>
+
+      <!-- Mobile hamburger -->
+      <button
+        class="nav__hamburger"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        onclick="toggleMobileMenu(this)"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </nav>
+
+    <!-- Mobile menu — hidden by default -->
+    <div id="mobile-menu" class="nav__mobile" role="list" aria-label="Mobile navigation">
+      <a href="parents.html"   class="nav__link" role="listitem">Parents</a>
+      <a href="kids.html"      class="nav__link" role="listitem">Kids &amp; teens</a>
+      <a href="educators.html" class="nav__link" role="listitem">Educators</a>
+      <a href="resources.html" class="nav__link" role="listitem">Resources</a>
+      <a href="about.html"     class="nav__link" role="listitem">About</a>
+      <a href="get-help-now.html" class="nav__cta" role="listitem">Get help now</a>
+    </div>
+  </div>
+
+</header>
+
+<!-- Mobile menu toggle script -->
+<script>
+  function toggleMobileMenu(btn) {
+    const menu = document.getElementById('mobile-menu');
+    const isOpen = menu.classList.contains('is-open');
+    menu.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', !isOpen);
+    btn.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
+  }
+
+  // Set active nav link based on current page
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav__link').forEach(function(link) {
+      if (link.getAttribute('href') === currentPage) {
+        link.classList.add('nav__link--active');
+        link.setAttribute('aria-current', 'page');
+      }
+    });
+  });
+</script>

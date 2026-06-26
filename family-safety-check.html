@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A gentle family safety check for parents — a few simple questions about your family's online setup, and we'll suggest some warm, practical steps to help keep your child safer." />
+  <title>Family Safety Check — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>" />
+  <style>
+    /* ── Page layout ─────────────────────────────────────── */
+    .check-hero {
+      background: var(--color-brand-light);
+      border-bottom: 3px solid #9FE1CB;
+      padding: var(--space-12) 0;
+      text-align: center;
+    }
+    .check-hero h1 { color: var(--color-brand-dark); font-size: var(--text-3xl); margin-bottom: var(--space-3); }
+    .check-hero p  { color: #085041; font-size: var(--text-md); max-width: 520px; margin: 0 auto var(--space-6); line-height: 1.65; }
+
+    .check-wrap {
+      max-width: 660px;
+      margin: 0 auto;
+      padding: var(--space-10) var(--space-5) var(--space-16);
+    }
+
+    /* ── Progress bar ──────────────────────────────────── */
+    .progress-track {
+      background: var(--color-bg-tertiary);
+      border-radius: var(--radius-full);
+      height: 6px;
+      margin-bottom: var(--space-3);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--color-brand);
+      border-radius: var(--radius-full);
+      transition: width 0.4s ease;
+    }
+    .progress-label {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-8);
+      display: flex;
+      justify-content: space-between;
+    }
+    .progress-label span { color: var(--color-brand); font-weight: 600; }
+
+    /* ── Question card ─────────────────────────────────── */
+    .q-card {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8) var(--space-8);
+      box-shadow: var(--shadow-md);
+      display: none;
+      animation: fadeUp 0.25s ease;
+    }
+    .q-card.active { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .q-eyebrow {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--color-brand);
+      margin-bottom: var(--space-3);
+    }
+    .q-text {
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--color-text-title);
+      line-height: 1.3;
+      margin-bottom: var(--space-2);
+    }
+    .q-sub {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--space-6);
+    }
+
+    /* ── Answer options ─────────────────────────────────── */
+    .q-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .q-opt {
+      background: var(--color-bg-primary);
+      border: 2px solid var(--color-border-default);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4) var(--space-5);
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-4);
+      text-align: left;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--color-text-body);
+      transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+      width: 100%;
+    }
+    .q-opt:hover {
+      border-color: var(--color-brand);
+      background: var(--color-brand-light);
+      box-shadow: var(--shadow-sm);
+    }
+    .q-opt.selected {
+      border-color: var(--color-brand);
+      background: var(--color-brand-light);
+    }
+    .q-opt.selected .opt-radio { background: var(--color-brand); border-color: var(--color-brand); }
+    .q-opt.selected .opt-radio::after { opacity: 1; }
+
+    .opt-radio {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--color-border-default);
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+      position: relative;
+    }
+    .opt-radio::after {
+      content: '';
+      width: 8px; height: 8px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .opt-text { flex: 1; }
+    .opt-label { font-weight: 500; color: var(--color-text-title); display: block; margin-bottom: 2px; }
+    .opt-desc  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.5; }
+
+    /* ── Navigation buttons ─────────────────────────────── */
+    .q-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: var(--space-7);
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--color-border-subtle);
+    }
+    .btn-back {
+      background: none;
+      border: none;
+      color: var(--color-text-secondary);
+      font-size: var(--text-sm);
+      font-family: var(--font-body);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-md);
+      transition: background 0.15s, color 0.15s;
+    }
+    .btn-back:hover { background: var(--color-bg-secondary); color: var(--color-text-title); }
+    .btn-back:disabled { opacity: 0; pointer-events: none; }
+
+    .btn-next {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 12px var(--space-6);
+      background: var(--color-brand);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-lg);
+      font-size: var(--text-base);
+      font-weight: 600;
+      font-family: var(--font-body);
+      cursor: pointer;
+      transition: background 0.15s, opacity 0.15s, box-shadow 0.15s;
+    }
+    .btn-next:hover:not(:disabled) { background: var(--color-brand-dark); box-shadow: var(--shadow-sm); }
+    .btn-next:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    /* ── Results panel ─────────────────────────────────── */
+    #results-panel {
+      display: none;
+      animation: fadeUp 0.3s ease;
+    }
+    #results-panel.active { display: block; }
+
+    .results-hero {
+      text-align: center;
+      padding: var(--space-8) 0 var(--space-6);
+    }
+    .results-emoji { font-size: 52px; margin-bottom: var(--space-4); display: block; }
+    .results-hero h2 { font-size: var(--text-2xl); color: var(--color-text-title); margin-bottom: var(--space-3); }
+    .results-hero p  { font-size: var(--text-base); color: var(--color-text-secondary); line-height: 1.65; max-width: 500px; margin: 0 auto; }
+
+    /* Score band */
+    .score-band {
+      border-radius: var(--radius-lg);
+      padding: var(--space-5) var(--space-6);
+      margin: var(--space-6) 0;
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+    .score-band i { font-size: 28px; flex-shrink: 0; }
+    .score-band h3 { font-size: var(--text-base); font-weight: 600; margin-bottom: var(--space-1); }
+    .score-band p  { font-size: var(--text-sm); line-height: 1.6; margin: 0; }
+    .band-good    { background: var(--color-brand-light); border: 1px solid #9FE1CB; }
+    .band-good    i, .band-good h3 { color: var(--color-brand-dark); }
+    .band-good    p { color: #085041; }
+    .band-ok      { background: var(--color-warning-light); border: 1px solid var(--color-warning-border); }
+    .band-ok      i, .band-ok h3 { color: var(--color-warning); }
+    .band-ok      p { color: #633806; }
+    .band-start   { background: var(--color-info); border: 1px solid var(--color-info-text); }
+    .band-start   i, .band-start h3 { color: var(--color-info-text); }
+    .band-start   p { color: #0C447C; }
+
+    /* Action steps */
+    .action-section h3 {
+      font-size: var(--text-lg);
+      color: var(--color-text-title);
+      margin-bottom: var(--space-5);
+    }
+    .action-list { display: flex; flex-direction: column; gap: var(--space-3); }
+    .action-item {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4) var(--space-5);
+      display: flex;
+      gap: var(--space-4);
+      align-items: flex-start;
+    }
+    .action-item.priority { border-color: var(--color-alert-border); background: var(--color-alert-light); }
+    .action-item.priority .ai-icon { color: var(--color-alert); }
+    .ai-icon { font-size: 20px; flex-shrink: 0; color: var(--color-brand); margin-top: 2px; }
+    .ai-title { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-1); }
+    .action-item.priority .ai-title { color: #501313; }
+    .ai-desc  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.6; }
+    .action-item.priority .ai-desc  { color: #791F1F; }
+    .ai-link  { font-size: var(--text-sm); font-weight: 600; color: var(--color-brand); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-top: var(--space-2); }
+    .ai-link:hover { text-decoration: underline; }
+
+    /* Reassurance */
+    .reassure-box {
+      background: var(--color-brand-light);
+      border: 1px solid #9FE1CB;
+      border-radius: var(--radius-lg);
+      padding: var(--space-5) var(--space-6);
+      margin: var(--space-8) 0;
+      text-align: center;
+    }
+    .reassure-box p { font-size: var(--text-base); color: #04342C; line-height: 1.7; margin: 0; }
+    .reassure-box strong { color: var(--color-brand-dark); }
+
+    /* Restart */
+    .restart-row {
+      text-align: center;
+      margin-top: var(--space-8);
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--color-border-subtle);
+    }
+    .restart-row p { font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-3); }
+
+    @media (max-width: 600px) {
+      .q-card { padding: var(--space-6) var(--space-5); }
+      .q-text { font-size: var(--text-lg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ──────────────────────────────────────────────── -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert">
+      <p class="sos-bar__message">
+        <span class="sos-icon" aria-hidden="true">🚨</span>
+        <span class="sos-full">Something happened right now?</span>
+        <span class="sos-short" style="display:none;">Need help?</span>
+      </p>
+      <a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a>
+    </div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand">
+          <div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK
+        </a>
+        <ul class="nav__links" role="list">
+          <li><a href="parents.html" class="nav__link nav__link--active">Parents</a></li>
+          <li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li>
+          <li><a href="educators.html" class="nav__link">Educators</a></li>
+          <li><a href="resources.html" class="nav__link">Resources</a></li>
+          <li><a href="about.html" class="nav__link">About</a></li>
+        </ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile">
+        <a href="parents.html" class="nav__link">Parents</a>
+        <a href="kids.html" class="nav__link">Kids &amp; teens</a>
+        <a href="educators.html" class="nav__link">Educators</a>
+        <a href="resources.html" class="nav__link">Resources</a>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ── MAIN ────────────────────────────────────────────────── -->
+  <main id="main-content">
+
+    <section class="check-hero" aria-label="Family safety check introduction">
+      <div class="container">
+        <a href="parents.html" style="color:#085041;font-size:var(--text-sm);text-decoration:none;display:inline-flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-4);">
+          <i class="ti ti-arrow-left" aria-hidden="true"></i> Parents hub
+        </a>
+        <div style="font-size:40px;margin-bottom:var(--space-3);" aria-hidden="true">💚</div>
+        <h1>Family safety check</h1>
+        <p>Just a few gentle questions about your family's setup. No judgement — every family is different, and there's always something small that makes a big difference. It takes about 5 minutes.</p>
+        <div style="display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap;">
+          <span class="badge badge--green">Free</span>
+          <span class="badge badge--gray">5 minutes</span>
+          <span class="badge badge--gray">Nothing is stored</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ── QUIZ ──────────────────────────────────────────────── -->
+    <div class="check-wrap" id="quiz-wrap">
+
+      <!-- Progress -->
+      <div aria-label="Progress through the safety check">
+        <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10" id="progress-bar-wrap">
+          <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+        </div>
+        <div class="progress-label">
+          <span id="progress-text">Question 1 of 10</span>
+          <span id="progress-pct">0% done</span>
+        </div>
+      </div>
+
+
+      <!-- Q1 -->
+      <div class="q-card active" id="q1" role="group" aria-labelledby="q1-text">
+        <p class="q-eyebrow">About your child</p>
+        <p class="q-text" id="q1-text">How old is your child? (If you have more than one, think about the youngest who goes online.)</p>
+        <p class="q-sub">Different ages face different risks, so your suggestions will be matched to where your child is right now.</p>
+        <div class="q-options" role="radiogroup" aria-label="Child's age">
+          <button class="q-opt" onclick="selectOpt(this,1,0)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Under 7</span><span class="opt-desc">They're little — early habits set the foundation for everything that follows.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,1,1)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">8 to 12</span><span class="opt-desc">The Explorer years — gaming, first social apps, and lots of peer influence online.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,1,2)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">13 to 17</span><span class="opt-desc">Teens have more independence online — which means some conversations need to shift too.</span></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" disabled>← Back</button>
+          <button class="btn-next" id="q1-next" disabled onclick="nextQ(1)">Next <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+
+      <!-- Q2 -->
+      <div class="q-card" id="q2" role="group" aria-labelledby="q2-text">
+        <p class="q-eyebrow">Devices</p>
+        <p class="q-text" id="q2-text">Does your child have their own device — phone, tablet or computer?</p>
+        <p class="q-sub">Their own device means full independence unless specific controls are in place.</p>
+        <div class="q-options" role="radiogroup" aria-label="Child's device">
+          <button class="q-opt" onclick="selectOpt(this,2,0)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Yes — their own phone or tablet</span><span class="opt-desc">They have a personal device they can use freely.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,2,1)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">They use a shared family device</span><span class="opt-desc">A family tablet, laptop, or computer used by more than one person.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,2,2)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">No personal devices yet</span><span class="opt-desc">They're not online independently yet — or only use a console.</span></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="prevQ(2)">← Back</button>
+          <button class="btn-next" id="q2-next" disabled onclick="nextQ(2)">Next <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+
+      <!-- Q3 -->
+      <div class="q-card" id="q3" role="group" aria-labelledby="q3-text">
+        <p class="q-eyebrow">Parental controls</p>
+        <p class="q-text" id="q3-text">Have you set up parental controls on their devices or accounts?</p>
+        <p class="q-sub">Parental controls include things like Screen Time on iPhone, Google Family Link on Android, or console family settings.</p>
+        <div class="q-options" role="radiogroup" aria-label="Parental controls status">
+          <button class="q-opt" onclick="selectOpt(this,3,0)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Yes — all sorted</span><span class="opt-desc">I've set these up and they're working well.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,3,1)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Some — but not everything</span><span class="opt-desc">I've done some but I know there are gaps.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,3,2)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Not yet — I'm not sure where to start</span><span class="opt-desc">I'd like to set them up but haven't got around to it.</span></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="prevQ(3)">← Back</button>
+          <button class="btn-next" id="q3-next" disabled onclick="nextQ(3)">Next <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+
+      <!-- Q4 -->
+      <div class="q-card" id="q4" role="group" aria-labelledby="q4-text">
+        <p class="q-eyebrow">Gaming</p>
+        <p class="q-text" id="q4-text">Does your child play online games — especially ones with chat?</p>
+        <p class="q-sub">Online gaming is one of the most common places children first have contact with unknown adults. Games like Roblox, Fortnite and Discord are the ones we hear about most.</p>
+        <div class="q-options" role="radiogroup" aria-label="Gaming">
+          <button class="q-opt" onclick="selectOpt(this,4,0)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Yes — they play a lot, with chat on</span><span class="opt-desc">Gaming is a big part of their social life.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,4,1)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Some — but mainly with friends they know</span><span class="opt-desc">They game online but mostly with people from school.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,4,2)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Not really — or only offline</span><span class="opt-desc">They play games but not with strangers online.</span></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="prevQ(4)">← Back</button>
+          <button class="btn-next" id="q4-next" disabled onclick="nextQ(4)">Next <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+
+      <!-- Q5 -->
+      <div class="q-card" id="q5" role="group" aria-labelledby="q5-text">
+        <p class="q-eyebrow">Social media</p>
+        <p class="q-text" id="q5-text">Is your child on social media — TikTok, Instagram, Snapchat or similar?</p>
+        <p class="q-sub">The minimum age for most platforms is 13, but we know many younger children use them. There's no judgement here — we just want to point you to the right guidance.</p>
+        <div class="q-options" role="radiogroup" aria-label="Social media">
+          <button class="q-opt" onclick="selectOpt(this,5,0)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Yes — on several platforms</span><span class="opt-desc">They're active on TikTok, Instagram, Snapchat or similar.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,5,1)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">One or two — and I keep an eye</span><span class="opt-desc">They use social media but I'm across what they're doing.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,5,2)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Not yet — or I've said no for now</span><span class="opt-desc">They're not on social media at this stage.</span></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="prevQ(5)">← Back</button>
+          <button class="btn-next" id="q5-next" disabled onclick="nextQ(5)">Next <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+
+      <!-- Q6 -->
+      <div class="q-card" id="q6" role="group" aria-labelledby="q6-text">
+        <p class="q-eyebrow">AI chatbots</p>
+        <p class="q-text" id="q6-text">Do you know if your child uses AI chatbots or companion apps — like Character.AI or Snapchat My AI?</p>
+        <p class="q-sub">This is one of the newest risks and many parents haven't heard of these apps yet. Even if you're not sure, that's completely fine — we'll help either way.</p>
+        <div class="q-options" role="radiogroup" aria-label="AI chatbot use">
+          <button class="q-opt" onclick="selectOpt(this,6,0)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Yes — I know they use one or more</span><span class="opt-desc">They talk to AI chatbots or companion apps regularly.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,6,1)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Maybe — I'm not completely sure</span><span class="opt-desc">I'm aware they exist but don't know if my child uses them.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,6,2)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">I don't think so — or they're too young</span><span class="opt-desc">This doesn't seem to be part of their online life at the moment.</span></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="prevQ(6)">← Back</button>
+          <button class="btn-next" id="q6-next" disabled onclick="nextQ(6)">Next <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+
+      <!-- Q7 -->
+      <div class="q-card" id="q7" role="group" aria-labelledby="q7-text">
+        <p class="q-eyebrow">Screen time</p>
+        <p class="q-text" id="q7-text">How do you feel about the amount of time your child spends online each day?</p>
+        <p class="q-sub">There's no right answer — every family finds a balance that works for them. We'd just love to understand where you're at.</p>
+        <div class="q-options" role="radiogroup" aria-label="Screen time feelings">
+          <button class="q-opt" onclick="selectOpt(this,7,0)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">I'm worried — it feels like too much</span><span class="opt-desc">It's affecting sleep, moods, or other things they used to enjoy.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,7,1)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">It's okay — but I'd like a bit more balance</span><span class="opt-desc">It's manageable, but some gentle boundaries would help.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,7,2)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">I'm happy with how things are</span><span class="opt-desc">We've got a good balance and it's working for us.</span></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="prevQ(7)">← Back</button>
+          <button class="btn-next" id="q7-next" disabled onclick="nextQ(7)">Next <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+
+      <!-- Q8 -->
+      <div class="q-card" id="q8" role="group" aria-labelledby="q8-text">
+        <p class="q-eyebrow">The conversation</p>
+        <p class="q-text" id="q8-text">Have you talked to your child about online safety — things like strangers, private information, or what to do if something feels wrong?</p>
+        <p class="q-sub">This is the single most important thing a parent can do. If it hasn't happened yet, that's okay — we can help you start.</p>
+        <div class="q-options" role="radiogroup" aria-label="Conversation status">
+          <button class="q-opt" onclick="selectOpt(this,8,0)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Yes — we talk about it regularly</span><span class="opt-desc">Online safety is an open topic in our family.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,8,1)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">A little — but not in depth</span><span class="opt-desc">It's come up a bit but I'd like to do it better.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,8,2)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Not really — I'm not sure how to bring it up</span><span class="opt-desc">I've been meaning to but don't know where to start.</span></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="prevQ(8)">← Back</button>
+          <button class="btn-next" id="q8-next" disabled onclick="nextQ(8)">Next <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+
+      <!-- Q9 -->
+      <div class="q-card" id="q9" role="group" aria-labelledby="q9-text">
+        <p class="q-eyebrow">Warning signs</p>
+        <p class="q-text" id="q9-text">Have you noticed anything that's felt a little off recently — changes in your child's behaviour, mood, or how they are around their devices?</p>
+        <p class="q-sub">You know your child better than anyone. Even a small feeling that something has changed is worth paying attention to.</p>
+        <div class="q-options" role="radiogroup" aria-label="Warning signs noticed">
+          <button class="q-opt" onclick="selectOpt(this,9,0)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Yes — something does feel different</span><span class="opt-desc">I've noticed changes and I'd like some guidance.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,9,1)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Maybe — I'm keeping an eye on a few things</span><span class="opt-desc">Nothing alarming but I want to be watchful.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,9,2)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">No — everything seems fine right now</span><span class="opt-desc">I'm not worried — I'm just here to be prepared.</span></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="prevQ(9)">← Back</button>
+          <button class="btn-next" id="q9-next" disabled onclick="nextQ(9)">Next <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+
+      <!-- Q10 -->
+      <div class="q-card" id="q10" role="group" aria-labelledby="q10-text">
+        <p class="q-eyebrow">Almost there</p>
+        <p class="q-text" id="q10-text">How confident do you feel right now about your family's online safety overall?</p>
+        <p class="q-sub">Be honest — there are no wrong answers, and however you feel is completely valid. This helps us point you to the most useful things.</p>
+        <div class="q-options" role="radiogroup" aria-label="Confidence level">
+          <button class="q-opt" onclick="selectOpt(this,10,0)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Not very — I'm a bit lost honestly</span><span class="opt-desc">There's a lot I don't know and I'd love some clear guidance.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,10,1)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Somewhat — but there are gaps</span><span class="opt-desc">I feel okay about some things but there's more I could do.</span></span>
+          </button>
+          <button class="q-opt" onclick="selectOpt(this,10,2)" aria-pressed="false">
+            <span class="opt-radio" aria-hidden="true"></span>
+            <span class="opt-text"><span class="opt-label">Pretty confident — I just want to double check</span><span class="opt-desc">I feel reasonably on top of things and want reassurance.</span></span>
+          </button>
+        </div>
+        <div class="q-nav">
+          <button class="btn-back" onclick="prevQ(10)">← Back</button>
+          <button class="btn-next btn--alert" id="q10-next" disabled onclick="showResults()" style="background:var(--color-brand);">
+            See my suggestions <i class="ti ti-sparkles" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+
+      <!-- ── RESULTS ─────────────────────────────────────────── -->
+      <div id="results-panel" aria-live="polite">
+
+        <div class="results-hero">
+          <span class="results-emoji" id="results-emoji" aria-hidden="true">💚</span>
+          <h2 id="results-title">Thank you for taking the time to do this</h2>
+          <p id="results-intro">Here are some gentle suggestions based on what you've told us. There's no pressure — just take things one step at a time.</p>
+        </div>
+
+        <div id="score-band-wrap"></div>
+
+        <div class="action-section" id="action-section">
+          <h3>Your suggested next steps</h3>
+          <div class="action-list" id="action-list"></div>
+        </div>
+
+        <div class="reassure-box" role="note">
+          <p>💛 <strong>You're doing the right thing just by being here.</strong> Most parents find even one or two small changes make a real difference — and now you know exactly where to look. Your child is lucky to have someone who cares this much.</p>
+        </div>
+
+        <div class="restart-row">
+          <p>Want to go through it again for a different child, or check how things have changed?</p>
+          <button class="btn btn--secondary" onclick="restartCheck()">Start again</button>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- end .check-wrap -->
+
+
+    <!-- Related links -->
+    <section class="section band--gray" aria-label="Related tools">
+      <div class="container">
+        <div class="section-header--center">
+          <span class="eyebrow">What to do next</span>
+          <h2>More tools for families</h2>
+        </div>
+        <div class="grid grid-3">
+          <a href="conversation-guide.html" class="guide-card">
+            <span style="font-size:24px;" aria-hidden="true">💬</span>
+            <h3 class="guide-card__title">Conversation guide</h3>
+            <p class="guide-card__desc">Age-matched scripts to help you start the online safety chat with your child.</p>
+          </a>
+          <a href="platform-settings.html" class="guide-card">
+            <span style="font-size:24px;" aria-hidden="true">⚙️</span>
+            <h3 class="guide-card__title">Platform settings hub</h3>
+            <p class="guide-card__desc">Step-by-step guides to locking down TikTok, Instagram, Discord and more.</p>
+          </a>
+          <a href="tech-contract.html" class="guide-card">
+            <span style="font-size:24px;" aria-hidden="true">📄</span>
+            <h3 class="guide-card__title">Family tech contract</h3>
+            <p class="guide-card__desc">Build a printable family agreement together — rules, limits and what to do if something goes wrong.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ── FOOTER ──────────────────────────────────────────────── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__safeguarding" role="region" aria-label="Emergency contacts">
+        <p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p>
+        <div class="footer__safeguarding-list">
+          <div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div>
+          <div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div>
+          <div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span></div>
+          <div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span></div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p>
+        <div class="footer__legal">
+          <a href="privacy-policy.html">Privacy policy</a>
+          <a href="accessibility.html">Accessibility</a>
+          <a href="parents.html">Parents hub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ── SCRIPT ──────────────────────────────────────────────── -->
+  <script>
+    const TOTAL = 10;
+    const answers = {};
+
+    function toggleMobileMenu(btn) {
+      const m = document.getElementById('mobile-menu');
+      const open = m.classList.contains('is-open');
+      m.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(!open));
+    }
+
+    function updateProgress(q) {
+      const pct = Math.round(((q - 1) / TOTAL) * 100);
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('progress-text').textContent = 'Question ' + q + ' of ' + TOTAL;
+      document.getElementById('progress-pct').textContent = pct + '% done';
+      document.getElementById('progress-bar-wrap').setAttribute('aria-valuenow', pct);
+    }
+
+    function selectOpt(btn, q, val) {
+      // Deselect others in this question
+      btn.closest('.q-options').querySelectorAll('.q-opt').forEach(b => {
+        b.classList.remove('selected');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('selected');
+      btn.setAttribute('aria-pressed', 'true');
+      answers[q] = val;
+      document.getElementById('q' + q + '-next').disabled = false;
+    }
+
+    function nextQ(current) {
+      const curr = document.getElementById('q' + current);
+      const next = document.getElementById('q' + (current + 1));
+      curr.classList.remove('active');
+      next.classList.add('active');
+      updateProgress(current + 1);
+      next.querySelector('.q-text').focus();
+      window.scrollTo({ top: document.getElementById('quiz-wrap').offsetTop - 100, behavior: 'smooth' });
+    }
+
+    function prevQ(current) {
+      const curr = document.getElementById('q' + current);
+      const prev = document.getElementById('q' + (current - 1));
+      curr.classList.remove('active');
+      prev.classList.add('active');
+      updateProgress(current - 1);
+      window.scrollTo({ top: document.getElementById('quiz-wrap').offsetTop - 100, behavior: 'smooth' });
+    }
+
+    function showResults() {
+      // Hide all q-cards
+      document.querySelectorAll('.q-card').forEach(c => c.classList.remove('active'));
+      // Update progress to 100%
+      document.getElementById('progress-fill').style.width = '100%';
+      document.getElementById('progress-text').textContent = 'All done!';
+      document.getElementById('progress-pct').textContent = '100% done';
+
+      // Calculate a simple concern score (0 = most prepared, higher = more areas to address)
+      // Each answer: 0 = more active/concerning, 1 = partial, 2 = fine/not applicable
+      let score = 0;
+      // Q3 controls: 2=none is high concern
+      if (answers[3] === 2) score += 3;
+      else if (answers[3] === 1) score += 1;
+      // Q4 gaming: 0=lots with chat
+      if (answers[4] === 0) score += 2;
+      // Q5 social: 0=many platforms
+      if (answers[5] === 0) score += 2;
+      else if (answers[5] === 1) score += 1;
+      // Q6 AI: 0=yes uses, 1=maybe
+      if (answers[6] === 0) score += 2;
+      else if (answers[6] === 1) score += 1;
+      // Q7 screen time: 0=worried
+      if (answers[7] === 0) score += 2;
+      else if (answers[7] === 1) score += 1;
+      // Q8 conversation: 2=not had it
+      if (answers[8] === 2) score += 3;
+      else if (answers[8] === 1) score += 1;
+      // Q9 warning signs: 0=yes noticed something
+      if (answers[9] === 0) score += 3;
+      else if (answers[9] === 1) score += 1;
+      // Q10 confidence: 0=not confident
+      if (answers[10] === 0) score += 2;
+      else if (answers[10] === 1) score += 1;
+
+      // Build results
+      buildResults(score);
+
+      const panel = document.getElementById('results-panel');
+      panel.classList.add('active');
+      panel.focus();
+      window.scrollTo({ top: document.getElementById('quiz-wrap').offsetTop - 100, behavior: 'smooth' });
+    }
+
+    function buildResults(score) {
+      const emoji = document.getElementById('results-emoji');
+      const title = document.getElementById('results-title');
+      const intro = document.getElementById('results-intro');
+      const bandWrap = document.getElementById('score-band-wrap');
+      const list = document.getElementById('action-list');
+
+      // Score band
+      let band = '';
+      if (score <= 4) {
+        emoji.textContent = '💚';
+        title.textContent = 'You\'re doing really well — here are a few finishing touches';
+        intro.textContent = 'It sounds like you\'ve thought carefully about your family\'s online safety. These suggestions are small things that will round out what you\'ve already put in place.';
+        band = `<div class="score-band band-good" role="note">
+          <i class="ti ti-shield-check" aria-hidden="true"></i>
+          <div><h3>You\'re in a good place</h3><p>You have strong foundations. The suggestions below are gentle refinements — not urgent changes. Keep doing what you\'re doing and keep the conversations going.</p></div>
+        </div>`;
+      } else if (score <= 10) {
+        emoji.textContent = '💛';
+        title.textContent = 'A few important steps will make a big difference';
+        intro.textContent = 'You\'re clearly paying attention, which already puts you ahead of many parents. Some things have slipped through the gaps — that\'s completely normal. Here\'s where to focus your energy.';
+        band = `<div class="score-band band-ok" role="note">
+          <i class="ti ti-mood-smile" aria-hidden="true"></i>
+          <div><h3>Good awareness — some action needed</h3><p>You\'re in the right place at the right time. A few targeted steps from the list below will meaningfully reduce the risks your child faces online.</p></div>
+        </div>`;
+      } else {
+        emoji.textContent = '💙';
+        title.textContent = 'Don\'t worry — every family starts somewhere';
+        intro.textContent = 'There\'s quite a bit we can help you with, and that\'s absolutely okay. None of this is your fault — online safety is genuinely hard to keep up with. Let\'s take it one step at a time, starting with the most important things.';
+        band = `<div class="score-band band-start" role="note">
+          <i class="ti ti-heart" aria-hidden="true"></i>
+          <div><h3>Let\'s take this step by step</h3><p>The most important thing is that you\'re here. Work through the suggestions below in order — the first two or three will have the biggest impact. You don\'t have to do everything at once.</p></div>
+        </div>`;
+      }
+      bandWrap.innerHTML = band;
+
+      // Build personalised action list
+      const items = [];
+
+      // Warning signs — always first if noticed
+      if (answers[9] === 0) {
+        items.push({
+          priority: true,
+          icon: 'ti-alert-triangle',
+          title: 'You\'ve noticed something — trust that feeling',
+          desc: 'You said something feels different. Your instincts as a parent matter enormously. Our red flag guide will help you work out what you\'re seeing — and whether to have a conversation now, or contact someone for support.',
+          link: 'parents.html#red-flags',
+          linkText: 'See the warning signs guide →'
+        });
+      }
+
+      // No parental controls
+      if (answers[3] === 2) {
+        items.push({
+          priority: true,
+          icon: 'ti-settings',
+          title: 'Set up parental controls — this is the most practical step you can take',
+          desc: 'It sounds like device controls aren\'t in place yet. Screen Time on iPhone, Google Family Link on Android, and console family settings are all free and take about 15 minutes to set up. They won\'t solve everything, but they make a real difference.',
+          link: 'platform-settings.html',
+          linkText: 'Go to the settings hub →'
+        });
+      } else if (answers[3] === 1) {
+        items.push({
+          priority: false,
+          icon: 'ti-settings',
+          title: 'Fill the gaps in your parental controls',
+          desc: 'You\'ve made a start — great. Our platform hub has step-by-step guides for every app and device, so you can check what\'s missing and fill in the gaps at your own pace.',
+          link: 'platform-settings.html',
+          linkText: 'Check the platform settings hub →'
+        });
+      }
+
+      // Haven't had the conversation
+      if (answers[8] === 2) {
+        items.push({
+          priority: true,
+          icon: 'ti-messages',
+          title: 'Start the conversation — it\'s easier than you might think',
+          desc: 'Research consistently shows that children who feel they can talk to a parent about something worrying are far safer online. Our conversation guide gives you the exact words to start, matched to your child\'s age — no difficult preparation needed.',
+          link: 'conversation-guide.html',
+          linkText: 'Get the conversation scripts →'
+        });
+      } else if (answers[8] === 1) {
+        items.push({
+          priority: false,
+          icon: 'ti-messages',
+          title: 'Deepen the online safety conversation',
+          desc: 'You\'ve made a start — that matters. Our conversation guide has age-matched scripts that go a bit further, covering the topics children most need to hear about from a parent they trust.',
+          link: 'conversation-guide.html',
+          linkText: 'See the conversation guide →'
+        });
+      }
+
+      // Gaming with chat
+      if (answers[4] === 0) {
+        items.push({
+          priority: false,
+          icon: 'ti-device-gamepad-2',
+          title: 'Review who your child talks to in games',
+          desc: 'Gaming with chat on is one of the most common ways children make contact with unknown adults. Our gaming guide explains what to look for, and the platform hub has controls for every console.',
+          link: 'gaming-safety.html',
+          linkText: 'Read the gaming safety guide →'
+        });
+      }
+
+      // Lots of social media
+      if (answers[5] === 0) {
+        items.push({
+          priority: false,
+          icon: 'ti-brand-instagram',
+          title: 'Lock down social media privacy settings',
+          desc: 'Being on several platforms means several sets of settings to check. Our social media guide walks through the specific settings that matter most on TikTok, Instagram, Snapchat and YouTube.',
+          link: 'social-media.html',
+          linkText: 'See the social media guide →'
+        });
+      }
+
+      // AI chatbots
+      if (answers[6] === 0 || answers[6] === 1) {
+        items.push({
+          priority: false,
+          icon: 'ti-robot',
+          title: 'Read up on AI chatbots and companion apps',
+          desc: 'This is the newest risk — and most parents haven\'t heard about it yet. Our guide on AI companions explains what they are, why children are drawn to them, and what warning signs to watch for.',
+          link: 'ai-chatbots.html',
+          linkText: 'Read the AI chatbots guide →'
+        });
+      }
+
+      // Screen time worries
+      if (answers[7] === 0) {
+        items.push({
+          priority: false,
+          icon: 'ti-clock',
+          title: 'Address screen time — there are gentle ways to do this',
+          desc: 'Feeling worried about how much time your child spends online is one of the most common concerns parents share with us. Our screen time guide covers NHS-backed limits by age, practical controls, and how to introduce phone-free times without it becoming a battle.',
+          link: 'screen-time.html',
+          linkText: 'Read the screen time guide →'
+        });
+      } else if (answers[7] === 1) {
+        items.push({
+          priority: false,
+          icon: 'ti-clock',
+          title: 'A gentle nudge on screen time balance',
+          desc: 'You said you\'d like a bit more balance — that\'s a good instinct. Our screen time guide has some practical, low-conflict ways to build in boundaries that the whole family can live with.',
+          link: 'screen-time.html',
+          linkText: 'See the screen time guide →'
+        });
+      }
+
+      // Always include: family contract if not confident
+      if (answers[10] !== 2) {
+        items.push({
+          priority: false,
+          icon: 'ti-file-text',
+          title: 'Consider building a family tech agreement together',
+          desc: 'A family tech agreement — rules your child helps create — makes everything else easier to enforce. Ours takes about 10 minutes to build and produces something you can print and put on the fridge.',
+          link: 'tech-contract.html',
+          linkText: 'Build your family agreement →'
+        });
+      }
+
+      // Always include: privacy
+      items.push({
+        priority: false,
+        icon: 'ti-lock',
+        title: 'Check location data in photos is switched off',
+        desc: 'Every photo on a smartphone contains hidden location data. Two minutes in settings prevents your child\'s home address from being embedded in every photo they share online. A small action with real impact.',
+        link: 'privacy.html',
+        linkText: 'Read the privacy guide →'
+      });
+
+      // Render items (cap at 6 to avoid overwhelm)
+      const toShow = items.slice(0, 6);
+      list.innerHTML = toShow.map(item => `
+        <div class="action-item${item.priority ? ' priority' : ''}">
+          <i class="ti ${item.icon} ai-icon" aria-hidden="true"></i>
+          <div>
+            <p class="ai-title">${item.title}</p>
+            <p class="ai-desc">${item.desc}</p>
+            <a href="${item.link}" class="ai-link">${item.linkText} <i class="ti ti-arrow-right" style="font-size:12px;" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function restartCheck() {
+      // Reset
+      Object.keys(answers).forEach(k => delete answers[k]);
+      document.querySelectorAll('.q-opt').forEach(b => {
+        b.classList.remove('selected');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      document.querySelectorAll('.btn-next').forEach(b => b.disabled = true);
+      document.getElementById('results-panel').classList.remove('active');
+      document.getElementById('action-list').innerHTML = '';
+      document.getElementById('score-band-wrap').innerHTML = '';
+      // Go back to Q1
+      document.getElementById('q1').classList.add('active');
+      updateProgress(1);
+      window.scrollTo({ top: document.getElementById('quiz-wrap').offsetTop - 100, behavior: 'smooth' });
+    }
+
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+    updateProgress(1);
+  </script>
+
+</body>
+</html>

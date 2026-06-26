@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Online safety guidance for schools and educators — ideas for classroom sessions, staff development, whole-school approaches, and what good policy might look like." />
+  <title>Educators — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>" />
+  <style>
+    /* Blue theme for educators */
+    :root {
+      --edu-primary: #185FA5;
+      --edu-dark:    #0C447C;
+      --edu-light:   #E6F1FB;
+      --edu-border:  #85B7EB;
+      --edu-text-dark:#042C53;
+    }
+
+    .edu-hero {
+      background: var(--edu-light);
+      border-bottom: 3px solid var(--edu-border);
+      padding: var(--space-12) 0;
+    }
+    .edu-hero h1 { color: var(--edu-text-dark); font-size: var(--text-3xl); margin-bottom: var(--space-3); }
+    .edu-hero p  { color: var(--edu-primary); font-size: var(--text-md); max-width: 540px; line-height: 1.6; margin-bottom: var(--space-8); }
+
+    /* Role entry cards */
+    .role-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--space-3); }
+    .role-card {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--edu-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      display: flex; gap: var(--space-3); align-items: flex-start;
+      cursor: pointer; text-decoration: none; color: inherit;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    .role-card:hover { background: var(--edu-light); box-shadow: var(--shadow-sm); color: inherit; }
+    .role-card i { font-size: 22px; color: var(--edu-primary); flex-shrink: 0; margin-top: 2px; }
+    .role-card h3 { font-size: var(--text-base); font-weight: 600; color: var(--edu-text-dark); margin-bottom: var(--space-1); }
+    .role-card p  { font-size: var(--text-sm); color: var(--edu-primary); line-height: 1.4; margin: 0; }
+
+    /* KS filter tabs */
+    .ks-tabs { display: flex; gap: var(--space-2); margin-bottom: var(--space-5); flex-wrap: wrap; }
+    .ks-tab {
+      padding: 8px var(--space-4);
+      border: 1px solid var(--color-border-default);
+      border-radius: var(--radius-md);
+      background: var(--color-bg-primary);
+      font-size: var(--text-sm); font-weight: 500;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: var(--font-body);
+    }
+    .ks-tab:hover, .ks-tab.active {
+      background: var(--edu-primary);
+      border-color: var(--edu-primary);
+      color: #fff;
+    }
+
+    /* Lesson cards */
+    .lesson-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--space-4); }
+    .lesson-card {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      display: flex; flex-direction: column;
+      transition: background var(--transition);
+    }
+    .lesson-card:hover { background: var(--color-bg-secondary); }
+    .lesson-card[data-ks]:not([data-ks=""]) { display: flex; }
+    .lesson-card.hidden { display: none; }
+    .lesson-top { margin-bottom: var(--space-3); }
+    .lesson-tags { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-3); }
+    .lesson-card h3 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .lesson-card p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.55; flex: 1; margin-bottom: var(--space-4); }
+    .lesson-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid var(--color-border-subtle);
+      padding-top: var(--space-3);
+    }
+    .lesson-footer .lf-meta { font-size: var(--text-xs); color: var(--color-text-muted); display: flex; align-items: center; gap: var(--space-2); }
+    .lesson-footer a { font-size: var(--text-xs); font-weight: 600; color: var(--edu-primary); text-decoration: none; display: flex; align-items: center; gap: var(--space-1); }
+    .lesson-footer a:hover { text-decoration: underline; }
+
+    /* Topic resource pills */
+    .resource-strip { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--space-3); }
+    .resource-pill {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      display: flex; align-items: center; gap: var(--space-3);
+      text-decoration: none; color: inherit;
+      transition: background var(--transition);
+    }
+    .resource-pill:hover { background: var(--color-bg-secondary); color: inherit; }
+    .resource-pill i { font-size: 20px; flex-shrink: 0; }
+    .resource-pill .rp-title { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-title); }
+    .resource-pill .rp-count { font-size: var(--text-xs); color: var(--color-text-muted); }
+
+    /* Incident response */
+    .disclosure-protocol {
+      background: var(--color-alert-light);
+      border: 2px solid var(--color-alert-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      margin-bottom: var(--space-5);
+    }
+    .disclosure-protocol h3 { font-size: var(--text-xl); color: #501313; margin-bottom: var(--space-5); display: flex; align-items: center; gap: var(--space-3); }
+    .disclosure-protocol h3 i { font-size: 24px; color: var(--color-alert); }
+    .dp-steps { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: var(--space-3); }
+    .dp-step {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-alert-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      text-align: center;
+    }
+    .dp-step .ds-num { font-size: var(--text-xs); font-weight: 700; color: var(--color-alert); text-transform: uppercase; letter-spacing: .05em; margin-bottom: var(--space-2); }
+    .dp-step i { font-size: 22px; color: var(--color-alert); margin-bottom: var(--space-2); display: block; }
+    .dp-step h4 { font-size: var(--text-sm); font-weight: 600; color: #501313; margin-bottom: var(--space-2); }
+    .dp-step p  { font-size: var(--text-xs); color: #791F1F; line-height: 1.5; margin: 0; }
+
+    /* Incident type cards */
+    .incident-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--space-3); }
+    .incident-card {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .incident-card:hover { background: var(--color-bg-secondary); }
+    .incident-card i { font-size: 20px; margin-bottom: var(--space-2); display: block; }
+    .incident-card h4 { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-1); }
+    .incident-card p  { font-size: var(--text-xs); color: var(--color-text-secondary); line-height: 1.5; margin: 0; }
+
+    /* Assembly cards */
+    .assembly-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--space-4); }
+    .assembly-card {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .assembly-card:hover { background: var(--color-bg-secondary); }
+    .assembly-card h3 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .assembly-card p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.55; margin-bottom: var(--space-3); }
+    .assembly-tags { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+
+    /* CPD cards */
+    .cpd-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--space-4); }
+    .cpd-card {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      display: flex; gap: var(--space-4); align-items: flex-start;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .cpd-card:hover { background: var(--color-bg-secondary); }
+    .cpd-icon { width: 44px; height: 44px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 20px; }
+    .cpd-card h3 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .cpd-card p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.55; margin-bottom: var(--space-3); }
+    .cpd-meta { font-size: var(--text-xs); color: var(--color-text-muted); display: flex; align-items: center; gap: var(--space-2); }
+
+    /* Policy downloads */
+    .policy-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--space-4); }
+    .policy-card {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      cursor: pointer;
+      transition: background var(--transition);
+      text-decoration: none; color: inherit;
+      display: flex; flex-direction: column;
+    }
+    .policy-card:hover { background: var(--color-bg-secondary); color: inherit; }
+    .policy-card i { font-size: 24px; margin-bottom: var(--space-3); display: block; }
+    .policy-card h3 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .policy-card p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.55; flex: 1; margin-bottom: var(--space-4); }
+    .policy-dl { font-size: var(--text-sm); font-weight: 600; color: var(--edu-primary); display: flex; align-items: center; gap: var(--space-2); margin-top: auto; }
+
+    /* Safeguarding bar */
+    .safeguard-bar {
+      background: var(--color-brand-light);
+      border: 1px solid var(--color-brand-mid);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5) var(--space-6);
+      display: flex; gap: var(--space-4); align-items: flex-start;
+    }
+    .safeguard-bar i { font-size: 28px; color: var(--color-brand); flex-shrink: 0; margin-top: 3px; }
+    .safeguard-bar h3 { font-size: var(--text-base); font-weight: 600; color: var(--color-brand-dark); margin-bottom: var(--space-2); }
+    .safeguard-bar p  { font-size: var(--text-sm); color: #085041; line-height: 1.65; margin: 0; }
+
+    @media (max-width: 1023px) {
+      .lesson-grid  { grid-template-columns: 1fr; }
+      .policy-grid  { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    }
+    @media (max-width: 767px) {
+      .role-grid     { grid-template-columns: 1fr; }
+      .dp-steps      { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .incident-grid { grid-template-columns: 1fr; }
+      .assembly-grid { grid-template-columns: 1fr; }
+      .cpd-grid      { grid-template-columns: 1fr; }
+      .policy-grid   { grid-template-columns: 1fr; }
+      .resource-strip{ grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .safeguard-bar { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert">
+      <p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p>
+      <a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a>
+    </div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list">
+          <li><a href="parents.html" class="nav__link">Parents</a></li>
+          <li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li>
+          <li><a href="educators.html" class="nav__link nav__link--active" aria-current="page">Educators</a></li>
+          <li><a href="resources.html" class="nav__link">Resources</a></li>
+          <li><a href="about.html" class="nav__link">About</a></li>
+        </ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile">
+        <a href="parents.html" class="nav__link">Parents</a>
+        <a href="kids.html" class="nav__link">Kids &amp; teens</a>
+        <a href="educators.html" class="nav__link">Educators</a>
+        <a href="resources.html" class="nav__link">Resources</a>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+      </div>
+    </div>
+  </header>
+
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="edu-hero" aria-label="Educators section introduction">
+      <div class="container">
+        <span class="eyebrow" style="color:var(--edu-primary);">Schools &amp; educators</span>
+        <h1>Resources for schools &amp; educators</h1>
+        <p>Ideas for classroom sessions, staff development conversations, and whole-school approaches — along with some thoughts on what good policy might look like. Take what's useful, leave what isn't.</p>
+        <div class="role-grid" role="list" aria-label="Choose your role">
+          <a href="#lessons" class="role-card" role="listitem">
+            <i class="ti ti-chalkboard" aria-hidden="true"></i>
+            <div>
+              <h3>Classroom teacher</h3>
+              <p>Ideas for sessions, topics worth covering, and conversation starters</p>
+            </div>
+          </a>
+          <a href="#incidents" class="role-card" role="listitem">
+            <i class="ti ti-shield-check" aria-hidden="true"></i>
+            <div>
+              <h3>DSL / safeguarding lead</h3>
+              <p>Thinking around incident responses, referral pathways and what good disclosure support looks like</p>
+            </div>
+          </a>
+          <a href="#policies" class="role-card" role="listitem">
+            <i class="ti ti-building-school" aria-hidden="true"></i>
+            <div>
+              <h3>Senior leader / headteacher</h3>
+              <p>Whole-school considerations, policy thinking, and what to look for in a good approach</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CURRENT THREATS -->
+    <section class="alert-strip" aria-label="Current risks relevant to schools">
+      <div class="container">
+        <div class="alert-strip__header">
+          <i class="ti ti-flame" style="color:var(--color-alert);font-size:16px;" aria-hidden="true"></i>
+          <span class="alert-strip__label">Current risks relevant to schools right now</span>
+        </div>
+        <div class="grid grid-3" role="list">
+          <article class="card card--alert" role="listitem">
+            <span class="badge badge--new" style="margin-bottom:var(--space-3);">Emerging</span>
+            <h3 style="font-size:var(--text-base);margin-bottom:var(--space-2);">
+              <a href="ai-impersonation.html" style="color:var(--color-text-title);text-decoration:none;">AI deepfakes in school settings</a>
+            </h3>
+            <p class="text-sm text-secondary">AI nudification tools being used to create images of classmates — already reported in UK schools. Existing law applies.</p>
+          </article>
+          <article class="card card--alert" role="listitem">
+            <span class="badge badge--red" style="margin-bottom:var(--space-3);">Rising</span>
+            <h3 style="font-size:var(--text-base);margin-bottom:var(--space-2);">
+              <a href="ai-chatbots.html" style="color:var(--color-text-title);text-decoration:none;">AI companion dependency</a>
+            </h3>
+            <p class="text-sm text-secondary">Children forming emotional bonds with AI personas. Relevant to pastoral care, PSHE and safeguarding referral thinking.</p>
+          </article>
+          <article class="card card--alert" role="listitem">
+            <span class="badge badge--amber" style="margin-bottom:var(--space-3);">Ongoing</span>
+            <h3 style="font-size:var(--text-base);margin-bottom:var(--space-2);">
+              <a href="chat-messaging.html#sextortion" style="color:var(--color-text-title);text-decoration:none;">Sextortion — increasing in secondary age</a>
+            </h3>
+            <p class="text-sm text-secondary">Organised criminal groups targeting teenagers. Often surfaces in school when a student discloses. See our safeguarding contacts below.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CLASSROOM SESSION IDEAS -->
+    <section class="section band--white" id="lessons" aria-label="Classroom session ideas">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow" style="color:var(--edu-primary);">Ideas for the classroom</span>
+          <h2>Topics worth exploring</h2>
+          <p class="text-secondary">These are suggestions for the kinds of things that tend to work well in a session — not a prescribed curriculum. Every school is different, and the right approach will depend on your students and context.</p>
+        </div>
+
+        <div class="lesson-grid" aria-label="Session ideas">
+
+          <div class="lesson-card">
+            <div class="lesson-top">
+              <div class="lesson-tags">
+                <span class="badge badge--green">Privacy</span>
+                <span class="badge badge--gray">~45 min</span>
+              </div>
+              <h3>What's private? Keeping our details safe</h3>
+              <p>A session helping young children understand what information is private and who they can share it with online. Works well as a circle-time discussion or with simple sorting activities — private/not private. Connects naturally to the PANTS rule most children already know from PSHE.</p>
+            </div>
+            <div class="lesson-footer">
+              <span class="lf-meta"><i class="ti ti-bulb" style="font-size:12px;" aria-hidden="true"></i> Discussion · sorting activity</span>
+              <a href="kids-under7.html" aria-label="See how we explain this to children">See what children learn →</a>
+            </div>
+          </div>
+
+          <div class="lesson-card">
+            <div class="lesson-top">
+              <div class="lesson-tags">
+                <span class="badge badge--red">Strangers online</span>
+                <span class="badge badge--gray">~45 min</span>
+              </div>
+              <h3>Who could be online? Trusted adults and strangers</h3>
+              <p>Exploring the difference between trusted adults and strangers in an online context. Role play and discussion tend to work well here — children can act out what they'd do and who they'd tell. Connects to existing safeguarding language children already have.</p>
+            </div>
+            <div class="lesson-footer">
+              <span class="lf-meta"><i class="ti ti-bulb" style="font-size:12px;" aria-hidden="true"></i> Role play · discussion</span>
+              <a href="kids-under7.html" aria-label="See how we explain this to children">See what children learn →</a>
+            </div>
+          </div>
+
+          <div class="lesson-card">
+            <div class="lesson-top">
+              <div class="lesson-tags">
+                <span class="badge badge--red">Gaming</span>
+                <span class="badge badge--gray">~60 min</span>
+              </div>
+              <h3>Who are you really talking to in games?</h3>
+              <p>Exploring how online identity works and why people aren't always who they say they are. Works well with scenarios children can discuss in pairs or small groups. Key question: "What would you do if someone asked to move the chat somewhere else?" Children are often more knowledgeable about specific games than staff — leaning into that works well.</p>
+            </div>
+            <div class="lesson-footer">
+              <span class="lf-meta"><i class="ti ti-bulb" style="font-size:12px;" aria-hidden="true"></i> Scenarios · small group discussion</span>
+              <a href="kids-8to12.html" aria-label="See how we explain this to children">See what children learn →</a>
+            </div>
+          </div>
+
+          <div class="lesson-card">
+            <div class="lesson-top">
+              <div class="lesson-tags">
+                <span class="badge badge--amber">Bullying</span>
+                <span class="badge badge--gray">~60 min</span>
+              </div>
+              <h3>When someone is mean online — what it is and what to do</h3>
+              <p>Helping children recognise cyberbullying, understand how it differs from a one-off falling out, and practise the steps they'd take. Including how to support a friend is often more powerful than focusing only on what to do if it happens to you — children respond well to the "helping a friend" framing.</p>
+            </div>
+            <div class="lesson-footer">
+              <span class="lf-meta"><i class="ti ti-bulb" style="font-size:12px;" aria-hidden="true"></i> Scenarios · class discussion</span>
+              <a href="kids-8to12.html" aria-label="See how we explain this to children">See what children learn →</a>
+            </div>
+          </div>
+
+          <div class="lesson-card">
+            <div class="lesson-top">
+              <div class="lesson-tags">
+                <span class="badge badge--green">Privacy</span>
+                <span class="badge badge--gray">~50 min</span>
+              </div>
+              <h3>Screenshots are forever</h3>
+              <p>Exploring the permanence of online content through relatable scenarios. The "screenshot test" — would I be OK if my teacher or parent saw this? — is a practical mental check children can take away. Works well as a paired discussion activity with increasingly complex scenarios.</p>
+            </div>
+            <div class="lesson-footer">
+              <span class="lf-meta"><i class="ti ti-bulb" style="font-size:12px;" aria-hidden="true"></i> Paired discussion · scenarios</span>
+              <a href="kids-8to12.html" aria-label="See how we explain this to children">See what children learn →</a>
+            </div>
+          </div>
+
+          <div class="lesson-card">
+            <div class="lesson-top">
+              <div class="lesson-tags">
+                <span class="badge badge--new">AI</span>
+                <span class="badge badge--gray">~75 min</span>
+              </div>
+              <h3>AI companions — what's really going on?</h3>
+              <p>A critical thinking session on how AI companion apps work and why they feel emotionally real. Teens respond well to being shown the business model — "the app makes money the more time you spend on it" — rather than being told it's dangerous. Myth-busting activities and open debate tend to generate good discussion. Our guide on <a href="ai-chatbots.html">AI chatbots</a> and <a href="ai-impersonation.html">AI impersonation</a> have background reading for staff preparing the session.</p>
+            </div>
+            <div class="lesson-footer">
+              <span class="lf-meta"><i class="ti ti-bulb" style="font-size:12px;" aria-hidden="true"></i> Myth-busting · debate · discussion</span>
+              <a href="kids-13to17.html" aria-label="See how we explain this to teens">See what teens learn →</a>
+            </div>
+          </div>
+
+          <div class="lesson-card">
+            <div class="lesson-top">
+              <div class="lesson-tags">
+                <span class="badge badge--red">Image safety</span>
+                <span class="badge badge--gray">~90 min</span>
+              </div>
+              <h3>Image sharing, consent &amp; the law</h3>
+              <p>One of the most important sessions for secondary students — covering what consent means for images and videos, UK law under the Online Safety Act 2023, and the reality of AI deepfakes. Framing this around what young people need to know to protect themselves — rather than telling them what not to do — tends to land better. Real statistics from the IWF and CEOP are powerful here. See our <a href="ai-impersonation.html">AI impersonation guide</a> for current data.</p>
+            </div>
+            <div class="lesson-footer">
+              <span class="lf-meta"><i class="ti ti-bulb" style="font-size:12px;" aria-hidden="true"></i> Statistics · case studies · discussion</span>
+              <a href="kids-13to17.html" aria-label="See how we explain this to teens">See what teens learn →</a>
+            </div>
+          </div>
+
+          <div class="lesson-card">
+            <div class="lesson-top">
+              <div class="lesson-tags">
+                <span class="badge" style="background:var(--color-purple);color:var(--color-purple-text);">Social media</span>
+                <span class="badge badge--gray">~75 min</span>
+              </div>
+              <h3>Social media, algorithms &amp; how they affect you</h3>
+              <p>Media literacy for the social media age — how recommendation algorithms work, why comparison culture is structurally built into platforms, and what the evidence shows about impact on mental health. Showing students how the algorithm works (rather than telling them it's bad for them) is generally more effective. Our <a href="social-platforms-top10.html">top 10 social platforms guide</a> has sourced data useful for staff preparation.</p>
+            </div>
+            <div class="lesson-footer">
+              <span class="lf-meta"><i class="ti ti-bulb" style="font-size:12px;" aria-hidden="true"></i> Media literacy · reflection · discussion</span>
+              <a href="kids-13to17.html" aria-label="See how we explain this to teens">See what teens learn →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CLASSROOM RESOURCES BY TOPIC -->
+    <section class="section band--gray" aria-label="Classroom topics by area">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow" style="color:var(--edu-primary);">Browse by topic</span>
+          <h2>Topics worth exploring across all year groups</h2>
+        </div>
+        <div class="resource-strip" role="list">
+          <a href="gaming-safety.html" class="resource-pill" role="listitem">
+            <i class="ti ti-device-gamepad-2" style="color:#993C1D;" aria-hidden="true"></i>
+            <div><p class="rp-title">Gaming safety</p><p class="rp-count">In-game chat · loot boxes · identity</p></div>
+          </a>
+          <a href="social-platforms-top10.html" class="resource-pill" role="listitem">
+            <i class="ti ti-brand-instagram" style="color:#534AB7;" aria-hidden="true"></i>
+            <div><p class="rp-title">Social platforms</p><p class="rp-count">Algorithms · privacy · image pressure</p></div>
+          </a>
+          <a href="ai-chatbots.html" class="resource-pill" role="listitem">
+            <i class="ti ti-robot" style="color:#185FA5;" aria-hidden="true"></i>
+            <div><p class="rp-title">AI &amp; chatbots</p><p class="rp-count">Companions · impersonation · deepfakes</p></div>
+          </a>
+          <a href="privacy.html" class="resource-pill" role="listitem">
+            <i class="ti ti-lock" style="color:#0F6E56;" aria-hidden="true"></i>
+            <div><p class="rp-title">Privacy &amp; data</p><p class="rp-count">Personal information · location · security</p></div>
+          </a>
+          <a href="chat-messaging.html" class="resource-pill" role="listitem">
+            <i class="ti ti-mood-sad" style="color:#854F0B;" aria-hidden="true"></i>
+            <div><p class="rp-title">Bullying &amp; messaging</p><p class="rp-count">Cyberbullying · Discord · group chats</p></div>
+          </a>
+          <a href="ai-impersonation.html" class="resource-pill" role="listitem">
+            <i class="ti ti-camera" style="color:#993556;" aria-hidden="true"></i>
+            <div><p class="rp-title">Image sharing &amp; deepfakes</p><p class="rp-count">Consent · the law · AI-generated images</p></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- INCIDENT RESPONSE -->
+    <section class="section band--white" id="incidents" aria-label="Incident response protocols">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow eyebrow--alert">When something happens</span>
+          <h2>Incident response protocols</h2>
+          <p class="text-secondary">For DSLs and all teaching staff. These protocols are aligned with KCSIE 2024 and the Online Safety Act 2023.</p>
+        </div>
+
+        <!-- Disclosure protocol — always first -->
+        <div class="disclosure-protocol" role="region" aria-label="Child disclosure protocol">
+          <h3><i class="ti ti-alert-triangle" aria-hidden="true"></i> A child has made a disclosure — do this now</h3>
+          <div class="dp-steps" role="list">
+            <div class="dp-step" role="listitem">
+              <p class="ds-num">Step 1</p>
+              <i class="ti ti-ear" aria-hidden="true"></i>
+              <h4>Listen and believe</h4>
+              <p>Don't ask leading questions. Say "thank you for telling me." Do not promise confidentiality.</p>
+            </div>
+            <div class="dp-step" role="listitem">
+              <p class="ds-num">Step 2</p>
+              <i class="ti ti-writing" aria-hidden="true"></i>
+              <h4>Record exactly</h4>
+              <p>Write the child's own words with time and date. Do not paraphrase or interpret.</p>
+            </div>
+            <div class="dp-step" role="listitem">
+              <p class="ds-num">Step 3</p>
+              <i class="ti ti-user-shield" aria-hidden="true"></i>
+              <h4>Refer to your DSL</h4>
+              <p>Pass immediately to the Designated Safeguarding Lead. Do not investigate yourself.</p>
+            </div>
+            <div class="dp-step" role="listitem">
+              <p class="ds-num">Step 4</p>
+              <i class="ti ti-heart" aria-hidden="true"></i>
+              <h4>Reassure the child</h4>
+              <p>Tell them they were right to tell you, it is not their fault, and trusted adults will help.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Incident type cards -->
+        <div class="incident-grid" role="list">
+          <div class="incident-card" role="listitem">
+            <i class="ti ti-mood-sad" style="color:#854F0B;" aria-hidden="true"></i>
+            <h4>Cyberbullying protocol</h4>
+            <p>Step-by-step from first report through investigation, parental contact, sanctions and ongoing monitoring.</p>
+          </div>
+          <div class="incident-card" role="listitem">
+            <i class="ti ti-photo-off" style="color:#A32D2D;" aria-hidden="true"></i>
+            <h4>Non-consensual image sharing</h4>
+            <p>KCSIE-aligned response, police referral thresholds, IWF reporting, and student welfare support.</p>
+          </div>
+          <div class="incident-card" role="listitem">
+            <i class="ti ti-user-x" style="color:#A32D2D;" aria-hidden="true"></i>
+            <h4>Grooming disclosure</h4>
+            <p>CEOP referral pathway, what evidence to preserve, and how to support the child and family through the process.</p>
+          </div>
+          <div class="incident-card" role="listitem">
+            <i class="ti ti-alert-triangle" style="color:#993C1D;" aria-hidden="true"></i>
+            <h4>Sextortion report</h4>
+            <p>Urgent response steps, do-not-pay guidance, CEOP referral and IWF image removal — time-sensitive protocol.</p>
+          </div>
+          <div class="incident-card" role="listitem">
+            <i class="ti ti-robot" style="color:#185FA5;" aria-hidden="true"></i>
+            <h4>AI dependency concern</h4>
+            <p>Recognising signs of unhealthy AI engagement, conversation approach, and when to involve pastoral or CAMHS.</p>
+          </div>
+          <div class="incident-card" role="listitem">
+            <i class="ti ti-brain" style="color:#534AB7;" aria-hidden="true"></i>
+            <h4>Online-linked mental health crisis</h4>
+            <p>Crisis escalation pathway, CAMHS referral, parent communication guide and immediate classroom support.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- WHOLE SCHOOL IDEAS -->
+    <section class="section band--gray" aria-label="Whole-school approaches">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow" style="color:var(--edu-primary);">Whole-school thinking</span>
+          <h2>Ideas for assemblies &amp; whole-school moments</h2>
+          <p class="text-secondary">These are suggestions for how online safety might work beyond the classroom — not a fixed programme. Schools find very different approaches work for them.</p>
+        </div>
+        <div class="assembly-grid" role="list">
+          <div class="assembly-card" role="listitem">
+            <h3>A primary-focused assembly</h3>
+            <p>Something that tends to work well: a short (15–20 min) session built around a simple scenario children can respond to together. "What would you do if...?" engages even the youngest children. A single clear take-home message — rather than a list of rules — is more likely to stick. Always worth ending by reminding children who they can talk to if something worries them.</p>
+            <div class="assembly-tags">
+                            <span class="badge badge--gray">15–20 min</span>
+            </div>
+          </div>
+          <div class="assembly-card" role="listitem">
+            <h3>A secondary-focused session</h3>
+            <p>With older students, real data tends to land harder than scenarios. Statistics from the IWF, CEOP, or the Children's Commissioner on deepfakes, sextortion, or AI-generated images make the abstract feel concrete. Framing it as "things worth knowing" rather than "things you shouldn't do" is usually better received. Our <a href="ai-impersonation.html">AI impersonation guide</a> and <a href="social-platforms-top10.html">top 10 social platforms guide</a> have current cited data that works well here.</p>
+            <div class="assembly-tags">
+                            <span class="badge badge--gray">20–30 min</span>
+            </div>
+          </div>
+          <div class="assembly-card" role="listitem">
+            <h3>Safer Internet Day — 7 February</h3>
+            <p>A useful annual hook to bring online safety into form time, assemblies, and lessons across the school in a coordinated way. The UK Safer Internet Centre publishes free resources each year at <a href="https://saferinternet.org.uk" target="_blank" rel="noopener noreferrer">saferinternet.org.uk</a>. It also gives a natural hook for parent communications — families tend to engage more when they know it's a national moment rather than just the school raising concerns.</p>
+            <div class="assembly-tags">
+              <span class="badge badge--green">All years</span>
+              <span class="badge" style="background:#EAF3DE;color:#27500A;">Annual</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- STAFF DEVELOPMENT -->
+    <section class="section band--white" aria-label="Staff development ideas">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow" style="color:var(--edu-primary);">Staff development</span>
+          <h2>Ideas for staff sessions</h2>
+          <p class="text-secondary">A few topics that tend to be worth covering with staff — whether in an INSET slot, a staff meeting, or as part of DSL-specific training. These are starting points, not a programme.</p>
+        </div>
+        <div class="cpd-grid" role="list">
+          <div class="cpd-card" role="listitem">
+            <div class="cpd-icon icon-bg--blue"><i class="ti ti-chalkboard" aria-hidden="true"></i></div>
+            <div>
+              <h3>What does online harm actually look like today?</h3>
+              <p>The platforms, language, and risk patterns change quickly. A session helping all staff understand what children are actually encountering right now — not two years ago — tends to shift awareness significantly. Our guides on <a href="gaming-safety.html">gaming</a>, <a href="social-platforms-top10.html">social platforms</a>, and <a href="ai-chatbots.html">AI</a> have current, sourced information useful for whoever is leading the session.</p>
+              <p class="cpd-meta"><i class="ti ti-clock" style="font-size:12px;" aria-hidden="true"></i> INSET or staff meeting · all staff</p>
+            </div>
+          </div>
+          <div class="cpd-card" role="listitem">
+            <div class="cpd-icon icon-bg--green"><i class="ti ti-shield" aria-hidden="true"></i></div>
+            <div>
+              <h3>DSL-specific: current legislation and referral pathways</h3>
+              <p>Keeping across KCSIE updates, the Online Safety Act 2023, and what platforms are now legally required to do. Understanding which incidents require a CEOP referral vs a local authority route. Our <a href="ai-impersonation.html">AI impersonation guide</a> covers the latest developments on deepfakes and UK law, which is moving quickly.</p>
+              <p class="cpd-meta"><i class="ti ti-clock" style="font-size:12px;" aria-hidden="true"></i> DSL-specific · extended session</p>
+            </div>
+          </div>
+          <div class="cpd-card" role="listitem">
+            <div class="cpd-icon icon-bg--amber"><i class="ti ti-eye" aria-hidden="true"></i></div>
+            <div>
+              <h3>Recognising the signs — what to look for</h3>
+              <p>Behavioural indicators that something may be wrong online — and how to respond well if a child discloses something. Our <a href="red-flags.html">warning signs guide</a> covers the specific changes worth noticing. The most important thing to convey to all staff: how they respond in the first few minutes of a disclosure determines whether the child comes back.</p>
+              <p class="cpd-meta"><i class="ti ti-clock" style="font-size:12px;" aria-hidden="true"></i> Staff meeting · all staff</p>
+            </div>
+          </div>
+          <div class="cpd-card" role="listitem">
+            <div class="cpd-icon icon-bg--purple"><i class="ti ti-robot" aria-hidden="true"></i></div>
+            <div>
+              <h3>AI in the classroom — literacy and risks together</h3>
+              <p>Helping staff understand how to talk about AI tools accurately — what they can and can't do, the companion AI risks, and how deepfake technology works — so they can handle questions from students with confidence. Our <a href="ai-impersonation.html">AI impersonation guide</a> and <a href="ai-chatbots.html">AI chatbots guide</a> have background reading for staff preparing this.</p>
+              <p class="cpd-meta"><i class="ti ti-clock" style="font-size:12px;" aria-hidden="true"></i> Teaching staff · 45–60 min</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- POLICY THINKING -->
+    <section class="section band--gray" id="policies" aria-label="Policy guidance and thinking">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow" style="color:var(--edu-primary);">Policy thinking</span>
+          <h2>What good policy might look like</h2>
+          <p class="text-secondary">Every school's context is different, and policy needs to reflect that. These are the areas a strong online safety policy tends to cover — along with links to existing frameworks that schools find useful as a starting point.</p>
+        </div>
+
+        <!-- Online safety policy -->
+        <div class="card" style="margin-bottom:var(--space-5);">
+          <div style="display:flex;gap:var(--space-4);align-items:flex-start;">
+            <i class="ti ti-file-text" style="font-size:24px;color:var(--edu-primary);flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+            <div>
+              <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3);">Online safety policy</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.75;margin-bottom:var(--space-3);">A good online safety policy tends to cover: the school's approach to online safety education; how incidents are identified and responded to; roles and responsibilities (DSL, governors, staff, students, parents); how the policy connects to existing safeguarding, behaviour, and PSHE policies; and how it's reviewed and kept current.</p>
+              <p style="font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.75;margin-bottom:var(--space-4);">The <strong>South West Grid for Learning (SWGfL)</strong> maintains a free, regularly updated online safety policy template that schools across England use as a starting point. It's aligned to current statutory requirements including KCSIE 2024 and can be adapted to your school's context.</p>
+              <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;">
+                <a href="https://swgfl.org.uk/resources/online-safety-policy-templates/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">SWGfL policy template →</a>
+                <a href="https://360safe.org.uk" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btn--sm">360° Safe self-review tool →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI policy -->
+        <div class="card" style="margin-bottom:var(--space-5);border-color:var(--color-purple);background:var(--color-purple);">
+          <div style="display:flex;gap:var(--space-4);align-items:flex-start;">
+            <i class="ti ti-robot" style="font-size:24px;color:var(--color-purple-text);flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+            <div>
+              <p style="font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--color-purple-text);margin-bottom:var(--space-2);">Emerging area — worth thinking about now</p>
+              <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3);color:#26215C;">A school AI use policy</h3>
+              <p style="font-size:var(--text-sm);color:#3C3489;line-height:1.75;margin-bottom:var(--space-3);">AI use in schools is moving faster than most policy frameworks. A good starting point for an AI policy considers: which AI tools students may use (inside and outside school), what appropriate and inappropriate use looks like, how staff should address AI-generated work, how to talk about AI companion risks, and what to do if AI tools are being used harmfully (e.g. deepfake images of peers).</p>
+              <p style="font-size:var(--text-sm);color:#3C3489;line-height:1.75;margin-bottom:var(--space-4);">The <strong>Department for Education</strong> published AI guidance for schools in 2024, and <strong>Jisc</strong> maintains an AI in education policy template that schools and colleges are finding useful as a structural starting point. Neither is prescriptive — they're frameworks to adapt.</p>
+              <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;">
+                <a href="https://www.gov.uk/government/publications/generative-artificial-intelligence-in-education" target="_blank" rel="noopener noreferrer" class="btn btn--sm" style="background:#534AB7;border-color:#534AB7;color:#fff;">DfE AI guidance for schools →</a>
+                <a href="https://www.jisc.ac.uk/guides/ai-policy-template" target="_blank" rel="noopener noreferrer" class="btn btn--sm" style="background:transparent;border:1px solid #534AB7;color:#534AB7;">Jisc AI policy template →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUP -->
+        <div class="card" style="margin-bottom:var(--space-5);">
+          <div style="display:flex;gap:var(--space-4);align-items:flex-start;">
+            <i class="ti ti-file-check" style="font-size:24px;color:#0F6E56;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+            <div>
+              <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3);">Acceptable use — students and staff</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.75;margin-bottom:var(--space-4);">Acceptable use agreements work best when students have been involved in shaping them — not just asked to sign something handed to them. A good student AUP is written in plain language, covers what the school's devices and network can and cannot be used for, makes expectations about social media and messaging clear, and explains what happens if the agreement is not followed. The SWGfL template above includes an AUP section. Internet Matters also has guidance on what pupil AUPs tend to include.</p>
+              <a href="https://www.internetmatters.org/schools-esafety/esafety-in-schools/acceptable-use-policies/" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btn--sm">Internet Matters — AUP guidance →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Staff social media -->
+        <div class="card">
+          <div style="display:flex;gap:var(--space-4);align-items:flex-start;">
+            <i class="ti ti-brand-instagram" style="font-size:24px;color:#854F0B;flex-shrink:0;margin-top:3px;" aria-hidden="true"></i>
+            <div>
+              <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3);">Staff and social media</h3>
+              <p style="font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.75;margin-bottom:var(--space-4);">A useful area for policy to be clear on: the distinction between personal and professional accounts, expectations around connecting with students or parents on personal platforms, and what staff should consider before posting content that might be seen in a professional context. The <strong>NSPCC</strong> and <strong>NASUWT</strong> both have guidance documents schools use when putting together their own approach.</p>
+              <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;">
+                <a href="https://www.nspcc.org.uk/keeping-children-safe/safeguarding-children/safer-recruitment/safer-working-practice/" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btn--sm">NSPCC safer working practice →</a>
+                <a href="https://www.nasuwt.org.uk/advice/all-rights/social-media-guidance.html" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btn--sm">NASUWT social media guidance →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SAFEGUARDING CONTACTS -->
+    <section class="section band--white" aria-label="Safeguarding referral contacts">
+      <div class="container">
+        <div class="safeguard-bar" role="region" aria-label="Safeguarding contacts for educators">
+          <i class="ti ti-shield-check" aria-hidden="true"></i>
+          <div>
+            <h3>Safeguarding contacts — when to refer immediately</h3>
+            <p>
+              <strong>CEOP:</strong> <a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:var(--color-brand-dark);font-weight:600;">ceop.police.uk</a> — for sexual exploitation of a child online. &nbsp;|&nbsp;
+              <strong>LADO:</strong> Contact your Local Authority Designated Officer for any allegations against staff. &nbsp;|&nbsp;
+              <strong>IWF:</strong> <a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:var(--color-brand-dark);font-weight:600;">iwf.org.uk</a> — to report illegal online content. &nbsp;|&nbsp;
+              <strong>NSPCC schools helpline:</strong> <a href="tel:08001366663" style="color:var(--color-brand-dark);font-weight:600;">0800 136 663</a> — free advice for education professionals.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__safeguarding" role="region" aria-label="Emergency contacts">
+        <p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p>
+        <div class="footer__safeguarding-list">
+          <div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div>
+          <div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div>
+          <div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span></div>
+          <div class="footer__contact"><span class="footer__contact-name">NSPCC Schools Helpline</span><span class="footer__contact-detail"><a href="tel:08001366663" style="color:rgba(255,255,255,0.6);">0800 136 663</a> — for professionals</span></div>
+        </div>
+      </div>
+      <div class="footer__grid">
+        <div>
+          <a href="index.html" class="footer__brand"><div class="footer__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+          <p class="footer__tagline">Free digital safety guidance for families, young people and educators across the UK.</p>
+        </div>
+        <div>
+          <p class="footer__heading">Educators</p>
+          <ul class="footer__links">
+            <li><a href="#lessons" class="footer__link">Lesson plan library</a></li>
+            <li><a href="#incidents" class="footer__link">Incident protocols</a></li>
+            <li><a href="#policies" class="footer__link">Policy templates</a></li>
+            <li><a href="resources.html" class="footer__link">All downloads</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__heading">Topics</p>
+          <ul class="footer__links">
+            <li><a href="gaming-safety.html" class="footer__link">Gaming safety</a></li>
+            <li><a href="social-media.html" class="footer__link">Social platforms</a></li>
+            <li><a href="ai-chatbots.html" class="footer__link">AI &amp; chatbots</a></li>
+            <li><a href="chat-messaging.html" class="footer__link">Chat &amp; messaging</a></li>
+            <li><a href="screen-time.html" class="footer__link">Screen time</a></li>
+            <li><a href="privacy.html" class="footer__link">Privacy &amp; data</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__heading">Site</p>
+          <ul class="footer__links">
+            <li><a href="parents.html" class="footer__link">Parents</a></li>
+            <li><a href="kids.html" class="footer__link">Kids &amp; teens</a></li>
+            <li><a href="about.html" class="footer__link">About us</a></li>
+            <li><a href="contact.html" class="footer__link">Contact</a></li>
+            <li><a href="privacy-policy.html" class="footer__link">Privacy policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p>
+        <div class="footer__legal">
+          <a href="privacy-policy.html">Privacy policy</a>
+          <a href="accessibility.html">Accessibility</a>
+          <a href="terms.html">Terms of use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    function toggleMobileMenu(btn) {
+      const menu = document.getElementById('mobile-menu');
+      const isOpen = menu.classList.contains('is-open');
+      menu.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      btn.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+    }
+
+
+
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

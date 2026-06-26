@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Gaming safety guide for parents — in-game chat risks, Roblox, Fortnite, Minecraft, loot boxes, spending, and how to set up parental controls on consoles." />
+  <title>Gaming Safety — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>" />
+  <style>
+    .topic-hero{background:linear-gradient(135deg,#2A0F00 0%,#4A1A00 100%);padding:var(--space-12) 0;}
+    .topic-hero h1{color:#fff;font-size:var(--text-3xl);margin-bottom:var(--space-3);}
+    .topic-hero p{color:rgba(255,255,255,0.8);font-size:var(--text-md);max-width:560px;line-height:1.65;margin-bottom:var(--space-5);}
+    .topic-meta{display:flex;gap:var(--space-3);flex-wrap:wrap;}
+    .risk-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4);}
+    .risk-card{background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-5);}
+    .risk-card h3{font-size:var(--text-base);font-weight:600;color:var(--color-text-title);margin:var(--space-3) 0 var(--space-2);}
+    .risk-card p{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.6;}
+    .risk-icon{font-size:28px;}
+    .platform-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-3);}
+    .platform-box{background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-lg);padding:var(--space-4);text-align:center;}
+    .platform-box .pb-icon{font-size:32px;margin-bottom:var(--space-2);}
+    .platform-box h4{font-size:var(--text-sm);font-weight:600;margin-bottom:var(--space-2);}
+    .platform-box p{font-size:var(--text-xs);color:var(--color-text-secondary);line-height:1.5;}
+    .checklist{display:flex;flex-direction:column;gap:var(--space-3);}
+    .check-item{display:flex;gap:var(--space-3);align-items:flex-start;padding:var(--space-4);background:var(--color-bg-primary);border:1px solid var(--color-border-subtle);border-radius:var(--radius-md);}
+    .check-item i{font-size:20px;color:var(--color-brand);flex-shrink:0;margin-top:2px;}
+    .check-item p{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.6;margin:0;}
+    .check-item p strong{color:var(--color-text-title);font-weight:600;}
+    .convo-box{background:var(--color-brand-light);border:1px solid var(--color-brand-mid);border-radius:var(--radius-lg);padding:var(--space-6);}
+    .convo-box h3{color:var(--color-brand-dark);font-size:var(--text-xl);margin-bottom:var(--space-4);}
+    .convo-scripts{display:flex;flex-direction:column;gap:var(--space-3);}
+    .script{background:var(--color-bg-primary);border-radius:var(--radius-md);padding:var(--space-4);}
+    .script-age{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--color-brand);margin-bottom:var(--space-2);}
+    .script-text{font-size:var(--text-sm);color:var(--color-text-secondary);line-height:1.65;font-style:italic;}
+    .script-note{font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-2);}
+    @media(max-width:767px){.risk-grid{grid-template-columns:1fr;}.platform-row{grid-template-columns:repeat(2,minmax(0,1fr));}}
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert"><p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p><a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a></div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list"><li><a href="parents.html" class="nav__link nav__link--active">Parents</a></li><li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li><li><a href="educators.html" class="nav__link">Educators</a></li><li><a href="resources.html" class="nav__link">Resources</a></li></ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile"><a href="parents.html" class="nav__link">Parents</a><a href="kids.html" class="nav__link">Kids &amp; teens</a><a href="educators.html" class="nav__link">Educators</a><a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a></div>
+    </div>
+  </header>
+  <main id="main-content">
+    <section class="topic-hero" aria-label="Gaming safety overview">
+      <div class="container">
+        <a href="parents.html" style="color:rgba(255,255,255,0.6);font-size:var(--text-sm);text-decoration:none;display:inline-flex;align-items:center;gap:var(--space-2);margin-bottom:var(--space-4);">← Parents hub</a>
+        <div style="font-size:40px;margin-bottom:var(--space-3);" aria-hidden="true">🎮</div>
+        <h1>Gaming safety</h1>
+        <p>Who your child is really talking to, loot boxes, in-game spending, and how to set up controls on every console — a complete guide for parents.</p>
+        <div class="topic-meta">
+          <span class="badge badge--red">High risk</span>
+          <span class="badge badge--gray">8 min read</span>
+          <span class="badge badge--gray">Updated June 2026</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="Key gaming risks">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow eyebrow--alert">The risks</span><h2>What parents need to know</h2></div>
+        <div class="risk-grid" role="list">
+          <div class="risk-card" role="listitem"><span class="risk-icon" aria-hidden="true">💬</span><h3>In-game chat — the biggest risk</h3><p>Most games include voice and text chat. Players cannot verify who they are talking to. Adults routinely misrepresent themselves as children. Group chats in games like Roblox and Fortnite are where the majority of grooming contact begins — not social media.</p></div>
+          <div class="risk-card" role="listitem"><span class="risk-icon" aria-hidden="true">🎰</span><h3>Loot boxes and gambling mechanics</h3><p>Loot boxes — randomised reward crates bought with real money — are classified as gambling in Belgium and the Netherlands. UK law hasn't caught up. Children as young as 8 are spending significant sums. This can also normalise gambling behaviour for later life.</p></div>
+          <div class="risk-card" role="listitem"><span class="risk-icon" aria-hidden="true">💸</span><h3>In-game spending and V-Bucks</h3><p>Games use virtual currencies to distance children from real money. A Fortnite skin costs "800 V-Bucks" — not "£6.49." Children with access to a card linked to a console account can rack up hundreds of pounds before a parent notices.</p></div>
+          <div class="risk-card" role="listitem"><span class="risk-icon" aria-hidden="true">📺</span><h3>Live streaming — Twitch and YouTube Live</h3><p>Children who stream their gameplay are broadcasting their voice, sometimes their face, and often their location (via school logos, local landmarks). Chat on live streams is largely unmoderated and can include inappropriate contact.</p></div>
+          <div class="risk-card" role="listitem"><span class="risk-icon" aria-hidden="true">🌙</span><h3>Gaming addiction and sleep loss</h3><p>Game design deliberately triggers reward loops that make stopping feel difficult. This is engineered, not a character flaw. Late-night gaming is one of the most consistent factors in poor school performance and mental health issues in children aged 8–16.</p></div>
+          <div class="risk-card" role="listitem"><span class="risk-icon" aria-hidden="true">📲</span><h3>Moving off-game to private chat</h3><p>A common grooming pattern: make contact in a game, build trust over weeks, then suggest moving to Discord, WhatsApp or Snapchat "so we can talk properly." The private platform removes all moderation and parental visibility.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="Platform specific risks">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow">By platform</span><h2>Specific risks by game</h2></div>
+
+        <!-- Deep dive call-out — prominent placement -->
+        <a href="online-games-safety.html" style="display:block;text-decoration:none;margin-bottom:var(--space-6);" aria-label="Read the full Top 10 games deep dive guide">
+          <div style="background:var(--color-text-title);border-radius:var(--radius-xl);padding:var(--space-6) var(--space-7);display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);transition:opacity 0.15s;" onmouseover="this.style.opacity='0.92'" onmouseout="this.style.opacity='1'">
+            <div style="display:flex;align-items:center;gap:var(--space-5);">
+              <div style="font-size:44px;flex-shrink:0;" aria-hidden="true">📊</div>
+              <div>
+                <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#5DCAA5;margin-bottom:var(--space-2);">Cited research · Ofcom · NSPCC · CEOP</p>
+                <p style="font-size:var(--text-xl);font-weight:700;color:#fff;margin-bottom:var(--space-2);line-height:1.25;">Top 10 online games — complete safety guide</p>
+                <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.7);line-height:1.6;max-width:540px;">A data-backed deep dive into every game UK children play most — Roblox, Fortnite, GTA V, Call of Duty and 6 more. Per-game risk breakdowns, PEGI ratings, and exact steps for parents. Sourced from Ofcom, NSPCC and CEOP.</p>
+              </div>
+            </div>
+            <div style="flex-shrink:0;background:var(--color-brand);color:#fff;border-radius:var(--radius-lg);padding:var(--space-3) var(--space-5);font-size:var(--text-sm);font-weight:600;white-space:nowrap;">
+              Read the guide →
+            </div>
+          </div>
+        </a>
+
+        <!-- Quick game cards -->
+        <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-4);">Quick overview — for full per-game breakdowns, PEGI ratings and parent action steps see the guide above.</p>
+        <div class="platform-row" role="list">
+          <a href="online-games-safety.html#card-roblox" class="platform-box" role="listitem" style="text-decoration:none;color:inherit;display:block;transition:background 0.15s,box-shadow 0.15s;" onmouseover="this.style.background='var(--color-brand-light)';this.style.borderColor='var(--color-brand)'" onmouseout="this.style.background='';this.style.borderColor=''">
+            <div class="pb-icon" aria-hidden="true">🧱</div>
+            <h4>Roblox</h4>
+            <p>Social hub as much as a game. Open chat by default. Reaches 61% of UK 8–14-year-olds monthly. Highest risk for younger children.</p>
+            <p style="font-size:10px;color:var(--color-brand);font-weight:600;margin-top:var(--space-2);">Full breakdown →</p>
+          </a>
+          <a href="online-games-safety.html#card-fortnite" class="platform-box" role="listitem" style="text-decoration:none;color:inherit;display:block;transition:background 0.15s,box-shadow 0.15s;" onmouseover="this.style.background='var(--color-brand-light)';this.style.borderColor='var(--color-brand)'" onmouseout="this.style.background='';this.style.borderColor=''">
+            <div class="pb-icon" aria-hidden="true">⚡</div>
+            <h4>Fortnite</h4>
+            <p>Voice chat with strangers on by default. V-Bucks currency obscures real cost. UK government has named it as a target for stranger-chat restrictions.</p>
+            <p style="font-size:10px;color:var(--color-brand);font-weight:600;margin-top:var(--space-2);">Full breakdown →</p>
+          </a>
+          <a href="online-games-safety.html#card-minecraft" class="platform-box" role="listitem" style="text-decoration:none;color:inherit;display:block;transition:background 0.15s,box-shadow 0.15s;" onmouseover="this.style.background='var(--color-brand-light)';this.style.borderColor='var(--color-brand)'" onmouseout="this.style.background='';this.style.borderColor=''">
+            <div class="pb-icon" aria-hidden="true">⛏️</div>
+            <h4>Minecraft</h4>
+            <p>Safer in single-player or with known friends. Public servers and multiplayer introduce unknown contacts. No age verification.</p>
+            <p style="font-size:10px;color:var(--color-brand);font-weight:600;margin-top:var(--space-2);">Full breakdown →</p>
+          </a>
+          <a href="online-games-safety.html#card-gta" class="platform-box" role="listitem" style="text-decoration:none;color:inherit;display:block;transition:background 0.15s,box-shadow 0.15s;border-color:var(--color-alert-border);background:var(--color-alert-light);" onmouseover="this.style.background='#F7C1C1'" onmouseout="this.style.background='var(--color-alert-light)'">
+            <div class="pb-icon" aria-hidden="true">🔴</div>
+            <h4>GTA V / Call of Duty</h4>
+            <p>PEGI 18 — not appropriate for anyone under 18. Regularly played by children. Extreme content, stranger voice chat, and no age gate.</p>
+            <p style="font-size:10px;color:var(--color-alert);font-weight:600;margin-top:var(--space-2);">Full breakdown →</p>
+          </a>
+        </div>
+
+        <!-- Bottom CTA -->
+        <div style="text-align:center;margin-top:var(--space-6);">
+          <a href="online-games-safety.html" class="btn btn--primary">See all 10 games — full guide with cited sources <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="What parents can do">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow eyebrow--brand">Action checklist</span><h2>What to do right now</h2></div>
+        <div class="checklist" role="list">
+          <div class="check-item" role="listitem"><i class="ti ti-settings" aria-hidden="true"></i><p><strong>Set up Family Controls on your console.</strong> Xbox Family Safety, PlayStation Family Management, and Nintendo Family Group all allow you to restrict chat with strangers, set spending limits, and set play time limits. See our <a href="platform-settings.html">platform settings hub</a> for step-by-step guides.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-credit-card-off" aria-hidden="true"></i><p><strong>Remove saved payment methods from console accounts.</strong> Or set a PIN that must be entered for every purchase. Do this before you do anything else — it prevents surprise charges immediately.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-message-off" aria-hidden="true"></i><p><strong>Restrict or disable chat with strangers.</strong> On Roblox, enable Account Restrictions. On Fortnite, disable voice chat or restrict to friends only. On Xbox, set communication to "friends only" in Family Settings.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-clock" aria-hidden="true"></i><p><strong>Set a daily play time limit.</strong> NHS guidance suggests no more than 2 hours of recreational screen time for school-age children. Console parental controls can enforce this automatically.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-device-mobile-off" aria-hidden="true"></i><p><strong>Establish a device curfew.</strong> All devices — including consoles — out of bedrooms by 9pm for under-12s, 10pm for teens. Blue light and stimulation from gaming directly disrupts sleep.</p></div>
+          <div class="check-item" role="listitem"><i class="ti ti-eye" aria-hidden="true"></i><p><strong>Know what games your child plays and with whom.</strong> Ask to see their friends list. Ask who the usernames belong to. Be curious, not suspicious — the conversation matters more than the surveillance.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="How to start the conversation">
+      <div class="container container--narrow">
+        <div class="convo-box">
+          <h3>💬 How to start the conversation</h3>
+          <div class="convo-scripts">
+            <div class="script"><p class="script-age">For ages 7–10</p><p class="script-text">"I know you love playing [game name] — that's brilliant. Can you show me who your friends are on there? Are they people you know from school, or people you've met in the game?"</p><p class="script-note">Keep it curious and conversational. Sit next to them while they play sometimes — normalise involvement.</p></div>
+            <div class="script"><p class="script-age">For ages 11–14</p><p class="script-text">"I've been reading about some stuff that happens in gaming and I want to make sure you know about it too — not to scare you, just so you know what to do if it happens. Has anyone you've met in a game ever asked you to move to a different chat?"</p><p class="script-note">Frame it as sharing knowledge, not interrogation. Listen more than you talk.</p></div>
+            <div class="script"><p class="script-age">For ages 14+</p><p class="script-text">"I trust you and I'm not trying to spy on you. I just want to check in — is there anything that's happened online that's felt a bit off? No judgement, I just want to know you're OK."</p><p class="script-note">Teens respond to being treated as capable. Avoid accusatory language.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="Warning signs">
+      <div class="container">
+        <div class="section-header"><span class="eyebrow eyebrow--alert">Warning signs</span><h2>Red flags in gaming behaviour</h2></div>
+        <div class="grid grid-2" role="list">
+          <div class="flag-item" role="listitem"><div class="flag-dot flag-dot--red"></div><div><p class="flag-item__title">Switching screens or closing the game quickly when you enter the room</p><p class="flag-item__desc">Especially if this is a new behaviour — sudden secrecy around the screen is a consistent early indicator.</p></div></div>
+          <div class="flag-item" role="listitem"><div class="flag-dot flag-dot--red"></div><div><p class="flag-item__title">Talking about a new "friend" they met in a game who you've never heard of</p><p class="flag-item__desc">Especially if this person seems to be in frequent contact, or if your child becomes protective of the relationship.</p></div></div>
+          <div class="flag-item" role="listitem"><div class="flag-dot flag-dot--red"></div><div><p class="flag-item__title">Receiving gifts, game currency, or items they can't explain</p><p class="flag-item__desc">Gifting in-game items is a common early grooming tactic — building obligation and affection before making a request.</p></div></div>
+          <div class="flag-item" role="listitem"><div class="flag-dot flag-dot--amber"></div><div><p class="flag-item__title">Gaming until very late at night or waking early to play</p><p class="flag-item__desc">Sleep disruption from gaming is very common and affects school performance, mood, and physical health significantly.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="Related resources">
+      <div class="container">
+        <div class="section-header--center"><span class="eyebrow">Keep reading</span><h2>Related guides</h2></div>
+        <div class="grid grid-4" style="grid-template-columns:repeat(4,minmax(0,1fr));">
+          <a href="online-games-safety.html" class="guide-card" style="border-color:var(--color-brand);background:var(--color-brand-light);">
+            <span style="font-size:24px;">📊</span>
+            <h3 class="guide-card__title">Top 10 games — deep dive</h3>
+            <p class="guide-card__desc">Cited, data-backed breakdown of Roblox, Fortnite, GTA V and 7 more — with per-game action steps.</p>
+            <div class="guide-card__meta"><span class="badge badge--green">New</span></div>
+          </a>
+          <a href="chat-messaging.html" class="guide-card"><span style="font-size:24px;">💬</span><h3 class="guide-card__title">Chat &amp; messaging</h3><p class="guide-card__desc">What to do when gaming contacts move to Discord, WhatsApp or Snapchat.</p></a>
+          <a href="platform-settings.html" class="guide-card"><span style="font-size:24px;">⚙️</span><h3 class="guide-card__title">Platform settings hub</h3><p class="guide-card__desc">Step-by-step parental controls for Xbox, PlayStation, Nintendo and Roblox.</p></a>
+          <a href="screen-time.html" class="guide-card"><span style="font-size:24px;">⏱️</span><h3 class="guide-card__title">Screen time guide</h3><p class="guide-card__desc">Age-appropriate limits and how to enforce them without constant conflict.</p></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer" role="contentinfo"><div class="container"><div class="footer__safeguarding" role="region"><p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p><div class="footer__safeguarding-list"><div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div><div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span></div></div></div><div class="footer__bottom"><p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p><div class="footer__legal"><a href="privacy-policy.html">Privacy policy</a><a href="accessibility.html">Accessibility</a><a href="parents.html">Parents hub</a></div></div></div></footer>
+  <script>function toggleMobileMenu(btn){const m=document.getElementById('mobile-menu');const o=m.classList.contains('is-open');m.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(!o));}document.getElementById('footer-year').textContent=new Date().getFullYear();</script>
+</body>
+</html>

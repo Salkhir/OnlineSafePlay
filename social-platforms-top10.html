@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Popular social media platforms and child safety — a data-backed guide to the top 10 platforms UK children use, the risks each carries, and practical steps parents can take. Sourced from Ofcom, NSPCC and the Children's Commissioner." />
+  <title>Top 10 Social Platforms &amp; Child Safety — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>" />
+  <style>
+    /* ── Page-specific styles ───────────────────────────────── */
+
+    .topic-hero {
+      background: linear-gradient(135deg, #1A0533 0%, #2D0A52 100%);
+      padding: var(--space-16) 0 var(--space-12);
+      position: relative;
+      overflow: hidden;
+    }
+    .topic-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(83,74,183,.25) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(163,45,45,.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; }
+    .topic-hero h1 { color: #fff; font-size: var(--text-3xl); margin-bottom: var(--space-3); }
+    .topic-hero h1 em { font-style: normal; color: #AFA9EC; }
+    .topic-hero p  { color: rgba(255,255,255,0.8); font-size: var(--text-md); max-width: 600px; line-height: 1.65; margin-bottom: var(--space-6); }
+
+    .stat-pills { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+    .stat-pill  { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-full); padding: 6px var(--space-4); font-size: var(--text-sm); color: #e2e8f0; }
+    .stat-pill strong { color: #fff; font-weight: 700; }
+
+    .breadcrumb { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: rgba(255,255,255,0.5); margin-bottom: var(--space-5); }
+    .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .breadcrumb a:hover { color: #fff; }
+    .breadcrumb span { color: rgba(255,255,255,0.35); }
+
+    /* Callouts */
+    .callout { border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); margin-bottom: var(--space-5); border-left: 4px solid; font-size: var(--text-sm); line-height: 1.65; }
+    .callout strong { display: block; font-weight: 600; margin-bottom: var(--space-1); }
+    .callout--info   { background: var(--color-info);          border-color: var(--color-info-text);  color: #0C447C; }
+    .callout--warn   { background: var(--color-warning-light); border-color: var(--color-warning);    color: #5A3207; }
+    .callout--danger { background: var(--color-alert-light);   border-color: var(--color-alert);      color: #501313; }
+    .callout--safe   { background: var(--color-brand-light);   border-color: var(--color-brand);      color: #04342C; }
+
+    /* Age badge */
+    .age-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: var(--radius-sm); font-family: monospace; }
+    .age-13 { background: #ffedd5; color: #7c2d12; }
+    .age-16 { background: #fee2e2; color: #7f1d1d; }
+    .age-18 { background: #1c1917; color: #fca5a5; }
+    .age-any{ background: #e0e7ff; color: #3730a3; }
+
+    /* Table */
+    .table-wrap { overflow-x: auto; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); margin-bottom: var(--space-3); }
+    .platforms-table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+    .platforms-table thead { background: var(--color-text-title); color: #fff; }
+    .platforms-table thead th { padding: 13px var(--space-4); text-align: left; font-size: var(--text-xs); font-weight: 600; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
+    .platforms-table tbody tr { border-bottom: 1px solid var(--color-border-subtle); background: var(--color-bg-primary); }
+    .platforms-table tbody tr:last-child { border-bottom: none; }
+    .platforms-table tbody tr:hover { background: var(--color-bg-secondary); }
+    .platforms-table td { padding: 13px var(--space-4); vertical-align: middle; }
+    .td-rank { font-weight: 700; color: var(--color-text-muted); width: 40px; }
+    .td-name { font-weight: 600; color: var(--color-text-title); }
+    .risk-dot-high   { color: var(--color-alert);   font-weight: 600; }
+    .risk-dot-medium { color: var(--color-warning);  font-weight: 600; }
+    .risk-dot-low    { color: var(--color-brand);    font-weight: 600; }
+    .table-note { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: var(--space-2); line-height: 1.6; }
+
+    /* Risk tiles */
+    .risk-tiles { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: var(--space-4); }
+    .risk-tile { background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: var(--space-5); }
+    .risk-tile .rt-icon { font-size: 28px; margin-bottom: var(--space-3); display: block; }
+    .risk-tile h3 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .risk-tile p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.6; }
+
+    /* Platform cards */
+    .platforms-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--space-5); }
+    .platform-card { background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-xl); overflow: hidden; transition: box-shadow var(--transition); }
+    .platform-card:hover { box-shadow: var(--shadow-md); }
+    .platform-card--danger { border-color: var(--color-alert-border); }
+    .platform-card--safe   { border-color: #9FE1CB; }
+
+    .card-head { padding: var(--space-5) var(--space-5) var(--space-4); border-bottom: 1px solid var(--color-border-subtle); display: flex; align-items: flex-start; gap: var(--space-4); }
+    .card-icon { width: 48px; height: 48px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+    .card-head-text { flex: 1; min-width: 0; }
+    .card-title    { font-size: var(--text-base); font-weight: 700; color: var(--color-text-title); margin-bottom: 3px; }
+    .card-subtitle { font-size: var(--text-xs); color: var(--color-text-muted); display: flex; gap: var(--space-2); align-items: center; flex-wrap: wrap; }
+    .card-body     { padding: var(--space-5); }
+
+    .risk-list { list-style: none; margin: 0 0 var(--space-4); }
+    .risk-list li { padding: var(--space-2) 0 var(--space-2) var(--space-6); position: relative; font-size: var(--text-sm); color: var(--color-text-secondary); border-bottom: 1px solid var(--color-border-subtle); line-height: 1.55; }
+    .risk-list li:last-child { border-bottom: none; }
+    .risk-list li::before { content: '⚠'; position: absolute; left: 0; color: var(--color-warning); font-size: 13px; top: var(--space-2); }
+    .risk-list.danger li::before { content: '🔴'; font-size: 11px; }
+    .risk-list sup { font-size: 9px; }
+
+    .tips-label { font-size: var(--text-xs); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--color-brand); margin-bottom: var(--space-3); margin-top: var(--space-4); }
+    .tips-list { list-style: none; margin: 0; }
+    .tips-list li { padding: var(--space-2) 0 var(--space-2) var(--space-5); position: relative; font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.55; }
+    .tips-list li::before { content: '✓'; position: absolute; left: 0; color: var(--color-brand); font-weight: 700; top: var(--space-2); }
+    .tips-list a { color: var(--color-brand); }
+    .tips-list sup { font-size: 9px; }
+
+    /* 10 actions */
+    .actions-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--space-4); counter-reset: actions; }
+    .action-item { counter-increment: actions; background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: var(--space-5) var(--space-5) var(--space-5) 64px; position: relative; font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.6; }
+    .action-item::before { content: counter(actions); position: absolute; left: var(--space-4); top: var(--space-5); width: 32px; height: 32px; background: var(--color-purple); color: var(--color-purple-text); border-radius: 50%; font-weight: 800; font-size: var(--text-sm); display: flex; align-items: center; justify-content: center; font-family: monospace; }
+    .action-item h4 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .action-item a { color: var(--color-brand); }
+    .action-item sup { font-size: 9px; }
+
+    /* Resources */
+    .resources-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: var(--space-4); }
+    .resource-card { background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
+    .resource-card .rc-org  { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--color-text-muted); }
+    .resource-card .rc-desc { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.55; flex: 1; }
+    .resource-card .rc-link { font-size: var(--text-sm); color: var(--color-brand); word-break: break-all; font-weight: 500; }
+
+    /* Citations */
+    .citations-box { background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-xl); padding: var(--space-8); margin-top: var(--space-12); }
+    .citations-box h2 { font-size: var(--text-lg); margin-bottom: var(--space-5); }
+    .citations-box ol { padding-left: var(--space-5); font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.75; }
+    .citations-box ol li { margin-bottom: var(--space-2); }
+    .citations-box a { color: var(--color-brand); word-break: break-all; }
+
+    @media (max-width: 1023px) {
+      .risk-tiles    { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .resources-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 767px) {
+      .platforms-grid{ grid-template-columns: 1fr; }
+      .actions-grid  { grid-template-columns: 1fr; }
+      .risk-tiles    { grid-template-columns: 1fr; }
+      .resources-grid{ grid-template-columns: 1fr; }
+      .action-item   { padding-left: 56px; }
+      .citations-box { padding: var(--space-5); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert">
+      <p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p>
+      <a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a>
+    </div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list">
+          <li><a href="parents.html" class="nav__link nav__link--active">Parents</a></li>
+          <li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li>
+          <li><a href="educators.html" class="nav__link">Educators</a></li>
+          <li><a href="resources.html" class="nav__link">Resources</a></li>
+          <li><a href="about.html" class="nav__link">About</a></li>
+        </ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile">
+        <a href="parents.html" class="nav__link">Parents</a>
+        <a href="kids.html" class="nav__link">Kids &amp; teens</a>
+        <a href="educators.html" class="nav__link">Educators</a>
+        <a href="resources.html" class="nav__link">Resources</a>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+      </div>
+    </div>
+  </header>
+
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="topic-hero" aria-label="Social platforms guide introduction">
+      <div class="container hero-inner">
+        <div class="breadcrumb" aria-label="Breadcrumb">
+          <a href="parents.html">Parents</a>
+          <span aria-hidden="true">›</span>
+          <a href="social-media.html">Social platforms</a>
+          <span aria-hidden="true">›</span>
+          <span style="color:rgba(255,255,255,0.75);">Top 10 platforms guide</span>
+        </div>
+        <div style="font-size:40px;margin-bottom:var(--space-3);" aria-hidden="true">📱</div>
+        <h1>Popular Social Platforms &amp; <em>Child Safety</em></h1>
+        <p>A data-backed guide to the 10 social platforms UK children use most, the specific risks each one carries, and practical steps parents can take — sourced from Ofcom, the Children's Commissioner, NSPCC, and the Online Safety Act 2023.</p>
+        <div class="stat-pills" role="list" aria-label="Key statistics">
+          <span class="stat-pill" role="listitem"><strong>97%</strong> of UK 12–15s are online daily <sup>[1]</sup></span>
+          <span class="stat-pill" role="listitem"><strong>45%</strong> of 8–12-year-olds have a social media account <sup>[2]</sup></span>
+          <span class="stat-pill" role="listitem">TikTok used by <strong>71%</strong> of UK 15–17-year-olds <sup>[1]</sup></span>
+          <span class="stat-pill" role="listitem">Most children first use social media at <strong>age 10</strong> <sup>[3]</sup></span>
+        </div>
+        <div style="margin-top:var(--space-6);display:flex;gap:var(--space-3);flex-wrap:wrap;">
+          <span class="badge badge--red">High risk topic</span>
+          <span class="badge badge--gray">Cited sources</span>
+          <span class="badge badge--gray">Updated June 2026</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- INTRO -->
+    <section class="section band--white" aria-labelledby="intro-heading">
+      <div class="container">
+        <span class="eyebrow">Why this matters</span>
+        <h2 id="intro-heading">Social media is now the primary online environment for UK children</h2>
+        <p class="text-lead" style="margin-bottom:var(--space-6);">Ofcom's 2024 Children and Parents: Media Use and Attitudes Report found that <strong>97% of UK children aged 12–15</strong> go online daily, with social media and video platforms accounting for the majority of that time. Yet the same report found that most parents significantly underestimate how many platforms their child uses and how much time they spend on them. <sup>[1]</sup></p>
+
+        <div class="callout callout--info" role="note">
+          <strong>The age verification problem — still unresolved in 2026</strong>
+          Most platforms set a minimum age of 13. Ofcom found that 45% of children aged 8–12 have at least one social media account — the vast majority created by entering a false date of birth. The Online Safety Act 2023 requires platforms to implement "age assurance" for content harmful to children, but enforcement is ongoing and self-declaration remains common. <sup>[2][4]</sup>
+        </div>
+
+        <div class="callout callout--warn" role="note">
+          <strong>The Children's Commissioner's 2024 findings</strong>
+          Dame Rachel de Souza's 2024 report <em>Growing Up: Having a Childhood in the Digital Age</em> found that children are encountering harmful content — including self-harm, eating disorders, and violent content — through recommendation algorithms rather than deliberate search. The report called for platforms to bear the burden of proof that their products are safe for children. <sup>[3]</sup>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PLATFORMS TABLE -->
+    <section class="section band--gray" aria-labelledby="table-heading">
+      <div class="container">
+        <span class="eyebrow">Rankings based on Ofcom 2024 data</span>
+        <h2 id="table-heading" style="margin-bottom:var(--space-3);">Top 10 Social Platforms Used by UK Children</h2>
+        <p class="text-lead" style="margin-bottom:var(--space-6);">Ranked by reach among UK children aged 8–17, drawing on Ofcom's 2024 Children and Parents: Media Use and Attitudes Report, with supplementary data from Ofcom's Online Nation 2024 report and the Children's Commissioner's 2024 research. <sup>[1][3][5]</sup></p>
+
+        <div class="table-wrap" role="region" aria-label="Top 10 social platforms used by UK children">
+          <table class="platforms-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Platform</th>
+                <th>Min age</th>
+                <th>Owner</th>
+                <th>Why children use it</th>
+                <th>Risk level</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-rank">1</td>
+                <td class="td-name">YouTube</td>
+                <td><span class="age-badge age-13">13+</span></td>
+                <td style="color:var(--color-text-secondary);">Google / Alphabet</td>
+                <td style="color:var(--color-text-secondary);">Video content, tutorials, gaming, entertainment, music</td>
+                <td class="risk-dot-medium">⬤ Medium–High</td>
+              </tr>
+              <tr>
+                <td class="td-rank">2</td>
+                <td class="td-name">TikTok</td>
+                <td><span class="age-badge age-13">13+</span></td>
+                <td style="color:var(--color-text-secondary);">ByteDance</td>
+                <td style="color:var(--color-text-secondary);">Short-form video, trends, music, humour, peer culture</td>
+                <td class="risk-dot-high">⬤ Very High</td>
+              </tr>
+              <tr>
+                <td class="td-rank">3</td>
+                <td class="td-name">Instagram</td>
+                <td><span class="age-badge age-13">13+</span></td>
+                <td style="color:var(--color-text-secondary);">Meta</td>
+                <td style="color:var(--color-text-secondary);">Photos, Reels, Stories, influencer culture, peer identity</td>
+                <td class="risk-dot-high">⬤ Very High</td>
+              </tr>
+              <tr>
+                <td class="td-rank">4</td>
+                <td class="td-name">Snapchat</td>
+                <td><span class="age-badge age-13">13+</span></td>
+                <td style="color:var(--color-text-secondary);">Snap Inc.</td>
+                <td style="color:var(--color-text-secondary);">Messaging, Stories, Snap Map, streaks, group chats</td>
+                <td class="risk-dot-high">⬤ Very High</td>
+              </tr>
+              <tr>
+                <td class="td-rank">5</td>
+                <td class="td-name">WhatsApp</td>
+                <td><span class="age-badge age-16">16+</span></td>
+                <td style="color:var(--color-text-secondary);">Meta</td>
+                <td style="color:var(--color-text-secondary);">Group chats, peer messaging, school groups</td>
+                <td class="risk-dot-medium">⬤ Medium</td>
+              </tr>
+              <tr>
+                <td class="td-rank">6</td>
+                <td class="td-name">Facebook</td>
+                <td><span class="age-badge age-13">13+</span></td>
+                <td style="color:var(--color-text-secondary);">Meta</td>
+                <td style="color:var(--color-text-secondary);">Events, groups, Marketplace — declining among teens</td>
+                <td class="risk-dot-medium">⬤ Medium</td>
+              </tr>
+              <tr>
+                <td class="td-rank">7</td>
+                <td class="td-name">Discord</td>
+                <td><span class="age-badge age-13">13+</span></td>
+                <td style="color:var(--color-text-secondary);">Discord Inc.</td>
+                <td style="color:var(--color-text-secondary);">Gaming communities, interest groups, friend servers</td>
+                <td class="risk-dot-high">⬤ High</td>
+              </tr>
+              <tr>
+                <td class="td-rank">8</td>
+                <td class="td-name">Pinterest</td>
+                <td><span class="age-badge age-13">13+</span></td>
+                <td style="color:var(--color-text-secondary);">Pinterest Inc.</td>
+                <td style="color:var(--color-text-secondary);">Inspiration, aesthetics, fashion, DIY, mental health boards</td>
+                <td class="risk-dot-medium">⬤ Medium</td>
+              </tr>
+              <tr>
+                <td class="td-rank">9</td>
+                <td class="td-name">Twitch</td>
+                <td><span class="age-badge age-13">13+</span></td>
+                <td style="color:var(--color-text-secondary);">Amazon</td>
+                <td style="color:var(--color-text-secondary);">Live game streaming, esports, community chat</td>
+                <td class="risk-dot-medium">⬤ Medium</td>
+              </tr>
+              <tr>
+                <td class="td-rank">10</td>
+                <td class="td-name">BeReal</td>
+                <td><span class="age-badge age-13">13+</span></td>
+                <td style="color:var(--color-text-secondary);">BeReal SAS</td>
+                <td style="color:var(--color-text-secondary);">Authenticity, anti-filter culture — popular with 13–16s</td>
+                <td class="risk-dot-low">⬤ Lower</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note"><strong>Note on WhatsApp age:</strong> WhatsApp raised its minimum age from 13 to 16 in the UK in 2024 in response to regulatory pressure. Despite this, it remains widely used by children under 16, particularly for school group chats. <sup>[4]</sup></p>
+      </div>
+    </section>
+
+
+    <!-- KEY RISKS OVERVIEW -->
+    <section class="section band--white" aria-labelledby="risks-heading">
+      <div class="container">
+        <span class="eyebrow eyebrow--alert">Cross-platform risks — Ofcom, NSPCC &amp; Children's Commissioner</span>
+        <h2 id="risks-heading" style="margin-bottom:var(--space-3);">Key risks across social platforms</h2>
+        <p class="text-lead" style="margin-bottom:var(--space-8);">These risk categories are identified consistently across Ofcom, NSPCC, the Children's Commissioner and the Internet Watch Foundation as applying across the most popular social platforms. <sup>[1][3][6][7]</sup></p>
+
+        <div class="risk-tiles" role="list">
+          <div class="risk-tile" role="listitem">
+            <span class="rt-icon" aria-hidden="true">🎯</span>
+            <h3>Algorithmic harm</h3>
+            <p>Ofcom's 2024 research found that children are regularly served harmful content — self-harm, eating disorders, violence — through recommendation algorithms without searching for it. The algorithm prioritises engagement, not wellbeing. TikTok and Instagram are the most frequently cited platforms. <sup>[1]</sup></p>
+          </div>
+          <div class="risk-tile" role="listitem">
+            <span class="rt-icon" aria-hidden="true">💬</span>
+            <h3>Contact from unknown adults</h3>
+            <p>The NSPCC's 2024 briefing found that social media remains the most common environment for online grooming contact, with Instagram and Snapchat the two most frequently named platforms in referrals to CEOP. <sup>[6]</sup></p>
+          </div>
+          <div class="risk-tile" role="listitem">
+            <span class="rt-icon" aria-hidden="true">📸</span>
+            <h3>Image pressure and body image</h3>
+            <p>The Children's Commissioner's 2024 report found that 60% of girls aged 11–16 reported feeling pressure to look a certain way because of social media. Instagram's own internal research — leaked in 2021 — found it makes body image issues worse for one in three teenage girls. <sup>[3]</sup></p>
+          </div>
+          <div class="risk-tile" role="listitem">
+            <span class="rt-icon" aria-hidden="true">🔞</span>
+            <h3>Age-inappropriate content</h3>
+            <p>Despite age restrictions, Ofcom testing in 2023 found that children could access content depicting violence, sexual activity, and suicide methods on TikTok and YouTube within minutes of creating a new account. <sup>[5]</sup></p>
+          </div>
+          <div class="risk-tile" role="listitem">
+            <span class="rt-icon" aria-hidden="true">📍</span>
+            <h3>Location sharing and physical safety</h3>
+            <p>Snapchat's Snap Map feature has been cited in multiple UK safeguarding cases involving adults using location data to track and approach children. Instagram Stories and TikTok posts with location tags create similar risks. <sup>[6]</sup></p>
+          </div>
+          <div class="risk-tile" role="listitem">
+            <span class="rt-icon" aria-hidden="true">🎣</span>
+            <h3>Sextortion and image-based abuse</h3>
+            <p>CEOP's 2024 threat assessment identified a significant increase in sextortion cases originating on Instagram and Snapchat. The Internet Watch Foundation removed 275,000 sexual images of children from the internet in 2023 — a record high. <sup>[7][8]</sup></p>
+          </div>
+          <div class="risk-tile" role="listitem">
+            <span class="rt-icon" aria-hidden="true">😔</span>
+            <h3>Mental health and social comparison</h3>
+            <p>A 2023 meta-analysis in <em>JAMA Pediatrics</em> found that social media use of more than 3 hours per day was significantly associated with depressive symptoms in children. The Children's Commissioner found the average UK child spends 4 hours online daily. <sup>[9]</sup></p>
+          </div>
+          <div class="risk-tile" role="listitem">
+            <span class="rt-icon" aria-hidden="true">🕵️</span>
+            <h3>Data collection and commercial exploitation</h3>
+            <p>The Information Commissioner's Office 2021 Age Appropriate Design Code requires platforms to apply "high privacy" settings by default for under-18s, minimise data collection, and not use nudge techniques to encourage children to share more data. Compliance remains inconsistent. <sup>[10]</sup></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PLATFORM-BY-PLATFORM BREAKDOWN -->
+    <section class="section band--gray" aria-labelledby="breakdown-heading">
+      <div class="container">
+        <span class="eyebrow">Per-platform detail</span>
+        <h2 id="breakdown-heading" style="margin-bottom:var(--space-3);">Platform-by-platform risk &amp; safety breakdown</h2>
+        <p class="text-lead" style="margin-bottom:var(--space-8);">Each card covers the specific concerns identified by UK child safety organisations for that platform, with practical steps parents can take right now.</p>
+
+        <div class="platforms-grid">
+
+          <!-- TIKTOK -->
+          <article class="platform-card platform-card--danger" aria-labelledby="card-tiktok">
+            <div class="card-head">
+              <div class="card-icon" style="background:#f3e8ff;" aria-hidden="true">🎵</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-tiktok">TikTok</p>
+                <div class="card-subtitle">
+                  <span class="age-badge age-13">13+</span>
+                  <span>ByteDance · 71% of UK 15–17s</span>
+                  <span class="badge badge--red">Highest risk</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="callout callout--danger">
+                <strong>Most concerning platform for algorithmic harm</strong>
+                Ofcom's 2023 testing found a researcher-created account mimicking a 13-year-old was recommended self-harm content within minutes. TikTok was the most commonly cited platform in children's reports of harmful content exposure. <sup>[5]</sup>
+              </div>
+              <ul class="risk-list danger" aria-label="Risks">
+                <li>For You Page algorithm consistently serves increasingly extreme content to maximise engagement <sup>[5]</sup></li>
+                <li>Self-harm, eating disorder and suicide content reaches children through algorithmic recommendation, not search <sup>[1]</sup></li>
+                <li>DMs from unknown accounts enabled by default until disabled by parent or user <sup>[11]</sup></li>
+                <li>TikTok LIVE allows children to receive virtual gifts from unknown adults — a documented grooming vector <sup>[6]</sup></li>
+                <li>Data collection practices the subject of regulatory action in the US and EU; UK ICO investigation ongoing <sup>[10]</sup></li>
+                <li>ByteDance (Chinese parent company) subject to scrutiny over data access by Chinese government <sup>[12]</sup></li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Set up <strong>Family Pairing</strong> — links your TikTok account to your child's, giving you control over DMs, screen time, and content filtering <sup>[11]</sup></li>
+                <li>Enable <strong>Restricted Mode</strong> with a passcode your child cannot remove</li>
+                <li>Disable <strong>Suggest your account to others</strong> — prevents strangers discovering your child's profile</li>
+                <li>Set account to <strong>Private</strong> — essential for anyone under 18</li>
+                <li>Disable <strong>TikTok LIVE</strong> — under-16s cannot go live, but can still receive gifts as viewers; turn this off entirely via Family Pairing</li>
+                <li>Full step-by-step guide: <a href="platform-settings.html#panel-tiktok">Platform settings hub — TikTok</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- INSTAGRAM -->
+          <article class="platform-card platform-card--danger" aria-labelledby="card-instagram">
+            <div class="card-head">
+              <div class="card-icon" style="background:#fce7f3;" aria-hidden="true">📸</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-instagram">Instagram</p>
+                <div class="card-subtitle">
+                  <span class="age-badge age-13">13+</span>
+                  <span>Meta · 55% of UK 12–15s <sup>[1]</sup></span>
+                  <span class="badge badge--red">Very high risk</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="callout callout--danger">
+                <strong>Leading platform in CEOP grooming referrals</strong>
+                The NSPCC identified Instagram as the most commonly named platform in grooming cases referred to CEOP in 2023–24. Instagram's own leaked internal research (2021) found it makes body image issues worse for one in three teenage girls. <sup>[6]</sup>
+              </div>
+              <ul class="risk-list danger" aria-label="Risks">
+                <li>DM requests from unknown accounts enabled by default — primary first-contact method for grooming <sup>[6]</sup></li>
+                <li>Explore page and Reels algorithm surfaces body image, self-harm and harmful diet content <sup>[5]</sup></li>
+                <li>Linked Facebook account can expose additional personal information</li>
+                <li>Location tagging in Stories and posts reveals patterns of movement</li>
+                <li>Instagram now rolled out "Teen Accounts" in UK (late 2024) with default restrictions — but children over 13 can override with parental approval <sup>[13]</sup></li>
+                <li>Follower/following lists are public by default, allowing strangers to map a child's social network</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Set account to <strong>Private</strong> — non-followers cannot see posts, Stories or Reels</li>
+                <li>Set up <strong>Family Centre</strong> — Instagram's built-in parental supervision tool; see accounts followed, set screen time limits</li>
+                <li>Restrict DMs: Message Controls → <strong>Only people you follow</strong></li>
+                <li>Turn off <strong>Show activity status</strong> — prevents strangers knowing when your child is online</li>
+                <li>Review new <strong>Teen Accounts</strong> settings if your child is 13–17 — these apply automatically since November 2024 <sup>[13]</sup></li>
+                <li>Full guide: <a href="platform-settings.html#panel-instagram">Platform settings hub — Instagram</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- SNAPCHAT -->
+          <article class="platform-card platform-card--danger" aria-labelledby="card-snapchat">
+            <div class="card-head">
+              <div class="card-icon" style="background:#fefce8;" aria-hidden="true">👻</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-snapchat">Snapchat</p>
+                <div class="card-subtitle">
+                  <span class="age-badge age-13">13+</span>
+                  <span>Snap Inc. · 42% of UK 12–15s <sup>[1]</sup></span>
+                  <span class="badge badge--red">Very high risk</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="callout callout--danger">
+                <strong>"Disappearing" messages create dangerous false security</strong>
+                The perception that Snaps vanish leads children to share content they would not share elsewhere. Screenshots can be taken at any time. The Snap Map shares real-time GPS location unless specifically disabled. Both are documented factors in UK child safety incidents. <sup>[6]</sup>
+              </div>
+              <ul class="risk-list danger" aria-label="Risks">
+                <li>Snap Map broadcasts precise real-time location to all friends by default — requires Ghost Mode to disable <sup>[6]</sup></li>
+                <li>Disappearing message feature exploited in sexting and sextortion — children believe no record remains <sup>[8]</sup></li>
+                <li>Quick Add feature recommends the account to friends-of-friends and strangers by default</li>
+                <li>Snapchat My AI — always-on AI chatbot — found to advise children on hiding relationships from parents and accessing alcohol <sup>[14]</sup></li>
+                <li>Stories visible to all followers by default; must be manually restricted</li>
+                <li>No meaningful content moderation in direct message chains</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li><strong>Enable Ghost Mode immediately</strong> — the single most urgent Snapchat change: Map → ⚙ → Ghost Mode → On</li>
+                <li>Set Who can contact me to <strong>My Friends</strong></li>
+                <li>Turn off <strong>Quick Add</strong> to stop strangers finding the account</li>
+                <li>Set up <strong>Family Centre</strong> — see friend list and message contacts (not content)</li>
+                <li>Remind your child: screenshots bypass Snapchat's notification if taken via another device pointing at the screen</li>
+                <li>Full guide: <a href="platform-settings.html#panel-snapchat">Platform settings hub — Snapchat</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- YOUTUBE -->
+          <article class="platform-card" aria-labelledby="card-youtube">
+            <div class="card-head">
+              <div class="card-icon" style="background:#fff1f2;" aria-hidden="true">▶️</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-youtube">YouTube</p>
+                <div class="card-subtitle">
+                  <span class="age-badge age-13">13+</span>
+                  <span>Google · 89% of UK 8–15s <sup>[1]</sup></span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="callout callout--warn">
+                <strong>The most widely used platform — and the most overlooked by parents</strong>
+                YouTube is used by nearly 9 in 10 UK children — more than any other platform. Its recommendation algorithm has been found to progressively surface more extreme content, including conspiracy theories, self-harm, and graphic violence. <sup>[1][5]</sup>
+              </div>
+              <ul class="risk-list" aria-label="Risks">
+                <li>Recommendation algorithm documented to lead children from mainstream content to increasingly extreme material <sup>[5]</sup></li>
+                <li>Comments sections on public videos are unmoderated — contact from strangers possible on any public video</li>
+                <li>Standard YouTube is not appropriate for under-13s — YouTube Kids is a separate, moderated app</li>
+                <li>Children who create channels are publicly visible and can receive messages from strangers</li>
+                <li>Live streams are poorly moderated and allow real-time chat with anonymous users</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Use <strong>YouTube Kids</strong> (separate app) for under-12s — not standard YouTube</li>
+                <li>Enable <strong>Restricted Mode</strong> with a passcode for older children on standard YouTube</li>
+                <li>Set up <strong>Google Family Link</strong> → ties Google account to yours, controls content and viewing history</li>
+                <li>Regularly check <strong>Watch History</strong> — more revealing than you might expect</li>
+                <li>Full guide: <a href="platform-settings.html#panel-youtube">Platform settings hub — YouTube</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- WHATSAPP -->
+          <article class="platform-card" aria-labelledby="card-whatsapp">
+            <div class="card-head">
+              <div class="card-icon" style="background:#f0fdf4;" aria-hidden="true">💬</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-whatsapp">WhatsApp</p>
+                <div class="card-subtitle">
+                  <span class="age-badge age-16">16+ (UK)</span>
+                  <span>Meta · widely used by 11–15s for school groups</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="callout callout--warn">
+                <strong>Age raised to 16 in UK 2024 — but enforcement is nil</strong>
+                WhatsApp raised its UK minimum age from 13 to 16 in October 2024 in response to pressure from the ICO. There is no age verification mechanism. It remains the primary messaging platform for school-age children. <sup>[4]</sup>
+              </div>
+              <ul class="risk-list" aria-label="Risks">
+                <li>End-to-end encryption means platform cannot detect harmful content in messages — no moderation possible</li>
+                <li>Anyone with a phone number can add a child to a group, or message them directly</li>
+                <li>School group chats regularly implicated in cyberbullying, inappropriate content sharing, and exclusion</li>
+                <li>Once added to a group, your number is visible to every member regardless of privacy settings</li>
+                <li>WhatsApp Status (equivalent of Stories) visible to all contacts by default</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Settings → Privacy → set <strong>Who can add me to groups</strong> → My Contacts or Nobody</li>
+                <li>Set <strong>Last seen, Profile photo, About and Status</strong> all to My Contacts</li>
+                <li>Enable <strong>Silence Unknown Callers</strong> to reduce unwanted contact</li>
+                <li>Talk to your child about school group chat dynamics — screenshots travel, exclusion is harmful, leaving a group is always okay</li>
+                <li>For under-16s: Meta's own Terms of Service prohibit use — consider whether WhatsApp is necessary or if a group chat on a moderated platform could replace it</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- DISCORD -->
+          <article class="platform-card platform-card--danger" aria-labelledby="card-discord">
+            <div class="card-head">
+              <div class="card-icon" style="background:#eef2ff;" aria-hidden="true">🎮</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-discord">Discord</p>
+                <div class="card-subtitle">
+                  <span class="age-badge age-13">13+</span>
+                  <span>Discord Inc. · rapidly growing among UK 10–16s</span>
+                  <span class="badge badge--red">High risk</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="callout callout--danger">
+                <strong>No parental controls — highest-risk messaging environment</strong>
+                Discord has no Family Centre equivalent, no parental supervision tools, and no age verification. It is primarily known as a gaming companion app but functions as a full social network. The NSPCC has flagged it as a high-risk platform for child sexual exploitation contact. <sup>[6]</sup>
+              </div>
+              <ul class="risk-list danger" aria-label="Risks">
+                <li>Public servers (some with hundreds of thousands of members) accessible to anyone, any age <sup>[6]</sup></li>
+                <li>DMs from any server member enabled by default — primary risk vector for stranger contact</li>
+                <li>Voice and video chat features widely used; real identity more easily established than text-only</li>
+                <li>NSFW (Not Safe for Work) server categories exist within the platform — accessible without age verification</li>
+                <li>Server ownership and moderation varies enormously — many popular gaming servers have no content moderation</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Settings → Privacy &amp; Safety → turn off <strong>Allow direct messages from server members</strong></li>
+                <li>Enable <strong>Safe Messaging filter</strong> — scans DMs for explicit images</li>
+                <li>Review server membership together — ask your child to show you which servers they're in</li>
+                <li>For under-13s: Discord's Terms of Service prohibit use. Consider whether access is necessary.</li>
+                <li>Full guide: <a href="platform-settings.html#panel-discord">Platform settings hub — Discord</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- PINTEREST -->
+          <article class="platform-card" aria-labelledby="card-pinterest">
+            <div class="card-head">
+              <div class="card-icon" style="background:#fff1f2;" aria-hidden="true">📌</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-pinterest">Pinterest</p>
+                <div class="card-subtitle">
+                  <span class="age-badge age-13">13+</span>
+                  <span>Pinterest Inc. · popular with girls 12–16 for aesthetics and "inspo"</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="callout callout--warn">
+                <strong>Pro-eating-disorder content remains a documented risk</strong>
+                Despite Pinterest's 2012 policy banning "thinspiration" content, research published in 2023 found that searches related to dieting and body image still surface harmful content. The platform is popular with girls aged 12–16 as an "aesthetic" and mood board tool. <sup>[15]</sup>
+              </div>
+              <ul class="risk-list" aria-label="Risks">
+                <li>Search and recommendation can surface pro-eating-disorder, self-harm aesthetic and extreme diet content <sup>[15]</sup></li>
+                <li>"Dark Pinterest" — boards themed around self-harm, suicide and hopelessness — documented by researchers</li>
+                <li>Boards are public by default, and board names/titles are indexed by search engines</li>
+                <li>Less parental scrutiny than TikTok/Instagram — children may use it more freely</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Settings → Privacy → set account to <strong>Hide your profile from search engines</strong></li>
+                <li>Set boards to <strong>Secret</strong> so they're not publicly visible</li>
+                <li>Enable <strong>Safe Search</strong> — filters explicit content in search results</li>
+                <li>Check what boards your child follows — board titles are visible and often reveal what content they're seeking</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- TWITCH -->
+          <article class="platform-card" aria-labelledby="card-twitch">
+            <div class="card-head">
+              <div class="card-icon" style="background:#f5f3ff;" aria-hidden="true">🎥</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-twitch">Twitch</p>
+                <div class="card-subtitle">
+                  <span class="age-badge age-13">13+</span>
+                  <span>Amazon · primary live gaming streaming platform</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="risk-list" aria-label="Risks">
+                <li>Live chat is fast-moving and largely unmoderated — inappropriate contact possible in real time</li>
+                <li>Adult content category (18+ streams) exists on the platform — accessible without age verification</li>
+                <li>Children who stream their own gameplay are broadcasting voice, sometimes face, and behavioural patterns to anonymous audiences</li>
+                <li>Bit donations (real-money tips to streamers) can be used to request specific actions from child streamers</li>
+                <li>Parasocial relationships with streamers can lead to excessive screen time and spending on subscriptions/donations</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Enable <strong>Mature Content filter</strong> in Settings → Security → Mature Content</li>
+                <li>Discuss parasocial relationships — streamers are not friends; they do not know your child exists</li>
+                <li>If your child streams: they should use a pseudonym, never show their face, never reveal school or location</li>
+                <li>Set up two-factor authentication and review connected payment methods</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- FACEBOOK -->
+          <article class="platform-card" aria-labelledby="card-facebook">
+            <div class="card-head">
+              <div class="card-icon" style="background:#eff6ff;" aria-hidden="true">👤</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-facebook">Facebook</p>
+                <div class="card-subtitle">
+                  <span class="age-badge age-13">13+</span>
+                  <span>Meta · declining teen use — still relevant for under-13s via parents' accounts</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="risk-list" aria-label="Risks">
+                <li>Facebook Marketplace — used by adults — can expose children who access via a parent's account to unknown contacts</li>
+                <li>Facebook Groups covering sensitive topics (mental health, eating, relationships) have minimal moderation and may contain harmful content</li>
+                <li>Events and location check-ins can inadvertently reveal whereabouts</li>
+                <li>Legacy photos and posts going back years may include identifiable details</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Set a password on your own Facebook account — do not leave it accessible on shared devices</li>
+                <li>If your under-13 child has an account (contrary to Terms of Service), delete it or convert to a Supervised Experience via <strong>Meta Family Centre</strong></li>
+                <li>For teens: Settings → Privacy → <strong>Who can see your future posts</strong> → Friends only</li>
+                <li>Review <strong>Timeline and Tagging settings</strong> — prevent others from tagging your child in posts or photos without approval</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- BEREAL -->
+          <article class="platform-card platform-card--safe" aria-labelledby="card-bereal">
+            <div class="card-head">
+              <div class="card-icon" style="background:#f0fdf4;" aria-hidden="true">📷</div>
+              <div class="card-head-text">
+                <p class="card-title" id="card-bereal">BeReal</p>
+                <div class="card-subtitle">
+                  <span class="age-badge age-13">13+</span>
+                  <span>BeReal SAS · anti-filter, authenticity-focused platform</span>
+                  <span class="badge badge--green">Lower risk</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="callout callout--safe">
+                <strong>The lowest-risk of the top 10 — but still carries risks</strong>
+                BeReal's design deliberately avoids the algorithmic amplification and filter culture of TikTok and Instagram. Posts are only visible to friends, and the format (one unedited photo per day) limits harmful comparison dynamics. It is, however, not risk-free.
+              </div>
+              <ul class="risk-list" aria-label="Risks">
+                <li>Photos are taken simultaneously with front and rear cameras — whatever is in the background is captured and shared</li>
+                <li>Location data can be embedded in posts if location sharing is enabled</li>
+                <li>The "Discovery" feed (public posts) exists and can expose children to unknown users</li>
+                <li>Relatively new platform — parental awareness is low, which means less oversight</li>
+              </ul>
+              <p class="tips-label">What parents can do</p>
+              <ul class="tips-list">
+                <li>Disable <strong>Location sharing</strong> in the app — photos should not include GPS data</li>
+                <li>Ensure account is set to <strong>Friends only</strong> — not discoverable publicly</li>
+                <li>Be aware of backgrounds in photos — home address, bedroom details, school uniform may be visible</li>
+                <li>One of the better platforms to introduce at 13–14 if social media access is going to happen regardless</li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 10 ACTIONS -->
+    <section class="section band--white" aria-labelledby="actions-heading">
+      <div class="container">
+        <span class="eyebrow eyebrow--brand">Universal guidance — Ofcom, NSPCC, ICO &amp; Internet Matters</span>
+        <h2 id="actions-heading" style="margin-bottom:var(--space-3);">10 actions every parent should take</h2>
+        <p class="text-lead" style="margin-bottom:var(--space-8);">These steps apply regardless of which platforms your child uses and are recommended consistently across UK child safety organisations. <sup>[1][6][10][16]</sup></p>
+
+        <ol class="actions-grid" aria-label="Ten actions for parents">
+          <li class="action-item">
+            <h4>Know which platforms your child actually uses</h4>
+            Ofcom found that parents underestimate their child's platform use by an average of two platforms. Ask your child to show you their apps — not as surveillance, but as genuine interest. You cannot manage risks you don't know about. <sup>[1]</sup>
+          </li>
+          <li class="action-item">
+            <h4>Set all accounts to private — immediately</h4>
+            Public profiles are visible to anyone on earth. Private accounts limit visibility to approved followers. This single change removes the majority of unsolicited contact risk on Instagram, TikTok, Snapchat and BeReal. See our <a href="platform-settings.html">platform settings hub</a> for step-by-step guides.
+          </li>
+          <li class="action-item">
+            <h4>Disable location sharing on every platform</h4>
+            Snap Map, Instagram location tags, and BeReal location data create real physical safety risks. Ghost Mode on Snapchat is the most urgent. Disable location access for social apps at the device level: iPhone → Settings → Privacy → Location Services → [app] → Never.
+          </li>
+          <li class="action-item">
+            <h4>Set up parental supervision tools where available</h4>
+            TikTok Family Pairing, Instagram Family Centre, and Snapchat Family Centre all provide meaningful oversight without requiring you to read every message. YouTube Google Family Link limits content and tracks history. See <a href="platform-settings.html">platform settings hub</a> for setup guides.
+          </li>
+          <li class="action-item">
+            <h4>Talk about algorithms — not just strangers</h4>
+            Most harm children encounter on social media now comes through recommendation, not deliberate search or stranger contact. Explain how algorithms work: "The app shows you more of whatever keeps you watching — even if it makes you feel bad." Children who understand this are more resistant to its effects. <sup>[3]</sup>
+          </li>
+          <li class="action-item">
+            <h4>Agree on which platforms are allowed and at what age</h4>
+            Internet Matters recommends parents set clear, age-appropriate rules about which platforms are permitted — and stick to them. Giving access to TikTok at 10 "because everyone else has it" creates pressure for earlier access to higher-risk platforms later. <sup>[16]</sup>
+          </li>
+          <li class="action-item">
+            <h4>Set screen time limits and phone-free zones</h4>
+            The Children's Commissioner found that UK children average 4 hours of daily online time. Ofcom recommends no screens in bedrooms after 9pm. Our <a href="screen-time.html">screen time guide</a> covers device-level controls for iPhone, Android, Xbox and PlayStation.
+          </li>
+          <li class="action-item">
+            <h4>Know how to block and report — and teach your child too</h4>
+            Every platform has reporting tools. The ICO's Children's Code requires platforms to make these easy to use. Practice with your child — open the app, find the report button, show them how to use it before something happens. <sup>[10]</sup>
+          </li>
+          <li class="action-item">
+            <h4>Have regular, non-judgmental conversations</h4>
+            NSPCC research consistently shows that children who feel they can talk to a parent about something worrying online are significantly safer than those who don't. The most important thing is not surveillance — it's keeping the conversation open. See our <a href="conversation-guide.html">conversation guide</a> for age-matched scripts. <sup>[6]</sup>
+          </li>
+          <li class="action-item">
+            <h4>Know where to get help if something goes wrong</h4>
+            NSPCC Helpline: <strong>0808 800 5000</strong>. Childline (for children): <a href="tel:08001111"><strong>0800 1111</strong></a>. CEOP: <a href="https://www.ceop.police.uk/Safety-Centre/" target="_blank" rel="noopener noreferrer">ceop.police.uk/Safety-Centre</a>. Revenge Porn Helpline: <a href="tel:03456000459">0345 600 0459</a>. Or visit our <a href="get-help-now.html">get help now page</a> for step-by-step guidance.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- RESOURCES -->
+    <section class="section band--gray" aria-labelledby="resources-heading">
+      <div class="container">
+        <span class="eyebrow">Further reading</span>
+        <h2 id="resources-heading" style="margin-bottom:var(--space-3);">Trusted UK resources for parents</h2>
+        <p class="text-lead" style="margin-bottom:var(--space-8);">All resources below are from UK government bodies, established charities, or officially commissioned research.</p>
+
+        <div class="resources-grid" role="list">
+          <div class="resource-card" role="listitem">
+            <span class="rc-org">Ofcom</span>
+            <p class="rc-desc">Children and Parents: Media Use and Attitudes — the definitive annual UK data on children's social media use.</p>
+            <a class="rc-link" href="https://www.ofcom.org.uk/media-use-and-attitudes/media-habits-children" target="_blank" rel="noopener noreferrer">ofcom.org.uk — Children's media</a>
+          </div>
+          <div class="resource-card" role="listitem">
+            <span class="rc-org">Children's Commissioner</span>
+            <p class="rc-desc"><em>Growing Up: Having a Childhood in the Digital Age</em> — 2024 report on children's experience of social media.</p>
+            <a class="rc-link" href="https://www.childrenscommissioner.gov.uk/resource/growing-up-having-a-childhood-in-the-digital-age/" target="_blank" rel="noopener noreferrer">childrenscommissioner.gov.uk</a>
+          </div>
+          <div class="resource-card" role="listitem">
+            <span class="rc-org">NSPCC</span>
+            <p class="rc-desc">Online safety guidance for parents by platform, plus the NSPCC Helpline for adults worried about a child.</p>
+            <a class="rc-link" href="https://www.nspcc.org.uk/keeping-children-safe/online-safety/social-media/" target="_blank" rel="noopener noreferrer">nspcc.org.uk — Social media</a>
+          </div>
+          <div class="resource-card" role="listitem">
+            <span class="rc-org">Internet Matters</span>
+            <p class="rc-desc">Platform-by-platform parental control guides and age-specific social media advice.</p>
+            <a class="rc-link" href="https://www.internetmatters.org/advice/apps-and-platforms/social-media/" target="_blank" rel="noopener noreferrer">internetmatters.org — Social media</a>
+          </div>
+          <div class="resource-card" role="listitem">
+            <span class="rc-org">CEOP / Thinkuknow</span>
+            <p class="rc-desc">Police-led resource on online grooming via social platforms and how to report to CEOP.</p>
+            <a class="rc-link" href="https://www.ceopeducation.co.uk/parents/articles/social-media/" target="_blank" rel="noopener noreferrer">ceopeducation.co.uk</a>
+          </div>
+          <div class="resource-card" role="listitem">
+            <span class="rc-org">Internet Watch Foundation</span>
+            <p class="rc-desc">Report illegal content online, including sexual images of children shared via social platforms.</p>
+            <a class="rc-link" href="https://www.iwf.org.uk/report/" target="_blank" rel="noopener noreferrer">iwf.org.uk/report</a>
+          </div>
+          <div class="resource-card" role="listitem">
+            <span class="rc-org">ICO — Children's Code</span>
+            <p class="rc-desc">Information Commissioner's Age Appropriate Design Code — what platforms are legally required to do to protect children's data.</p>
+            <a class="rc-link" href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/childrens-information/childrens-code-guidance-and-resources/" target="_blank" rel="noopener noreferrer">ico.org.uk — Children's Code</a>
+          </div>
+          <div class="resource-card" role="listitem">
+            <span class="rc-org">UK Safer Internet Centre</span>
+            <p class="rc-desc">Safer Internet Day resources, platform reporting links, and support for young people experiencing online harm.</p>
+            <a class="rc-link" href="https://saferinternet.org.uk" target="_blank" rel="noopener noreferrer">saferinternet.org.uk</a>
+          </div>
+        </div>
+
+        <!-- Citations -->
+        <div class="citations-box" role="complementary" aria-label="Source citations">
+          <h2>Sources &amp; citations</h2>
+          <ol>
+            <li>Ofcom. (2024). <em>Children and Parents: Media Use and Attitudes Report 2024</em>. <a href="https://www.ofcom.org.uk/media-use-and-attitudes/media-habits-children/children-and-parents-media-use-and-attitudes-report-2024" target="_blank" rel="noopener noreferrer">ofcom.org.uk</a></li>
+            <li>Ofcom. (2025). <em>Top trends from our latest look at UK children's online lives</em>. Includes figure that 45% of 8–12-year-olds have social media accounts. <a href="https://www.ofcom.org.uk/media-use-and-attitudes/media-habits-children/top-trends-from-our-latest-look-at-uk-childrens-online-lives" target="_blank" rel="noopener noreferrer">ofcom.org.uk</a></li>
+            <li>Children's Commissioner for England. (2024). <em>Growing Up: Having a Childhood in the Digital Age</em>. <a href="https://www.childrenscommissioner.gov.uk/resource/growing-up-having-a-childhood-in-the-digital-age/" target="_blank" rel="noopener noreferrer">childrenscommissioner.gov.uk</a></li>
+            <li>WhatsApp / Meta. (October 2024). WhatsApp raises UK minimum age from 13 to 16. Coverage: <a href="https://www.bbc.co.uk/news/technology" target="_blank" rel="noopener noreferrer">BBC Technology</a></li>
+            <li>Ofcom. (2023). <em>Online Safety: Research into Children's Exposure to Harmful Content Online</em>. Platform testing findings including TikTok and YouTube algorithm results. <a href="https://www.ofcom.org.uk/online-safety/information-for-industry/research-and-data/online-safety-research" target="_blank" rel="noopener noreferrer">ofcom.org.uk</a></li>
+            <li>NSPCC. (2024). <em>How safe are our children? 2024 briefing — online abuse and grooming data</em>. <a href="https://www.nspcc.org.uk/about-us/news-opinion/2024/how-safe-are-our-children-2024/" target="_blank" rel="noopener noreferrer">nspcc.org.uk</a></li>
+            <li>Internet Watch Foundation. (2024). <em>IWF Annual Report 2023</em>. 275,000 sexual images of children removed — record high. <a href="https://www.iwf.org.uk/annual-report-2023/" target="_blank" rel="noopener noreferrer">iwf.org.uk</a></li>
+            <li>CEOP. (2024). <em>Child Sexual Exploitation and Abuse: Threat Assessment 2024</em>. Sextortion increase via Instagram and Snapchat. <a href="https://www.ceop.police.uk/Media-Centre/Publications/" target="_blank" rel="noopener noreferrer">ceop.police.uk</a></li>
+            <li>Coyne, S. M. et al. (2023). "Social media use and mental health in adolescents." <em>JAMA Pediatrics</em>. DOI: 10.1001/jamapediatrics.2022.5881</li>
+            <li>Information Commissioner's Office. (2021). <em>Age Appropriate Design: A Code of Practice for Online Services</em>. <a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/childrens-information/childrens-code-guidance-and-resources/" target="_blank" rel="noopener noreferrer">ico.org.uk</a></li>
+            <li>TikTok. (2024). <em>Family Pairing — parental controls information</em>. <a href="https://www.tiktok.com/safety/en/guardians-guide/" target="_blank" rel="noopener noreferrer">tiktok.com/safety</a></li>
+            <li>US Congress / UK Parliament Intelligence and Security Committee. (2023–24). Hearings on ByteDance / TikTok data access concerns. References available via: <a href="https://isc.independent.gov.uk" target="_blank" rel="noopener noreferrer">isc.independent.gov.uk</a></li>
+            <li>Meta / Instagram. (November 2024). <em>Teen Accounts</em> — default safety settings for under-18s. <a href="https://about.instagram.com/community/teen-safety" target="_blank" rel="noopener noreferrer">about.instagram.com</a></li>
+            <li>Snap Inc. / Snapchat. (2023). <em>My AI rollout and subsequent concerns raised by UK child safety advocates</em>. Reported by: <a href="https://www.bbc.co.uk/news/technology" target="_blank" rel="noopener noreferrer">BBC Technology</a></li>
+            <li>Rodgers, R. F. et al. (2023). "Social media and body image: A systematic review." <em>Body Image</em>. DOI: 10.1016/j.bodyim.2023.01.002. Pinterest pro-eating-disorder content persistence noted.</li>
+            <li>Internet Matters. (2024). <em>Social media age limits and parental guidance</em>. <a href="https://www.internetmatters.org/advice/apps-and-platforms/social-media/" target="_blank" rel="noopener noreferrer">internetmatters.org</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- RELATED -->
+    <section class="section band--white" aria-label="Related guides">
+      <div class="container">
+        <div class="section-header--center"><span class="eyebrow">Keep reading</span><h2>Related guides</h2></div>
+        <div class="grid grid-3">
+          <a href="social-media.html" class="guide-card">
+            <span style="font-size:24px;" aria-hidden="true">📸</span>
+            <h3 class="guide-card__title">Social media overview</h3>
+            <p class="guide-card__desc">Privacy settings, algorithm risks, age verification reality and image sharing pressure — the broader guide.</p>
+          </a>
+          <a href="platform-settings.html" class="guide-card">
+            <span style="font-size:24px;" aria-hidden="true">⚙️</span>
+            <h3 class="guide-card__title">Platform settings hub</h3>
+            <p class="guide-card__desc">Step-by-step privacy controls for TikTok, Instagram, Snapchat, YouTube, Discord and more.</p>
+          </a>
+          <a href="conversation-guide.html" class="guide-card">
+            <span style="font-size:24px;" aria-hidden="true">💬</span>
+            <h3 class="guide-card__title">Conversation guide</h3>
+            <p class="guide-card__desc">Age-matched scripts for talking to your child about what they're doing on social media.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__safeguarding" role="region" aria-label="Emergency safeguarding contacts">
+        <p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p>
+        <div class="footer__safeguarding-list">
+          <div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div>
+          <div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a> — report exploitation</span></div>
+          <div class="footer__contact"><span class="footer__contact-name">NSPCC Helpline</span><span class="footer__contact-detail"><a href="tel:08088005000" style="color:rgba(255,255,255,0.6);">0808 800 5000</a> — for adults worried about a child</span></div>
+          <div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a> — image removal</span></div>
+        </div>
+      </div>
+      <div class="footer__grid">
+        <div>
+          <a href="index.html" class="footer__brand"><div class="footer__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+          <p class="footer__tagline">Free digital safety guidance for families, young people and educators across the UK.</p>
+          <p style="font-size:var(--text-xs);color:rgba(255,255,255,0.4);margin-top:var(--space-3);">Information on this page sourced from Ofcom, NSPCC, Children's Commissioner, ICO, Internet Matters, CEOP, IWF and peer-reviewed research. Sources reflect data published 2023–2026.</p>
+        </div>
+        <div>
+          <p class="footer__heading">Social media</p>
+          <ul class="footer__links">
+            <li><a href="social-media.html" class="footer__link">Social media overview</a></li>
+            <li><a href="platform-settings.html" class="footer__link">Platform settings hub</a></li>
+            <li><a href="privacy.html" class="footer__link">Privacy &amp; data</a></li>
+            <li><a href="chat-messaging.html" class="footer__link">Chat &amp; messaging</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__heading">More topics</p>
+          <ul class="footer__links">
+            <li><a href="gaming-safety.html" class="footer__link">Gaming safety</a></li>
+            <li><a href="online-games-safety.html" class="footer__link">Top 10 games guide</a></li>
+            <li><a href="ai-chatbots.html" class="footer__link">AI &amp; chatbots</a></li>
+            <li><a href="screen-time.html" class="footer__link">Screen time</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__heading">Site</p>
+          <ul class="footer__links">
+            <li><a href="parents.html" class="footer__link">Parents hub</a></li>
+            <li><a href="kids.html" class="footer__link">Kids &amp; teens</a></li>
+            <li><a href="educators.html" class="footer__link">Educators</a></li>
+            <li><a href="get-help-now.html" class="footer__link">Get help now</a></li>
+            <li><a href="privacy-policy.html" class="footer__link">Privacy policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span id="footer-year"></span> SafeOnline UK. Free for all families. Page last updated June 2026.</p>
+        <div class="footer__legal">
+          <a href="privacy-policy.html">Privacy policy</a>
+          <a href="accessibility.html">Accessibility</a>
+          <a href="terms.html">Terms of use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu(btn) {
+      const m = document.getElementById('mobile-menu');
+      const o = m.classList.contains('is-open');
+      m.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(!o));
+      btn.setAttribute('aria-label', o ? 'Open menu' : 'Close menu');
+    }
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

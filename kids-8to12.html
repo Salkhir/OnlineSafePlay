@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Online safety for ages 8–12 — gaming, screenshots, chatting safely, and what to do when something goes wrong." />
+  <title>Ages 8–12 — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>" />
+  <style>
+    :root {
+      --age-primary: #0F6E56;
+      --age-dark:    #085041;
+      --age-light:   #E1F5EE;
+      --age-border:  #9FE1CB;
+      --age-text-dark:#04342C;
+    }
+    .age-hero {
+      background: var(--age-light);
+      border-bottom: 3px solid var(--age-border);
+      padding: var(--space-12) 0;
+      text-align: center;
+    }
+    .age-hero h1 { color: var(--age-text-dark); font-size: var(--text-3xl); margin-bottom: var(--space-3); }
+    .age-hero p  { color: var(--age-primary); font-size: var(--text-md); max-width: 500px; margin: 0 auto; line-height: 1.6; }
+    .age-back {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      font-size: var(--text-sm); color: var(--age-primary); text-decoration: none;
+      margin-bottom: var(--space-4); font-weight: 500;
+    }
+    .age-back:hover { color: var(--age-dark); }
+
+    /* Topic cards */
+    .topic-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--space-4); }
+    .topic-card {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      text-decoration: none; color: inherit; display: block;
+      transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+    .topic-card:hover { background: var(--color-bg-secondary); box-shadow: var(--shadow-sm); transform: translateY(-2px); color: inherit; }
+    .topic-card .ti-icon { font-size: 28px; margin-bottom: var(--space-3); display: block; }
+    .topic-card h3 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .topic-card p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.55; margin-bottom: var(--space-3); }
+
+    /* Scenario */
+    .scenario {
+      background: var(--age-light);
+      border: 2px solid var(--age-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+    }
+    .scenario h3 { font-size: var(--text-xl); color: var(--age-text-dark); margin-bottom: var(--space-2); line-height: 1.3; }
+    .scenario .scene-setup { font-size: var(--text-base); color: var(--age-primary); margin-bottom: var(--space-5); line-height: 1.55; }
+    .scene-opts { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--space-3); }
+    .scene-opt {
+      background: var(--color-bg-primary);
+      border: 2px solid var(--age-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--age-text-dark);
+      cursor: pointer;
+      display: flex; align-items: flex-start; gap: var(--space-2);
+      line-height: 1.5;
+      text-align: left;
+      font-family: var(--font-body);
+      transition: all var(--transition);
+    }
+    .scene-opt:hover     { background: var(--age-light); border-color: var(--age-primary); }
+    .scene-opt.correct   { background: var(--color-brand-light); border-color: var(--color-brand); color: var(--color-brand-dark); }
+    .scene-opt.near      { background: var(--color-warning-light); border-color: var(--color-warning-border); color: var(--color-warning); }
+    .scene-opt i { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+    .scene-feedback { display:none; margin-top:var(--space-4); padding:var(--space-4); border-radius:var(--radius-md); font-size:var(--text-sm); line-height:1.6; }
+    .scene-feedback.show-good { display:block; background:var(--color-brand-light); color:var(--color-brand-dark); }
+    .scene-feedback.show-near { display:block; background:var(--color-warning-light); color:var(--color-warning); }
+
+    /* Know cards */
+    .know-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--space-4); }
+    .know-card {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+    }
+    .know-card .kh { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-3); }
+    .know-card .kh i { font-size: 20px; }
+    .know-card .kh p { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin: 0; }
+    .know-card .kb { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.65; }
+
+    /* 4 steps */
+    .steps-row { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 0; }
+    .step-box {
+      padding: var(--space-5) var(--space-4);
+      border: 1px solid var(--color-border-subtle);
+      border-right: none;
+      text-align: center;
+      background: var(--color-bg-primary);
+    }
+    .step-box:last-child { border-right: 1px solid var(--color-border-subtle); }
+    .step-box .sn { font-size: var(--text-xs); color: var(--color-text-muted); margin-bottom: var(--space-2); font-weight: 500; text-transform: uppercase; }
+    .step-box i  { font-size: 24px; margin-bottom: var(--space-3); display: block; }
+    .step-box h4 { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-2); }
+    .step-box p  { font-size: var(--text-xs); color: var(--color-text-secondary); line-height: 1.5; }
+
+    .childline-bar {
+      background: var(--age-light);
+      border: 2px solid var(--age-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5) var(--space-6);
+      display: flex; align-items: center; gap: var(--space-4);
+    }
+    .childline-bar i { font-size: 28px; color: var(--age-primary); flex-shrink: 0; }
+    .childline-bar h3 { font-size: var(--text-base); font-weight: 600; color: var(--age-text-dark); margin-bottom: var(--space-1); }
+    .childline-bar p  { font-size: var(--text-sm); color: var(--age-dark); margin: 0; line-height: 1.55; }
+
+    @media (max-width: 767px) {
+      .topic-grid { grid-template-columns: 1fr; }
+      .scene-opts { grid-template-columns: 1fr; }
+      .know-grid  { grid-template-columns: 1fr; }
+      .steps-row  { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .steps-row .step-box:nth-child(2) { border-right: 1px solid var(--color-border-subtle); }
+      .steps-row .step-box:nth-child(1),
+      .steps-row .step-box:nth-child(2) { border-bottom: none; }
+      .childline-bar { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert">
+      <p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p>
+      <a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a>
+    </div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list">
+          <li><a href="parents.html" class="nav__link">Parents</a></li>
+          <li><a href="kids.html" class="nav__link nav__link--active" aria-current="page">Kids &amp; teens</a></li>
+          <li><a href="educators.html" class="nav__link">Educators</a></li>
+          <li><a href="resources.html" class="nav__link">Resources</a></li>
+        </ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile">
+        <a href="parents.html" class="nav__link">Parents</a>
+        <a href="kids.html" class="nav__link">Kids &amp; teens</a>
+        <a href="educators.html" class="nav__link">Educators</a>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section class="age-hero" aria-label="Welcome ages 8 to 12">
+      <div class="container">
+        <a href="kids.html" class="age-back"><i class="ti ti-arrow-left" aria-hidden="true"></i> All ages</a>
+        <h1>Stay smart online 🎮</h1>
+        <p>Gaming, chatting, watching videos — it's all brilliant. Here's how to enjoy it all and know what to do when something feels off.</p>
+      </div>
+    </section>
+
+
+    <!-- TOPICS -->
+    <section class="section band--white" aria-label="What do you want to know about?">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow" style="color:var(--age-primary);">What do you want to know about?</span>
+          <h2>Pick a topic</h2>
+        </div>
+        <div class="topic-grid" role="list">
+
+          <div class="topic-card" role="listitem" tabindex="0">
+            <span class="ti-icon" style="color:#993C1D;" aria-hidden="true">🎮</span>
+            <h3>Gaming safely</h3>
+            <p>Who are you actually talking to in games? How to spot when something feels off — and what to do.</p>
+            <span class="badge badge--red">Roblox · Fortnite · Minecraft</span>
+            <p style="font-size:var(--text-xs);margin-top:var(--space-3);"><a href="online-games-safety.html" style="color:var(--age-primary);font-weight:600;">Parents: see our full top 10 games guide →</a></p>
+          </div>
+
+          <div class="topic-card" role="listitem" tabindex="0">
+            <span class="ti-icon" style="color:#534AB7;" aria-hidden="true">📸</span>
+            <h3>Screenshots are forever</h3>
+            <p>Once something is sent or posted, you can't take it back. What that really means — and the test to use before you send.</p>
+            <span class="badge badge--purple">Photos · messages · posts</span>
+          </div>
+
+          <div class="topic-card" role="listitem" tabindex="0">
+            <span class="ti-icon" style="color:var(--age-primary);" aria-hidden="true">💬</span>
+            <h3>Chatting online</h3>
+            <p>DMs, group chats, and what to do if someone asks you to move to a different app to keep talking.</p>
+            <span class="badge badge--green">Discord · WhatsApp · Snapchat</span>
+          </div>
+
+          <div class="topic-card" role="listitem" tabindex="0">
+            <span class="ti-icon" style="color:#185FA5;" aria-hidden="true">🤖</span>
+            <h3>What is AI?</h3>
+            <p>AI chatbots and characters can seem really real. Here's what's actually going on behind the screen.</p>
+            <span class="badge badge--blue">Chatbots · AI characters</span>
+          </div>
+
+          <div class="topic-card" role="listitem" tabindex="0">
+            <span class="ti-icon" style="color:#854F0B;" aria-hidden="true">😢</span>
+            <h3>When someone is mean online</h3>
+            <p>Cyberbullying, mean comments, and being left out of group chats — what it is and what to do about it.</p>
+            <span class="badge badge--amber">Bullying · blocking · reporting</span>
+          </div>
+
+          <div class="topic-card" role="listitem" tabindex="0">
+            <span class="ti-icon" style="color:#993556;" aria-hidden="true">🔒</span>
+            <h3>Keeping your info private</h3>
+            <p>What counts as personal information, and why it matters who knows your school name or where you live.</p>
+            <span class="badge badge--outline">Name · school · location</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SCENARIO -->
+    <section class="section band--gray" aria-label="What would you do scenario">
+      <div class="container container--narrow">
+        <div class="section-header--center">
+          <span class="eyebrow" style="color:var(--age-primary);">Test yourself</span>
+          <h2>What would you do?</h2>
+        </div>
+        <div class="scenario" aria-live="polite">
+          <h3>Someone you met in Roblox asks to move to WhatsApp to keep talking</h3>
+          <p class="scene-setup">You've been playing together for a few weeks and they seem really friendly and fun. What do you do?</p>
+          <div class="scene-opts" role="group" aria-label="Choose your answer">
+            <button class="scene-opt" onclick="sceneAnswer(this,'good','✅ Brilliant answer. A trusted adult can help you work out if this person is who they say they are. Moving from a game to a private app is a common warning sign.')" aria-label="Tell a parent or adult you trust">
+              <i class="ti ti-user-heart" style="color:var(--age-primary);" aria-hidden="true"></i>Tell a parent or adult you trust straight away
+            </button>
+            <button class="scene-opt" onclick="sceneAnswer(this,'good','✅ Good thinking. Staying in the game chat only is much safer. Real friends understand that.')" aria-label="Stay in the game chat only">
+              <i class="ti ti-x" style="color:var(--color-alert);" aria-hidden="true"></i>Say no and stay in the game chat only
+            </button>
+            <button class="scene-opt" onclick="sceneAnswer(this,'good','✅ Smart move. Reporting and blocking them in the game is exactly right. Well done.')" aria-label="Report and block them">
+              <i class="ti ti-flag" style="color:var(--color-warning);" aria-hidden="true"></i>Report them in the game and block them
+            </button>
+            <button class="scene-opt" onclick="sceneAnswer(this,'near','💛 This is a really good question. When someone tries to move a conversation off a game and into a private app, it often means they want to talk without anyone else being able to see. That\'s a warning sign — even if they seem nice. Tell a trusted adult.')" aria-label="Why is this a warning sign?">
+              <i class="ti ti-help" style="color:#534AB7;" aria-hidden="true"></i>Why is this a warning sign?
+            </button>
+          </div>
+          <div id="scene-feedback" class="scene-feedback"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- GOOD TO KNOW -->
+    <section class="section band--white" aria-label="Good to know">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow" style="color:var(--age-primary);">Good to know</span>
+          <h2>Things worth remembering</h2>
+        </div>
+        <div class="know-grid" role="list">
+          <div class="know-card" role="listitem">
+            <div class="kh"><i class="ti ti-eye-off" style="color:#993C1D;" aria-hidden="true"></i><p>You don't know who's really there</p></div>
+            <p class="kb">In games, someone might say they're 11 when they're actually an adult. You can't tell from a username or avatar. That's not your fault — it's just how the internet works. Always tell a trusted adult if something feels weird.</p>
+          </div>
+          <div class="know-card" role="listitem">
+            <div class="kh"><i class="ti ti-camera" style="color:#534AB7;" aria-hidden="true"></i><p>The screenshot test</p></div>
+            <p class="kb">Before you send any message or photo, ask yourself: "Would I be OK if my teacher or parent saw this?" If the answer is no — don't send it. Screenshots travel fast, even in "private" chats.</p>
+          </div>
+          <div class="know-card" role="listitem">
+            <div class="kh"><i class="ti ti-flag" style="color:var(--age-primary);" aria-hidden="true"></i><p>Reporting isn't snitching</p></div>
+            <p class="kb">Every game and app has a report button. Using it helps make that space safer for everyone — including you and your friends. You won't get in trouble for reporting someone who made you feel uncomfortable.</p>
+          </div>
+          <div class="know-card" role="listitem">
+            <div class="kh"><i class="ti ti-heart" style="color:#993556;" aria-hidden="true"></i><p>Nothing online is ever your fault</p></div>
+            <p class="kb">If someone was horrible to you, or you accidentally saw something upsetting, that is never your fault. The only thing that matters is telling someone you trust so it can stop.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 4 STEPS -->
+    <section class="section band--gray" aria-label="If something goes wrong — four steps">
+      <div class="container">
+        <div class="section-header--center">
+          <span class="eyebrow" style="color:var(--age-primary);">If something goes wrong</span>
+          <h2>Do these 4 things</h2>
+        </div>
+        <div class="steps-row" role="list">
+          <div class="step-box" role="listitem">
+            <p class="sn">Step 1</p>
+            <i class="ti ti-hand-stop" style="color:var(--color-alert);" aria-hidden="true"></i>
+            <h4>Stop</h4>
+            <p>Don't reply or send anything else. Put the device down for a moment.</p>
+          </div>
+          <div class="step-box" role="listitem">
+            <p class="sn">Step 2</p>
+            <i class="ti ti-camera" style="color:#854F0B;" aria-hidden="true"></i>
+            <h4>Screenshot it</h4>
+            <p>Take a screenshot so there's a record of what happened.</p>
+          </div>
+          <div class="step-box" role="listitem">
+            <p class="sn">Step 3</p>
+            <i class="ti ti-flag" style="color:#185FA5;" aria-hidden="true"></i>
+            <h4>Block and report</h4>
+            <p>Use the report button in the app, then block the person.</p>
+          </div>
+          <div class="step-box" role="listitem">
+            <p class="sn">Step 4</p>
+            <i class="ti ti-user-heart" style="color:var(--age-primary);" aria-hidden="true"></i>
+            <h4>Tell a trusted adult</h4>
+            <p>Show them the screenshot. You will not be in trouble.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CHILDLINE -->
+    <section class="section band--white" aria-label="Get help from Childline">
+      <div class="container container--narrow">
+        <div class="childline-bar">
+          <i class="ti ti-phone" aria-hidden="true"></i>
+          <div>
+            <h3>Need to talk to someone right now?</h3>
+            <p>Childline is free, confidential, and available 24/7. Call <a href="tel:08001111" style="color:var(--age-primary);font-weight:700;">0800 1111</a> or chat at <a href="https://www.childline.org.uk" target="_blank" rel="noopener noreferrer" style="color:var(--age-primary);font-weight:700;">childline.org.uk</a> — you don't have to give your name.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__safeguarding" role="region">
+        <p class="footer__safeguarding-title">🚨 Need help right now?</p>
+        <div class="footer__safeguarding-list">
+          <div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div>
+          <div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div>
+          <div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span></div>
+          <div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span></div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p>
+        <div class="footer__legal">
+          <a href="kids.html">← All ages</a>
+          <a href="parents.html">For parents</a>
+          <a href="privacy-policy.html">Privacy policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu(btn) {
+      const menu = document.getElementById('mobile-menu');
+      const isOpen = menu.classList.contains('is-open');
+      menu.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    }
+    function sceneAnswer(btn, type, msg) {
+      document.querySelectorAll('.scene-opt').forEach(b => b.disabled = true);
+      btn.classList.add(type === 'good' ? 'correct' : 'near');
+      const fb = document.getElementById('scene-feedback');
+      fb.textContent = msg;
+      fb.className = 'scene-feedback ' + (type === 'good' ? 'show-good' : 'show-near');
+    }
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

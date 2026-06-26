@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Get immediate help if something has happened to your child online. Step-by-step guidance for parents, with direct links to CEOP, Childline, and the Internet Watch Foundation." />
+  <meta name="robots" content="noindex" />
+  <title>Get Help Now — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>" />
+  <style>
+    /* Page-specific overrides */
+    .help-hero {
+      background: var(--color-alert);
+      padding: var(--space-12) 0;
+      text-align: center;
+    }
+    .help-hero h1 {
+      color: #fff;
+      font-size: var(--text-3xl);
+      margin-bottom: var(--space-3);
+    }
+    .help-hero p {
+      color: rgba(255,255,255,0.85);
+      font-size: var(--text-md);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Emergency contacts — always top */
+    .emergency-contacts {
+      background: var(--color-alert-light);
+      border-bottom: 3px solid var(--color-alert);
+      padding: var(--space-8) 0;
+    }
+
+    .contact-card {
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-alert-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .contact-card__org {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-text-title);
+    }
+
+    .contact-card__number {
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--color-alert);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .contact-card__number:hover {
+      color: var(--color-alert-dark);
+    }
+
+    .contact-card__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    .contact-card__link {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-alert);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      margin-top: var(--space-1);
+    }
+
+    .contact-card__link:hover {
+      color: var(--color-alert-dark);
+      text-decoration: underline;
+    }
+
+    /* Scenario tabs */
+    .scenario-tabs {
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-6);
+    }
+
+    .scenario-tab {
+      padding: 10px var(--space-4);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border-default);
+      background: var(--color-bg-primary);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .scenario-tab:hover,
+    .scenario-tab.active {
+      background: var(--color-alert);
+      border-color: var(--color-alert);
+      color: #fff;
+    }
+
+    /* Protocol steps */
+    .protocol {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .protocol__step {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .protocol__step:last-child {
+      border-bottom: none;
+    }
+
+    .protocol__num {
+      width: 56px;
+      flex-shrink: 0;
+      background: var(--color-bg-secondary);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: var(--space-5) 0;
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--color-alert);
+      font-family: var(--font-display);
+    }
+
+    .protocol__body {
+      flex: 1;
+      padding: var(--space-5);
+      background: var(--color-bg-primary);
+    }
+
+    .protocol__title {
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--color-text-title);
+      margin-bottom: var(--space-2);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .protocol__title i {
+      color: var(--color-alert);
+      font-size: 18px;
+    }
+
+    .protocol__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+
+    .protocol__desc strong {
+      color: var(--color-text-title);
+      font-weight: 600;
+    }
+
+    .protocol__action {
+      margin-top: var(--space-3);
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    /* Scenario panels */
+    .scenario-panel {
+      display: none;
+    }
+
+    .scenario-panel.active {
+      display: block;
+    }
+
+    /* Do not section */
+    .donot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: var(--space-3);
+    }
+
+    .donot-item {
+      display: flex;
+      gap: var(--space-3);
+      align-items: flex-start;
+      padding: var(--space-4);
+      background: var(--color-alert-light);
+      border: 1px solid var(--color-alert-border);
+      border-radius: var(--radius-md);
+    }
+
+    .donot-item i {
+      color: var(--color-alert);
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .donot-item p {
+      font-size: var(--text-sm);
+      color: #501313;
+      line-height: 1.55;
+    }
+
+    .donot-item strong {
+      color: var(--color-alert-dark);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* Reassurance block */
+    .reassure {
+      background: var(--color-brand-light);
+      border: 1px solid #9FE1CB;
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      text-align: center;
+    }
+
+    .reassure p {
+      font-size: var(--text-base);
+      color: #04342C;
+      line-height: 1.7;
+      margin-bottom: var(--space-2);
+    }
+
+    .reassure p:last-child {
+      margin-bottom: 0;
+    }
+
+    .reassure strong {
+      color: var(--color-brand-dark);
+      font-weight: 600;
+    }
+
+    @media (max-width: 767px) {
+      .donot-grid { grid-template-columns: 1fr; }
+      .protocol__num { width: 44px; font-size: var(--text-base); }
+      .contact-card__number { font-size: var(--text-xl); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert" aria-label="You are on the emergency help page">
+      <p class="sos-bar__message">
+        <span class="sos-icon" aria-hidden="true">🚨</span>
+        <span>You are on the urgent help page</span>
+      </p>
+      <a href="index.html" class="sos-bar__link">← Back to SafeOnline UK</a>
+    </div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand" aria-label="SafeOnline UK home">
+          <div class="nav__brand-icon" aria-hidden="true">🛡</div>
+          SafeOnline UK
+        </a>
+        <ul class="nav__links" role="list">
+          <li><a href="parents.html" class="nav__link">Parents</a></li>
+          <li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li>
+          <li><a href="educators.html" class="nav__link">Educators</a></li>
+          <li><a href="resources.html" class="nav__link">Resources</a></li>
+        </ul>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile">
+        <a href="parents.html" class="nav__link">Parents</a>
+        <a href="kids.html" class="nav__link">Kids &amp; teens</a>
+        <a href="educators.html" class="nav__link">Educators</a>
+        <a href="resources.html" class="nav__link">Resources</a>
+      </div>
+    </div>
+  </header>
+
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <div class="help-hero" role="region" aria-label="Emergency help introduction">
+      <div class="container">
+        <h1>Get help right now</h1>
+        <p>Stay calm. You have found this page — that is the right first step. Follow the guidance below and contact the right people. You are not alone in this.</p>
+      </div>
+    </div>
+
+
+    <!-- EMERGENCY CONTACTS — always first, always visible -->
+    <section class="emergency-contacts" aria-label="Emergency contact numbers">
+      <div class="container">
+        <p class="eyebrow eyebrow--alert" style="text-align:center;margin-bottom:var(--space-5);">Call or report right now — all free, all confidential</p>
+        <div class="grid grid-4">
+
+          <div class="contact-card">
+            <span class="contact-card__org">Childline</span>
+            <a href="tel:08001111" class="contact-card__number" aria-label="Call Childline on 0800 1111">0800 1111</a>
+            <p class="contact-card__desc">Free. 24 hours a day, 7 days a week. For children and young people up to age 19.</p>
+            <a href="https://www.childline.org.uk" target="_blank" rel="noopener noreferrer" class="contact-card__link">
+              childline.org.uk <i class="ti ti-external-link" style="font-size:12px;" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="contact-card">
+            <span class="contact-card__org">CEOP — Child exploitation</span>
+            <a href="https://www.ceop.police.uk/safety-centre/" target="_blank" rel="noopener noreferrer" class="contact-card__number" style="font-size:var(--text-lg);" aria-label="Report to CEOP online">Report online</a>
+            <p class="contact-card__desc">For sexual exploitation or grooming of a child online. Specialist police unit — use the report button on their site.</p>
+            <a href="https://www.ceop.police.uk/safety-centre/" target="_blank" rel="noopener noreferrer" class="contact-card__link">
+              ceop.police.uk <i class="ti ti-external-link" style="font-size:12px;" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="contact-card">
+            <span class="contact-card__org">Internet Watch Foundation</span>
+            <a href="https://www.iwf.org.uk/report/" target="_blank" rel="noopener noreferrer" class="contact-card__number" style="font-size:var(--text-lg);" aria-label="Report illegal content to IWF">Report content</a>
+            <p class="contact-card__desc">To report illegal images or videos of children online. They can get content removed from the internet.</p>
+            <a href="https://www.iwf.org.uk/report/" target="_blank" rel="noopener noreferrer" class="contact-card__link">
+              iwf.org.uk/report <i class="ti ti-external-link" style="font-size:12px;" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="contact-card">
+            <span class="contact-card__org">Revenge Porn Helpline</span>
+            <a href="tel:03456000459" class="contact-card__number" aria-label="Call Revenge Porn Helpline on 0345 6000 459">0345 600 0459</a>
+            <p class="contact-card__desc">If intimate images have been shared without consent. Free image removal support. Mon–Fri 10am–4pm.</p>
+            <a href="https://revengepornhelpline.org.uk" target="_blank" rel="noopener noreferrer" class="contact-card__link">
+              revengepornhelpline.org.uk <i class="ti ti-external-link" style="font-size:12px;" aria-hidden="true"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- WHAT HAPPENED — scenario selector -->
+    <section class="section band--white" aria-label="Step by step guidance by situation">
+      <div class="container container--narrow">
+
+        <div class="section-header">
+          <span class="eyebrow eyebrow--alert">Step-by-step guidance</span>
+          <h2>What happened? Choose your situation</h2>
+          <p class="text-secondary">Select the situation that best matches what has happened. You will see exactly what to do next.</p>
+        </div>
+
+        <!-- Scenario tabs -->
+        <div class="scenario-tabs" role="tablist" aria-label="Choose your situation">
+          <button class="scenario-tab active" role="tab" aria-selected="true" aria-controls="panel-grooming" onclick="showScenario('grooming', this)">
+            Someone has been contacting my child
+          </button>
+          <button class="scenario-tab" role="tab" aria-selected="false" aria-controls="panel-images" onclick="showScenario('images', this)">
+            Images have been shared
+          </button>
+          <button class="scenario-tab" role="tab" aria-selected="false" aria-controls="panel-sextortion" onclick="showScenario('sextortion', this)">
+            Someone is threatening my child
+          </button>
+          <button class="scenario-tab" role="tab" aria-selected="false" aria-controls="panel-bullying" onclick="showScenario('bullying', this)">
+            My child is being bullied online
+          </button>
+          <button class="scenario-tab" role="tab" aria-selected="false" aria-controls="panel-saw" onclick="showScenario('saw', this)">
+            My child saw something upsetting
+          </button>
+          <button class="scenario-tab" role="tab" aria-selected="false" aria-controls="panel-ai" onclick="showScenario('ai', this)">
+            I'm worried about AI/chatbot use
+          </button>
+        </div>
+
+
+        <!-- SCENARIO: Grooming / unknown contact -->
+        <div id="panel-grooming" class="scenario-panel active" role="tabpanel" aria-label="Guidance for suspected grooming or unknown contact">
+          <div class="protocol" aria-label="Steps to take">
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">1</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-hand-stop" aria-hidden="true"></i> Do not confront the person contacting your child</p>
+                <p class="protocol__desc">Do not message them, warn them, or let your child respond. Any contact could alert them to delete evidence or escalate. Stay calm and move to step 2.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">2</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-camera" aria-hidden="true"></i> Preserve the evidence — screenshot everything</p>
+                <p class="protocol__desc">Take screenshots of <strong>all messages, profiles, usernames, and any images sent.</strong> Include timestamps where visible. Do this before blocking or reporting, as blocking can remove your access to the evidence. Save the screenshots somewhere secure — email them to yourself.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">3</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-shield" aria-hidden="true"></i> Report to CEOP immediately</p>
+                <p class="protocol__desc">CEOP (Child Exploitation and Online Protection) is the specialist police unit for this. Use the report button on their website — it goes directly to trained officers. <strong>You do not need to contact your local police first.</strong></p>
+                <div class="protocol__action">
+                  <a href="https://www.ceop.police.uk/safety-centre/" target="_blank" rel="noopener noreferrer" class="btn btn--alert">Report to CEOP now</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">4</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-flag" aria-hidden="true"></i> Report and block on the platform</p>
+                <p class="protocol__desc">After screenshotting, report the account on the platform (every app has a report function). Then block the person. Report to the platform as well as CEOP — platforms can act quickly to remove accounts.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">5</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-heart" aria-hidden="true"></i> Support your child — what to say</p>
+                <p class="protocol__desc">Tell your child: <strong>"You have done nothing wrong. This person behaved badly, not you. I am not angry with you. We are going to sort this together."</strong> Avoid asking lots of questions right now — let them lead. If they need to talk to someone independently, Childline is available 24/7 on <a href="tel:08001111">0800 1111</a>.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- SCENARIO: Images shared -->
+        <div id="panel-images" class="scenario-panel" role="tabpanel" aria-label="Guidance for non-consensual image sharing">
+          <div class="protocol">
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">1</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-camera" aria-hidden="true"></i> Document where the images appear</p>
+                <p class="protocol__desc">Screenshot or record the URL of every location where the images appear. Do not download or forward the images — this could create legal complications. Just record the web addresses.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">2</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-photo-off" aria-hidden="true"></i> Contact the Revenge Porn Helpline for image removal</p>
+                <p class="protocol__desc">They specialise in getting intimate images removed from the internet quickly and for free. This is their core purpose — they are very effective. Call <a href="tel:03456000459"><strong>0345 600 0459</strong></a> or use their online form.</p>
+                <div class="protocol__action">
+                  <a href="https://revengepornhelpline.org.uk" target="_blank" rel="noopener noreferrer" class="btn btn--alert">Contact Revenge Porn Helpline</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">3</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-flag" aria-hidden="true"></i> Report to the Internet Watch Foundation</p>
+                <p class="protocol__desc">If the images involve anyone under 18, report to the IWF. They have the legal power to force platforms and websites to remove content, and they work quickly.</p>
+                <div class="protocol__action">
+                  <a href="https://www.iwf.org.uk/report/" target="_blank" rel="noopener noreferrer" class="btn btn--alert">Report to IWF</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">4</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-gavel" aria-hidden="true"></i> Know your legal rights</p>
+                <p class="protocol__desc">Under the <strong>Online Safety Act 2023</strong>, sharing intimate images without consent is a criminal offence in England and Wales — regardless of whether the person in the image consented to the original image being taken. You can report to your local police. Reference the Online Safety Act when you do.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">5</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-heart" aria-hidden="true"></i> Support your child right now</p>
+                <p class="protocol__desc"><strong>"This is not your fault. Sharing that image without your permission is a crime — the person who did this is in the wrong, not you. We are going to get it removed and I am here."</strong> Avoid looking at the images with your child or asking them to describe them in detail. Focus on what you are doing to fix it.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- SCENARIO: Sextortion -->
+        <div id="panel-sextortion" class="scenario-panel" role="tabpanel" aria-label="Guidance for sextortion threats">
+
+          <div class="card card--alert" style="margin-bottom:var(--space-5);" role="alert">
+            <p style="font-size:var(--text-base);font-weight:600;color:#501313;margin-bottom:var(--space-2);">⚠️ Most important thing first: do not pay them</p>
+            <p style="font-size:var(--text-sm);color:#791F1F;line-height:1.65;">Payment never ends the threat — it proves you will pay and the demands escalate. This is a known criminal pattern. The right response is to report immediately.</p>
+          </div>
+
+          <div class="protocol">
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">1</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-hand-stop" aria-hidden="true"></i> Stop all contact with the person threatening you</p>
+                <p class="protocol__desc">Do not respond to their messages. Do not pay. Do not send more images. Any response — even to say you won't pay — continues the contact they want.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">2</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-camera" aria-hidden="true"></i> Screenshot all messages and threats before blocking</p>
+                <p class="protocol__desc">Screenshot the conversation, the threats, their profile, and any account details. Do this before blocking. These are your evidence for the police.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">3</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-shield" aria-hidden="true"></i> Report to CEOP right now</p>
+                <p class="protocol__desc">Sextortion is a serious criminal offence and CEOP deals with it regularly. They will not judge your child. Their reports go to specialist officers trained for exactly this situation.</p>
+                <div class="protocol__action">
+                  <a href="https://www.ceop.police.uk/safety-centre/" target="_blank" rel="noopener noreferrer" class="btn btn--alert">Report to CEOP</a>
+                  <a href="https://revengepornhelpline.org.uk" target="_blank" rel="noopener noreferrer" class="btn btn--secondary">Revenge Porn Helpline</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">4</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-flag" aria-hidden="true"></i> Block and report on the platform</p>
+                <p class="protocol__desc">After reporting to CEOP, block and report the account on every platform they contacted your child on. Most platforms have a specific "sextortion" or "blackmail" category in their report menu.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">5</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-heart" aria-hidden="true"></i> What to say to your child</p>
+                <p class="protocol__desc"><strong>"You are not in trouble. You have not done anything that makes this your fault. These people do this to many young people — it is organised crime. We have reported them to the police and they will deal with it. You are safe."</strong></p>
+                <p class="protocol__desc" style="margin-top:var(--space-2);">If your child is very distressed, Childline at <a href="tel:08001111"><strong>0800 1111</strong></a> has counsellors available 24/7 who specifically support young people in this situation.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- SCENARIO: Cyberbullying -->
+        <div id="panel-bullying" class="scenario-panel" role="tabpanel" aria-label="Guidance for cyberbullying">
+          <div class="protocol">
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">1</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-camera" aria-hidden="true"></i> Document the bullying — screenshot everything</p>
+                <p class="protocol__desc">Screenshot all messages, posts, comments, and the profiles of anyone involved. Include timestamps. Save to a folder with the date. Do this before blocking anyone, as blocking may remove your access to the content.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">2</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-flag" aria-hidden="true"></i> Report on the platform</p>
+                <p class="protocol__desc">Every platform has a reporting function. Report the specific posts, comments, or accounts. Use the most specific category — "harassment" or "bullying" rather than generic "other". Platforms act faster on specific reports. Then block the person.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">3</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-building-school" aria-hidden="true"></i> Contact the school if the bullying involves classmates</p>
+                <p class="protocol__desc">Schools have a legal duty to address bullying, including cyberbullying, even when it takes place outside school. Contact the head of year or DSL (Designated Safeguarding Lead) with your screenshots. Ask for a written response and a clear action plan.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">4</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-shield" aria-hidden="true"></i> Contact police if threats are made</p>
+                <p class="protocol__desc">If the bullying includes threats of violence, threats to share images, or targeted harassment over a sustained period, contact your local police. Bring your screenshots. Cyberbullying that involves threats is a criminal matter.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">5</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-heart" aria-hidden="true"></i> Support your child's wellbeing</p>
+                <p class="protocol__desc">Cyberbullying can cause serious mental health harm. Watch for signs of anxiety, depression, or withdrawal. If your child is struggling, speak to your GP or contact <a href="https://www.youngminds.org.uk" target="_blank" rel="noopener noreferrer"><strong>Young Minds</strong></a> (youngminds.org.uk). For immediate support Childline is available at <a href="tel:08001111"><strong>0800 1111</strong></a>.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- SCENARIO: Saw something upsetting -->
+        <div id="panel-saw" class="scenario-panel" role="tabpanel" aria-label="Guidance when a child has seen upsetting content">
+          <div class="protocol">
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">1</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-ear" aria-hidden="true"></i> Stay calm and listen first</p>
+                <p class="protocol__desc">Your reaction sets the tone. If you respond with shock or anger, your child may feel they have done something wrong and become less likely to tell you next time. <strong>Say "Thank you for telling me. You have done the right thing."</strong></p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">2</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-flag" aria-hidden="true"></i> Report the content</p>
+                <p class="protocol__desc">If the content is illegal (sexual images of children, content promoting violence or terrorism), report it to the <a href="https://www.iwf.org.uk/report/" target="_blank" rel="noopener noreferrer"><strong>Internet Watch Foundation</strong></a> and/or the platform it appeared on. You do not need to record or keep the content to report it.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">3</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-messages" aria-hidden="true"></i> Talk it through — but keep it brief and age-appropriate</p>
+                <p class="protocol__desc">Ask open questions: <strong>"How are you feeling about it?"</strong> rather than asking them to describe what they saw in detail. Validate their feelings ("It makes sense that was upsetting"). Reassure them that seeing something does not mean anything bad about them.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">4</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-lock" aria-hidden="true"></i> Review how the content reached them</p>
+                <p class="protocol__desc">Was it a recommendation algorithm? A link from a friend? A group chat? Understanding how they got there helps you decide what controls to put in place. Check our <a href="platform-settings.html"><strong>platform settings hub</strong></a> for step-by-step safety settings for the relevant app.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">5</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-heart" aria-hidden="true"></i> Monitor in the coming days</p>
+                <p class="protocol__desc">Some children are fine after a few hours. Others are affected for longer — disturbed sleep, anxiety, or changes in behaviour. If you are concerned about your child's mental health, speak to your GP. Childline also supports children affected by disturbing content at <a href="tel:08001111"><strong>0800 1111</strong></a>.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- SCENARIO: AI concern -->
+        <div id="panel-ai" class="scenario-panel" role="tabpanel" aria-label="Guidance for AI chatbot concerns">
+          <div class="protocol">
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">1</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-eye" aria-hidden="true"></i> Understand what you are dealing with</p>
+                <p class="protocol__desc">AI companions like Character.AI and Replika are designed to be engaging and emotionally responsive. Children can form strong attachments very quickly. This is by design — the platforms benefit from continued use. It is not your child's fault and it is not a sign of weakness.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">2</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-messages" aria-hidden="true"></i> Start a conversation — not a confrontation</p>
+                <p class="protocol__desc">Do not ban the app immediately without talking first. Ask curious questions: <strong>"Tell me about the character you've been talking to — what do you like about them?"</strong> Understanding what need the AI is meeting (companionship, being understood, no judgement) tells you what to address in real life.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">3</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-robot" aria-hidden="true"></i> If the AI has said something harmful or inappropriate</p>
+                <p class="protocol__desc">Screenshot the conversation. Report to the platform — Character.AI, Replika and others have reporting mechanisms. If the content sexualised your child or involved an adult posing as an AI to contact them, report to <a href="https://www.ceop.police.uk/safety-centre/" target="_blank" rel="noopener noreferrer"><strong>CEOP</strong></a> immediately.</p>
+                <div class="protocol__action">
+                  <a href="https://www.ceop.police.uk/safety-centre/" target="_blank" rel="noopener noreferrer" class="btn btn--alert">Report to CEOP</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">4</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-clock" aria-hidden="true"></i> Set boundaries gradually, not suddenly</p>
+                <p class="protocol__desc">Sudden removal of an AI companion a child is attached to can cause genuine distress — similar to losing a friend. Work together on agreed limits: specific times when the app is off, screen-free spaces, and crucially, building real-world social connection to reduce reliance on the AI.</p>
+              </div>
+            </div>
+
+            <div class="protocol__step">
+              <div class="protocol__num" aria-hidden="true">5</div>
+              <div class="protocol__body">
+                <p class="protocol__title"><i class="ti ti-heart" aria-hidden="true"></i> When to seek professional support</p>
+                <p class="protocol__desc">If your child is spending many hours a day with AI companions, is distressed when separated from the app, or is withdrawing from real relationships, speak to your GP. This may warrant a referral to CAMHS (Child and Adolescent Mental Health Services). Read our full guide on <a href="ai-chatbots.html"><strong>AI and chatbot risks</strong></a> for more detail.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- DO NOT DO THESE THINGS -->
+    <section class="section band--gray" aria-label="What not to do">
+      <div class="container container--narrow">
+        <div class="section-header">
+          <span class="eyebrow eyebrow--alert">Important</span>
+          <h2>What not to do</h2>
+          <p class="text-secondary">These are the most common mistakes parents make in the first few hours. Avoiding them protects both the evidence and your child.</p>
+        </div>
+        <div class="donot-grid" role="list">
+          <div class="donot-item" role="listitem">
+            <i class="ti ti-x" aria-hidden="true"></i>
+            <p><strong>Don't confront the person directly</strong> — It alerts them to delete evidence and can make the situation more dangerous.</p>
+          </div>
+          <div class="donot-item" role="listitem">
+            <i class="ti ti-x" aria-hidden="true"></i>
+            <p><strong>Don't delete messages or accounts</strong> — This destroys evidence the police need. Screenshot first, then block.</p>
+          </div>
+          <div class="donot-item" role="listitem">
+            <i class="ti ti-x" aria-hidden="true"></i>
+            <p><strong>Don't pay if being blackmailed</strong> — It never stops the threat. It proves you'll pay and demands escalate immediately.</p>
+          </div>
+          <div class="donot-item" role="listitem">
+            <i class="ti ti-x" aria-hidden="true"></i>
+            <p><strong>Don't blame your child</strong> — Whatever happened, they need your support right now. Blame closes down communication permanently.</p>
+          </div>
+          <div class="donot-item" role="listitem">
+            <i class="ti ti-x" aria-hidden="true"></i>
+            <p><strong>Don't share or forward images</strong> — Even to show other people or document them. This can create legal complications for you.</p>
+          </div>
+          <div class="donot-item" role="listitem">
+            <i class="ti ti-x" aria-hidden="true"></i>
+            <p><strong>Don't wait to see if it blows over</strong> — These situations escalate quickly. The sooner you report, the better the outcome.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- REASSURANCE -->
+    <section class="section band--white" aria-label="Reassurance for parents">
+      <div class="container container--narrow">
+        <div class="reassure">
+          <p style="font-size:var(--text-lg);font-weight:600;margin-bottom:var(--space-4);">You are doing the right thing by being here</p>
+          <p>Whatever has happened, the fact that you are looking for help and taking this seriously is what matters. These situations can be resolved. Children recover. Families get through this.</p>
+          <p>The organisations above — CEOP, Childline, the IWF, and the Revenge Porn Helpline — exist specifically for these situations. They are not there to judge you or your child. They are there to help, and they are very good at it.</p>
+          <p style="margin-top:var(--space-4);"><strong>You are not alone. Call 0800 1111 if you need to talk to someone right now.</strong></p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- NEXT STEPS — calm state links -->
+    <section class="section band--gray" aria-label="Next steps when you are ready">
+      <div class="container">
+        <div class="section-header--center">
+          <span class="eyebrow">When you're ready</span>
+          <h2>Next steps for your family</h2>
+        </div>
+        <div class="grid grid-3">
+          <a href="parents.html" class="guide-card">
+            <span style="font-size:24px;" aria-hidden="true">👨‍👩‍👧</span>
+            <h3 class="guide-card__title">Parents hub</h3>
+            <p class="guide-card__desc">Guides, tools, and conversation scripts to help you protect your child going forward.</p>
+          </a>
+          <a href="platform-settings.html" class="guide-card">
+            <span style="font-size:24px;" aria-hidden="true">⚙️</span>
+            <h3 class="guide-card__title">Lock down their accounts</h3>
+            <p class="guide-card__desc">Step-by-step privacy settings for every platform your child uses.</p>
+          </a>
+          <a href="conversation-guide.html" class="guide-card">
+            <span style="font-size:24px;" aria-hidden="true">💬</span>
+            <h3 class="guide-card__title">Conversation guide</h3>
+            <p class="guide-card__desc">Age-matched scripts for talking to your child about what happened and what changes you're making together.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__safeguarding" role="region" aria-label="Emergency contacts">
+        <p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p>
+        <div class="footer__safeguarding-list">
+          <div class="footer__contact">
+            <span class="footer__contact-name">Childline</span>
+            <span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span>
+          </div>
+          <div class="footer__contact">
+            <span class="footer__contact-name">CEOP</span>
+            <span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span>
+          </div>
+          <div class="footer__contact">
+            <span class="footer__contact-name">Internet Watch Foundation</span>
+            <span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span>
+          </div>
+          <div class="footer__contact">
+            <span class="footer__contact-name">Revenge Porn Helpline</span>
+            <span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p>
+        <div class="footer__legal">
+          <a href="privacy-policy.html">Privacy policy</a>
+          <a href="accessibility.html">Accessibility</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    function toggleMobileMenu(btn) {
+      const menu = document.getElementById('mobile-menu');
+      const isOpen = menu.classList.contains('is-open');
+      menu.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      btn.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+    }
+
+    function showScenario(id, btn) {
+      // Hide all panels and deactivate tabs
+      document.querySelectorAll('.scenario-panel').forEach(p => {
+        p.classList.remove('active');
+        p.setAttribute('aria-hidden', 'true');
+      });
+      document.querySelectorAll('.scenario-tab').forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      // Show selected
+      const panel = document.getElementById('panel-' + id);
+      if (panel) {
+        panel.classList.add('active');
+        panel.removeAttribute('aria-hidden');
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+    }
+
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

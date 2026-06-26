@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About SafeOnline UK — our mission, who we are, how we source our information, and our editorial standards." />
+  <title>About Us — SafeOnline UK</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230F6E56'/><path d='M16 5 L26 9 L26 17 C26 22 21 27 16 28 C11 27 6 22 6 17 L6 9 Z' fill='white'/></svg>" />
+  <style>
+    .about-hero { background: var(--color-brand-light); border-bottom: 3px solid #9FE1CB; padding: var(--space-16) 0; }
+    .about-hero h1 { color: var(--color-brand-dark); font-size: var(--text-3xl); margin-bottom: var(--space-3); }
+    .about-hero p  { color: #085041; font-size: var(--text-md); max-width: 600px; line-height: 1.7; }
+    .mission-statement { background: var(--color-text-title); border-radius: var(--radius-xl); padding: var(--space-10) var(--space-10); margin: var(--space-10) 0; text-align: center; }
+    .mission-statement p { font-family: var(--font-display); font-size: var(--text-2xl); color: #fff; line-height: 1.5; font-style: italic; max-width: 680px; margin: 0 auto; font-weight: 400; }
+    .values-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: var(--space-5); }
+    .value-card { background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-xl); padding: var(--space-6); }
+    .value-icon { font-size: 32px; margin-bottom: var(--space-4); display: block; }
+    .value-card h3 { font-size: var(--text-lg); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-3); }
+    .value-card p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.7; }
+    .editorial-list { display: flex; flex-direction: column; gap: var(--space-4); }
+    .editorial-item { display: flex; gap: var(--space-4); align-items: flex-start; padding: var(--space-5); background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); }
+    .editorial-item i { font-size: 22px; color: var(--color-brand); flex-shrink: 0; margin-top: 2px; }
+    .editorial-item h4 { font-size: var(--text-base); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-1); }
+    .editorial-item p  { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.65; margin: 0; }
+    .sources-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: var(--space-4); }
+    .source-card { background: var(--color-bg-primary); border: 1px solid var(--color-border-subtle); border-radius: var(--radius-lg); padding: var(--space-4); text-align: center; }
+    .source-card .sc-icon { font-size: 28px; margin-bottom: var(--space-2); display: block; }
+    .source-card p { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-title); margin-bottom: var(--space-1); }
+    .source-card span { font-size: var(--text-xs); color: var(--color-text-secondary); }
+    .transparency-box { background: var(--color-brand-light); border: 1px solid #9FE1CB; border-radius: var(--radius-xl); padding: var(--space-8) var(--space-8); }
+    .transparency-box h3 { color: var(--color-brand-dark); font-size: var(--text-xl); margin-bottom: var(--space-4); }
+    .transparency-box p  { color: #085041; font-size: var(--text-base); line-height: 1.7; margin-bottom: var(--space-3); }
+    .transparency-box p:last-child { margin-bottom: 0; }
+    @media(max-width:767px){ .values-grid{grid-template-columns:1fr;} .sources-grid{grid-template-columns:repeat(2,minmax(0,1fr));} .mission-statement,.transparency-box{padding:var(--space-6);} .mission-statement p{font-size:var(--text-xl);} }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="sos-bar" role="alert"><p class="sos-bar__message"><span class="sos-icon" aria-hidden="true">🚨</span><span class="sos-full">Something happened right now?</span><span class="sos-short" style="display:none;">Need help?</span></p><a href="get-help-now.html" class="sos-bar__link">Get help immediately →</a></div>
+    <div style="border-bottom:1px solid var(--color-border-subtle);background:var(--color-bg-primary);">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav__brand"><div class="nav__brand-icon" aria-hidden="true">🛡</div>SafeOnline UK</a>
+        <ul class="nav__links" role="list"><li><a href="parents.html" class="nav__link">Parents</a></li><li><a href="kids.html" class="nav__link">Kids &amp; teens</a></li><li><a href="educators.html" class="nav__link">Educators</a></li><li><a href="resources.html" class="nav__link">Resources</a></li><li><a href="about.html" class="nav__link nav__link--active" aria-current="page">About</a></li></ul>
+        <a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a>
+        <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu(this)"><span></span><span></span><span></span></button>
+      </nav>
+      <div id="mobile-menu" class="nav__mobile"><a href="parents.html" class="nav__link">Parents</a><a href="kids.html" class="nav__link">Kids &amp; teens</a><a href="educators.html" class="nav__link">Educators</a><a href="resources.html" class="nav__link">Resources</a><a href="contact.html" class="nav__cta" style="background:var(--color-brand);border-color:var(--color-brand);">Contact us</a></div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <section class="about-hero" aria-label="About SafeOnline UK">
+      <div class="container">
+        <span class="eyebrow eyebrow--brand">About us</span>
+        <h1>SafeOnline UK</h1>
+        <p>We are a free digital safety resource for families, young people, and educators across the UK. Our aim is to make expert-level online safety guidance accessible to every parent — regardless of their technical confidence — and to every child, in language that actually makes sense to them.</p>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="Our mission">
+      <div class="container">
+        <div class="mission-statement" role="note">
+          <p>"Every child deserves to grow up online with the confidence to stay safe, the knowledge to recognise harm, and a trusted adult they feel they can tell."</p>
+        </div>
+        <div class="section-header"><span class="eyebrow eyebrow--brand">Why we exist</span><h2>The problem we're trying to solve</h2></div>
+        <div class="grid grid-2" style="gap:var(--space-8);align-items:start;">
+          <div>
+            <p style="font-size:var(--text-base);color:var(--color-text-secondary);line-height:1.8;margin-bottom:var(--space-4);">The online safety landscape changes faster than most parents can keep up with. New platforms emerge, old risks evolve, and the gap between what children experience online and what their parents know about is growing every year.</p>
+            <p style="font-size:var(--text-base);color:var(--color-text-secondary);line-height:1.8;margin-bottom:var(--space-4);">Ofcom found that 72% of parents feel underprepared when it comes to protecting their child online. Not because they don't care — but because the resources that exist are either too technical, too alarming, or too out of date to be useful.</p>
+            <p style="font-size:var(--text-base);color:var(--color-text-secondary);line-height:1.8;">SafeOnline UK was built to be different. Plain language. Practical tools. Warm, non-judgmental guidance. And everything updated regularly so parents and educators can trust what they read here.</p>
+          </div>
+          <div>
+            <div class="card" style="margin-bottom:var(--space-4);">
+              <p style="font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--color-brand);margin-bottom:var(--space-3);">What makes us different</p>
+              <ul style="display:flex;flex-direction:column;gap:var(--space-3);">
+                <li class="flex gap-3 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>All content sourced from UK statutory bodies and peer-reviewed research</li>
+                <li class="flex gap-3 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>No advertising, no commercial relationships with platforms</li>
+                <li class="flex gap-3 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>Written for real parents, not policy professionals</li>
+                <li class="flex gap-3 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>Separate sections for children that speak directly to them</li>
+                <li class="flex gap-3 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>Updated quarterly — more frequently when new risks emerge</li>
+                <li class="flex gap-3 text-sm text-secondary"><i class="ti ti-circle-check" style="color:var(--color-brand);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>Completely free — no paywalls, no sign-ups required</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="Our values">
+      <div class="container">
+        <div class="section-header--center"><span class="eyebrow eyebrow--brand">What we believe</span><h2>Our values</h2></div>
+        <div class="values-grid" role="list">
+          <div class="value-card" role="listitem"><span class="value-icon" aria-hidden="true">💛</span><h3>No blame, ever</h3><p>Children who experience something harmful online are never at fault. Parents who don't know every setting on every app are not bad parents. Our content is written to empower, not to shame. This principle runs through every page on this site.</p></div>
+          <div class="value-card" role="listitem"><span class="value-icon" aria-hidden="true">📊</span><h3>Evidence first</h3><p>Every risk we describe, every statistic we cite, every recommendation we make is grounded in research from UK statutory bodies, established charities, or peer-reviewed academic sources. We publish our citations so you can check our work.</p></div>
+          <div class="value-card" role="listitem"><span class="value-icon" aria-hidden="true">💬</span><h3>Conversation over surveillance</h3><p>The most effective thing a parent can do is keep the conversation open — not monitor every message. Our guides consistently prioritise trust, communication, and relationship over technical controls, even though we provide both.</p></div>
+          <div class="value-card" role="listitem"><span class="value-icon" aria-hidden="true">🔄</span><h3>Always current</h3><p>Online safety guidance that's two years old may as well be from another era. We review every guide on a rolling quarterly schedule, and update immediately when significant new risks or legal changes emerge — such as the Online Safety Act 2023.</p></div>
+          <div class="value-card" role="listitem"><span class="value-icon" aria-hidden="true">🌍</span><h3>Accessible to everyone</h3><p>This site is free, has no sign-up requirement, meets WCAG 2.1 AA accessibility standards, and is designed to work on low-end mobile devices. Online safety guidance should not be a luxury. We also avoid jargon wherever possible.</p></div>
+          <div class="value-card" role="listitem"><span class="value-icon" aria-hidden="true">🤝</span><h3>Community not surveillance</h3><p>We do not collect unnecessary data. We do not track children. We do not share data with advertising networks. Our email alerts are a service, not a marketing tool. What you share with us stays with us — and we collect as little as possible.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="Our editorial standards">
+      <div class="container container--narrow">
+        <div class="section-header"><span class="eyebrow eyebrow--brand">How we work</span><h2>Our editorial standards</h2></div>
+        <div class="editorial-list" role="list">
+          <div class="editorial-item" role="listitem"><i class="ti ti-search" aria-hidden="true"></i><div><h4>We endeavour to use strong sources</h4><p>Where possible, statistics and claims are drawn from established UK bodies — Ofcom, the NSPCC, CEOP, the Children's Commissioner, the ICO, the Internet Watch Foundation — or peer-reviewed academic research. We try to link to original sources so you can read further if you'd like to. In a rapidly evolving field, not every claim will have a direct citation, and we may occasionally draw on well-regarded secondary reporting when primary data isn't available. If you spot something that looks wrong or unsourced, please <a href="contact.html">let us know</a> — we take corrections seriously.</p></div></div>
+          <div class="editorial-item" role="listitem"><i class="ti ti-calendar" aria-hidden="true"></i><div><h4>We publish a last-updated date on every guide</h4><p>Every topic guide shows its last review date. If a guide hasn't been reviewed in the last 12 months, we flag it clearly. Platform settings guides are reviewed whenever a platform makes significant changes to its interface or privacy options.</p></div></div>
+          <div class="editorial-item" role="listitem"><i class="ti ti-eye-off" aria-hidden="true"></i><div><h4>We do not accept advertising or platform partnerships</h4><p>No platform pays us to feature their safety tools. No advertiser pays us to promote a product. Our platform settings guides and risk assessments are independent assessments — positive or critical — based solely on available evidence.</p></div></div>
+          <div class="editorial-item" role="listitem"><i class="ti ti-users" aria-hidden="true"></i><div><h4>We write for the people we're trying to help</h4><p>Every guide is tested for readability against the WCAG reading level guidelines. Children's sections are written at an appropriate reading age and reviewed for tone. Parent guides are written to be readable on a phone in under 10 minutes. Educator resources are written to be usable in a classroom without additional research.</p></div></div>
+          <div class="editorial-item" role="listitem"><i class="ti ti-alert-triangle" aria-hidden="true"></i><div><h4>We flag uncertainty clearly</h4><p>Where evidence is limited, contested, or rapidly evolving — as is common in the emerging field of AI companion safety — we say so. We do not overstate certainty to create alarm. We believe parents make better decisions with accurate, nuanced information than with exaggerated warnings.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="Our sources">
+      <div class="container">
+        <div class="section-header--center"><span class="eyebrow">Who we rely on</span><h2>Our primary sources</h2></div>
+        <div class="sources-grid" role="list">
+          <div class="source-card" role="listitem"><span class="sc-icon" aria-hidden="true">📡</span><p>Ofcom</p><span>Media use &amp; attitudes research</span></div>
+          <div class="source-card" role="listitem"><span class="sc-icon" aria-hidden="true">🏛️</span><p>Children's Commissioner</p><span>Annual childhood &amp; digital reports</span></div>
+          <div class="source-card" role="listitem"><span class="sc-icon" aria-hidden="true">🤲</span><p>NSPCC</p><span>Child protection research &amp; data</span></div>
+          <div class="source-card" role="listitem"><span class="sc-icon" aria-hidden="true">🛡️</span><p>CEOP</p><span>Child exploitation threat assessments</span></div>
+          <div class="source-card" role="listitem"><span class="sc-icon" aria-hidden="true">🔒</span><p>ICO</p><span>Children's Code &amp; data regulation</span></div>
+          <div class="source-card" role="listitem"><span class="sc-icon" aria-hidden="true">👁️</span><p>Internet Watch Foundation</p><span>Online CSAM data &amp; removal</span></div>
+          <div class="source-card" role="listitem"><span class="sc-icon" aria-hidden="true">🌐</span><p>Internet Matters</p><span>Platform-specific safety guidance</span></div>
+          <div class="source-card" role="listitem"><span class="sc-icon" aria-hidden="true">🏥</span><p>NHS / CNWL</p><span>Screen time &amp; gaming disorder</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--white" aria-label="Transparency">
+      <div class="container container--narrow">
+        <div class="transparency-box">
+          <h3>💚 A note on transparency</h3>
+          <p>SafeOnline UK is a free public resource. We do not charge for access, we do not run advertising, and we do not have commercial relationships with any of the platforms we review.</p>
+          <p>Our threat alerts email list is used only to send updates when new risks or significant changes emerge. We do not use it for any other purpose, and we do not share it with third parties. You can unsubscribe at any time.</p>
+          <p>If you spot an error, an outdated link, or a piece of guidance you think needs revisiting, please <a href="contact.html" style="color:var(--color-brand);font-weight:600;">get in touch</a>. We take corrections seriously and will update guides promptly when mistakes are identified.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band--gray" aria-label="Get in touch">
+      <div class="container" style="text-align:center;max-width:540px;">
+        <span class="eyebrow">Questions or feedback?</span>
+        <h2 style="margin-bottom:var(--space-3);">We'd love to hear from you</h2>
+        <p class="text-secondary" style="margin-bottom:var(--space-6);">Whether you've spotted something that needs updating, want to suggest a topic, or have a press enquiry — we're here.</p>
+        <a href="contact.html" class="btn btn--primary">Get in touch →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo"><div class="container"><div class="footer__safeguarding" role="region"><p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p><div class="footer__safeguarding-list"><div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div><div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span></div></div></div><div class="footer__bottom"><p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p><div class="footer__legal"><a href="privacy-policy.html">Privacy policy</a><a href="accessibility.html">Accessibility</a><a href="contact.html">Contact</a></div></div></div></footer>
+  <script>function toggleMobileMenu(btn){const m=document.getElementById('mobile-menu');const o=m.classList.contains('is-open');m.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(!o));}document.getElementById('footer-year').textContent=new Date().getFullYear();</script>
+</body>
+</html>
