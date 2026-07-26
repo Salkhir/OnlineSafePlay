@@ -188,5 +188,41 @@
   </main>
   <footer class="site-footer" role="contentinfo"><div class="container"><div class="footer__safeguarding" role="region"><p class="footer__safeguarding-title">🚨 Urgent safeguarding contacts</p><div class="footer__safeguarding-list"><div class="footer__contact"><span class="footer__contact-name">Childline</span><span class="footer__contact-detail"><a href="tel:08001111" style="color:rgba(255,255,255,0.6);">0800 1111</a> — free, 24/7</span></div><div class="footer__contact"><span class="footer__contact-name">CEOP</span><span class="footer__contact-detail"><a href="https://www.ceop.police.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">ceop.police.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Internet Watch Foundation</span><span class="footer__contact-detail"><a href="https://www.iwf.org.uk" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);">iwf.org.uk</a></span></div><div class="footer__contact"><span class="footer__contact-name">Revenge Porn Helpline</span><span class="footer__contact-detail"><a href="tel:03456000459" style="color:rgba(255,255,255,0.6);">0345 600 0459</a></span></div></div></div><div class="footer__bottom"><p>© <span id="footer-year"></span> SafeOnline UK. Free for all families.</p><div class="footer__legal"><a href="privacy-policy.html">Privacy policy</a><a href="accessibility.html">Accessibility</a><a href="parents.html">Parents hub</a></div></div></div></footer>
   <script>function toggleMobileMenu(btn){const m=document.getElementById('mobile-menu');const o=m.classList.contains('is-open');m.classList.toggle('is-open');btn.setAttribute('aria-expanded',String(!o));}document.getElementById('footer-year').textContent=new Date().getFullYear();</script>
+
+  <!-- Cookie notice banner -->
+  <div id="cookie-banner" role="dialog" aria-label="Cookie notice" aria-live="polite" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#1a1a2e;border-top:3px solid #0F6E56;padding:16px 24px;box-shadow:0 -4px 24px rgba(0,0,0,0.25);">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+      <span style="font-size:22px;" aria-hidden="true">🍪</span>
+      <p style="flex:1;min-width:260px;font-size:14px;color:rgba(255,255,255,0.85);line-height:1.6;margin:0;">
+        We use only <strong style="color:#fff;">essential cookies</strong> to keep this site working — no tracking, no advertising, no data shared with third parties.
+        <a href="cookies.html" style="color:#5DCAA5;text-decoration:underline;margin-left:4px;">Read our cookie policy</a>.
+      </p>
+      <button onclick="dismissCookieBanner()" style="flex-shrink:0;background:#0F6E56;color:#fff;border:none;border-radius:8px;padding:10px 22px;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;" aria-label="Accept cookies and dismiss this notice">
+        Got it
+      </button>
+    </div>
+  </div>
+  <script>
+    (function() {
+      function getCookie(name) {
+        return document.cookie.split('; ').some(function(c) { return c.startsWith(name + '='); });
+      }
+      function setCookie(name, value, days) {
+        var d = new Date();
+        d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+        document.cookie = name + '=' + value + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
+      }
+      if (!getCookie('sol-cookie-notice')) {
+        document.getElementById('cookie-banner').style.display = 'block';
+      }
+      window.dismissCookieBanner = function() {
+        setCookie('sol-cookie-notice', '1', 365);
+        var banner = document.getElementById('cookie-banner');
+        banner.style.opacity = '0';
+        banner.style.transition = 'opacity 0.3s';
+        setTimeout(function() { banner.style.display = 'none'; }, 300);
+      };
+    })();
+  </script>
 </body>
 </html>
